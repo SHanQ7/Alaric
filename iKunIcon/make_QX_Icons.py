@@ -2,9 +2,9 @@ import os ,tkinter as tk,re ,json,pyperclip
 from tkinter import filedialog 
 from PIL import Image
 from make_quick_installation_link import Output as mqil_out
-author_self           = 'Yuanxsxs'#Github的用户名
-file_name_remote_self = 'QtumultX'#Github的远程仓库名
-branch_self           = 'master' #分支名
+author_self           = 'Yuanxsxs'#SHanQ7
+file_name_remote_self = 'QtumultX'#Script-ShanQ
+branch_self           = 'master' #iKunIcon
 def dumpjson(path,cont,info = '文件录入成功',encodeing='utf-8'):
     '''将cont(cont 为 list 或 dict )转化为json并写入文件
     info 为提示词
