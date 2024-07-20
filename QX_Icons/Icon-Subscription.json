@@ -1,8 +1,7 @@
 {
-"name":"拿她练技术", 
-"description":"好好学习、天天向上", 
-"icons":
-[
+    "name": "ShanQ is iKun",
+    "description": "好好学习，天天向上。",
+    "icons": [
         {
             "name": "Icon 1",
             "url": "https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (1).png"
