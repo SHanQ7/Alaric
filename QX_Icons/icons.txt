@@ -1,207 +1,137 @@
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/aoteman.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokengmeng8.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokengmeng_6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokenmeng10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokenmeng9.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli9.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/caomeixiong.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/chaojisaiyaren.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/fangdan.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/gangtiexia.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guimiezhiren.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong4_.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guolaameng.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaoabo2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao_1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/hauyuanbaobao.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/hiamianbaobao_2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huanyuanbaobao.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huanyuanbaobao_1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huitailang.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa11.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa12.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa8.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa9.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwapangxiejing.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwayeye.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/hulwa13.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huoying.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huoying1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huoying2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/aoteman.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokemeng_7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokengmeng8.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokengmeng_6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokenmeng10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baokenmeng9.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/baomakeli9.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/caomeixiong.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/chaojisaiyaren.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/fangdan.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/gangtiexia.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guimiezhiren.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guobaotegong4_.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/guolaameng.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaoabo2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haimianbaobao_1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang4.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/haizeiwang7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/hauyuanbaobao.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/hiamianbaobao_2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huanyuanbaobao.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huanyuanbaobao_1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huitailang.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa10.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa11.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa12.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa3.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa6.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa7.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa8.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwa9.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwapangxiejing.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huluwayeye.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/hulwa13.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huoying.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huoying1.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/huoying2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Air_Bnb.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Amazon.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Apple.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Badoo.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Bebo.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Buzznet.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Classmates.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Daily_Motion.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Delicious.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Dribbble.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Facebook2.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Flickr.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Foursquare.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/GitHub.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Google_Plus.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Hi5.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Howcast.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Instagram.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Kickstarter.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Lastfm.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Line.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Linkedin.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/LiveJournal.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Medium.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Meetup.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Myspace.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/NextDoor.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Path.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Paypal.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Periscope.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Pinterest.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Quora.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Reddit.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/RenRen.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/ReverbNation.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Sina_Weibo.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Skype.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Skyrock.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Snapchat.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Snapfish.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/SoundCloud.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Spotify.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/StumbleUpon.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Tagged.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Taringa.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Telegram.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/TikTok.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Tinder.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Tout.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/TripAdvisor.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Tumblr.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Twitter.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Uber.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/VK.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Viadeo.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Vimeo.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/We_Heart_It.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Whatsapp.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/XING.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/Yelp.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/YouTube.png
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Social _Media/facebook.png
-
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (1).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (10).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (100).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (101).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (102).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (103).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (104).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (105).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (106).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (107).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (108).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (109).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (11).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (110).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (111).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (112).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (113).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (114).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (115).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (116).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (117).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (118).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (119).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (12).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (120).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (121).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (122).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (123).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (124).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (125).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (126).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (127).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (128).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (129).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (13).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (130).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (131).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (132).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (133).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (134).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (135).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (136).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (137).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (138).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (14).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (15).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (16).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (17).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (18).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (19).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (2).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (20).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (21).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (22).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (23).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (24).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (25).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (26).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (27).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (28).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (29).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (3).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (30).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (31).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (32).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (33).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (34).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (35).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (36).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (37).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (38).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (39).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (4).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (40).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (41).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (42).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (43).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (44).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (45).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (46).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (47).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (48).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (49).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (5).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (50).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (51).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (52).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (53).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (54).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (55).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (56).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (57).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (58).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (59).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (6).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (60).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (61).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (62).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (64).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (65).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (66).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (67).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (68).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (69).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (7).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (70).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (71).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (72).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (73).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (74).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (75).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (76).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (77).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (78).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (79).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (8).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (80).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (81).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (82).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (83).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (84).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (85).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (86).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (87).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (88).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (89).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (9).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (90).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (91).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (92).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (93).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (94).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (95).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (96).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (97).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (98).png
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/Chick (99).png
