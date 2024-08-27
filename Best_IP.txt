@@ -1,4 +1,42 @@
-103.220.72.40:443#HK
-89.116.250.8:443#US California Los-Angeles
+62.159.152.217:443#DE Bremen
 91.193.58.154:443#GB Manchester
-45.159.216.0:443#US Delaware Wilmington
+103.220.72.40:443#HK
+45.159.216.0:443#US 01 Delaware Wilmington
+89.116.250.8:443#US 02 California Los-Angeles
+162.159.152.217:443#US 03 California San-Francisco
+162.159.152.130:443#US 04 California San-Francisco
+162.159.152.213:443#US 05 California San-Francisco
+162.159.153.61:443#US 06 California San-Francisco
+162.159.152.156:443#US 07 California San-Francisco
+162.159.153.230:443#US 08 California San-Francisco
+162.159.153.155:443#US 09 California San-Francisco
+162.159.153.180:443#US 10 California San-Francisco
+162.159.153.41:443#US 11 California San-Francisco
+162.159.153.213:443#US 12 California San-Francisco
+162.159.152.159:443#US 13 California San-Francisco
+162.159.152.37:443#US 14 California San-Francisco
+162.159.152.106:443#US 15 California San-Francisco
+162.159.152.134:443#US 16 California San-Francisco	
+162.159.152.127:443#US 17 California San-Francisco
+162.159.153.208:443#US 18 California San-Francisco
+162.159.153.58:443#US 19 California San-Francisco
+162.159.153.87:443#US 20 California San-Francisco
+162.159.153.38:443#US 21 California San-Francisco
+162.159.152.45:443#US 22 California San-Francisco
+104.19.63.7:443#US 23 California San-Francisco	
+104.19.62.77:443#US 24 California San-Francisco
+104.19.61.62:443#US 25 California San-Francisco
+104.19.56.100:443#US 26 California San-Francisco
+104.19.61.206:443#US 27 California San-Francisco
+104.19.59.180:443#US 28 California San-Francisco
+104.19.56.107:443#US 29 California San-Francisco
+104.19.61.48:443#US 30 California San-Francisco
+104.19.63.64:443#US 31 California San-Francisco
+104.19.33.159:443#US 32 California San-Francisco
+104.19.32.150:443#US 33 California San-Francisco
+104.19.61.207:443#US 34 California San-Francisco
+104.19.32.197:443#US 35 California San-Francisco
+104.19.56.98:443#US 36 California San-Francisco
+104.19.63.8:443#US 37 California San-Francisco
+104.19.32.168:443#US 38 California San-Francisco
+104.19.61.177:443#US 39 California San-Francisco	
