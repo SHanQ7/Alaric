@@ -5,8 +5,8 @@
 188.244.122.86:8443#DE 02 Hesse Frankfurt
 91.193.58.154:443#GB Manchester
 103.220.72.40:443#HK
-31.43.179.229：8443#KZ-哈萨克斯坦
-89.116.250.174：8443#LT Vilnius-County Vilnius
+31.43.179.229:8443#KZ-哈萨克斯坦
+89.116.250.174:8443#LT Vilnius-County Vilnius
 188.42.89.167:443#NL 01 Overijssel
 188.42.88.191:8443#NL 02 Overijssel
 45.8.211.58:443#SG 01
@@ -18,7 +18,7 @@
 104.20.30.78:443#US 04 Califotnia San-Francisco
 216.116.134.165:8443#US 05 Califotnia San-Francisco
 162.159.25.69:8443#US 06 Califotnia San-Francisco
-170.114.45.137;8443#US 07 California San-Jose
+170.114.45.137:8443#US 07 California San-Jose
 45.159.217.37:8443#US 21 Delaware Wilmington
 45.159.218.217:2053#US 22 Delaware Wilmington
 69.84.182.254:8443#US 41 Florida Boca-Raton
