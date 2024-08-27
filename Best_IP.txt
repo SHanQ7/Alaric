@@ -11,7 +11,7 @@
 188.42.88.191:8443#NL 02 Overijssel
 45.8.211.58:443#SG 01
 45.8.211.249:443#SG 02
-168.100.6.30:2083#01 California Mountain-View
+168.100.6.30:2083#US 01 California Mountain-View
 172.67.72.65:443#US 01 Califotnia San-Francisco
 172.67.70.103:443#US 02 Califotnia San-Francisco
 172.67.75.149:443#US 03 Califotnia San-Francisco
