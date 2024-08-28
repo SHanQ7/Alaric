@@ -10,23 +10,36 @@ const isp0 = "未知服务商";
 let body = $response.body;
 let obj = JSON.parse(body);
 
-const country = country_check(obj['country']);
-const city = city_check(obj['city']);
+// 引入 opencc-js 库
+const OpenCC = require('opencc-js');
+const opencc = new OpenCC('t2s.json');
+
+// 用于将繁体中文转换为简体中文的异步函数
+async function traditionalToSimplified(para) {
+  return await opencc.convertPromise(para);
+}
+
+// 对国家名、地区名、城市名和服务商进行转换
+const country = country_check(await traditionalToSimplified(obj['country']));
+const city = city_check(await traditionalToSimplified(obj['city']));
+const regionName = await traditionalToSimplified(obj['regionName']);
+const isp = await traditionalToSimplified(obj['isp']);
 
 // 展示在顶部开关左边（第1行） 格式：国旗 国家名 地区名 城市名
-let title = flags.get(obj['countryCode']) + ' ' + append(country, obj['regionName']) + ' ' + append('', city);
+let title = flags.get(obj['countryCode']) + ' ' + append(country, regionName) + ' ' + append('', city);
 // 展示在顶部开关左边（第2行） 格式：IP IPS
 let subtitle = obj['query'] + ' ' + isp_check(obj['as']);
 // 不展示
 let ip = obj['query'];
 // 长按节点选择“查看节点信息”时的信息
-let description = '国家：' + obj['countryCode'] + ' ' + obj['country'] + '\n'
-  + '地区：' + obj['region'] + ' ' + city_check(obj['regionName']) + '\n'
+let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
+  + '地区：' + obj['region'] + ' ' + city_check(regionName) + '\n'
   + '城市：' + city + '\n'
   + 'IP：' + obj['query'] + '\n'
-  + '服务商：' + obj['isp'] + '\n'
+  + '服务商：' + isp + '\n'
   + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
   + '时区：' + obj['timezone'];
+
 $done({title, subtitle, ip, description});
 
 function country_check(para) {
@@ -53,3 +66,6 @@ function isp_check(para) {
 function append(region, city) {
   return region + (city ? ' ' + city : '');
 }
+
+```sh
+npm install opencc-js
