@@ -11,17 +11,38 @@ let obj = JSON.parse(body);
 
 // 繁体转简体映射
 const tradToSimpMap = {
-  '愛': '爱', '壢': '坜', '亞': '亚', '聖': '圣', '紐': '纽',
-  '蘭': '兰', '費': '费', '菲': '菲', '涅': '涅', '羅': '罗',
-  '訥': '讷', '阿': '阿', '爾': '尔', '叢': '丛', '離': '离',
-  '島': '岛', '區': '区', '葉': '叶', '縣': '县', '魯': '鲁',
+  '愛': '爱',
+  '壢': '坜',
+  '亞': '亚',
+  '聖': '圣',
+  '紐': '纽',
+  '蘭': '兰',
+  '費': '费',
+  '菲': '菲',
+  '涅': '涅',
+  '羅': '罗',
+  '訥': '讷',
+  '阿': '阿',
+  '爾': '尔',
+  '叢': '丛',
+  '離': '离',
+  '島': '岛',
+  '區': '区',
+  '葉': '叶',
+  '縣': '县',
+  '魯': '鲁',
 };
 
 // 英文转中文地名映射
 const englishToChineseCityMap = {
-  'New York': '纽约','Los Angeles': '洛杉矶','San Francisco': '旧金山','Dubai':'迪拜'，
-  'Taoyuan':'桃源','Kowloon':'九龙'
-  // 其他城市映射
+  'New York': '纽约',
+  'Los Angeles': '洛杉矶',
+  'San Francisco': '旧金山',
+  'Dubai': '迪拜',
+  'Taoyuan': '桃源',
+  'Kowloon': '九龙',
+  'Tokyo': '东京',
+  'Quebec': '魁北克省',
 };
 
 function traditionalToSimplified(para) {
@@ -31,21 +52,6 @@ function traditionalToSimplified(para) {
 function englishToChinese(para) {
   return englishToChineseCityMap[para] || para;
 }
-
-const country = country_check(traditionalToSimplified(obj['country']));
-const city = city_check(englishToChinese(traditionalToSimplified(obj['city'])));
-
-let title = flags.get(obj['countryCode']) + ' ' + append(country, traditionalToSimplified(obj['regionName'])) + ' ' + append('', city);
-let subtitle = obj['query'] + ' ' + isp_check(obj['as']);
-let ip = obj['query'];
-let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
-  + '地区：' + obj['region'] + ' ' + city_check(traditionalToSimplified(obj['regionName'])) + '\n'
-  + '城市：' + city + '\n'
-  + 'IP：' + obj['query'] + '\n'
-  + '服务商：' + traditionalToSimplified(obj['isp']) + '\n'
-  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
-  + '时区：' + obj['timezone'];
-$done({ title, subtitle, ip, description });
 
 function country_check(para) {
   return para || city0;
@@ -68,3 +74,22 @@ function isp_check(para) {
 function append(region, city) {
   return region + (city ? ' ' + city : '');
 }
+
+const country = country_check(englishToChinese(traditionalToSimplified(obj['country'])));
+const city = city_check(englishToChinese(traditionalToSimplified(obj['city'])));
+
+// 顶部开关左边（第1行） 格式：国旗 国家名 IPS
+let title = flags.get(obj['countryCode']) + ' ' + isp_check(obj['as']);
+// 顶部开关左边（第2行） 格式：地区名 城市名 IP
+let subtitle = append(country,englishToChinese(traditionalToSimplified(obj['city']))) + ' ' + append(city, englishToChinese(traditionalToSimplified(obj['city']))) + ' ' + obj['query'];
+// 不展示
+let ip = obj['query'];
+// 长按节点选择“查看节点信息”时的信息
+let description = '国家：' + obj['countryCode'] + ' ' + obj['country'] + '\n'
+  + '地区：' + obj['region'] + ' ' + city_check(obj['regionName']) + '\n'
+  + 'IP：' + obj['query'] + '\n'
+  + '服务商：' + obj['isp'] + '\n'
+  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
+  + '时区：' + obj['timezone'];
+
+$done({title, subtitle, ip, description});
