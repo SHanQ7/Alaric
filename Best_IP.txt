@@ -8,6 +8,7 @@
 147.45.75.11:443#DE Dreieich ShanQ-08
 193.188.20.180:443#DE Dreieich ShanQ-09
 185.197.74.65:443#DE Dreieich ShanQ-10
+87.228.17.174:443#DE Dreieich ShanQ-11
 46.8.236.93:443#FI Vantaa ShanQ-34
 46.8.232.115:443FI Vantaa ShanQ-35
 46.8.236.93:443FI Vantaa ShanQ-36
@@ -38,14 +39,13 @@
 91.246.41.189:443#NL Amsterdam ShanQ-185
 45.156.25.133:443#NL Amsterdam ShanQ-186
 31.129.48.139:443#RU Moscow ShanQ-33
-87.228.17.174:443#PL Pruszków ShanQ-187
-185.209.30.132:443#RU Domodedovo ShanQ-188
+185.103.109.139:443#RU Domodemovo ShanQ-188
 185.233.200.118:443#RU Domodedovo ShanQ-189
 185.230.141.79:443#RU Domodedovo ShanQ-190
 88.218.60.230:443#RU Domodemovo ShanQ-191
 31.129.49.103:443#RU Ryleyevo ShanQ-192
 31.129.48.139:443#RU Ryleyevo ShanQ-193
-185.103.109.139:443#SE Steninge ShanQ-194
+185.209.30.132:443#SE Steninge ShanQ-194
 194.147.35.221:443#UK Hounslow ShanQ-195
 194.147.35.221:443#UK Hounslow ShanQ-196
 188.42.89.101:443#US California East Los Angeles ShanQ-197
