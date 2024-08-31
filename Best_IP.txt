@@ -16,22 +16,32 @@
 147.45.49.34:443#JP Narita ShanQ16
 129.154.59.235:443#KR Bak-chon ShanQ17
 185.103.109.139:443#LV Riga ShanQ18
-185.209.30.132:443#PL Pruszków ShanQ19
-88.218.60.230:443#RU Domodemovo ShanQ20
-185.103.109.139:443#SE Steninge ShanQ21
-194.147.35.221:443#UK Hounslow ShanQ22
-188.42.89.101:443#US California East Los Angeles ShanQ23
-199.212.90.216:443#US California East Los Angeles ShanQ24
-185.176.26.110:443#US California East Los Angeles ShanQ25
-185.176.26.229:2083#US California East Los Angeles ShanQ26
-23.227.60.1:2083#US California East Los Angeles ShanQ27
-198.62.62.238:2083#US California East Los Angeles ShanQ28
-185.135.9.9:2083#US California East Los Angeles ShanQ29
-199.212.90.110:2087#US California East Los Angeles ShanQ30
-45.94.169.39:2096#US California East Los Angeles ShanQ3
-185.148.106.133:2096#US California East Los Angeles ShanQ32
-147.45.124.108:443#US California SanJose ShanQ33
-193.188.22.1 :443#US Colorado Bennett ShanQ34
+109.107.185.166 :443#NL Amsterdam ShanQ19
+185.65.149.44 :443#NL Amsterdam ShanQ20
+77.238.245.204 :443#NL Amsterdam ShanQ21
+185.99.10.8 :443#NL Amsterdam ShanQ22
+77.238.248.43 :443#NL Amsterdam ShanQ23
+77.238.237.39 :443#NL Amsterdam ShanQ24
+77.238.238.185 :443#NL Amsterdam ShanQ25
+77.238.247.112 :443#NL Amsterdam Shan26
+77.238.242.126 :443#NL Amsterdam ShanQ27
+109.107.187.52 :443#NL Amsterdam ShanQ28
+185.209.30.132:443#PL Pruszków ShanQ29
+88.218.60.230:443#RU Domodemovo ShanQ30
+185.103.109.139:443#SE Steninge ShanQ31
+194.147.35.221:443#UK Hounslow ShanQ32
+188.42.89.101:443#US California East Los Angeles ShanQ33
+199.212.90.216:443#US California East Los Angeles ShanQ34
+185.176.26.110:443#US California East Los Angeles ShanQ35
+185.176.26.229:2083#US California East Los Angeles ShanQ36
+23.227.60.1:2083#US California East Los Angeles ShanQ37
+198.62.62.238:2083#US California East Los Angeles ShanQ38
+185.135.9.9:2083#US California East Los Angeles ShanQ39
+199.212.90.110:2087#US California East Los Angeles ShanQ40
+45.94.169.39:2096#US California East Los Angeles ShanQ41
+185.148.106.133:2096#US California East Los Angeles ShanQ42
+147.45.124.108:443#US California SanJose ShanQ43
+193.188.22.1 :443#US Colorado Bennett ShanQ44
 
 
 
