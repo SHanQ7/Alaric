@@ -13,6 +13,7 @@
 104.26.5.21:443#HK ShanQ-45
 104.26.9.237:443#HK ShanQ-46
 104.26.8.183:443#HK ShanQ-47
+152.67.190.105:443#IN Hyderābād ShanQ-47
 147.45.49.34:443#JP Narita ShanQ-48
 131.186.62.248:443#JP Narita ShanQ-49
 131.186.33.175:443#JP Narita ShanQ-50
@@ -27,6 +28,7 @@
 77.238.248.43:443#NL Amsterdam ShanQ-59
 77.238.237.39:443#NL Amsterdam ShanQ-60
 77.238.238.185:443#NL Amsterdam ShanQ-61
+185.209.30.132:443#PL Pruszków ShanQ-62
 185.209.30.132:443#RU Domodedovo ShanQ-184
 185.233.200.118:443#RU Domodedovo ShanQ-185
 79.133.183.163:443#RU Domodedovo ShanQ-186
@@ -34,6 +36,7 @@
 88.218.60.230:443#RU Domodemovo ShanQ-188
 31.129.49.103:443#RU Ryleyevo ShanQ-189
 31.129.48.139:443#RU Ryleyevo ShanQ-190
+103.107.52.17:443#TH Ang Thong ShanQ-191
 87.228.17.174:443#UA Kukhmisterskaya Sloboda ShanQ-183
 194.147.35.221:443#UK Hounslow ShanQ-192
 185.176.26.229:2083#US California East Los Angeles ShanQ-200
