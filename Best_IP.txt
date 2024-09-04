@@ -8,7 +8,6 @@
 94.177.8.48:443#AT Bruck an der Leitha ShanQ-03.2
 94.177.8.50:443#AT Bruck an der Leitha ShanQ-03.3
 94.177.8.2:443#AT Bruck an der Leitha ShanQ-143
-199.247.8.239:443#FR Aulnay-sous-Bois ShanQ-144
 94.177.8.54:443#AT Bruck an der Leitha ShanQ-145
 46.102.156.77:443#AT Bruck an der Leitha ShanQ-146
 
@@ -35,13 +34,14 @@
 94.131.118.191:443#FR Aulnay-sous-Bois ShanQ-151
 185.231.205.144:443#FR Aulnay-sous-Bois ShanQ-152
 185.231.205.117:443#FR Aulnay-sous-Bois ShanQ-154
+199.247.8.239:443#FR Aulnay-sous-Bois ShanQ-144
 
 # HK
 104.26.8.183:443#HK ShanQ-35
 131.186.33.175:443#JP Narita ShanQ-36
 
 # KR
-132.145.84.135:443#KR Bak-chon ShanQ-37
+
 64.110.75.81:443#KR Bak-chon ShanQ-38
 34.22.111.228:443#KR Bak-chon ShanQ-39
 146.56.36.63:443#KR Bak-chon ShanQ-40
@@ -91,5 +91,5 @@
 45.8.211.76:2087#US California East Los Angeles ShanQ-115
 216.116.134.209:2087#US California East Los Angeles ShanQ-116
 45.94.169.39:2096#US California East Los Angeles ShanQ-118
-150.230.34.116:443#US California San Jose ShanQ-128
+
 193.188.22.1:443#US Colorado Bennett ShanQ-129
