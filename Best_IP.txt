@@ -1,104 +1,105 @@
-138.2.75.91
-152.67.222.167
-129.150.51.134
-132.226.229.16
-168.138.185.234
-130.162.136.204
-146.56.173.117
-150.230.150.181
-130.162.44.253
-158.101.220.1
-141.147.89.174
-193.123.59.33
-141.147.66.13
-158.101.148.105
-130.162.184.118
-150.230.116.76
-141.147.84.216
-150.230.127.102
-158.180.231.216
-132.226.31.178
-130.162.191.15
-144.24.37.146
-129.153.119.97
-138.3.222.115
-
 # AE
 193.123.91.207:443#AE Dubai ShanQ-01
 
 # AT
 46.102.156.86:443#AT Bruck an der Leitha ShanQ-02
 94.177.8.6:443#AT Bruck an der Leitha ShanQ-03
-94.177.8.43:443#AT Bruck an der Leitha ShanQ-03.1
-94.177.8.48:443#AT Bruck an der Leitha ShanQ-03.2
-94.177.8.50:443#AT Bruck an der Leitha ShanQ-03.3
-94.177.8.2:443#AT Bruck an der Leitha ShanQ-143
-94.177.8.54:443#AT Bruck an der Leitha ShanQ-145
-46.102.156.77:443#AT Bruck an der Leitha ShanQ-146
+94.177.8.48:443#AT Bruck an der Leitha ShanQ-04
+94.177.8.2:443#AT Bruck an der Leitha ShanQ-05
+94.177.8.54:443#AT Bruck an der Leitha ShanQ-06
+
+# CH
+45.85.93.96:443#CH Winterthur ShanQ-11
 
 # DE
-89.208.96.32:443#DE Dreieich ShanQ-04
-89.208.96.88:443#DE Dreieich ShanQ-05
-89.208.96.130:443#DE Dreieich ShanQ-06
-89.208.96.121:443#DE Dreieich ShanQ-07
-89.208.96.91:443#DE Dreieich ShanQ-08
+89.208.96.32:443#DE Dreieich ShanQ-12
+89.208.96.88:443#DE Dreieich ShanQ-13
+89.208.96.130:443#DE Dreieich ShanQ-14
+89.208.96.121:443#DE Dreieich ShanQ-15
+89.208.96.91:443#DE Dreieich ShanQ-16
 
 # DK
 91.223.169.167:443#DK Copenhagen ShanQ-153
 
 # FI
-46.8.236.93:443#FI Vantaa ShanQ-28
-46.8.233.57:443#FI Vantaa ShanQ-29
-46.8.233.242:443#FI Vantaa ShanQ-30
-103.97.88.133:443#FI Vantaa ShanQ-31
+46.8.236.93:443#FI Vantaa ShanQ-40
+46.8.233.57:443#FI Vantaa ShanQ-41
+46.8.233.242:443#FI Vantaa ShanQ-42
+103.97.88.133:443#FI Vantaa ShanQ-43
+37.27.43.48:443#FI Vantaa ShanQ-44
 
 #FR
-185.120.59.77:443#FR Aulnay-sous-Bois ShanQ-32
-158.180.231.216:443#FR Aulnay-sous-Bois ShanQ-33
-144.24.200.164:443#FR Istres ShanQ-34
-94.131.118.191:443#FR Aulnay-sous-Bois ShanQ-151
-185.231.205.144:443#FR Aulnay-sous-Bois ShanQ-152
-185.231.205.117:443#FR Aulnay-sous-Bois ShanQ-154
-199.247.8.239:443#FR Aulnay-sous-Bois ShanQ-144
+185.120.59.77:443#FR Aulnay-sous-Bois ShanQ-51
+199.247.8.239:443#FR Aulnay-sous-Bois ShanQ-52
+94.131.118.191:443#FR Aulnay-sous-Bois ShanQ-53
+185.231.205.144:443#FR Aulnay-sous-Bois ShanQ-54
+185.231.205.117:443#FR Aulnay-sous-Bois ShanQ-55
+94.131.118.26:443#FR Aulnay-sous-Bois ShanQ-56
+141.145.206.217:443#FR Aulnay-sous-Bois ShanQ-57
+144.24.200.164:443#FR Istres ShanQ-58
+158.180.231.216:443#FR Meyzieu ShanQ-59
 
 # HK
-104.26.8.183:443#HK ShanQ-35
-131.186.33.175:443#JP Narita ShanQ-36
+104.26.8.183:443#HK ShanQ-60
+141.11.216.234:443#HK ShanQ-61
+158.101.148.105:443#HK ShanQ-62
+
+# IN
+13.201.221.231:443#IN Santa Cruz ShanQ-63
+
+#JP
+131.186.33.175:443#JP Narita ShanQ-64
+57.180.24.18:443#JP Narita ShanQ-65
+8.216.81.13:443#JP Narita ShanQ-66
+141.147.183.83:443#JP Narita ShanQ-67
+45.78.53.10:443#JP Ōkubo-naka ShanQ-70
+
 
 # KR
-
-64.110.75.81:443#KR Bak-chon ShanQ-38
-34.22.111.228:443#KR Bak-chon ShanQ-39
-146.56.36.63:443#KR Bak-chon ShanQ-40
-146.56.37.233:443#KR Bak-chon ShanQ-41
+64.110.80.220:443#KR Bak-chon ShanQ-75
+132.145.90.116:443#KR Bak-chon ShanQ-76
+193.123.241.83:443#KR Bak-chon ShanQ-77
+193.123.229.7:443#KR Bak-chon ShanQ-78
+132.145.81.22:443#KR Bak-chon ShanQ-79
 
 # NL
-109.107.185.166:443#NL Amsterdam ShanQ-46
-77.238.245.204:443#NL Amsterdam ShanQ-47
-77.238.237.39:443#NL Amsterdam ShanQ-48
-77.238.242.126:443#NL Amsterdam ShanQ-49
-109.107.187.52:443#NL Amsterdam ShanQ-50
+193.188.20.180:443#NL Amsterdam ShanQ-108
+185.197.74.65:443#NL Amsterdam ShanQ-109
+147.45.252.132:443#NL Amsterdam ShanQ-110
+147.45.225.249:443#NL Amsterdam ShanQ-111
+147.45.225.246:443#NL Amsterdam ShanQ-112
+
+# NO
+185.7.33.49:443#NO Jessheim ShanQ-140
 
 # PL
-87.228.9.243:443#PL Pruszków ShanQ-95
-91.142.75.104:443#PL Pruszków ShanQ-149
-
-
-# AT
-103.107.52.17:443#TH Ang Thong-ShanQ-95
+87.228.9.243:443#PL Pruszków ShanQ-141
+91.142.75.104:443#PL Pruszków ShanQ-142
+5.34.209.109:443#PL Pruszków ShanQ-143
+5.34.211.150:443#PL Pruszków ShanQ-144
+94.177.8.62:443#PL Warsaw ShanQ-147
 
 # RU
 87.228.17.250:443#RU Domodedovo ShanQ-96
-185.209.30.132:443#RU Domodedovo ShanQ-97
 79.133.183.163:443#RU Domodedovo ShanQ-98
 194.87.252.20:443#RU Domodedovo ShanQ-99
 185.230.141.79:443#RU Domodedovo ShanQ-100
-185.233.200.118:443#RU Domodedovo ShanQ-101
 31.129.49.103:443#RU Ryleyevo ShanQ-102
 
 # SE
-51.20.53.195:443#SE Steninge ShanQ-147
-51.21.48.77:443#SE Steninge ShanQ-148
+51.21.48.77:443#SE Steninge ShanQ-156
+95.164.51.68:443#SE Steninge ShanQ-157
+176.97.77.216:443#SE Steninge ShanQ-158
+45.82.13.239:443#SE Steninge ShanQ-159
+193.42.39.188:443#SE Steninge ShanQ-160
+
+# SG
+138.2.75.91:443#SG ShanQ-161
+132.226.229.16:443#SG ShanQ-162
+
+# TH
+103.107.52.17:443#TH Ang Thong ShanQ-163
+199.21.175.123:443#TH Ang Thong ShanQ-164
 
 # UA
 87.228.17.174:443#UA Kukhmisterskaya Sloboda ShanQ-103
@@ -116,5 +117,6 @@
 45.8.211.76:2087#US California East Los Angeles ShanQ-115
 216.116.134.209:2087#US California East Los Angeles ShanQ-116
 45.94.169.39:2096#US California East Los Angeles ShanQ-118
-
 193.188.22.1:443#US Colorado Bennett ShanQ-129
+103.35.189.77:443#US New York City ShanQ-193
+80.209.243.179:443#US New York City ShanQ-194
