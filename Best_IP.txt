@@ -4,11 +4,6 @@
 # AU
 185.222.216.90:443#AU Maroubra ShanQ-21
 
-# CH
-45.85.93.96:443#CH Winterthur ShanQ-22
-212.113.106.80:443#CH Winterthur ShanQ-23
-91.221.67.51:443#CH Winterthur ShanQ-24
-
 # AT
 46.102.156.86:443#AT Bruck an der Leitha ShanQ-02
 94.177.8.6:443#AT Bruck an der Leitha ShanQ-03
@@ -17,7 +12,9 @@
 94.177.8.54:443#AT Bruck an der Leitha ShanQ-06
 
 # CH
-45.85.93.96:443#CH Winterthur ShanQ-11
+45.85.93.96:443#CH Winterthur ShanQ-22
+212.113.106.80:443#CH Winterthur ShanQ-23
+91.221.67.51:443#CH Winterthur ShanQ-24
 
 # DE
 89.208.96.32:443#DE Dreieich ShanQ-12
