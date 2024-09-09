@@ -1,5 +1,5 @@
 # AE
-193.123.91.207:443#AE Dubai ShanQ-01
+193.123.69.3:8443#AE Dubai ShanQ-01
 
 # AU
 185.222.216.90:443#AU Maroubra ShanQ-21
