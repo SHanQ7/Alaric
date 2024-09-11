@@ -1,4 +1,4 @@
-# 改自KOP-XIAO大佬，自用。
+# 改自KOP-XIAO大佬
 if ($response.statusCode != 200) {
   $done(null);
 }
