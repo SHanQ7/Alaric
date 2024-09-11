@@ -1,4 +1,3 @@
-# 改自KOP-XIAO大佬
 if ($response.statusCode != 200) {
   console.log("Error: Received status code " + $response.statusCode);
   $done(null);
