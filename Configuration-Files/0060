@@ -4,8 +4,8 @@ if ($response.statusCode != 200) {
 }
 
 // 默认值
-const defaultCity = "高谭市";
-const defaultRegion = "未知地区";
+const defaultCity = "哥谭市";
+const defaultRegion = "韦恩大厦";
 const defaultISP = "limbopro.com";
 
 // 生成一个小于 max 的随机整数
@@ -13,15 +13,48 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+// 检查并返回有效的国家信息
+function country_ValidCheck(para) {
+  return para || defaultcountry;
+}
+
+// 检查并返回有效的地区信息
+function Region_ValidCheck(para) {
+  if (para) {
+    if (para.toLowerCase() === 'kowloon') {
+      return '九龙城区';
+    if (para.toLowerCase() === '千葉縣') {
+      return '千叶县';
+    if (para.toLowerCase() === 'Mazovia') {
+      return '摩拉维亚';
+    if (para.toLowerCase() === 'North Chungchong') {
+      return '忠清北道';
+    if (para.toLowerCase() === 'Stockholm-County') {
+      return '斯德哥尔摩';
+    if (para.toLowerCase() === 'Ang Thong') {
+      return '红统府';
+    if (para.toLowerCase() === '奧弗涅-羅訥-阿爾卑斯大區') {
+      return '阿尔卑斯大区';
+    if (para.toLowerCase() === 'Hawalli') {
+      return '哈瓦利省';
+    if (para.toLowerCase() === 'Taoyuan') {
+      return '千叶县桃园市';
+    if (para.toLowerCase() === '加州') {
+      return '加利福尼亚州';
+    }
+    return para;
+  } else {
+    return region0;
+    // return emojis[getRandomInt(emojis.length)]; // 可选：返回随机表情
+  }
+}
+
 // 检查并返回有效的城市信息
 function City_ValidCheck(para) {
   return para || defaultCity;
 }
 
-// 检查并返回有效的地区信息
-function Region_ValidCheck(para) {
-  return para || defaultRegion;
-}
+
 
 // 检查并返回有效的 ISP 信息
 function ISP_ValidCheck(para) {
@@ -84,7 +117,7 @@ let obj = JSON.parse(body);
 var region = obj['regionName'] || defaultRegion;
 
 // 格式化标题（第1行）：国旗 + 国家名
-var title = flags.get(obj['countryCode']) + ' ' + obj['country'] + ' ' + obj['regionName'];
+var title = flags.get(obj['countryCode']) + ' ' + obj['country'] + ' ' + Region_ValidCheck(para)(obj['regionName']);
 
 // 格式化副标题（第2行）：城市名 + ISP 名
 var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query'] + ' ' + ISP_ValidCheck(obj['org']);
