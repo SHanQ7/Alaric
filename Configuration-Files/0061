@@ -21,33 +21,37 @@ function country_ValidCheck(para) {
 // 检查并返回有效的地区信息
 function Region_ValidCheck(para) {
   if (para) {
-    if (para.toLowerCase() === 'kowloon') {
+    const lowerCasePara = para.toLowerCase();
+    
+    if (lowerCasePara === 'kowloon') {
       return '九龙城区';
-    if (para.toLowerCase() === '千葉縣') {
+    } else if (lowerCasePara === '千葉縣') {
       return '千叶县';
-    if (para.toLowerCase() === 'Mazovia') {
+    } else if (lowerCasePara === 'mazovia') {
       return '摩拉维亚';
-    if (para.toLowerCase() === 'North Chungchong') {
+    } else if (lowerCasePara === 'north chungchong') {
       return '忠清北道';
-    if (para.toLowerCase() === 'Stockholm-County') {
+    } else if (lowerCasePara === 'stockholm-county') {
       return '斯德哥尔摩';
-    if (para.toLowerCase() === 'Ang Thong') {
+    } else if (lowerCasePara === 'ang thong') {
       return '红统府';
-    if (para.toLowerCase() === '奧弗涅-羅訥-阿爾卑斯大區') {
+    } else if (lowerCasePara === '奧弗涅-羅訥-阿爾卑斯大區') {
       return '阿尔卑斯大区';
-    if (para.toLowerCase() === 'Hawalli') {
+    } else if (lowerCasePara === 'hawalli') {
       return '哈瓦利省';
-    if (para.toLowerCase() === 'Taoyuan') {
-      return '千叶县桃园市';
-    if (para.toLowerCase() === '加州') {
+    } else if (lowerCasePara === 'taoyuan') {
+      return '桃园市';
+    } else if (lowerCasePara === '加州') {
       return '加利福尼亚州';
     }
     return para;
   } else {
-    return region0;
-    // return emojis[getRandomInt(emojis.length)]; // 可选：返回随机表情
+    return region0; 
+    // 可选：返回随机表情，例如返回随机表情的代码行可以启用
+    // return emojis[getRandomInt(emojis.length)];
   }
 }
+
 
 // 检查并返回有效的城市信息
 function City_ValidCheck(para) {
