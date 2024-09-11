@@ -52,11 +52,11 @@ function Area_check(para) {
     "kowloon": "九龙城区",
     "千葉縣": "千叶县",
     "mazovia": "摩拉维亚",
-    "north chungcheong": "忠清北道",   // 注意所有键都应为小写
+    "north chungcheong": "忠清北道", 
     "stockholm county": "斯德哥尔摩",
     "ang thong": "红统府",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
-    "普罗旺斯-阿尔卑斯-蓝色海岸": "蓝色海岸大区",
+    "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
     "hawalli": "哈瓦利省",
     "taoyuan": "桃园市",
     "加州": "加利福尼亚州",
@@ -86,10 +86,8 @@ function Area_check(para) {
 // 检查并转换城市名称
 function City_ValidCheck(para) {
   const cityMap = {
-    "STENIEGE": "斯坦尼格",
     "los angeles": "洛杉矶",
     "san francisco": "旧金山",
-    "kowloon": "九龙城区",
     "tokyo": "东京",
     "paris": "巴黎",
     "london": "伦敦",
@@ -98,8 +96,6 @@ function City_ValidCheck(para) {
     "taipei": "台北",
     "hong kong": "香港",
     "singapore": "新加坡",
-    "lombardy": "伦巴第",
-    "north chungchong": "忠清北道"
   };
 
   // 将城市名转换为小写并去除前后空格
@@ -163,7 +159,7 @@ var region = obj['regionName'] || defaultRegion;
 var title = flags.get(obj['countryCode']) + ' ' + obj['country'] + ' ' + Area_check(obj['regionName']);
 
 // 格式化副标题（第2行）：城市名 + IP + ISP 名
-var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query']
+var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query'] + ' ' +obj['isp']
 
 // IP 信息
 var ip = obj['query'];
