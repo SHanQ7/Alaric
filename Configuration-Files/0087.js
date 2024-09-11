@@ -3,23 +3,19 @@ if ($response.statusCode != 200) {
   $done(null);
 }
 
-// 默认值
 const defaultCity = "哥谭市";
 const defaultRegion = "韦恩大厦";
-const defaultISP = "limbopro.com";
-const defaultCountry = "默认国家";
+const defaultISP = "ShanQ.com";
+const defaultCountry = "天可汗";
 
-// 生成一个小于 max 的随机整数
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-// 检查并返回有效的国家信息
 function country_ValidCheck(para) {
   return para || defaultCountry;
 }
 
-// 检查并返回有效的地区信息
 function Region_ValidCheck(para) {
   return para || defaultRegion;
 }
@@ -29,12 +25,10 @@ function City_ValidCheck(para) {
   return para || defaultCity;
 }
 
-// 检查并返回有效的 ISP 信息
 function ISP_ValidCheck(para) {
   return para || defaultISP;
 }
 
-// 检查并转换地区名称
 function Area_check(para) {
   const areaMap = {
     "中华民国": "台湾",
@@ -52,39 +46,32 @@ function Area_check(para) {
     "lombardy": "伦巴第大区",
   };
 
-  // 将传入的参数转换为小写并去除前后空格
   para = para ? para.toLowerCase().trim() : para;
-
-  // 输出调试信息，查看传入的参数
   console.log(`Area_check received para: ${para}`);
-
-  // 返回映射表中的值，或原值（如果未找到匹配）
   return areaMap[para] || para;
 }
 
 // 检查并转换城市名称
 function City_ValidCheck(para) {
   const cityMap = {
-    "los angeles": "洛杉矶",
-    "san francisco": "旧金山",
-    "tokyo": "东京",
-    "paris": "巴黎",
-    "london": "伦敦",
-    "beijing": "北京",
-    "shanghai": "上海",
-    "taipei": "台北",
-    "hong kong": "香港",
-    "singapore": "新加坡",
-  };
+  "GRALLARATE": "加拉拉泰",  // 正确翻译应为加拉拉泰（位于意大利）
+  "MELTON": "墨尔顿",        // 墨尔顿（位于英国或澳大利亚）
+  "LAMPA": "拉帕",           // 拉帕（位于智利）
+  "CEDAR KNOLLS": "雪松诺尔斯", // 雪松诺尔斯（位于美国）
+  "SANTA CRUZ": "圣克鲁斯",   // 圣克鲁斯（位于美国或玻利维亚等地）
+  "YEONGDONG-GUN": "永同郡",  // 永同郡（位于韩国）
+  "STENINGE": "斯特宁厄",    // 斯特宁厄（位于瑞典）
+  "中壢": "中坜区",          // 中坜区（位于台湾）
+  "聖荷西": "圣荷西",        // 圣荷西（位于美国）
+  "MEYZIEU": "梅济约",       // 梅济约（位于法国）
+  "Ōkubo-naka": "大久保中",  // 大久保中（位于日本）
+  "JESSHEIM": "耶瑟海姆",     // 耶瑟海姆（位于挪威）
+};
 
-  // 将城市名转换为小写并去除前后空格
   para = para ? para.toLowerCase().trim() : para;
-
-  // 返回城市名称的有效值，如果 para 不存在则使用默认值
   return cityMap[para] || para || defaultCity;
 }
 
-// 定义国家旗帜的映射
 const flags = new Map([
   ["AC", "🇦🇨"], ["AD", "🇦🇩"], ["AE", "🇦🇪"], ["AF", "🇦🇫"], ["AG", "🇦🇬"], ["AI", "🇦🇮"],
   ["AL", "🇦🇱"], ["AM", "🇦🇲"], ["AO", "🇦🇴"], ["AQ", "🇦🇶"], ["AR", "🇦🇷"], ["AS", "🇦🇸"],
@@ -124,27 +111,16 @@ const flags = new Map([
   ["TV", "🇹🇻"], ["TW", "🇹🇼"], ["TZ", "🇹🇿"], ["UA", "🇺🇦"], ["UG", "🇺🇬"], ["UK", "🇬🇧"],
   ["UM", "🇺🇲"], ["US", "🇺🇸"], ["UY", "🇺🇾"], ["UZ", "🇺🇿"], ["VA", "🇻🇦"], ["VC", "🇻🇨"],
   ["VE", "🇻🇪"], ["VG", "🇻🇬"], ["VI", "🇻🇮"], ["VN", "🇻🇳"], ["VU", "🇻🇺"], ["WS", "🇼🇸"],
-  ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"]
+  ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"], ["TW", "🇨🇳"]
 ]);
 
-// 脚本开始
 let body = $response.body;
 let obj = JSON.parse(body);
 
-// 提取地区信息
 var region = obj['regionName'] || defaultRegion;
-
-// 格式化标题（第1行）：国旗 + 国家名 + 地区名
 var title = flags.get(obj['countryCode']) + ' ' + obj['country'] + ' ' + Area_check(obj['regionName']);
-
-// 格式化副标题（第2行）：城市名 + IP + ISP 名
 var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query'] + ' ' +obj['isp']
-
-// IP 信息
 var ip = obj['query'];
-
-// 长按节点选择“查看节点信息”时的信息
 var description = `服务商: ${obj['isp']}\n地区: ${Region_ValidCheck(region)}\n城市: ${City_ValidCheck(obj['city'])}\nIP: ${obj['query']}\n时区: ${obj['timezone']}`;
 
-// 完成并返回处理结果
 $done({ title, subtitle, ip, description });
