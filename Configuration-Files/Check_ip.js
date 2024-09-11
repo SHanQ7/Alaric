@@ -41,16 +41,37 @@ function Area_check(para) {
     "kowloon": "九龙城区",
     "千葉縣": "千叶县",
     "mazovia": "摩拉维亚",
-    "north chungchong": "忠清北道",   // 注意所有键都应为小写
+    "north chungcheong": "忠清北道",
     "stockholm county": "斯德哥尔摩",
     "ang thong": "红统府",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
-    "普罗旺斯-阿尔卑斯-蓝色海岸大区": "蓝色海岸大区",
+    "// 检查并转换地区名称
+function Area_check(para) {
+  const areaMap = {
+    "中华民国": "台湾",
+    "kowloon": "九龙城区",
+    "千葉縣": "千叶县",
+    "mazovia": "摩拉维亚",
+    "north chungcheong": "忠清北道",   // 注意所有键都应为小写
+    "stockholm county": "斯德哥尔摩",
+    "ang thong": "红统府",
+    "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
+    "普罗旺斯-阿尔卑斯-蓝色海岸": "蓝色海岸大区",
     "hawalli": "哈瓦利省",
     "taoyuan": "桃园市",
     "加州": "加利福尼亚州",
     "lombardy": "伦巴第大区",
   };
+
+  // 将传入的参数转换为小写并去除前后空格
+  para = para ? para.toLowerCase().trim() : para;
+
+  // 输出调试信息，查看传入的参数
+  console.log(`Area_check received para: ${para}`);
+
+  // 返回映射表中的值，或原值（如果未找到匹配）
+  return areaMap[para] || para;
+}
 
   // 将传入的参数转换为小写并去除前后空格
   para = para ? para.toLowerCase().trim() : para;
