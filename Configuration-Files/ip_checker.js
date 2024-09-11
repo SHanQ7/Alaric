@@ -20,9 +20,25 @@ function Region_ValidCheck(para) {
   return para || defaultRegion;
 }
 
-// 检查并返回有效的城市信息
 function City_ValidCheck(para) {
-  return para || defaultCity;
+  const cityMap = {
+  "GRALLARATE": "加拉拉泰",  // 正确翻译应为加拉拉泰（位于意大利）
+  "MELTON": "墨尔顿",        // 墨尔顿（位于英国或澳大利亚）
+  "LAMPA": "拉帕",           // 拉帕（位于智利）
+  "CEDAR KNOLLS": "雪松诺尔斯", // 雪松诺尔斯（位于美国）
+  "SANTA CRUZ": "圣克鲁斯",   // 圣克鲁斯（位于美国或玻利维亚等地）
+  "YEONGDONG-GUN": "永同郡",  // 永同郡（位于韩国）
+  "STENINGE": "斯特宁厄",    // 斯特宁厄（位于瑞典）
+  "中壢": "中坜区",          // 中坜区（位于台湾）
+  "聖荷西": "圣荷西",        // 圣荷西（位于美国）
+  "MEYZIEU": "梅济约",       // 梅济约（位于法国）
+  "Ōkubo-naka": "大久保中",  // 大久保中（位于日本）
+  "JESSHEIM": "耶瑟海姆",     // 耶瑟海姆（位于挪威）
+};
+
+  para = para ? para.toLowerCase().trim() : para;
+    console.log(`City_ValidCheck received para: ${para}`);
+  return cityMap[para] || para || defaultCity;
 }
 
 function ISP_ValidCheck(para) {
@@ -49,27 +65,6 @@ function Area_check(para) {
   para = para ? para.toLowerCase().trim() : para;
   console.log(`Area_check received para: ${para}`);
   return areaMap[para] || para;
-}
-
-// 检查并转换城市名称
-function City_ValidCheck(para) {
-  const cityMap = {
-  "GRALLARATE": "加拉拉泰",  // 正确翻译应为加拉拉泰（位于意大利）
-  "MELTON": "墨尔顿",        // 墨尔顿（位于英国或澳大利亚）
-  "LAMPA": "拉帕",           // 拉帕（位于智利）
-  "CEDAR KNOLLS": "雪松诺尔斯", // 雪松诺尔斯（位于美国）
-  "SANTA CRUZ": "圣克鲁斯",   // 圣克鲁斯（位于美国或玻利维亚等地）
-  "YEONGDONG-GUN": "永同郡",  // 永同郡（位于韩国）
-  "STENINGE": "斯特宁厄",    // 斯特宁厄（位于瑞典）
-  "中壢": "中坜区",          // 中坜区（位于台湾）
-  "聖荷西": "圣荷西",        // 圣荷西（位于美国）
-  "MEYZIEU": "梅济约",       // 梅济约（位于法国）
-  "Ōkubo-naka": "大久保中",  // 大久保中（位于日本）
-  "JESSHEIM": "耶瑟海姆",     // 耶瑟海姆（位于挪威）
-};
-
-  para = para ? para.toLowerCase().trim() : para;
-  return cityMap[para] || para || defaultCity;
 }
 
 const flags = new Map([
