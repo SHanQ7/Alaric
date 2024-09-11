@@ -34,31 +34,54 @@ function ISP_ValidCheck(para) {
   return para || defaultISP;
 }
 
-// 检查并转换地区名称
+/// 检查并转换地区名称
 function Area_check(para) {
   const areaMap = {
     "中华民国": "台湾",
-    "kowloon": "九龙城区",
+    "Kowloon": "九龙城区",
     "千葉縣": "千叶县",
     "mazovia": "摩拉维亚",
+    "North chungchong": "忠清北道",
     "stockholm-county": "斯德哥尔摩",
     "ang thong": "红统府",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "hawalli": "哈瓦利省",
     "taoyuan": "桃园市",
     "加州": "加利福尼亚州",
-    "north Chungchong": "忠清北道",
-    "lombardy": "伦巴第大区"
+    "lombardy": "伦巴第"
   };
 
-  // 将参数转换为小写并去除前后空格
+  // 将传入的参数转换为小写并去除前后空格
   para = para ? para.toLowerCase().trim() : para;
 
-  // 调试输出：检查 para 的值
-  console.log(`Area_check received para: ${para}`);
-
-  // 根据 areaMap 进行转换，如果找不到则返回原值
+  // 返回映射表中的值，或原值（如果未找到匹配）
   return areaMap[para] || para;
+}
+
+// 检查并转换城市名称
+function City_ValidCheck(para) {
+  const cityMap = {
+    "new york": "纽约",
+    "los angeles": "洛杉矶",
+    "san francisco": "旧金山",
+    "kowloon": "九龙城区",
+    "tokyo": "东京",
+    "paris": "巴黎",
+    "london": "伦敦",
+    "beijing": "北京",
+    "shanghai": "上海",
+    "taipei": "台北",
+    "hong kong": "香港",
+    "singapore": "新加坡",
+    "lombardy": "伦巴第",
+    "north chungchong": "忠清北道"
+  };
+
+  // 将城市名转换为小写并去除前后空格
+  para = para ? para.toLowerCase().trim() : para;
+
+  // 返回城市名称的有效值，如果 para 不存在则使用默认值
+  return cityMap[para] || para || defaultCity;
 }
 
 // 定义国家旗帜的映射
