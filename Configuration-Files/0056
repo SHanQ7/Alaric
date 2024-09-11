@@ -84,10 +84,10 @@ let obj = JSON.parse(body);
 var region = obj['regionName'] || defaultRegion;
 
 // 格式化标题（第1行）：国旗 + 国家名
-var title = flags.get(obj['countryCode']) + ' ' + obj['country'];
+var title = flags.get(obj['countryCode']) + ' ' + obj['regionName'];
 
 // 格式化副标题（第2行）：城市名 + ISP 名
-var subtitle = City_ValidCheck(obj['city']) + ' ' + ISP_ValidCheck(obj['org']);
+var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query'] + ' ' + ISP_ValidCheck(obj['org']);
 
 // IP 信息（不展示）
 var ip = obj['query'];
