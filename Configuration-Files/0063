@@ -52,13 +52,10 @@ function Region_ValidCheck(para) {
   }
 }
 
-
 // 检查并返回有效的城市信息
 function City_ValidCheck(para) {
   return para || defaultCity;
 }
-
-
 
 // 检查并返回有效的 ISP 信息
 function ISP_ValidCheck(para) {
@@ -121,16 +118,27 @@ let obj = JSON.parse(body);
 var region = obj['regionName'] || defaultRegion;
 
 // 格式化标题（第1行）：国旗 + 国家名
-var title = flags.get(obj['countryCode']) + ' ' + obj['country'] + ' ' + Region_ValidCheck(para)(obj['regionName']);
+var title = flags.get(obj['countryCode']) + ' ' + obj['country'] + ' ' + Region_ValidCheck(obj['regionName']);
 
-// 格式化副标题（第2行）：城市名 + ISP 名
-var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query'] + ' ' + ISP_ValidCheck(obj['org']);
+// 格式化副标题（第2行）：城市名 + IP
+var subtitle = City_ValidCheck(obj['city']) + ' ' + obj['query']
 
 // IP 信息
 var ip = obj['query'];
 
 // 长按节点选择“查看节点信息”时的信息
-var description = `服务商: ${obj['isp']}\n地区: ${Region_ValidCheck(region)}\n城市: ${City_ValidCheck(obj['city'])}\nIP: ${obj['query']}\n时区: ${obj['timezone']}`;
+var description =
+  "服务商:" +
+  obj["isp"] +
+  "\n" +
+  "地区:" +
+  City_ValidCheck(obj["regionName"]) +
+  "\n" +
+  "IP:" +
+  obj["query"] +
+  "\n" +
+  "时区:" +
+  obj["timezone"];
 
 // 完成并返回处理结果
 $done({ title, subtitle, ip, description });
