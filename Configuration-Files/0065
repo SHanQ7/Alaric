@@ -48,7 +48,7 @@ function Area_check(para) {
     "taoyuan": "桃园市",
     "加州": "加利福尼亚州",
     "north Chungchong": "忠清北道",
-    "lombardy": "伦巴第大区",
+    "lombardy": "伦巴第大区"
   };
 
   // 将参数转换为小写并去除前后空格
