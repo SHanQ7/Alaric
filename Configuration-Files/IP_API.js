@@ -4,10 +4,10 @@ if ($response.statusCode != 200) {
 }
 
 const defaults = {
-  city: "哥谭市",
-  region: "韦恩大厦",
-  isp: "ShanQ.com",
-  country: "天可汗"
+    country: "天可汗"
+    region: "韦恩大厦",
+    city: "哥谭市",
+    isp: "ShanQ.com",
 };
 
 function getRandomInt(max) {
@@ -63,6 +63,8 @@ function Area_check(para) {
     "加州": "加利福尼亚州",
     "lombardy": "伦巴第大区",
     "dubai": "迪拜",
+    "capital region": "首都大区",
+    "north west":"西北部",
   };
 
   para = para ? para.toLowerCase().trim() : para;
