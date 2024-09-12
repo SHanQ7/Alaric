@@ -60,6 +60,7 @@ function Area_check(para) {
     "taoyuan": "桃园市",
     "加州": "加利福尼亚州",
     "lombardy": "伦巴第大区",
+    "dubai": "迪拜",
   };
 
   para = para ? para.toLowerCase().trim() : para;
