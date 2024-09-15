@@ -58,7 +58,7 @@ let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
 $done({title, subtitle, ip, description});
 
 function country_ValidCheck(para) {
-  return para;
+  return para || country0;
 }
 
 function Area_check(para) {
@@ -66,10 +66,10 @@ function Area_check(para) {
     "中华民国": "台湾", "kowloon": "九龙城区", "千葉縣": "千叶县", "mazovia": "摩拉维亚",
     "north chungcheong": "忠清北道",  "stockholm county": "斯德哥尔摩", "ang thong": "红统府", "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区", "hawalli": "哈瓦利省", "taoyuan": "桃园市", "加州": "加利福尼亚州",
-    "lombardy": "伦巴第大区", "dubai": "迪拜", "capital region": "首都大区", "north west":"西北部",
+    "lombardy": "伦巴第大区", "dubai": "迪拜", "capital region": "首都大区", "north west":"西北部地区", "rīga":"里加"
 };
   para = para ? para.toLowerCase().trim() : para;
-  return areaMap[para] || para;
+  return areaMap[para] || para || region0;
 };
 
 function City_ValidCheck(para) {
@@ -78,10 +78,11 @@ function City_ValidCheck(para) {
     "santa cruz": "圣克鲁斯", "yeongdong-gun": "永同郡", "steninge": "斯特宁厄", "中壢": "中坜区",
     "聖荷西": "圣荷西", "meyzieu": "梅济约", "Ōkubo-naka": "大久保中", "jessheim": "耶瑟海姆",
 };
-  para = para ? para.toLowerCase().trim() : para;
-  return cityMap[para] || para;
+  para = para.replace(/\s+/g, ''); // 去除所有空格
+  para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
+  return cityMap[para] || para || city0;
 };
 
 function ISP_ValidCheck(para) {
-  return para;
+  return para || ips0;
 }
