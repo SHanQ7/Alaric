@@ -1,5 +1,4 @@
 if ($response.statusCode != 200) {
-  console.log(`Unexpected status code: ${$response.statusCode}`);
   $done(null);
 }
 
@@ -114,13 +113,8 @@ const flags = new Map([
   ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"], ["TW", "🇨🇳"]
 ]);
 
-let obj;
-try {
-  obj = JSON.parse($response.body);
-} catch (e) {
-  console.error('Error parsing response body:', e);
-  $done(null);
-}
+let body = $response.body;
+let obj = JSON.parse(body);
 
 var region = Region_ValidCheck(obj['regionName']);
 var title = `${flags.get(obj['countryCode']) || ''} ${country_ValidCheck(obj['country'])} ${Area_check(obj['regionName'])}`;
