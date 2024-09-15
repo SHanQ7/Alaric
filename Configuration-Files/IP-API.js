@@ -66,7 +66,7 @@ function Area_check(para) {
     "中华民国": "台湾", "kowloon": "九龙城区", "千葉縣": "千叶县", "mazovia": "摩拉维亚",
     "north chungcheong": "忠清北道",  "stockholm county": "斯德哥尔摩", "ang thong": "红统府", "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区", "hawalli": "哈瓦利省", "taoyuan": "桃园市", "加州": "加利福尼亚州",
-    "lombardy": "伦巴第大区", "dubai": "迪拜", "capital region": "首都大区", "north west":"西北部地区", "rīga":"里加"
+    "lombardy": "伦巴第大区", "dubai": "迪拜", "capital region": "首都大区", "north west":"西北部地区", "rīga":"里加", "quebec":"魁北克市"
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
