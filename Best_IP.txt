@@ -6,14 +6,16 @@
 94.177.8.10:443#AT Bruck an der Leitha ShanQ-02
 94.177.8.48:443#AT Bruck an der Leitha ShanQ-03
 94.177.8.40:443#AT Bruck an der Leitha ShanQ-04
-94.177.8.5:443#AT Bruck an der Leitha ShanQ-05
+94.177.8.8:443#AT Bruck an der Leitha ShanQ-05
 
 # AU
 140.238.206.167:443#AU Maroubra ShanQ-06
 
+# CA
+172.93.32.240:443#CA British Columbia Richmond
+
 # CH
-45.85.93.96:443#CH Winterthur ShanQ-07
-94.131.3.144:443#CH Winterthur ShanQ-07.01
+45.90.59.204:443#CH Winterthur ShanQ-07
 
 # DE
 193.233.133.163:443#DE Dreieich ShanQ-08
@@ -32,16 +34,12 @@
 193.200.52.129:443#ES Chamartín ShanQ-19
 
 # FI
-185.252.144.82:443#FI Vantaa ShanQ-20
-5.226.54.51:443#FI Vantaa ShanQ-21
-5.226.54.82:443#FI Vantaa ShanQ-22
-37.27.20.192:443#FI Vantaa ShanQ-23
-37.27.4.16:443#FI Vantaa ShanQ-24
+107.181.151.41:443#FI Vantaa ShanQ-20
+5.226.54.217:443#FI Vantaa ShanQ-20
 
 # FR
 193.200.52.134:443#FR Aulnay-sous-Bois ShanQ-25
 185.192.15.75:443#FR Aulnay-sous-Bois ShanQ-26
-
 185.192.15.193:443#FR Aulnay-sous-Bois ShanQ-28
 193.200.52.138:443#FR Aulnay-sous-Bois ShanQ-29
 185.244.210.16:443#FR Aulnay-sous-Bois ShanQ-30
@@ -60,6 +58,10 @@
 178.173.237.74:443#HK ShanQ-35
 178.173.237.153:443#HK ShanQ-36
 141.11.91.122:443#HK ShanQ-37
+
+# IT
+38.180.15.138#IT Gallarate ShanQ
+80.211.35.119#IT Lazio Lido di Ostia ShanQ
 
 # IN
 13.201.221.231:443#IN Santa Cruz ShanQ-38
@@ -131,9 +133,10 @@
 87.228.17.174:443#UA Kukhmisterskaya Sloboda ShanQ-84
 
 # UK
-134.65.59.100:443#UK Hounslow ShanQ-85
+35.177.50.118:443#UK Hounslow ShanQ-85
 
 # US
+93.113.175.116:443#US California Los Angeles
 150.230.34.116:443#US California San Jose ShanQ-86
 193.188.22.1:443#US Colorado Bennett ShanQ-87
 103.35.189.77:443#US New York City ShanQ-88
