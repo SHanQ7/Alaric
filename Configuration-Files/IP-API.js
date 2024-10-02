@@ -84,17 +84,17 @@ function Area_check(para) {
 
 function City_ValidCheck(para) {
   const cityMap = {
-    "grallarate": "加拉拉泰", 
+    "gallarate": "加拉拉泰市", 
     "melton": "墨尔顿", 
     "lampa": "拉帕", 
     "cedar knolls": "雪松诺尔斯",
-    "santa cruz": "圣克鲁斯", 
+    "santacruz": "圣克鲁斯", 
     "yeongdong-gun": "永同郡", 
     "steninge": "斯特宁厄", 
     "中壢": "中坜区",
     "聖荷西": "圣荷西", 
     "meyzieu": "梅济约", 
-    "Okubo-naka": "大久保中", 
+    "okubo-naka": "大久保中", 
     "jessheim": "耶瑟海姆",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
