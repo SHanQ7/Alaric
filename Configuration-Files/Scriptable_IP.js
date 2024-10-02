@@ -1,40 +1,46 @@
-// 获取 IP 信息的函数
-async function fetchIPInfo(url) {
-  const req = new Request(url);
-  const ipInfo = await req.loadString();
-  return ipInfo;
+// 导入 Scriptable 模块
+const widget = new ListWidget();
+const title = widget.addText("📅 历史上的今天");
+title.font = Font.boldSystemFont(16);
+
+// 获取今天的日期
+const today = new Date();
+const dateString = today.toISOString().slice(5, 10);  // 获取日期，格式 MM-DD
+
+// 定义维基百科 API 请求 URL
+const url = `https://zh.wikipedia.org/api/rest_v1/feed/onthisday/events/${dateString}`;
+
+// 通过 API 获取数据
+const req = new Request(url);
+const res = await req.loadJSON();
+
+// 显示事件的数量，设置一个限制
+const maxEvents = 5;
+let eventCount = 0;
+
+// 遍历获取的事件并显示
+for (const event of res.events) {
+  if (eventCount >= maxEvents) break;
+
+  const year = event.year;
+  const text = event.text;
+  
+  // 添加事件的年份和描述
+  const eventText = widget.addText(`📅 ${year}: ${text}`);
+  eventText.font = Font.systemFont(12);
+  eventText.lineLimit = 2;
+  
+  eventCount++;
 }
 
-// 创建小组件
-async function createWidget() {
-  let widget = new ListWidget();
-  widget.backgroundColor = new Color("#1c1c1c");
+// 设置 widget 的刷新间隔
+widget.refreshAfterDate = new Date(Date.now() + 1000 * 60 * 60);
 
-  // 添加标题
-  let title = widget.addText("你的 IP 信息");
-  title.font = Font.boldSystemFont(16);
-  title.textColor = Color.white();
-  widget.addSpacer(8);
-
-  // 获取 IP 信息（你可以选择使用 dark 或 normal 模式的 URL）
-  const ipInfo = await fetchIPInfo("https://ip.skk.moe/simple");  // 普通模式
-  // const ipInfo = await fetchIPInfo("https://ip.skk.moe/simple-dark"); // 暗色模式
-
-  // 显示 IP 信息
-  let ipText = widget.addText(ipInfo.trim());
-  ipText.font = Font.systemFont(14);
-  ipText.textColor = Color.white();
-  widget.addSpacer(8);
-
-  return widget;
-}
-
-// 运行小组件
-let widget = await createWidget();
+// 将 widget 设置为主界面小组件
 if (config.runsInWidget) {
   Script.setWidget(widget);
 } else {
-  widget.presentMedium();  // 如果不是小组件模式，则展示中等大小
+  widget.presentMedium();
 }
 
 Script.complete();
