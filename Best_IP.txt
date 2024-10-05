@@ -97,7 +97,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # US
 93.113.175.116:443#US California Los-Angeles SHanQ-021
-104.194.84.243:443#US California Los-Angeles SHanQ-021
+104.194.84.243:443#US California Los-Angeles SHanQ-022
 193.188.22.1:443#US Colorado Bennett SHanQ-021
 103.35.189.77:443#US New York City SHanQ-131
 80.209.243.179:443#US New York City SHanQ-132
