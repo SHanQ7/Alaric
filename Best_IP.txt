@@ -1,61 +1,61 @@
 # AT
-95.164.46.242:443#AT Bruck an der Leitha ShanQ-01
-94.177.8.10:443#AT Bruck an der Leitha ShanQ-02
-94.177.8.48:443#AT Bruck an der Leitha ShanQ-03
-94.177.8.40:443#AT Bruck an der Leitha ShanQ-04
-94.177.8.8:443#AT Bruck an der Leitha ShanQ-05
+95.164.46.242:443#AT Bruck an der Leitha SHanQ-01
+94.177.8.10:443#AT Bruck an der Leitha SHanQ-02
+94.177.8.48:443#AT Bruck an der Leitha SHanQ-03
+94.177.8.40:443#AT Bruck an der Leitha SHanQ-04
+94.177.8.8:443#AT Bruck an der Leitha SHanQ-05
 
 # CA
 172.93.32.240:443#CA British Columbia Richmond
 
 # CH
-45.90.59.204:443#CH Winterthur ShanQ-07
+45.90.59.204:443#CH Winterthur SHanQ-07
 
 # DE
-5.42.73.182:443#DE Dreieich ShanQ-08
-212.113.106.102:443#DE Dreieich ShanQ-09
-109.237.98.246:443#DE Dreieich ShanQ-010
+5.42.73.182:443#DE Dreieich SHanQ-08
+212.113.106.102:443#DE Dreieich SHanQ-09
+109.237.98.246:443#DE Dreieich SHanQ-010
 
 # ES
-185.192.15.105:443#ES Chamartín ShanQ-18
+185.192.15.105:443#ES Chamartín SHanQ-18
 
 # FI
-135.181.152.75:443#FI Vantaa ShanQ-20
-135.181.26.134:443#FI Vantaa ShanQ-21
+135.181.152.75:443#FI Vantaa SHanQ-20
+135.181.26.134:443#FI Vantaa SHanQ-21
 
 # FR
-217.69.5.53:443#FR 01 CMCC优化-ShanQ
+217.69.5.53:443#FR 01 CMCC优化-SHanQ
 136.244.118.247:443#FR 02 Aulnay-sous-Bois CMCC优化-SHanQ
 
 
 # LV
-103.231.73.110:443#LV Riga ShanQ-34.03
-103.231.73.117:443#LV Riga ShanQ-34.04
+103.231.73.110:443#LV Riga SHanQ-34.03
+103.231.73.117:443#LV Riga SHanQ-34.04
 
 # HK
-cloudflare.182682.xyz:443#HK 01 CM/CU优化-ShanQ
-edt.shanq.us.kg.cf.090227.xyz:443#HK 02 自适应分流-ShanQ
+cloudflare.182682.xyz:443#HK 01 CM/CU优化-SHanQ
+edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # IT
-38.180.15.138#IT Gallarate ShanQ
-80.211.35.119#IT Lazio Lido di Ostia ShanQ
+38.180.15.138#IT Gallarate SHanQ
+80.211.35.119#IT Lazio Lido di Ostia SHanQ
 
 # IN
-13.201.221.231:443#IN Santa Cruz ShanQ-38
+13.201.221.231:443#IN Santa Cruz SHanQ-38
 
 # JP
-103.232.213.140:443#JP Narita ShanQ-39
-5.226.48.132:443#JP Narita ShanQ-40
-8.216.81.13:443#JP Narita ShanQ-41
-103.232.213.53:443#JP Narita ShanQ-42
-138.3.212.206:443#JP Narita ShanQ-45
-141.147.174.243:443#JP Narita ShanQ-47
-45.78.53.10:443#JP Osaka ShanQ-48
-167.88.184.240:443#JP Osaka ShanQ-49
+103.232.213.140:443#JP Narita SHanQ-39
+5.226.48.132:443#JP Narita SHanQ-40
+8.216.81.13:443#JP Narita SHanQ-41
+103.232.213.53:443#JP Narita SHanQ-42
+138.3.212.206:443#JP Narita SHanQ-45
+141.147.174.243:443#JP Narita SHanQ-47
+45.78.53.10:443#JP Osaka SHanQ-48
+167.88.184.240:443#JP Osaka SHanQ-49
 
 # KR
-59.3.3.161:443#KR Bak-chon ShanQ-50
-13.125.218.78:443#KR Bak-chon ShanQ-51
+59.3.3.161:443#KR Bak-chon SHanQ-50
+13.125.218.78:443#KR Bak-chon SHanQ-51
 
 # NL
 104.17.170.159:443#NL 01 Amsterdam CM优化-SHanQ
@@ -63,42 +63,42 @@ edt.shanq.us.kg.cf.090227.xyz:443#HK 02 自适应分流-ShanQ
 37.221.127.241:443#NL 03 Amsterdam-SHanQ
 
 # NO
-185.7.33.49:443#NO Jessheim ShanQ-63
+185.7.33.49:443#NO Jessheim SHanQ-63
 
 # PL
-87.228.9.243:443#PL Pruszków ShanQ-64
-91.142.75.104:443#PL Pruszków ShanQ-65
-5.34.211.78:443#PL Pruszków ShanQ-66
+87.228.9.243:443#PL Pruszków SHanQ-64
+91.142.75.104:443#PL Pruszków SHanQ-65
+5.34.211.78:443#PL Pruszków SHanQ-66
 
 # RU
-87.228.17.250:443#RU Domodedovo ShanQ-69
-185.209.30.132:443#RU Domodedovo ShanQ-70
-194.87.252.20:443#RU Domodedovo ShanQ-72
-185.230.141.79:443#RU Domodedovo ShanQ-73
-185.233.200.118:443#RU Domodedovo ShanQ-74
+87.228.17.250:443#RU Domodedovo SHanQ-69
+185.209.30.132:443#RU Domodedovo SHanQ-70
+194.87.252.20:443#RU Domodedovo SHanQ-72
+185.230.141.79:443#RU Domodedovo SHanQ-73
+185.233.200.118:443#RU Domodedovo SHanQ-74
 
 # SE
-193.42.39.188:443#SE Steninge ShanQ-76
-5.34.208.62:443#SE Steninge ShanQ-79
+193.42.39.188:443#SE Steninge SHanQ-76
+5.34.208.62:443#SE Steninge SHanQ-79
 
 # SG
-193.123.66.14:443#SG ShanQ-81
+193.123.66.14:443#SG SHanQ-81
 
 # TH
-103.107.52.17:443#TH Ang Thong ShanQ-82
-199.21.175.123:443#TH Ang Thong ShanQ-83
+103.107.52.17:443#TH Ang Thong SHanQ-82
+199.21.175.123:443#TH Ang Thong SHanQ-83
 
 # UA
-87.228.17.174:443#UA Kukhmisterskaya Sloboda ShanQ-84
+87.228.17.174:443#UA Kukhmisterskaya Sloboda SHanQ-84
 
 # UK
-35.177.50.118:443#UK Hounslow ShanQ-85
-38.180.154.225:443#UK Hounslow ShanQ-86
+35.177.50.118:443#UK Hounslow SHanQ-85
+38.180.154.225:443#UK Hounslow SHanQ-86
 
 # US
-93.113.175.116:443#US California Los-Angeles ShanQ-021
-193.188.22.1:443#US Colorado Bennett ShanQ-021
-103.35.189.77:443#US New York City ShanQ-131
-80.209.243.179:443#US New York City ShanQ-132
-download.yunzhongzhuan.com:443#US Washington Kent ShanQ-221
-162.159.34.75:443#US Washington Kent ShanQ-222
+93.113.175.116:443#US California Los-Angeles SHanQ-021
+193.188.22.1:443#US Colorado Bennett SHanQ-021
+103.35.189.77:443#US New York City SHanQ-131
+80.209.243.179:443#US New York City SHanQ-132
+download.yunzhongzhuan.com:443#US Washington Kent SHanQ-221
+162.159.34.75:443#US Washington Kent SHanQ-222
