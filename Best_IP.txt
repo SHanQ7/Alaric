@@ -25,7 +25,8 @@
 
 # FR
 217.69.5.53:443#FR 01 CMCC优化-ShanQ
-136.244.118.247#FR 02 CMCC优化-ShanQ
+136.244.118.247:443#FR 02 Aulnay-sous-Bois CMCC优化-SHanQ
+
 
 # LV
 103.231.73.110:443#LV Riga ShanQ-34.03
@@ -57,8 +58,9 @@ edt.shanq.us.kg.cf.090227.xyz:443#HK 02 自适应分流-ShanQ
 13.125.218.78:443#KR Bak-chon ShanQ-51
 
 # NL
-185.198.234.72:443#NL Amsterdam ShanQ-61
-37.221.127.241:443#NL Amsterdam ShanQ-62
+104.17.170.159:443#NL 01 Amsterdam CM优化-SHanQ
+185.198.234.72:443#NL 02 Amsterdam-SHanQ
+37.221.127.241:443#NL 03 Amsterdam-SHanQ
 
 # NO
 185.7.33.49:443#NO Jessheim ShanQ-63
@@ -91,7 +93,7 @@ edt.shanq.us.kg.cf.090227.xyz:443#HK 02 自适应分流-ShanQ
 
 # UK
 35.177.50.118:443#UK Hounslow ShanQ-85
-38.180.154.225:443#UK Hounslow ShanQ-85
+38.180.154.225:443#UK Hounslow ShanQ-86
 
 # US
 93.113.175.116:443#US California Los-Angeles ShanQ-021
