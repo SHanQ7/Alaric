@@ -89,17 +89,17 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 199.21.175.123:443#TH Ang Thong SHanQ-83
 
 # UA
-87.228.17.174:443#UA Kukhmisterskaya Sloboda SHanQ-84
+87.228.17.174:443#UA 084 Sloboda SHanQ
 
 # UK
-35.177.50.118:443#UK Hounslow SHanQ-85
-38.180.154.225:443#UK Hounslow SHanQ-86
+35.177.50.118:443#UK 085 Hounslow SHanQ
+38.180.154.225:443#UK 086 Hounslow SHanQ
 
 # US
-93.113.175.116:443#US California Los-Angeles SHanQ-021
-104.194.84.243:443#US California Los-Angeles SHanQ-022
+93.113.175.116:443#US 021 California Los-Angeles SHanQ
+104.194.84.243:443#US 022 California Los-Angeles SHanQ
 193.188.22.1:443#US Colorado Bennett SHanQ-021
-103.35.189.77:443#US New York City SHanQ-131
-80.209.243.179:443#US New York City SHanQ-132
-download.yunzhongzhuan.com:443#US Washington Kent SHanQ-221
-162.159.34.75:443#US Washington Kent SHanQ-222
+103.35.189.77:443#US 131 New York City SHanQ
+80.209.243.179:443#US 132 New York City SHanQ
+download.yunzhongzhuan.com:443#US 133 Washington Kent SHanQ
+162.159.34.75:443#US 222 Washington Kent SHanQ
