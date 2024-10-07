@@ -6,27 +6,34 @@
 94.177.8.8:443#AT Bruck an der Leitha SHanQ-05
 
 # CA
-172.93.32.240:443#CA British Columbia Richmond
 
 # CH
 45.90.59.204:443#CH Winterthur SHanQ-07
 
 # DE
-5.42.73.182:443#DE Dreieich SHanQ-08
-212.113.106.102:443#DE Dreieich SHanQ-09
-109.237.98.246:443#DE Dreieich SHanQ-010
+109.237.98.177:443#DE 01 Dreieich-SHanQ
+212.113.106.102:443#DE 02 Dreieich-SHanQ
+109.237.98.246:443#DE 03 Dreieich-SHanQ
+77.73.131.223:443#DE 04 Dreieich-SHanQ
 
 # ES
-185.192.15.105:443#ES Chamartín SHanQ-18
+
 
 # FI
-135.181.152.75:443#FI Vantaa SHanQ-20
-135.181.26.134:443#FI Vantaa SHanQ-21
+135.181.152.75:443#FI 01 Vantaa SHanQ-20
+135.181.26.134:443#FI 02 Vantaa SHanQ-21
+65.109.173.136:443#FI 03 Vantaa SHanQ
+135.181.46.229:443#FI 04 Vantaa SHanQ
 
 # FR
-217.69.5.53:443#FR 01 快速通道-SHanQ
+217.69.5.53:443#FR 01 Aulnay-sous-Bois 快速通道-SHanQ
 136.244.118.247:443#FR 02 Aulnay-sous-Bois 快速通道-SHanQ
+195.200.17.56:443#FR 03 Aulnay-sous-Bois-SHanQ
+137.74.151.2:443#FR 04 Aulnay-sous-Bois-SHanQ
 
+# GB 
+198.244.140.174:443#GB 01 Hounslow-SHanQ
+38.180.154.225:443#GB 01 Hounslow-SHanQ
 
 # LV
 103.231.73.110:443#LV Riga SHanQ-34.03
@@ -41,17 +48,11 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 80.211.35.119#IT Lazio Lido di Ostia SHanQ
 
 # IN
-13.201.221.231:443#IN Santa Cruz SHanQ-38
+13.201.221.231:443#IN 01 Santa Cruz-SHanQ
+139.59.75.66:443#IN 02 Santa Cruz-SHanQ
 
 # JP
-103.232.213.140:443#JP Narita SHanQ-39
-5.226.48.132:443#JP Narita SHanQ-40
-8.216.81.13:443#JP Narita SHanQ-41
-103.232.213.53:443#JP Narita SHanQ-42
-138.3.212.206:443#JP Narita SHanQ-45
-141.147.174.243:443#JP Narita SHanQ-47
-45.78.53.10:443#JP Osaka SHanQ-48
-167.88.184.240:443#JP Osaka SHanQ-49
+
 
 # KR
 59.3.3.161:443#KR Bak-chon SHanQ-50
@@ -59,8 +60,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # NL
 104.17.170.159:443#NL 01 Amsterdam 100m-SHanQ
-185.198.234.72:443#NL 02 Amsterdam-SHanQ
+38.180.97.196:443#NL 02 Amsterdam-SHanQ
 37.221.127.241:443#NL 03 Amsterdam-SHanQ
+103.97.88.133:443#NL 04 Amsterdam-SHanQ
 
 # NO
 185.7.33.49:443#NO Jessheim SHanQ-63
@@ -68,18 +70,17 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 # PL
 87.228.9.243:443#PL Pruszków SHanQ-64
 91.142.75.104:443#PL Pruszków SHanQ-65
-5.34.211.78:443#PL Pruszków SHanQ-66
 
 # RU
 87.228.17.250:443#RU Domodedovo SHanQ-69
-185.209.30.132:443#RU Domodedovo SHanQ-70
+
 194.87.252.20:443#RU Domodedovo SHanQ-72
 185.230.141.79:443#RU Domodedovo SHanQ-73
 185.233.200.118:443#RU Domodedovo SHanQ-74
 
 # SE
 193.42.39.188:443#SE Steninge SHanQ-76
-5.34.208.62:443#SE Steninge SHanQ-79
+
 
 # SG
 193.123.66.14:443#SG SHanQ-81
@@ -96,9 +97,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 38.180.154.225:443#UK 086 Hounslow SHanQ
 
 # US
-93.113.175.116:443#US 021 California Los-Angeles SHanQ
+104.224.186.240#US 021 California Los-Angeles SHanQ
 104.194.84.243:443#US 022 California Los-Angeles SHanQ
-193.188.22.1:443#US Colorado Bennett SHanQ-021
+#US 021 Colorado Bennett SHanQ
 103.35.189.77:443#US 131 New York City SHanQ
 80.209.243.179:443#US 132 New York City SHanQ
 download.yunzhongzhuan.com:443#US 133 Washington Kent SHanQ
