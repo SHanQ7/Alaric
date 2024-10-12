@@ -97,10 +97,10 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 38.180.154.225:443#UK 086 Hounslow SHanQ
 
 # US
-104.224.186.240#US 021 California Los-Angeles SHanQ
-104.194.84.243:443#US 022 California Los-Angeles SHanQ
-#US 021 Colorado Bennett SHanQ
-103.35.189.77:443#US 131 New York City SHanQ
-80.209.243.179:443#US 132 New York City SHanQ
-download.yunzhongzhuan.com:443#US 133 Washington Kent SHanQ
-162.159.34.75:443#US 222 Washington Kent SHanQ
+104.224.186.240#US 021 California Los-Angeles-SHanQ
+104.194.84.243:443#US 022 California Los-Angeles-SHanQ
+160.123.255.19:443#US 023 California Los-Angeles 优选-SHanQ
+103.35.189.77:443#US 131 New York City-SHanQ
+80.209.243.179:443#US 132 New York City-SHanQ
+download.yunzhongzhuan.com:443#US 133 Washington Kent-SHanQ
+162.159.34.75:443#US 222 Washington Kent-SHanQ
