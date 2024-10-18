@@ -9,10 +9,13 @@
 94.177.8.8:443#AT Bruck an der Leitha SHanQ-05
 
 # CA
-
+192.18.159.129:443#CA 01_SHanQ
 
 # CH
 45.90.59.204:443#CH Winterthur SHanQ-07
+
+# CL
+186.67.70.55#443#CL 01 Lampa SHanQ
 
 # DE
 109.237.98.177:443#DE 01 Dreieich-SHanQ
