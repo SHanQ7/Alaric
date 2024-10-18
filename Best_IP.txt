@@ -1,3 +1,6 @@
+# AE
+193.123.93.103:8443#AE Dubai SHanQ-01
+
 # AT
 95.164.46.242:443#AT Bruck an der Leitha SHanQ-01
 94.177.8.10:443#AT Bruck an der Leitha SHanQ-02
@@ -6,6 +9,7 @@
 94.177.8.8:443#AT Bruck an der Leitha SHanQ-05
 
 # CA
+
 
 # CH
 45.90.59.204:443#CH Winterthur SHanQ-07
@@ -30,6 +34,7 @@
 136.244.118.247:443#FR 02 Aulnay-sous-Bois 快速通道-SHanQ
 195.200.17.56:443#FR 03 Aulnay-sous-Bois-SHanQ
 137.74.151.2:443#FR 04 Aulnay-sous-Bois-SHanQ
+129.151.254.48:443#FR Aulnay-sous-Bois SHanQ-05
 
 # GB 
 198.244.140.174:443#GB 01 Hounslow-SHanQ
@@ -57,6 +62,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 # KR
 59.3.3.161:443#KR Bak-chon SHanQ-50
 13.125.218.78:443#KR Bak-chon SHanQ-51
+132.145.95.91:443#KR Bak-chon SHanQ-52
 
 # NL
 104.17.170.159:443#NL 01 Amsterdam 100m-SHanQ
@@ -88,6 +94,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 # TH
 103.107.52.17:443#TH Ang Thong SHanQ-82
 199.21.175.123:443#TH Ang Thong SHanQ-83
+8.213.206.252:8443#TH Ang Thong SHanQ-84
 
 # UA
 87.228.17.174:443#UA 084 Sloboda SHanQ
