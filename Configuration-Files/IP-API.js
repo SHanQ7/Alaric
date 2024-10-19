@@ -77,6 +77,9 @@ function Area_check(para) {
     "rīga":"里加", 
     "quebec":"魁北克市",
     "kyiv city":"基辅",
+    "sofia-capital": "索菲亚市", 
+    "kocasinan": "科卡西楠市", 
+    "tassin-la-demi-lune": "塔桑拉德米吕讷", 
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
@@ -96,6 +99,9 @@ function City_ValidCheck(para) {
     "meyzieu": "梅济约", 
     "okubo-naka": "大久保中", 
     "jessheim": "耶瑟海姆",
+    "sofia-capital": "索菲亚市", 
+    "kocasinan": "科卡西楠市", 
+    "tassin-la-demi-lune": "塔桑拉德米吕讷", 
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
