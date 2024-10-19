@@ -9,21 +9,13 @@
 94.177.8.8:443#AT Bruck an der Leitha SHanQ-05
 
 # CA
-192.18.159.129:443#CA 02_SHanQ
-198.41.221.167#CA 03_SHanQ
-198.41.215.200#CA 04_SHanQ
-198.41.205.174#CA 05_SHanQ
-198.41.203.75#CA 06_SHanQ
-198.41.201.79#CA 07_SHanQ
-198.41.200.62#CA 08_SHanQ
-172.67.169.15#CA 09_SHanQ
-108.162.196.123#CA 010_SHanQ
+
 
 # CH
 45.90.59.204:443#CH Winterthur SHanQ-07
 
 # CL
-186.67.70.55#443#CL 01 Lampa SHanQ
+186.67.70.55:443#CL 01 Lampa SHanQ
 
 # DE
 109.237.98.177:443#DE 01 Dreieich-SHanQ
@@ -45,23 +37,23 @@
 136.244.118.247:443#FR 02 Aulnay-sous-Bois 快速通道-SHanQ
 195.200.17.56:443#FR 03 Aulnay-sous-Bois-SHanQ
 137.74.151.2:443#FR 04 Aulnay-sous-Bois-SHanQ
-129.151.254.48:443#FR Aulnay-sous-Bois SHanQ-05
+129.151.254.48:443#FR 05 Aulnay-sous-Bois-SHanQ
 
 # GB 
 198.244.140.174:443#GB 01 Hounslow-SHanQ
 38.180.154.225:443#GB 02 Hounslow-SHanQ
 
 # LV
-103.231.73.110:443#LV Riga SHanQ-34.03
-103.231.73.117:443#LV Riga SHanQ-34.04
+103.231.73.110:443#LV Riga 01 SHanQ
+103.231.73.117:443#LV Riga 02 SHanQ
 
 # HK
 cloudflare.182682.xyz:443#HK 01 CM/CU优化-SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # IT
-38.180.15.138#IT Gallarate SHanQ
-80.211.35.119#IT Lazio Lido di Ostia SHanQ
+38.180.15.138#IT 01 Gallarate-SHanQ
+80.211.35.119#IT 02 Lazio Lido di Ostia-SHanQ
 
 # IN
 13.201.221.231:443#IN 01 Santa Cruz-SHanQ
@@ -71,9 +63,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 
 # KR
-59.3.3.161:443#KR Bak-chon SHanQ-50
-13.125.218.78:443#KR Bak-chon SHanQ-51
-132.145.95.91:443#KR Bak-chon SHanQ-52
+59.3.3.161:443#KR 01 Bak-chon SHanQ
+13.125.218.78:443#KR 02 Bak-chon SHanQ
+132.145.95.91:443#KR 03 Bak-chon SHanQ
 
 # NL
 104.17.170.159:443#NL 01 Amsterdam 100m-SHanQ
@@ -90,7 +82,6 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # RU
 87.228.17.250:443#RU Domodedovo SHanQ-69
-
 194.87.252.20:443#RU Domodedovo SHanQ-72
 185.230.141.79:443#RU Domodedovo SHanQ-73
 185.233.200.118:443#RU Domodedovo SHanQ-74
