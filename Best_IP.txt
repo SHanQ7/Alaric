@@ -2,11 +2,7 @@
 193.123.93.103:8443#AE Dubai SHanQ-01
 
 # AT
-95.164.46.242:443#AT Bruck an der Leitha SHanQ-01
-94.177.8.10:443#AT Bruck an der Leitha SHanQ-02
-94.177.8.48:443#AT Bruck an der Leitha SHanQ-03
-94.177.8.40:443#AT Bruck an der Leitha SHanQ-04
-94.177.8.8:443#AT Bruck an der Leitha SHanQ-05
+
 
 # CA
 
@@ -14,8 +10,10 @@
 # CH
 45.90.59.204:443#CH Winterthur SHanQ-07
 
+
 # CL
 186.67.70.55:443#CL 01 Lampa SHanQ
+
 
 # DE
 109.237.98.177:443#DE 01 Dreieich-SHanQ
@@ -60,18 +58,18 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 139.59.75.66:443#IN 02 Santa Cruz-SHanQ
 
 # JP
-
+103.201.131.135:443#JP Chiba Narita_SHanQ-031
 
 # KR
-59.3.3.161:443#KR 01 Bak-chon SHanQ
-13.125.218.78:443#KR 02 Bak-chon SHanQ
-132.145.95.91:443#KR 03 Bak-chon SHanQ
+59.3.3.161:443#KR Bak-chon SHanQ-021
+13.125.218.78:443#KR Bak-chon SHanQ-022
+132.145.95.91:443#KR Bak-chon SHanQ-023
 
 # NL
 104.17.170.159:443#NL 01 Amsterdam 100m-SHanQ
-38.180.97.196:443#NL 02 Amsterdam-SHanQ
-37.221.127.241:443#NL 03 Amsterdam-SHanQ
-103.97.88.133:443#NL 04 Amsterdam-SHanQ
+38.180.97.196:443#NL 02 Amsterdam SHanQ
+37.221.127.241:443#NL 03 Amsterdam SHanQ
+103.97.88.133:443#NL 04 Amsterdam SHanQ
 
 # NO
 185.7.33.49:443#NO Jessheim SHanQ-63
@@ -89,7 +87,6 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 # SE
 193.42.39.188:443#SE Steninge SHanQ-76
 
-
 # SG
 193.123.66.14:443#SG SHanQ-81
 
@@ -102,8 +99,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 87.228.17.174:443#UA 084 Sloboda SHanQ
 
 # UK
-35.177.50.118:443#UK 085 Hounslow SHanQ
-38.180.154.225:443#UK 086 Hounslow SHanQ
+35.177.50.118:443#UK Hounslow SHanQ-085
+38.180.154.225:443#UK Hounslow SHanQ-086
 
 # US
 104.224.186.240#US 021 California Los-Angeles-SHanQ
