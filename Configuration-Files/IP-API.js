@@ -105,8 +105,8 @@ function City_ValidCheck(para) {
     "tassin-la-demi-lune": "塔桑拉德米吕讷", 
     "szigetszentmiklos": "锡盖特圣米克洛什市", 
     "tokyo": "东京都",
-    "奧奈叢林":"奥奈丛林"
-    "badaganhatti":"巴特那"
+    "奧奈叢林":"奥奈丛林",
+    "badaganhatti":"巴特那",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
