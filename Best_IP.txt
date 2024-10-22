@@ -1,5 +1,4 @@
 # AE
-193.123.93.103:8443#AE Dubai SHanQ-01
 
 # AT
 
@@ -19,30 +18,30 @@
 109.237.98.177:443#DE 01 Dreieich-SHanQ
 212.113.106.102:443#DE 02 Dreieich-SHanQ
 109.237.98.246:443#DE 03 Dreieich-SHanQ
-77.73.131.223:443#DE 04 Dreieich-SHanQ
 
 # ES
 
 
 # FI
 135.181.152.75:443#FI 01 Vantaa SHanQ-20
-135.181.26.134:443#FI 02 Vantaa SHanQ-21
+1
 65.109.173.136:443#FI 03 Vantaa SHanQ
 135.181.46.229:443#FI 04 Vantaa SHanQ
 
 # FR
 217.69.5.53:443#FR 01 Aulnay-sous-Bois 快速通道-SHanQ
 136.244.118.247:443#FR 02 Aulnay-sous-Bois 快速通道-SHanQ
-195.200.17.56:443#FR 03 Aulnay-sous-Bois-SHanQ
-137.74.151.2:443#FR 04 Aulnay-sous-Bois-SHanQ
-129.151.254.48:443#FR 05 Aulnay-sous-Bois-SHanQ
+
+
 
 # GB 
 198.244.140.174:443#GB 01 Hounslow-SHanQ
 38.180.154.225:443#GB 02 Hounslow-SHanQ
+35.177.50.118:443#GB 03 Hounslow SHanQ-085
+38.180.154.225:443#GB 04 Hounslow SHanQ-086
 
 # LV
-103.231.73.110:443#LV Riga 01 SHanQ
+
 103.231.73.117:443#LV Riga 02 SHanQ
 
 # HK
@@ -52,24 +51,23 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # IT
 38.180.15.138#IT 01 Gallarate-SHanQ
-80.211.35.119#IT 02 Lazio Lido di Ostia-SHanQ
+
 
 # IN
-13.201.221.231:443#IN 01 Santa Cruz-SHanQ
+
 139.59.75.66:443#IN 02 Santa Cruz-SHanQ
 
 # JP
 103.201.131.135:443#JP Chiba Narita_SHanQ-031
 
 # KR
-59.3.3.161:443#KR Bak-chon SHanQ-021
-13.125.218.78:443#KR Bak-chon SHanQ-022
-132.145.95.91:443#KR Bak-chon SHanQ-023
+
+
 
 # NL
 104.17.170.159:443#NL 01 Amsterdam 100m-SHanQ
 38.180.97.196:443#NL 02 Amsterdam SHanQ
-37.221.127.241:443#NL 03 Amsterdam SHanQ
+
 103.97.88.133:443#NL 04 Amsterdam SHanQ
 
 # NO
@@ -77,37 +75,34 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 
 # PL
 87.228.9.243:443#PL Pruszków SHanQ-64
-91.142.75.104:443#PL Pruszków SHanQ-65
+
 
 # RU
-87.228.17.250:443#RU Domodedovo SHanQ-69
+
 194.87.252.20:443#RU Domodedovo SHanQ-72
-185.230.141.79:443#RU Domodedovo SHanQ-73
-185.233.200.118:443#RU Domodedovo SHanQ-74
+
+
 
 # SE
 193.42.39.188:443#SE Steninge SHanQ-76
 
 # SG
-193.123.66.14:443#SG SHanQ-81
+
+
 
 # TH
-103.107.52.17:443#TH Ang Thong SHanQ-82
-199.21.175.123:443#TH Ang Thong SHanQ-83
+
 8.213.206.252:8443#TH Ang Thong SHanQ-84
 
 # UA
-87.228.17.174:443#UA 084 Sloboda SHanQ
 
-# UK
-35.177.50.118:443#UK Hounslow SHanQ-085
-38.180.154.225:443#UK Hounslow SHanQ-086
+
 
 # US
 104.224.186.240#US 021 California Los-Angeles-SHanQ
-104.194.84.243:443#US 022 California Los-Angeles-SHanQ
+
 160.123.255.19:443#US 023 California Los-Angeles 优选-SHanQ
 103.35.189.77:443#US 131 New York City-SHanQ
-80.209.243.179:443#US 132 New York City-SHanQ
+
 download.yunzhongzhuan.com:443#US 133 Washington Kent-SHanQ
 162.159.34.75:443#US 222 Washington Kent-SHanQ
