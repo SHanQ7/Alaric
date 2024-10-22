@@ -48,6 +48,7 @@
 # HK
 cloudflare.182682.xyz:443#HK 01 CM/CU优化-SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
+104.18.82.142:443#HK 03 优化入口_SHanQ 
 
 # IT
 38.180.15.138#IT 01 Gallarate-SHanQ
