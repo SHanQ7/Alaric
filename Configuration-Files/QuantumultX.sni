@@ -19,15 +19,13 @@
 #**************************************#
 # general：模块内为一些通用的设置参数项。
 [general]
-
 # 节点延迟测试，server_check_url指定的网址进行相应测试，以确认节点的可用性
 server_check_url = http://www.gstatic.com/generate_204
-# server_check_url=http://cp.cloudflare.com/generate_204
-# server_check_url= http://www.qualcomm.cn/generate_204
-# server_check_url=http://captive.apple.com/generate_204
-# server_check_url =http://www.google.com/generate_204
+# server_check_url = http://www.qualcomm.cn/generate_204
+# server_check_url = http://captive.apple.com/generate_204
+# server_check_url = http://www.google.com/generate_204
 
-
+network_check_url = http://captive.apple.com/generate_204
 
 # 服务器测试超时时间 (毫秒)
 server_check_timeout=2000
@@ -37,21 +35,23 @@ profile_img_url=https://github.githubassets.com/images/modules/site/integrators/
 
 # 用于Check节点IP地址
 # 显示名称-详细地址-国旗
-geo_location_checker=http://ip-api.com/json/?lang=zh-CN,https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/server_location.js
-# https://raw.githubusercontent.com/I-am-R-E/Functional-Store-Hub/Master/GeoLocationChecker/QuantumultX/IP-API.js
+geo_location_checker=http://ip-api.com/json/?lang=zh-CN,https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/Configuration-Files/IP-API.js
+# geo_location_checker=http://ip-api.com/json/?lang=zh-CN,https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/server_location.js
+# geo_location_checker=http://ip-api.com/json/?lang=zh-CN,https://raw.githubusercontent.com/I-am-R-E/Functional-Store-Hub/Master/GeoLocationChecker/QuantumultX/IP-API.js
+# geo_location_checker=http://ip-api.com/json/?lang=zh-CN,https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/IP_API.js
 
 # 资源解析器，自定义各类远程资源的转换、如节点、规则-filter、重写-rewrite等
 resource_parser_url=https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/resource-parser.js
 
 # 下列表中内容将不经过QuantumultX的处理
 # excluded_routes（排除路由）是指在网络配置中有意排除或不使用某些特定路由来传输数据包。这意味着与排除的路由匹配的流量将不会通过指定路径前往目的地，而是选择其他路径或传输方式。
-excluded_routes=239.255.255.250/32, 24.105.30.129/32, 185.60.112.157/32, 185.60.112.158/32, 182.162.132.1/32
+excluded_routes=192.168.0.0/16, 172.16.0.0/12, 100.64.0.0/10, 10.0.0.0/8, 47.112.105.36/32, 119.23.71.53/32, 119.23.87.190/32
 
 # UDP 白名单（UDP Whitelist）：是一个网络安全和通信管理策略。它允许一组预先批准的 IP 地址和端口号通过 UDP 进行通信，而阻止所有未被批准的流量。
-# udp_whitelist=1-442, 444-65535
+udp_whitelist=1-442, 444-65535
 
 # UDP Drop名单：同白名单类似，但不会返回ICMP “端口不可达” 信息，名单仅处理 whitelist名单中的端口
-udp_drop_list=443
+# udp_drop_list=443
 
 # "DNS exclusion list",中的域名将不使用fake-ip方式. 其它域名则全部采用 fake-ip 及远程解析的模式
 dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.me, *.pingan.com.cn, *.cmbchina.com
@@ -61,7 +61,6 @@ dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.
 #***************************************#
 # 域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。
 [dns]
-
 ; 禁用系统 DNS（no-system） 以及 ipv6
 no-system
 no-ipv6
@@ -71,10 +70,10 @@ no-ipv6
 # 如需使用DoH3(DNS over HTTP/3)，请开启下面参数
 # prefer-doh3
 # 如指定了 DoQ 服务，则 DoH 以及其它 dns解析均失效
-# doq-server = quic://dns.adguard.com
-# doq-server = quic://dns1.example.com, quic://dns2.example.com
-# doq-server = quic://dns.adguard.com, excluded_ssids=SSID1
-# doq-server = quic://dns.adguard.com, included_ssids=SSID2
+;doq-server = quic://dns.adguard.com
+;doq-server = quic://dns1.example.com, quic://dns2.example.com
+;doq-server = quic://dns.adguard.com, excluded_ssids=SSID1
+;doq-server = quic://dns.adguard.com, included_ssids=SSID2
 
 # 阿里 DoH
 doh-server = https://doh.pub/dns-query, https://dns.alidns.com/dns-query
@@ -120,11 +119,10 @@ server=/*.netease.com/119.29.29.29
 # img-url 参数用于指定策略组图标，可远程，也可本地/iCloud(Quantumult X/Images路径下) （108*108 大小）
 # Direct/Proxy/Reject 则只能用本地图标，名字分别为 Direct.png, Proxy.png,Reject.png 放置于 Images 文件夹下即可生效 (108*108 大小)
 [policy]
-
 # APP分流策略组
-static=ALL Nodes, Proxy, server-tag-regex=^((?!(网易|网易云|网易云音乐|音乐|云音乐|官网|流量|加群|订阅|获取|刷新|鸡场|机场|订购|购买|套餐|重置|分享|网址|邀请|公众号|Netease|Music|𝐌𝐮𝐬𝐢𝐜|Unbolck|Update|music|||)).)*$, img-url=https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/chck150.png
+static=ALL Nodes, Proxy, server-tag-regex=^((?!(网易|网易云|网易云音乐|音乐|云音乐|官网|流量|加群|订阅|获取|刷新|鸡场|机场|订购|购买|套餐|重置|分享|网址|邀请|公众号|Netease|Music|𝐌𝐮𝐬𝐢𝐜|Unbolck|Update|music|🎵|🎶|🎧)).)*$, img-url=https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/chck150.png
 static=BiliBili, 香港节点, 台湾节点, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/BiliBili.png
-static=ChatGPT, ALL Nodes, 美国节点, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/chxm1023/ChatGPT6.png
+static=ChatGPT, ALL Nodes, Unlock, 美国节点, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/chxm1023/ChatGPT6.png
 static=DouYin, ALL Nodes, 延迟最低, 澳大利亚节点, 加拿大节点, 德国节点, 法国节点, 英国节点, 香港节点, 印度节点, 日本节点, 韩国节点, 荷兰节点, 新加坡节点, 台湾节点, 美国节点, 其它地区节点, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/TikTok.png
 static=Disney, ALL Nodes, 延迟最低, 澳大利亚节点, 加拿大节点, 德国节点, 法国节点, 英国节点, 香港节点, 印度节点, 日本节点, 韩国节点, 荷兰节点, 新加坡节点, 台湾节点, 美国节点, 其它地区节点, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/erdongchanyo/Disney+.png
 static=Emby, ALL Nodes, 延迟最低, 澳大利亚节点, 加拿大节点, 德国节点, 法国节点, 英国节点, 香港节点, 印度节点, 日本节点, 韩国节点, 荷兰节点, 新加坡节点, 台湾节点, 美国节点, 其它地区节点, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/erdongchanyo/Emby.png
@@ -137,40 +135,42 @@ static=Twitter, ALL Nodes, 延迟最低, 澳大利亚节点, 加拿大节点, �
 static=Telegram, ALL Nodes, 延迟最低, 澳大利亚节点, 加拿大节点, 德国节点, 法国节点, 英国节点, 香港节点, 印度节点, 日本节点, 韩国节点, 荷兰节点, 新加坡节点, 台湾节点, 美国节点, 其它地区节点, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Telegram.png
 static=YouTube, ALL Nodes, 延迟最低, 澳大利亚节点, 加拿大节点, 德国节点, 法国节点, 英国节点, 香港节点, 印度节点, 日本节点, 韩国节点, 荷兰节点, 新加坡节点, 台湾节点, 美国节点, 其它地区节点, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/YouTube.png
 static=苹果服务, 直连模式, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Apple.png
-static=全球加速, ALL Nodes, 直连模式, 延迟最低,  img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/FilmAffinity.png
-url-latency-benchmark=延迟最低, server-tag-regex=^((?!(网易|网易云|网易云音乐|音乐|云音乐|官网|流量|加群|订阅|获取|刷新|鸡场|机场|订购|购买|套餐|重置|分享|网址|邀请|公众号|Netease|Music|𝐌𝐮𝐬𝐢𝐜|Unbolck|Update|music||||大雕|频道)).)*$, check-interval=600, tolerance=0, alive-checking=false, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Speedtest.png
+static=全球加速, ALL Nodes, Unlock, 直连模式, 延迟最低,  img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/FilmAffinity.png
+url-latency-benchmark=延迟最低, server-tag-regex=^((?!(网易|网易云|网易云音乐|音乐|云音乐|官网|流量|加群|订阅|获取|刷新|鸡场|机场|订购|购买|套餐|重置|分享|网址|邀请|公众号|Netease|Music|𝐌𝐮𝐬𝐢𝐜|Unbolck|Update|music|🎵|🎶|🎧|大雕|频道)).)*$, check-interval=600, tolerance=0, alive-checking=false, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Speedtest.png
+dest-hash=负载均衡, server-tag-regex=^((?!(网易|网易云|网易云音乐|音乐|云音乐|官网|流量|加群|订阅|获取|刷新|鸡场|机场|订购|购买|套餐|重置|分享|网址|邀请|公众号|Netease|Music|𝐌𝐮𝐬𝐢𝐜|Unbolck|Update|music|🎵|🎶|🎧)).)*$, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/SSID.png
 static=直连模式, direct, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Social_Media/Howcast.png
 static=拦截模式, reject, direct, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Universal/Reject.orig.png
-url-latency-benchmark=澳大利亚节点, server-tag-regex=(?=.*((?i)|澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|Australia|AU))^((?!(港|印|日|韩|新|台|美|加|英|法|荷|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|法国|荷兰|Netherlands|NL)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/australia.png
-url-latency-benchmark=加拿大节点, server-tag-regex=(?=.*((?i)|加|加拿大|多伦多|温哥华|蒙特利尔|卡尔加里|渥太华|Canada|CA))^((?!(港|印|日|韩|新|台|美|法|英|德|印度|日本|韩国|新加坡|台湾|美国|法国|英国|德国|HK|IN|JP|KR|SG|US|FR|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/canada.png
-url-latency-benchmark=德国节点, server-tag-regex=(?=.*((?i)|德|德国|柏林|汉堡|慕尼黑|法兰克福|斯图加特|杜塞尔多夫|Germany|DE))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|法国|HK|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-url-latency-benchmark=法国节点, server-tag-regex=(?=.*((?i)|法|法国|巴黎|马赛|里昂|尼斯|图卢兹|南特|法国|波尔多|法国南部|France|FR))^((?!(港|印|日|韩|新|台|美|英|德|印度|日本|韩国|新加坡|台湾|美国|英国|德国|HK|IN|JP|KR|SG|US|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-url-latency-benchmark=英国节点, server-tag-regex=(?=.*((?i)|GB|UK|英国|伦敦|英格兰|英伦|苏格兰|爱尔兰|UK|United Kingdom|Britain|England))^((?!(港|印|日|韩|新|台|美|HK|IN|JP|KR|SG|US)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Kingdom.png
-url-latency-benchmark=香港节点, server-tag-regex=(?=.*((?i)|香|港|香港|香江|香岛|湾仔|港仔|九龙|铜锣湾|旺角|HK|Hong|HongKong|HKSAR))^((?!(印|日|韩|新|台|美|英|IN|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-url-latency-benchmark=印度节点, server-tag-regex=(?=.*((?i)|印|度|印度|德里|孟买|新德里|班加罗尔|钦奈|加尔各答|IN|India))^((?!(港|日|韩|新|台|美|英|HK|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Niger.png
-url-latency-benchmark=日本节点, server-tag-regex=(?=.*((?i)|日|本|日本|东京|大阪|京都|名古屋|福岗|仙台|JP|Japan|Tokyo|Osaka|Kyoto))^((?!(港|印|韩|新|台|美|英|HK|IN|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Japan.png
-url-latency-benchmark=韩国节点, server-tag-regex=(?=.*((?i)|韩|韩国|南韩|南朝鲜|高丽|大韩民国|首尔|世宗|济州市|水原|釜山|大邱|仁川|光州|大田|蔚山|KR|Korea|Korean|South Korea))^((?!(港|印|日|新|台|美|英|HK|IN|JP|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/South_Korea.png
-url-latency-benchmark=荷兰节点, server-tag-regex=(?=.*((?i)|荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|Netherlands|NL))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|France|DE|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-url-latency-benchmark=新加坡节点, server-tag-regex=(?=.*((?i)|狮|獅|坡|新加坡|星|星加坡|星洲|狮城|SG|Singapore))^((?!(港|印|日|韩|台|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Singapore.png
-url-latency-benchmark=台湾节点, server-tag-regex=(?=.*((?i)|台|台湾|台北|新北|桃园|台中|台南|高雄|基隆|新竹|嘉义|苗栗|彰化|南投|云林|屏东|台东|花莲|宜兰|澎湖|金门|连江|TW|Taiwan))^((?!(港|印|日|韩|新|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/China.png
-url-latency-benchmark=美国节点, server-tag-regex=(?=.*((?i)|美|美国|美利坚合众国|波特兰|达拉斯|纽约|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|华盛顿|内华达|蒙大纳|怀俄明州|菲尼克斯|阿尔伯克基|丹佛|US|UnitedStates|States|American|America|Washington|NewYork|LosAngeles|Chicago|Houston|SanFrancisco|Boston))^((?!(港|印|日|韩|新|台|英|HK|IN|JP|KR|SG|GB|IL|频道)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_States.png
-# url-latency-benchmark=其它地区节点, server-tag-regex=^((?i)(?!\bemby\b|||台|台湾|台灣|\b(TW|Taiwan)\b||港|香港|\b(HK|Hong\x20?Kong)\b||日|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|\b(JP|Japan)\b||韩|韓|韩国|韓國|首尔|南朝鲜|\b(KR|KOR|Korea|South\x20?Korea)\b||新|坡|新加坡|狮城|\b(SG|Singapore)\b||美|美国|美國|纽约|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|United\x20?States|American)\b||英|英国|英國|大不列颠及北爱尔兰联合王国|联合王国|伦敦|\b(UK|GB|Britain|United\x20?Kingdom)\b||印度|\b(IN|India)\b||德|德国|德國|\b(DE|Germany)\b||加|加拿大|\b(CA|Canada)\b||法|法国|法國|\b(FR|France)\b||荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|\b(NL|Netherlands)\b||澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|\b(AU|Australia)\b|TG|频道|雕|\b([1-9]|1[0-9]|20)\b|[0-9A-Fa-f-]{36}).)*$, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Nations.png
+url-latency-benchmark=Unlock, server-tag-regex=(?=.*((?i)解锁|快乐低延迟|阿里云|腾讯云|谷歌云|华为云|Landups|vultr|DMIT|🐼加拿大|德国|法国|英国|香港|印度|日本|韩国|荷兰|新加坡|美国))^((?!其他排除的关键词)).*$, check-interval=600, tolerance=0, img-url=https://example.com/low-latency.png
+url-latency-benchmark=澳大利亚节点, server-tag-regex=(?=.*((?i)🇦🇺|澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|Australia|AU))^((?!(港|印|日|韩|新|台|美|加|英|法|荷|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|法国|荷兰|Netherlands|NL)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/australia.png
+url-latency-benchmark=加拿大节点, server-tag-regex=(?=.*((?i)🇨🇦|加|加拿大|多伦多|温哥华|蒙特利尔|卡尔加里|渥太华|Canada|CA))^((?!(港|印|日|韩|新|台|美|法|英|德|印度|日本|韩国|新加坡|台湾|美国|法国|英国|德国|HK|IN|JP|KR|SG|US|FR|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/canada.png
+url-latency-benchmark=德国节点, server-tag-regex=(?=.*((?i)🇩🇪|德|德国|柏林|汉堡|慕尼黑|法兰克福|斯图加特|杜塞尔多夫|Germany|DE))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|法国|HK|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+url-latency-benchmark=法国节点, server-tag-regex=(?=.*((?i)🇫🇷|法|法国|巴黎|马赛|里昂|尼斯|图卢兹|南特|法国|波尔多|法国南部|France|FR))^((?!(港|印|日|韩|新|台|美|英|德|印度|日本|韩国|新加坡|台湾|美国|英国|德国|HK|IN|JP|KR|SG|US|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+url-latency-benchmark=英国节点, server-tag-regex=(?=.*((?i)🇬🇧|GB|UK|英国|伦敦|英格兰|英伦|苏格兰|爱尔兰|UK|United Kingdom|Britain|England))^((?!(港|印|日|韩|新|台|美|HK|IN|JP|KR|SG|US)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Kingdom.png
+url-latency-benchmark=香港节点, server-tag-regex=(?=.*((?i)🇭🇰|香|港|香港|香江|香岛|湾仔|港仔|九龙|铜锣湾|旺角|HK|Hong|HongKong|HKSAR))^((?!(印|日|韩|新|台|美|英|IN|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+url-latency-benchmark=印度节点, server-tag-regex=(?=.*((?i)🇮🇳|印|度|印度|德里|孟买|新德里|班加罗尔|钦奈|加尔各答|IN|India))^((?!(港|日|韩|新|台|美|英|HK|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Niger.png
+url-latency-benchmark=日本节点, server-tag-regex=(?=.*((?i)🇯🇵|日|本|日本|东京|大阪|京都|名古屋|福岗|仙台|JP|Japan|Tokyo|Osaka|Kyoto))^((?!(港|印|韩|新|台|美|英|HK|IN|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Japan.png
+url-latency-benchmark=韩国节点, server-tag-regex=(?=.*((?i)🇰🇷|韩|韩国|南韩|南朝鲜|高丽|大韩民国|首尔|世宗|济州市|水原|釜山|大邱|仁川|光州|大田|蔚山|KR|Korea|Korean|South Korea))^((?!(港|印|日|新|台|美|英|HK|IN|JP|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/South_Korea.png
+url-latency-benchmark=荷兰节点, server-tag-regex=(?=.*((?i)🇳🇱|荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|Netherlands|NL))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|France|DE|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+url-latency-benchmark=新加坡节点, server-tag-regex=(?=.*((?i)🇸🇬|狮|獅|坡|新加坡|星|星加坡|星洲|狮城|SG|Singapore))^((?!(港|印|日|韩|台|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Singapore.png
+url-latency-benchmark=台湾节点, server-tag-regex=(?=.*((?i)🇨🇳|台|台湾|台北|新北|桃园|台中|台南|高雄|基隆|新竹|嘉义|苗栗|彰化|南投|云林|屏东|台东|花莲|宜兰|澎湖|金门|连江|TW|Taiwan))^((?!(港|印|日|韩|新|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/China.png
+url-latency-benchmark=美国节点, server-tag-regex=(?=.*((?i)🇺🇸|美|美国|美利坚合众国|波特兰|达拉斯|纽约|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|华盛顿|内华达|蒙大纳|怀俄明州|菲尼克斯|阿尔伯克基|丹佛|US|UnitedStates|States|American|America|Washington|NewYork|LosAngeles|Chicago|Houston|SanFrancisco|Boston))^((?!(港|印|日|韩|新|台|英|HK|IN|JP|KR|SG|GB|IL|FR|PL|频道)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_States.png
+url-latency-benchmark=其它地区节点, server-tag-regex=^((?i)(?!\bemby\b|🇹🇼|🇨🇳|台|台湾|台灣|\b(TW|Taiwan)\b|🇭🇰|港|香港|\b(HK|Hong\x20?Kong)\b|🇯🇵|日|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|\b(JP|Japan)\b|🇰🇷|韩|韓|韩国|韓國|首尔|南朝鲜|\b(KR|KOR|Korea|South\x20?Korea)\b|🇸🇬|新|坡|新加坡|狮城|\b(SG|Singapore)\b|🇺🇸|美|美国|美國|纽约|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|United\x20?States|American)\b|🇬🇧|英|英国|英國|大不列颠及北爱尔兰联合王国|联合王国|伦敦|\b(UK|GB|Britain|United\x20?Kingdom)\b|🇮🇳|印度|\b(IN|India)\b|🇩🇪|德|德国|德國|\b(DE|Germany)\b|🇨🇦|加|加拿大|\b(CA|Canada)\b|🇫🇷|法|法国|法國|\b(FR|France)\b|🇳🇱|荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|\b(NL|Netherlands)\b|🇦🇺|澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|\b(AU|Australia)\b|TG|频道|雕|\b([1-9]|1[0-9]|20)\b|[0-9A-Fa-f-]{36}).)*$, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Nations.png
 
 # 服务器按地区分组策略
-# static=澳大利亚节点, server-tag-regex=(?=.*((?i)|澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|Australia|AU))^((?!(港|印|日|韩|新|台|美|加|英|法|荷|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|法国|荷兰|Netherlands|NL)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/australia.png
-# static=加拿大节点, server-tag-regex=(?=.*((?i)|加|加拿大|多伦多|温哥华|蒙特利尔|卡尔加里|渥太华|Canada|CA))^((?!(港|印|日|韩|新|台|美|法|英|德|印度|日本|韩国|新加坡|台湾|美国|法国|英国|德国|HK|IN|JP|KR|SG|US|FR|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/canada.png
-# static=德国节点, server-tag-regex=(?=.*((?i)|德|德国|柏林|汉堡|慕尼黑|法兰克福|斯图加特|杜塞尔多夫|Germany|DE))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|法国|HK|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-# static=法国节点, server-tag-regex=(?=.*((?i)|法|法国|巴黎|马赛|里昂|尼斯|图卢兹|南特|法国|波尔多|法国南部|France|FR))^((?!(港|印|日|韩|新|台|美|英|德|印度|日本|韩国|新加坡|台湾|美国|英国|德国|HK|IN|JP|KR|SG|US|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-# static=英国节点, server-tag-regex=(?=.*((?i)|GB|UK|英国|伦敦|英格兰|英伦|苏格兰|爱尔兰|UK|United Kingdom|Britain|England))^((?!(港|印|日|韩|新|台|美|HK|IN|JP|KR|SG|US)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Kingdom.png
-# static=香港节点, server-tag-regex=(?=.*((?i)|香|港|香港|香江|香岛|湾仔|港仔|九龙|铜锣湾|旺角|HK|Hong|HongKong|HKSAR))^((?!(印|日|韩|新|台|美|英|IN|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-# static=印度节点, server-tag-regex=(?=.*((?i)|印|度|印度|德里|孟买|新德里|班加罗尔|钦奈|加尔各答|IN|India))^((?!(港|日|韩|新|台|美|英|HK|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Niger.png
-# static=日本节点, server-tag-regex=(?=.*((?i)|日|本|日本|东京|大阪|京都|名古屋|福岗|仙台|JP|Japan|Tokyo|Osaka|Kyoto))^((?!(港|印|韩|新|台|美|英|HK|IN|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Japan.png
-# static=韩国节点, server-tag-regex=(?=.*((?i)|韩|韩国|南韩|南朝鲜|高丽|大韩民国|首尔|世宗|济州市|水原|釜山|大邱|仁川|光州|大田|蔚山|KR|Korea|Korean|South Korea))^((?!(港|印|日|新|台|美|英|HK|IN|JP|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/South_Korea.png
-# static=荷兰节点, server-tag-regex=(?=.*((?i)|荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|Netherlands|NL))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|France|DE|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
-# static=新加坡节点, server-tag-regex=(?=.*((?i)|狮|獅|坡|新加坡|星|星加坡|星洲|狮城|SG|Singapore))^((?!(港|印|日|韩|台|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Singapore.png
-# static=台湾节点, server-tag-regex=(?=.*((?i)|台|台湾|台北|新北|桃园|台中|台南|高雄|基隆|新竹|嘉义|苗栗|彰化|南投|云林|屏东|台东|花莲|宜兰|澎湖|金门|连江|TW|Taiwan))^((?!(港|印|日|韩|新|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/China.png
-# static=美国节点, server-tag-regex=(?=.*((?i)|美|美国|美利坚合众国|波特兰|达拉斯|纽约|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|华盛顿|内华达|蒙大纳|怀俄明州|菲尼克斯|阿尔伯克基|丹佛|US|UnitedStates|States|American|America|Washington|NewYork|LosAngeles|Chicago|Houston|SanFrancisco|Boston))^((?!(港|印|日|韩|新|台|英|HK|IN|JP|KR|SG|GB|IL|频道)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_States.png
-url-latency-benchmark=其它地区节点, server-tag-regex=^((?i)(?!\bemby\b|||台|台湾|台灣|\b(TW|Taiwan)\b||港|香港|\b(HK|Hong\x20?Kong)\b||日|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|\b(JP|Japan)\b||韩|韓|韩国|韓國|首尔|南朝鲜|\b(KR|KOR|Korea|South\x20?Korea)\b||新|坡|新加坡|狮城|\b(SG|Singapore)\b||美|美国|美國|纽约|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|United\x20?States|American)\b||英|英国|英國|大不列颠及北爱尔兰联合王国|联合王国|伦敦|\b(UK|GB|Britain|United\x20?Kingdom)\b||印度|\b(IN|India)\b||德|德国|德國|\b(DE|Germany)\b||加|加拿大|\b(CA|Canada)\b||法|法国|法國|\b(FR|France)\b||荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|\b(NL|Netherlands)\b||澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|\b(AU|Australia)\b|TG|频道|雕|\b([1-9]|1[0-9]|20)\b|[0-9A-Fa-f-]{36}).)*$, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Nations.png
+# static=澳大利亚节点, server-tag-regex=(?=.*((?i)🇦🇺|澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|Australia|AU))^((?!(港|印|日|韩|新|台|美|加|英|法|荷|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|法国|荷兰|Netherlands|NL)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/australia.png
+# static=加拿大节点, server-tag-regex=(?=.*((?i)🇨🇦|加|加拿大|多伦多|温哥华|蒙特利尔|卡尔加里|渥太华|Canada|CA))^((?!(港|印|日|韩|新|台|美|法|英|德|印度|日本|韩国|新加坡|台湾|美国|法国|英国|德国|HK|IN|JP|KR|SG|US|FR|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://example.com/canada.png
+# static=德国节点, server-tag-regex=(?=.*((?i)🇩🇪|德|德国|柏林|汉堡|慕尼黑|法兰克福|斯图加特|杜塞尔多夫|Germany|DE))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|法国|HK|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+# static=法国节点, server-tag-regex=(?=.*((?i)🇫🇷|法|法国|巴黎|马赛|里昂|尼斯|图卢兹|南特|法国|波尔多|法国南部|France|FR))^((?!(港|印|日|韩|新|台|美|英|德|印度|日本|韩国|新加坡|台湾|美国|英国|德国|HK|IN|JP|KR|SG|US|GB|DE)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+# static=英国节点, server-tag-regex=(?=.*((?i)🇬🇧|GB|UK|英国|伦敦|英格兰|英伦|苏格兰|爱尔兰|UK|United Kingdom|Britain|England))^((?!(港|印|日|韩|新|台|美|HK|IN|JP|KR|SG|US)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Kingdom.png
+# static=香港节点, server-tag-regex=(?=.*((?i)🇭🇰|香|港|香港|香江|香岛|湾仔|港仔|九龙|铜锣湾|旺角|HK|Hong|HongKong|HKSAR))^((?!(印|日|韩|新|台|美|英|IN|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+# static=印度节点, server-tag-regex=(?=.*((?i)🇮🇳|印|度|印度|德里|孟买|新德里|班加罗尔|钦奈|加尔各答|IN|India))^((?!(港|日|韩|新|台|美|英|HK|JP|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Niger.png
+# static=日本节点, server-tag-regex=(?=.*((?i)🇯🇵|日|本|日本|东京|大阪|京都|名古屋|福岗|仙台|JP|Japan|Tokyo|Osaka|Kyoto))^((?!(港|印|韩|新|台|美|英|HK|IN|KR|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Japan.png
+# static=韩国节点, server-tag-regex=(?=.*((?i)🇰🇷|韩|韩国|南韩|南朝鲜|高丽|大韩民国|首尔|世宗|济州市|水原|釜山|大邱|仁川|光州|大田|蔚山|KR|Korea|Korean|South Korea))^((?!(港|印|日|新|台|美|英|HK|IN|JP|SG|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/South_Korea.png
+# static=荷兰节点, server-tag-regex=(?=.*((?i)🇳🇱|荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|Netherlands|NL))^((?!(港|印|日|韩|新|台|美|加|英|法|印度|日本|韩国|新加坡|台湾|美国|加拿大|英国|德国|France|DE|IN|JP|KR|SG|US|CA|GB|FR)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Hong_Kong.png
+# static=新加坡节点, server-tag-regex=(?=.*((?i)🇸🇬|狮|獅|坡|新加坡|星|星加坡|星洲|狮城|SG|Singapore))^((?!(港|印|日|韩|台|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/Singapore.png
+# static=台湾节点, server-tag-regex=(?=.*((?i)🇨🇳|台|台湾|台北|新北|桃园|台中|台南|高雄|基隆|新竹|嘉义|苗栗|彰化|南投|云林|屏东|台东|花莲|宜兰|澎湖|金门|连江|TW|Taiwan))^((?!(港|印|日|韩|新|美|英|HK|IN|JP|KR|US|GB)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/China.png
+# static=美国节点, server-tag-regex=(?=.*((?i)🇺🇸|美|美国|美利坚合众国|波特兰|达拉斯|纽约|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|华盛顿|内华达|蒙大纳|怀俄明州|菲尼克斯|阿尔伯克基|丹佛|US|UnitedStates|States|American|America|Washington|NewYork|LosAngeles|Chicago|Houston|SanFrancisco|Boston))^((?!(港|印|日|韩|新|台|英|HK|IN|JP|KR|SG|GB|IL|频道)).)*$, check-interval=600, tolerance=0, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_States.png
+# static=其它地区节点, server-tag-regex=^((?i)(?!\bemby\b|🇹🇼|🇨🇳|台|台湾|台灣|\b(TW|Taiwan)\b|🇭🇰|港|香港|\b(HK|Hong\x20?Kong)\b|🇯🇵|日|日本|川日|东京|大阪|泉日|埼玉|沪日|深日|\b(JP|Japan)\b|🇰🇷|韩|韓|韩国|韓國|首尔|南朝鲜|\b(KR|KOR|Korea|South\x20?Korea)\b|🇸🇬|新|坡|新加坡|狮城|\b(SG|Singapore)\b|🇺🇸|美|美国|美國|纽约|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|\b(US|United\x20?States|American)\b|🇬🇧|英|英国|英國|大不列颠及北爱尔兰联合王国|联合王国|伦敦|\b(UK|GB|Britain|United\x20?Kingdom)\b|🇮🇳|印度|\b(IN|India)\b|🇩🇪|德|德国|德國|\b(DE|Germany)\b|🇨🇦|加|加拿大|\b(CA|Canada)\b|🇫🇷|法|法国|法國|\b(FR|France)\b|🇳🇱|荷|荷兰|阿姆斯特丹|鹿特丹|海牙|Utrecht|\b(NL|Netherlands)\b|🇦🇺|澳|澳大利亚|悉尼|墨尔本|布里斯班|阿德莱德|珀斯|\b(AU|Australia)\b|TG|频道|鹏|优选|雕|\b([1-9]|1[0-9]|20)\b|[0-9A-Fa-f-]{36}).)*$, img-url=https://raw.githubusercontent.com/Semporia/Hand-Painted-icon/master/Rounded_Rectangle/United_Nations.png
 
 
 
@@ -187,39 +187,42 @@ url-latency-benchmark=其它地区节点, server-tag-regex=^((?i)(?!\bemby\b|||�
 
 
 #**************************************#
-#filter_local，本地分流规则，对于完全相同的某条规则，本地的将优先于远程生效。
+# filter_local，本地分流规则，对于完全相同的某条规则，本地的将优先于远程生效。
 [filter_local]
+# AD处理
+host-keyword, pangolin, reject
+host-keyword, pglstatp, reject
+host-keyword, adview, reject
+host-suffix, gdt.qq.com, reject
 
-# 12306
-host, ad.12306.cn, direct
-
-# 百度 
-host, mobads.baidu.com, reject 
-host-SUFFIX, pos.baidu.com, reject 
+# 网易云音乐广告拦截
+host, admusicpic.music.126.net, reject
+host, iadmat.nosdn.127.net, reject
+host, iadmusicmat.music.126.net, reject
+host, iadmusicmatvideo.music.126.net, reject
 
 # 拼多多
-ip-cidr, 220.196.137.122/32, reject
-ip-cidr, 116.128.184.22/32, reject
-ip-cidr, 220.196.137.227/32, reject
-ip-cidr, 49.235.102.235/32, reject
-ip-cidr, 81.69.104.17/32, reject
-ip-cidr, 175.24.144.100/32, reject
-ip-cidr, 114.110.98.2/32, reject
-ip-cidr, 81.69.130.131/32, reject
-ip-cidr, 36.249.64.124/32, reject
-ip-cidr, 175.43.20.160/32, reject
-ip-cidr, 116.153.57.41/32, reject
-ip-cidr, 163.177.219.44/32, reject
-ip-cidr, 182.91.254.79/32, reject
-ip-cidr, 36.250.239.44/32, reject
+ip-cidr, 153.3.240.56/24, reject
+ip-cidr, 116.128.184.22/24, reject
+ip-cidr, 220.196.137.122/24, reject
+ip-cidr, 49.235.102.235/24, reject
+ip-cidr, 175.24.144.100/24, reject
+ip-cidr, 81.69.104.17/24, reject
+ip-cidr, 114.110.97.18/24, reject
+ip-cidr, 114.110.98.2/24, reject
+ip-cidr, 114.110.96.1/24, reject
+ip-cidr, 117.185.242.187/24, reject
+ip-cidr, 117.185.244.212/24, reject
+ip-cidr, 36.152.46.15/24, reject
+ip-cidr, 101.226.147.13/24, reject
+ip-cidr, 101.226.152.67/24, reject
+ip-cidr, 180.163.214.155/24, reject
+ip-cidr, 123.138.253.200/24, reject
 
-# local
-ip-cidr, 10.0.0.0/8, direct
-ip-cidr, 127.0.0.0/8, direct
-ip-cidr, 172.16.0.0/12, direct
-ip-cidr, 192.168.0.0/16, direct
-ip-cidr, 224.0.0.0/24, direct
-ip-cidr, 182.254.116.0/24, direct
+# 苹果服务
+host-keyword, apple, 直连模式
+host-keyword, testflight, 直连模式
+host-keyword, icloud, 直连模式
 
 # GeoIP（Geolocation IP）是一种技术，用于确定特定IP地址的地理位置信息，如国家、城市、经纬度等。
 GeoIP, CN, 直连模式
@@ -231,37 +234,36 @@ final, 全球加速
 #**************************************#
 # filter_remote，远程分流规则订阅，部分规则有先后顺序要求，调整顺序可能失效，将网络请求进行分流，网络请求的走向由匹配到的策略组决定。
 [filter_remote]
-
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Advertising/Advertising.list, tag=Advertising, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
-https://raw.githubusercontent.com/RuCu6/QuanX/main/Rules/MyBlockAds.list, tag=MyBlockAds, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
-https://raw.githubusercontent.com/ZenmoFeiShi/rule/main/Pinduoduo.list, tag=PDD_reject, force-policy=reject, update-interval=172800, opt-parser=true, inserted-resource=true, enabled=true
+https://raw.githubusercontent.com/Cats-Team/AdRules/main/qx.conf, tag=广告终结者, force-policy=拦截模式, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/filter/fenliu.list, tag=ADBlock_Filter, force-policy=拦截模式, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Advertising/Advertising.list, tag=Advertising, force-policy=拦截模式, update-interval=86400, opt-parser=true, enabled=false
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Hijacking/Hijacking.list, tag=运营劫持, force-policy=拦截模式, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Privacy/Privacy.list, tag=隐私保护, force-policy=拦截模式, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Emby/Emby.list, tag=Emby, force-policy=Emby, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list, tag=Apple服务, force-policy=苹果服务, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/AppStore/AppStore.list, tag=App Store, force-policy=苹果服务, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Bilibili.list, tag=BiliBili, force-policy=BiliBili, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/OpenAI/OpenAI.list, tag=ChatGPT, force-policy=ChatGPT, update-interval=86400, opt-parser=false, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/DouYin/DouYin.list, tag=DouYin, force-policy=DouYin, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Spotify/Spotify.list, tag=Spotify, force-policy=Spotify, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Disney/Disney.list, tag=Disney, force-policy=Disney, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Emby/Emby.list, tag=Emby, force-policy=Emby, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GitHub/GitHub.list, tag=Github, force-policy=Github, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Google/Google.list, tag=Google, force-policy=Google, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/GoogleVoice/GoogleVoice.list, tag=Google Voice, force-policy=美国节点, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Twitter/Twitter.list, tag=Twitter, force-policy=Twitter, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Netflix/Netflix.list, tag=Netflix, force-policy=Netflix, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Disney/Disney.list, tag=Disney, force-policy=Disney, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/YouTube/YouTube.list, tag=YouTube, force-policy=YouTube, update-interval=86400, opt-parser=false, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/OpenAI/OpenAI.list, tag=ChatGPT, force-policy=ChatGPT, update-interval=86400, opt-parser=false, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=Telegram, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Instagram/Instagram.list, tag=Instagram, force-policy=Instagram, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Apple/Apple.list, tag=Apple服务, force-policy=苹果服务, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/AppStore/AppStore.list, tag=App Store, force-policy=苹果服务, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Netflix/Netflix.list, tag=Netflix, force-policy=Netflix, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Spotify/Spotify.list, tag=Spotify, force-policy=Spotify, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Telegram/Telegram.list, tag=Telegram, force-policy=Telegram, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Twitter/Twitter.list, tag=Twitter, force-policy=Twitter, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/WeChat/WeChat.list, tag=WeChat, force-policy=direct, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/YouTube/YouTube.list, tag=YouTube, force-policy=YouTube, update-interval=86400, opt-parser=false, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/YouTubeMusic/YouTubeMusic.list, tag=YouTube Music, force-policy=YouTube, update-interval=86400, opt-parser=false, enabled=true
-https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Bilibili.list, tag=BiLiBiLi, force-policy=BiliBili, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/WeChat/WeChat.list, tag=WeChat, force-policy=直连模式, update-interval=86400, opt-parser=false, enabled=true
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Global/Global.list, tag=全球加速, force-policy=全球加速, update-interval=86400, opt-parser=true, enabled=true
+
 
 
 #**************************************#
 # rewrite_local，本地重写规则。
 [rewrite_local]
-
 
 
 
@@ -273,37 +275,55 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 # 参考写法：rewrite.txt, tag=本地复写, opt-parser=false, enabled=false。
 [rewrite_remote]
 
-https://github.com/chavyleung/scripts/raw/master/box/rewrite/boxjs.rewrite.quanx.conf, tag=BoxJs, update-interval=86400, opt-parser=false, enabled=true
+https://github.com/chavyleung/scripts/raw/master/box/rewrite/boxjs.rewrite.quanx.conf, tag=BoxJS, update-interval=86400, opt-parser=false, enabled=true
+
+
+
 #==============App解锁=================#
 https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/kuwo.js, tag=Kuwo, update-interval=86400, opt-parser=true, enabled=false
-https://raw.githubusercontent.com/WeiGiegie/666/main/keep.js, tag=Keep, update-interval=172800, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/WeiGiegie/666/main/keep.js, tag=Keep, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/yqc007/QuantumultX/master/javbdvipcrack.js, tag=JavDB, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/WeiGiegie/666/main/mgtv.js, tag=MGTV, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/95598/95598.scriptable.js, tag=网上国网, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/89996462/Quantumult-X/main/ycdz/zxhdmx.js, tag=ZxhDmx, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/pxx917144686/ios/master/rewrite/QuantumultX/chat_Smith.js, tag=Chat Smith, update-interval=172800, opt-parser=true, enabled=true
+https://gitcode.net/4qiao/scriptable/raw/master/quanX/getToken_12123.sgmodule, tag=交管12123, update-interval=86400, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/pxx917144686/ios/master/rewrite/QuantumultX/chat_Smith.js, tag=Chat Smith, update-interval=86400, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/gjwj666/qx/main/bilibilibd.js, tag=BiliBili大会员, update-interval=86400, opt-parser=true, enabled=false
 https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.conf, tag=App解锁合集, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/WeiGiegie/666/main/wangyiyun.js, tag=NeteaseCloudMusic, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/NeteaseCloudMusic/netease.js, tag=NeteaseCloudMusic-1, update-interval=172800, opt-parser=true, enabled=false
+ColorfulClouds.snippet, tag=ColorfulClouds, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/WeiGiegie/666/main/wangyiyun.js, tag=NeteaseCloudMusic, update-interval=86400, opt-parser=true, enabled=false
+https://raw.githubusercontent.com/Yuheng0101/X/main/Scripts/NeteaseCloudMusic/netease.js, tag=NeteaseCloudMusic-1, update-interval=86400, opt-parser=true, enabled=true
 
 
 
 #===============App增强================#
-https://gist.githubusercontent.com/ddgksf2013/f43026707830c7818ee3ba624e383c8d/raw/baiduCloud.vip.js, tag=百度网盘净化+倍速, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Function/UnblockURLinWeChat.conf, tag=UnblockURLinWeChat, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/Maasea/sgmodule/master/YouTube.Enhance.sgmodule, tag=Youtube.Enhanced, update-interval=86400, opt-parser=true, enabled=true
+https://github.com/BiliUniverse/ADBlock/raw/main/modules/BiliBili.ADBlock.snippet, tag=BiliBili.ADBlock, update-interval=86400, opt-parser=true, enabled=true
+https://github.com/BiliUniverse/Enhanced/raw/main/modules/BiliBili.Enhanced.snippet, tag=BiliBili.Enhanced, update-interval=86400, opt-parser=true, enabled=true
 
 
 
 #==============App扩展=================#
-https://raw.githubusercontent.com/DualSubs/Spotify/main/modules/DualSubs.Spotify.snippet, tag=DualSubs.Spotify, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/RuCu6/QuanX/main/Rewrites/Cube/youtube.snippet, tag=YouTube.Enhance, update-interval=86400, opt-parser=true, enabled=true
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/Applet.conf, tag=微信小程序去广告, update-interval=86400, opt-parser=false, enabled=true 
+https://gist.githubusercontent.com/ddgksf2013/f43026707830c7818ee3ba624e383c8d/raw/baiduCloud.adblock.js, tag=BaiDUCloud_ADBlock, update-interval=86400, opt-parser=true, enabled=true 
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/Amap.conf, tag=Amap_AdBlock, update-interval=86400, opt-parser=false, enabled=true
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/CaiYunAds.conf, tag=Caiyun_AdBlock, update-interval=86400, opt-parser=false, enabled=true 
+https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/refs/heads/main/Configuration-Files/DualSubs-Spotify.snippet, tag=DualSubs.Spotify, update-interval=86400, opt-parser=true, enabled=true
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/NeteaseAds.conf, tag=Netease_AdBlock, update-interval=86400, opt-parser=false, enabled=true
+https://github.com/app2smile/rules/raw/master/module/tieba-qx.conf, tag=Tiba_AdBlock, update-interval=86400, opt-parser=false, enabled=false
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Function/UnblockURLinWeChat.conf, tag=UnblockURLinWeChat, update-interval=86400, opt-parser=false, enabled=true
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/Weibo.conf, tag=Weibo_AdBlock, update-interval=86400, opt-parser=false, enabled=true
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/XiaoHongShu.conf, tag=XiaoHongShu_AdBlock, update-interval=86400, opt-parser=false, enabled=true 
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/Ximalaya.conf, tag=Ximalaya_ADBlock, update-interval=86400, opt-parser=false, enabled=true
+https://github.com/ddgksf2013/Rewrite/raw/master/AdBlock/YoutubeAds.conf, tag=Youtube_AdBlock, update-interval=86400, opt-parser=false, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/script/zheye/zheye.snippet, tag=Zhihu_AdBlock, update-interval=86400, opt-parser=false, enabled=true 
 
 
 
 #==============广告重写=================#
-https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/Configuration%20Files/Noads.conf, tag=Noads, update-interval=86400, opt-parser=true, enabled=true
-https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/release/rewrite/QuantumultX/Advertising/Advertising.conf, tag=Advertising, update-interval=86400, opt-parser=false, enabled=true
-https://raw.githubusercontent.com/RuCu6/QuanX/main/Rewrites/MyBlockAds.conf, tag=MyBlockAds, update-interval=86400, opt-parser=true, inserted-resource=true, enabled=true
+https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/rewrite/chongxie.txt, tag=广告拦截合集, update-interval=604800, opt-parser=false, enabled=true
+https://whatshub.top/rewrite/adultra.conf, tag=AdUltra, update-interval=86400, opt-parser=true, enabled=true
+https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/AdBlock/StartUp.conf, tag=StartUp, update-interval=86400, opt-parser=true, enabled=true
 
 
 
@@ -315,39 +335,43 @@ https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Html/General.conf, t
 #**************************************#
 # task_local，任务模块，可用于签到，节点流媒体检测等。
 [task_local]
-
 0 */6 * * ? https://raw.githubusercontent.com/chxm1023/Task/main/dns-clear-cache.js, tag=清理Dns缓存, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/clean.png, enabled=true
-10 0 * * ? https://raw.githubusercontent.com/chxm1023/Task/main/hljk.js, tag=汇率监控, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/hljk.png, enabled=true
-0 0 17 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/hlbdy.js, tag=黑料不打烊, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/heiliao.png, enabled=true
-0 0 21 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mi/step.js, tag=小米刷步, img-url=https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mi/color.png, enabled=true
-0 30 21 * * *  https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js, tag=彩票查询,img-url=https://raw.githubusercontent.com/58xinian/icon/master/Two_color_ball.png
-0 0 5 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/wechatsubs/sydwzp.js, tag=事业单位招聘监控, img-url=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/picture/sydw.png, enabled=true
+17 17 * * * https://raw.githubusercontent.com/deezertidal/private/main/appsdoor.js, tag=AppStore限免APP, img-url=applelogo.system, enabled=true
 0 0 17 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/douban.js, tag=豆瓣每日推荐, img-url=https://is3-ssl.mzstatic.com/image/thumb/Purple126/v4/90/5d/f8/905df82a-0e2e-5a2c-2be6-cc690fb0bec0/AppIcon-0-0-1x_U007emarketing-0-0-0-6-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png, enabled=true
+10 0 * * ? https://raw.githubusercontent.com/chxm1023/Task/main/hljk.js, tag=汇率监控, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/hljk.png, enabled=true
+13 13 * * * https://raw.githubusercontent.com/deezertidal/private/main/histoday.js, tag=历史上的今天, img-url=calendar.system, enabled=true
+0 30 6 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/moyu.js, tag=摸鱼来啦, img-url=https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/67/04/ff/6704ff4c-b49b-de91-70ac-201c62d5296f/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/144x144bb.png, enabled=true
+0 0 17 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/hlbdy.js, tag=黑料不打烊, img-url=https://raw.githubusercontent.com/Toperlock/Quantumult/main/icon/heiliao.png, enabled=true
+0 0 8 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/javday.js, tag=𝐉𝐀𝐕𝐃𝐚𝐲每日推荐, img-url=https://raw.githubusercontent.com/Yuheng0101/X/main/Assets/javday.png, enabled=true
+0 0 10 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/wechatsubs/sydwzp.js, tag=事业单位招聘监控, img-url=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/picture/sydw.png, enabled=true
+0 0 21 * * * https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mi/step.js, tag=小米刷步, img-url=https://raw.githubusercontent.com/Yuheng0101/X/main/Tasks/mi/color.png, enabled=true
+0 0 6 * * * https://gist.githubusercontent.com/Sliverkiss/8b4f5487e0f28786c7dec9c7484dcd5e/raw/teaMilk.js, tag=奶茶合集, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/teaMilk.png, enabled=true
+0 30 21 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js, tag=彩票查询, img-url=https://raw.githubusercontent.com/58xinian/icon/master/Two_color_ball.png, enabled=true
+
+
 
 #============Boxjs备份还原==============#
 
 
 
 #============流媒体解锁查询==============#
-0 0 6 * * * https://gist.githubusercontent.com/Sliverkiss/8b4f5487e0f28786c7dec9c7484dcd5e/raw/teaMilk.js, tag=奶茶合集, img-url=https://raw.githubusercontent.com/Sliverkiss/QuantumultX/main/icon/teaMilk.png, enabled=true
 event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/geo_location.js, tag=GeoIP 查询, img-url=location.fill.viewfinder.system, enabled=true
-event-interaction https://raw.githubusercontent.com/getsomecat/Qx/main/Net_Speed.js, tag= Net Speed, img-url=bolt.square.fill.system, enabled=true
 event-interaction https://raw.githubusercontent.com/fmz200/wool_scripts/main/QuantumultX/scripts/server_info.js, tag=节点详情查询, img-url=https://raw.githubusercontent.com/fmz200/wool_scripts/main/icons/apps/ipInfo.png, enabled=true
 event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/traffic-check.js, tag=策略流量查询, img-url=https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Download.png, enabled=true
+event-interaction https://raw.githubusercontent.com/getsomecat/Qx/main/Net_Speed.js, tag=⚡️ Net Speed, img-url=bolt.square.fill.system, enabled=true
 event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js, tag=流媒体-解锁查询, img-url=checkmark.seal.system, enabled=true
 
 #**************************************#
+[http_backend]
 # Boxjs设置，改为使用http backend方式，访问地址改为http://127.0.0.1:9999，更新配置后请长按风车-更新，然后重启代理
 # BoxJs相关教程参考「https://docs.boxjs.app」
-[http_backend]
-
 https://raw.githubusercontent.com/chavyleung/scripts/master/chavy.box.js, host=boxjs.com, tag=BoxJS, path=^/, enabled=false
 
 
 #**************************************#
 [mitm]
 # 本地主机名
-hostname = -*.apple.com, -consumer.fcbox.com, -*huami.com, -weather-data.apple.com, -*amemv.com, -*snssdk.com, -www.google.com
+hostname =
 # 跳过证书验证
 skip_validating_cert = true
 force_sni_domain_name = false
