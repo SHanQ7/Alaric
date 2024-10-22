@@ -1,5 +1,5 @@
-#!name=ShanQ自用配置文件
-#!raw-url=https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/Configuration%20Files/QuantumultX.conf
+# name=ShanQ自用配置文件
+# raw-url=https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/Configuration%20Files/QuantumultX.conf
 
 #**************************************#
 # 建议在「其他设置」里「GeoLite2」的「来源」填写使用下面链接，并开启「自动更新」
@@ -17,8 +17,8 @@
 
 
 #**************************************#
-[general]
 # general：模块内为一些通用的设置参数项。
+[general]
 
 # 节点延迟测试，server_check_url指定的网址进行相应测试，以确认节点的可用性
 server_check_url = http://www.gstatic.com/generate_204
@@ -59,8 +59,8 @@ dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icitymobile.mobi, id6.
 
 
 #***************************************#
-[dns]
 # 域名系统（英文：Domain Name System，缩写：DNS）是互联网的一项服务。它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。
+[dns]
 
 ; 禁用系统 DNS（no-system） 以及 ipv6
 no-system
@@ -109,7 +109,6 @@ server=/*.netease.com/119.29.29.29
 
 
 #**************************************#
-[policy]
 # policy,策略组：用于分发分流规则传递过来的网络请求。
 # Direct直连, Proxy代理, Reject拒绝
 # static：你需要手动选择想要的节点/策略组。
@@ -120,6 +119,7 @@ server=/*.netease.com/119.29.29.29
 # ssid：将根据你所设定的网络来自动切换节点/策略组。
 # img-url 参数用于指定策略组图标，可远程，也可本地/iCloud(Quantumult X/Images路径下) （108*108 大小）
 # Direct/Proxy/Reject 则只能用本地图标，名字分别为 Direct.png, Proxy.png,Reject.png 放置于 Images 文件夹下即可生效 (108*108 大小)
+[policy]
 
 # APP分流策略组
 static=ALL Nodes, Proxy, server-tag-regex=^((?!(网易|网易云|网易云音乐|音乐|云音乐|官网|流量|加群|订阅|获取|刷新|鸡场|机场|订购|购买|套餐|重置|分享|网址|邀请|公众号|Netease|Music|𝐌𝐮𝐬𝐢𝐜|Unbolck|Update|music|||)).)*$, img-url=https://raw.githubusercontent.com/SHanQ7/Script-ShanQ/main/QX_Icons/Chick/chck150.png
@@ -175,20 +175,20 @@ url-latency-benchmark=其它地区节点, server-tag-regex=^((?i)(?!\bemby\b|||�
 
 
 #**************************************#
-[server_local]
 # server_local，本地节点。
+[server_local]
 
 
 
 #**************************************#
-[server_remote]
 # server_local，添加远程节点。
+[server_remote]
 
 
 
 #**************************************#
-[filter_local]
 #filter_local，本地分流规则，对于完全相同的某条规则，本地的将优先于远程生效。
+[filter_local]
 
 # 12306
 host, ad.12306.cn, direct
@@ -229,8 +229,8 @@ final, 全球加速
 
 
 #**************************************#
-[filter_remote]
 # filter_remote，远程分流规则订阅，部分规则有先后顺序要求，调整顺序可能失效，将网络请求进行分流，网络请求的走向由匹配到的策略组决定。
+[filter_remote]
 
 https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/QuantumultX/Advertising/Advertising.list, tag=Advertising, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
 https://raw.githubusercontent.com/RuCu6/QuanX/main/Rules/MyBlockAds.list, tag=MyBlockAds, force-policy=reject, update-interval=86400, opt-parser=false, enabled=true
@@ -259,18 +259,19 @@ https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Quant
 
 
 #**************************************#
-[rewrite_local]
 # rewrite_local，本地重写规则。
+[rewrite_local]
+
 
 
 
 #***************************************#
-[rewrite_remote]
 # rewrite_remote，远程重写模块：包含主机名hostname以及复写rewrite规则。
 # update-interval 为更新时间参数，单位 秒, 默认更新时间为 24*60*60=86400 秒，也就是24小时。
 # opt-parser=true/false 用于控制是否对本订阅 开启资源解析器，不写或者 false 表示不启用解析器。
 # 支持本地/iCloud的复写规则文件，位于Quantumult X/Profiles路径下。
 # 参考写法：rewrite.txt, tag=本地复写, opt-parser=false, enabled=false。
+[rewrite_remote]
 
 https://github.com/chavyleung/scripts/raw/master/box/rewrite/boxjs.rewrite.quanx.conf, tag=BoxJs, update-interval=86400, opt-parser=false, enabled=true
 #==============App解锁=================#
@@ -312,8 +313,8 @@ https://raw.githubusercontent.com/ddgksf2013/Rewrite/master/Html/General.conf, t
 
 
 #**************************************#
+# task_local，任务模块，可用于签到，节点流媒体检测等。
 [task_local]
-#task_local，任务模块，可用于签到，节点流媒体检测等。
 
 0 */6 * * ? https://raw.githubusercontent.com/chxm1023/Task/main/dns-clear-cache.js, tag=清理Dns缓存, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/clean.png, enabled=true
 10 0 * * ? https://raw.githubusercontent.com/chxm1023/Task/main/hljk.js, tag=汇率监控, img-url=https://raw.githubusercontent.com/chxm1023/Task/main/icon/hljk.png, enabled=true
@@ -336,9 +337,10 @@ event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/
 event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/streaming-ui-check.js, tag=流媒体-解锁查询, img-url=checkmark.seal.system, enabled=true
 
 #**************************************#
-[http_backend]
 # Boxjs设置，改为使用http backend方式，访问地址改为http://127.0.0.1:9999，更新配置后请长按风车-更新，然后重启代理
 # BoxJs相关教程参考「https://docs.boxjs.app」
+[http_backend]
+
 https://raw.githubusercontent.com/chavyleung/scripts/master/chavy.box.js, host=boxjs.com, tag=BoxJS, path=^/, enabled=false
 
 
