@@ -1,13 +1,16 @@
 # AE
 
+
+
 # AT
+5.34.211.168:443#AT 01 Bruck an der Leitha_SHanQ
 
 
 # CA
 
 
 # CH
-45.90.59.204:443#CH Winterthur SHanQ-07
+45.90.59.204:443#CH 01 Winterthur_SHanQ
 
 
 # CL
@@ -15,22 +18,22 @@
 
 
 # DE
-109.237.98.177:443#DE 01 Dreieich-SHanQ
-212.113.106.102:443#DE 02 Dreieich-SHanQ
-109.237.98.246:443#DE 03 Dreieich-SHanQ
+109.237.98.177:443#DE 01 Dreieich_SHanQ
+212.113.106.102:443#DE 02 Dreieich_SHanQ
+109.237.98.246:443#DE 03 Dreieich_SHanQ
 
 # ES
 
 
 # FI
-135.181.152.75:443#FI 01 Vantaa SHanQ-20
-1
-65.109.173.136:443#FI 03 Vantaa SHanQ
-135.181.46.229:443#FI 04 Vantaa SHanQ
+135.181.152.75:443#FI 01 Vantaa_SHanQ
+
+65.109.173.136:443#FI 03 Vantaa_SHanQ
+135.181.46.229:443#FI 04 Vantaa_SHanQ
 
 # FR
-217.69.5.53:443#FR 01 Aulnay-sous-Bois 快速通道-SHanQ
-136.244.118.247:443#FR 02 Aulnay-sous-Bois 快速通道-SHanQ
+217.69.5.53:443#FR 01 Aulnay-sous-Bois 快速通道_SHanQ
+136.244.118.247:443#FR 02 Aulnay-sous-Bois 快速通道_SHanQ
 
 
 
@@ -43,6 +46,8 @@
 # LV
 
 103.231.73.117:443#LV Riga 02 SHanQ
+
+
 
 # HK
 cloudflare.182682.xyz:443#HK 01 CM/CU优化-SHanQ
@@ -87,12 +92,13 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#HK 02 自适应分流-SHanQ
 193.42.39.188:443#SE Steninge SHanQ-76
 
 # SG
-
+45.86.228.104:443#SG 01_SHanQ
 
 
 # TH
 
 8.213.206.252:8443#TH Ang Thong SHanQ-84
+
 
 # UA
 
