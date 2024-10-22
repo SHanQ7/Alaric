@@ -80,6 +80,7 @@ function Area_check(para) {
     "sofia-capital": "索菲亚市", 
     "kocasinan": "科卡西楠市", 
     "tassin-la-demi-lune": "塔桑拉德米吕讷", 
+    "kuala lumpur": "吉隆坡",
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
@@ -103,6 +104,7 @@ function City_ValidCheck(para) {
     "kocasinan": "科卡西楠市", 
     "tassin-la-demi-lune": "塔桑拉德米吕讷", 
     "szigetszentmiklos": "锡盖特圣米克洛什市", 
+    "tokyo": "东京都",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
