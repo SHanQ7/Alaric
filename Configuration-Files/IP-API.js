@@ -81,6 +81,19 @@ function Area_check(para) {
     "kocasinan": "科卡西楠市", 
     "tassin-la-demi-lune": "塔桑拉德米吕讷", 
     "kuala lumpur": "吉隆坡",
+    "attica": "阿提卡",
+    "moscow": "莫斯科",
+    "區": "区",
+    "Provincia de San José": "圣何塞省",
+    "圣地亚哥首都大区": "圣地亚哥大区",
+    "oslo county": "奥斯陆市",
+    "catalonia": "加泰罗尼亚",
+    "imarat umm al qaywayn": "乌姆盖万",
+    "bogota d.c.": "波哥大首都",
+    "belgtade": "贝尔格莱德",
+    "marrakesh-safi": "马拉喀什-萨菲大区",
+    "bucuresti": "布加勒斯特",
+    "ampang": "安邦",
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
