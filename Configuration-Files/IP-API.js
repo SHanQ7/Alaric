@@ -95,6 +95,7 @@ function Area_check(para) {
     "belgrade": "贝尔格莱德",
     "marrakesh-safi": "马拉喀什-萨菲大区",
     "ampang": "安邦",
+    "tashkent":"塔什干",
     "bucurești":"布加勒斯特",
     "維爾紐斯縣":"维尔纽斯县",
     "Île-de-france":"法兰西岛大区"
