@@ -90,7 +90,7 @@ function Area_check(para) {
     "圣地亚哥首都大区": "圣地亚哥大区",
     "oslo county": "奥斯陆市",
     "catalonia": "加泰罗尼亚",
-    "Imārat Umm al Qaywayn": "乌姆盖万",
+    "imārat umm al qaywayn": "乌姆盖万",
     "bogota d.c.": "波哥大首都",
     "belgtade": "贝尔格莱德",
     "marrakesh-safi": "马拉喀什-萨菲大区",
