@@ -76,7 +76,7 @@ function Area_check(para) {
     "north west":"西北部地区", 
     "rīga":"里加", 
     "quebec":"魁北克市",
-    "kyiv city":"基辅",
+    "kyiv city":"基辅市",
     "sofia-capital": "索菲亚市", 
     "kocasinan": "科卡西楠市", 
     "tassin-la-demi-lune": "塔桑拉德米吕讷", 
@@ -88,7 +88,7 @@ function Area_check(para) {
     "圣地亚哥首都大区": "圣地亚哥大区",
     "oslo county": "奥斯陆市",
     "catalonia": "加泰罗尼亚",
-    "imãrat umm al qaywayn": "乌姆盖万",
+    "Imārat Umm al Qaywayn": "乌姆盖万",
     "bogota d.c.": "波哥大首都",
     "belgtade": "贝尔格莱德",
     "marrakesh-safi": "马拉喀什-萨菲大区",
@@ -120,6 +120,8 @@ function City_ValidCheck(para) {
     "tokyo": "东京都",
     "奧奈叢林":"奥奈丛林",
     "badaganhatti":"巴特那",
+    "MUHADHDHIB":"马什哈德",
+    "kyiv":"基辅",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
