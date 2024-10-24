@@ -86,16 +86,18 @@ function Area_check(para) {
     "attica": "阿提卡",
     "moscow": "莫斯科",
     "區": "区",
-    "Provincia de San José": "圣何塞省",
+    "provincia de san josé": "圣何塞省",
     "圣地亚哥首都大区": "圣地亚哥大区",
     "oslo county": "奥斯陆市",
     "catalonia": "加泰罗尼亚",
     "imārat umm al qaywayn": "乌姆盖万",
     "bogota d.c.": "波哥大首都",
-    "belgtade": "贝尔格莱德",
+    "belgrade": "贝尔格莱德",
     "marrakesh-safi": "马拉喀什-萨菲大区",
-    "bucuresti": "布加勒斯特",
     "ampang": "安邦",
+    "bucurești":"布加勒斯特",
+    "維爾紐斯縣":"维尔纽斯县",
+    "Île-de-france":"法兰西岛大区"
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
@@ -122,8 +124,11 @@ function City_ValidCheck(para) {
     "tokyo": "东京都",
     "奧奈叢林":"奥奈丛林",
     "badaganhatti":"巴特那",
-    "MUHADHDHIB":"马什哈德",
+    "muhadhdhib":"马什哈德",
     "kyiv":"基辅",
+    "tashkent":"塔什干",
+    "ampang":"安邦",
+    "abadou":"豪兹省",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
