@@ -26,6 +26,10 @@
 109.237.98.177:443#🇩🇪 DE 01 Dreieich_SHanQ
 212.113.106.102:443#🇩🇪 DE 02 Dreieich_SHanQ
 109.237.98.246:443#🇩🇪 DE 03 Dreieich_SHanQ
+# EE
+46.22.213.78:8443#🇪🇪 EE 01 Järveotsa_SHanQ
+109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
+
 # ES
 
 
