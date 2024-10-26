@@ -99,7 +99,7 @@ function Area_check(para) {
     "bucurești":"布加勒斯特",
     "維爾紐斯縣":"维尔纽斯县",
     "Île-de-france":"法兰西岛大区",
-    "chișinău municipality":"基希讷乌"，
+    "chișinău municipality":"基希讷乌",
     "southern peninsula":"南部半岛"，
 };
   para = para ? para.toLowerCase().trim() : para;
