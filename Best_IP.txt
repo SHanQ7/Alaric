@@ -4,16 +4,20 @@
 
 # AT
 5.34.211.168:443#🇦🇹 AT 01 Bruck an der Leitha_SHanQ
+212.183.88.189:443#🇦🇹 AT 02 Vienna_SHanQ
 
+# AU
+45.32.245.32:443#🇦🇺 AU 01 Sydney_SHanQ
+140.238.201.118:443#🇦🇺 AU 02 Sydney_SHanQ
 
 # BG
 193.37.215.115:443#🇧🇬 BG 01 Sofia_SHanQ
-
-
+213.183.63.185:443#🇧🇬 BG 02 Sofia_SHanQ
+193.37.215.71:8443#🇧🇬 BG 03 Sofia_SHanQ
 # CA
-
-
-
+144.217.243.69:2053#🇨🇦 CA 01 Quebec_SHanQ
+51.222.31.182:8443#🇨🇦 CA 02 Quebec_SHanQ
+51.222.138.0:8443#🇨🇦 CA 03 Quebec_SHanQ
 # CH
 45.90.59.204:443#🇨🇭 CH 01 Winterthur_SHanQ
 
@@ -26,6 +30,7 @@
 109.237.98.177:443#🇩🇪 DE 01 Dreieich_SHanQ
 212.113.106.102:443#🇩🇪 DE 02 Dreieich_SHanQ
 109.237.98.246:443#🇩🇪 DE 03 Dreieich_SHanQ
+136.243.156.104:60359#🇩🇪 DE 04 Falkenstein_SHanQ
 # EE
 46.22.213.78:8443#🇪🇪 EE 01 Järveotsa_SHanQ
 109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
@@ -51,11 +56,16 @@
 cloudflare.182682.xyz:443#🇭🇰 HK 01 CM/CU优化_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 104.18.82.142:443#🇭🇰 HK 03 优化入口_SHanQ 
-104.19.35.145:443#🇭🇰 HK 04_SHanQ 
+104.19.35.145:443#🇭🇰 HK 04_SHanQ
+# IL
+129.159.132.0:8443#🇮🇱 IL 01 Jerusalem_SHanQ
+
+
 # IN
 139.59.75.66:443#🇮🇳 IN 01 Santa Cruz_SHanQ
 206.189.129.187:443#🇮🇳 IN 02 Bangalore_SHanQ
-165.232.182.81:443#🇮🇳 IN 03 Bangalore_SHanQ
+129.154.46.115:443#🇮🇳 IN 03 Hyderabad_SHanQ
+129.154.46.115:443#🇮🇳 IN 04 Telangana_SHanQ
 # IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
 
@@ -63,7 +73,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # IT
 38.180.15.138#🇮🇹 IT 01 Gallarate_SHanQ
 91.193.5.125:8443#🇮🇹 IT 02 Arezzo_SHanQ
-94.177.199.119:2053🇮🇹 IT 03 Arezzo_SHanQ
+94.177.199.119:2053#🇮🇹 IT 03 Arezzo_SHanQ
+85.235.145.125:2053#🇮🇹 IT 04 Arezzo_SHanQ
 # JP
 103.201.131.135:443#🇯🇵 JP 031 Chiba Narita_SHanQ
 
@@ -74,7 +85,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 # LT
 77.73.71.103:443#🇱🇹 LT 01 Lentvaris_SHanQ
-
+188.165.26.154:2053#🇱🇹 LT 02 Lentvaris_SHanQ
 
 # LV
 103.231.73.117:443#🇱🇻 LV 01 Riga_SHanQ
@@ -88,15 +99,22 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 185.7.33.49:443#🇳🇴 NO Jessheim_SHanQ
 
 
+# PH
+8.212.167.243:8443#🇵🇭 PH 01 Metro Manila_SHanQ
+
 
 # PL
-87.228.9.243:443#🇵🇱 PL Pruszków SHanQ-64
-
+87.228.9.243:443#🇵🇱 PL 01 Pruszków_SHanQ
+193.42.243.169:21308#🇵🇱 PL 02 Rabka-Zdrój_SHanQ
 
 # RU
-194.87.252.20:443#🇷🇺 RU 01 Domodedovo_SHanQ
-45.142.212.71:2053#🇷🇺 RU 02 Domodedovo_SHanQ
+95.182.120.34:8443#🇷🇺 RU 01 Moscow_SHanQ
+213.159.208.88:2053#🇷🇺 RU 02 Skolkovo_SHanQ
 45.84.0.218:2053#🇷🇺 RU 03 Domodedovo_SHanQ
+# RO
+146.70.254.235:8443#🇷🇴 RO 01 Bucharest_SHanQ
+146.70.254.232:8443#🇷🇴 RO 02 Bucharest_SHanQ
+
 # SA
 176.125.231.110:443#🇸🇦 SA 01 Ar Riyad_SHanQ
 38.180.11.201:443#🇸🇦 SA 02 Ar Riyad_SHanQ
@@ -105,19 +123,18 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
 
 
-
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
 
 
 # TH
 8.213.206.252:8443#🇹🇭 TH 01 Ang Thong_SHanQ
-
+8.213.197.132:84433#🇹🇭 TH 02 Bangkok_SHanQ
 
 # TR
 38.60.255.184:2082#🇹🇷 TR 01_SHanQ
-
-
+89.35.73.171:8443#🇹🇷 TR 02 Osmangazi_SHanQ
+84.32.230.76:2054#🇹🇷 TR 03 Istanbul_SHanQ
 # TW
 59.127.80.162:443#🇨🇳 TW 01_SHanQ
 
@@ -131,6 +148,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 160.123.255.19:443#🇺🇸 US 022 California Los-Angeles 优选_SHanQ
 
 103.35.189.77:443#🇺🇸 US 131 New York City_SHanQ
+
+129.159.84.71:443#🇺🇸 US 221 Virginia Ashburn_SHanQ
 
 download.yunzhongzhuan.com:443#🇺🇸 US 231 Washington Kent_SHanQ
 162.159.34.75:443#🇺🇸 US 232 Washington Kent_SHanQ
