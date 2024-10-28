@@ -135,8 +135,8 @@ function City_ValidCheck(para) {
     "ampang":"安邦",
     "abadou":"豪兹省",
     "singera":"摩尔多瓦"，
-    “lidodiostia”:"丽都迪奥斯蒂亚",
-    “pomichna”:"波米奇纳"
+    "lidodiostia":"丽都迪奥斯蒂亚",
+    "pomichna":"波米奇纳"
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
