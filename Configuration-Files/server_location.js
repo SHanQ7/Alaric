@@ -101,7 +101,8 @@ function Area_check(para) {
     "Île-de-france":"法兰西岛大区",
     "chișinău municipality":"基希讷乌",
     "southern peninsula":"南部半岛",
-     "哈爾尤縣":"哈留县",
+    "哈爾尤縣":"哈留县",
+    "伊爾福夫縣":"伊尔福夫县"
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
@@ -134,7 +135,8 @@ function City_ValidCheck(para) {
     "ampang":"安邦",
     "abadou":"豪兹省",
     "singera":"摩尔多瓦"，
-    “lidodiostia”:"丽都迪奥斯蒂亚"
+    “lidodiostia”:"丽都迪奥斯蒂亚",
+    “pomichna”:"波米奇纳"
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
