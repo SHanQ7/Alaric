@@ -85,7 +85,6 @@ function Area_check(para) {
     "kuala lumpur": "吉隆坡",
     "attica": "阿提卡",
     "moscow": "莫斯科",
-    "區": "区",
     "provincia de san josé": "圣何塞省",
     "圣地亚哥首都大区": "圣地亚哥大区",
     "oslo county": "奥斯陆市",
@@ -95,14 +94,14 @@ function Area_check(para) {
     "belgrade": "贝尔格莱德",
     "marrakesh-safi": "马拉喀什-萨菲大区",
     "ampang": "安邦",
-    "tashkent":"塔什干",
-    "bucurești":"布加勒斯特",
-    "維爾紐斯縣":"维尔纽斯县",
-    "Île-de-france":"法兰西岛大区",
-    "chișinău municipality":"基希讷乌",
-    "southern peninsula":"南部半岛",
-    "哈爾尤縣":"哈留县",
-    "伊爾福夫縣":"伊尔福夫县",
+    "tashkent": "塔什干",
+    "bucurești": "布加勒斯特",
+    "維爾紐斯縣": "维尔纽斯县",
+    "Île-de-france": "法兰西岛大区",
+    "chișinău municipality": "基希讷乌",
+    "southern peninsula": "南部半岛",
+    "哈爾尤縣": "哈留县",
+    "伊爾福夫縣": "伊尔福夫县"
 };
   para = para ? para.toLowerCase().trim() : para;
   return areaMap[para] || para || region0;
@@ -127,16 +126,16 @@ function City_ValidCheck(para) {
     "tassin-la-demi-lune": "塔桑拉德米吕讷", 
     "szigetszentmiklos": "锡盖特圣米克洛什市", 
     "tokyo": "东京都",
-    "奧奈叢林":"奥奈丛林",
-    "badaganhatti":"巴特那",
-    "muhadhdhib":"马什哈德",
-    "kyiv":"基辅",
-    "tashkent":"塔什干",
-    "ampang":"安邦",
-    "abadou":"豪兹省",
-    "singera":"摩尔多瓦"，
-    "lidodiostia":"丽都迪奥斯蒂亚",
-    "pomichna":"波米奇纳",
+    "奧奈叢林": "奥奈丛林",
+    "badaganhatti": "巴特那",
+    "muhadhdhib": "马什哈德",
+    "kyiv": "基辅",
+    "tashkent": "塔什干",
+    "ampang": "安邦",
+    "abadou": "豪兹省",
+    "singera": "摩尔多瓦",
+    "lidodiostia": "丽都迪奥斯蒂亚",
+    "pomichna": "波米奇纳"
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
