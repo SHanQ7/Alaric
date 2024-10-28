@@ -48,8 +48,8 @@
 13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
-38.180.154.225:443#🇬🇧 GB 02 Hounslow_SHanQ
-35.177.50.118:443#🇬🇧 GB 03 Hounslow_SHanQ
+35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
+
 # HK
 cloudflare.182682.xyz:443#🇭🇰 HK 01 CM/CU优化_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
@@ -93,7 +93,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
 
 # NO
-185.7.33.49:443#🇳🇴 NO Jessheim_SHanQ
+
 
 
 # PH
@@ -105,8 +105,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 
 # RU
+213.159.208.88:2053#🇷🇺 RU 01 Skolkovo_SHanQ
 
-213.159.208.88:2053#🇷🇺 RU 02 Skolkovo_SHanQ
 
 # RO
 146.70.254.235:8443#🇷🇴 RO 01 Bucharest_SHanQ
