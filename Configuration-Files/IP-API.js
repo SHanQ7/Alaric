@@ -132,6 +132,7 @@ function City_ValidCheck(para) {
     "paju": "坡州市",
     "pomichna": "波米奇纳",
     "reston": "里斯顿",
+    "roshha‘ayin": "罗什艾因",
     "santacruz": "圣克鲁斯",
     "sha`ib al maiqah": "沙伊布·阿尔·马尔卡",
     "singera": "摩尔多瓦",
