@@ -20,8 +20,9 @@
 51.222.138.0:8443#🇨🇦 CA 03 Quebec_SHanQ
 # CH
 45.90.59.204:443#🇨🇭 CH 01 Winterthur_SHanQ
-
-
+195.15.240.63:443#🇨🇭 CH 02 Winterthur_SHanQ
+195.15.207.74:443#🇨🇭 CH 03 Meyrin_SHanQ
+45.85.93.96:443#🇨🇭 CH 04 Meyrin_SHanQ
 # CL
 
 
@@ -30,6 +31,7 @@
 109.237.98.177:443#🇩🇪 DE 01 Dreieich_SHanQ
 212.113.106.102:443#🇩🇪 DE 02 Dreieich_SHanQ
 109.237.98.246:443#🇩🇪 DE 03 Dreieich_SHanQ
+143.47.234.215:443#🇩🇪 DE 04 Dreieich_SHanQ
 # EE
 46.22.213.78:8443#🇪🇪 EE 01 Järveotsa_SHanQ
 109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
@@ -46,10 +48,12 @@
 217.69.5.53:443#🇫🇷 FR 01 Aulnay-sous-Bois 快速通道_SHanQ
 136.244.118.247:443#🇫🇷 FR 02 Aulnay-sous-Bois 快速通道_SHanQ
 13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
+45.95.175.108:443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
+45.90.59.204:443#🇫🇷 FR 04 Meyzieu_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
-
+150.230.122.76:443#🇬🇧 GB 03 Hounslow_SHanQ
 # HK
 cloudflare.182682.xyz:443#🇭🇰 HK 01 CM/CU优化_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
@@ -72,14 +76,15 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 85.235.145.125:2053#🇮🇹 IT 03 Gallarate_SHanQ
 94.177.199.119:2053#🇮🇹 IT 04 Gallarate_SHanQ
 140.238.212.95:443#🇮🇹 IT 05 Gallarate_SHanQ
+192.121.47.24:443#🇮🇹 IT 06 Gallarate_SHanQ
 # JP
 8.212.167.243:8443#🇯🇵 JP Chiba Narita_SHanQ
 
 
 # KR
 121.154.238.144:50000#🇰🇷 KR 021 Bakchon_SHanQ
-
-
+140.238.28.86:443#🇰🇷 KR 022 Bakchon_SHanQ
+13.125.218.78:443#🇰🇷 KR 023 Bakchon_SHanQ
 # LT
 
 
@@ -91,7 +96,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
-
+38.180.168.23:443#🇳🇱 NL 03 Amsterdam_SHanQ
 # MD
 45.84.0.218:2053#🇲🇩 MD Moldova_SHanQ
 
@@ -147,8 +152,11 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # US
 104.224.186.240:443#🇺🇸 US 021 California Los-Angeles_SHanQ
 160.123.255.19:443#🇺🇸 US 022 California Los-Angeles 优选_SHanQ
-digitalocean.com:443#🇺🇸 US 023 California San Jose_SHanQ
-104.17.170.159:443#🇺🇸 US 024 California San Jose_SHanQ
+
+digitalocean.com:443#🇺🇸 US 021 California San Jose_SHanQ
+104.17.170.159:443#🇺🇸 US 022 California San Jose_SHanQ
+174.137.59.73:443#🇺🇸 US 023 California San Jose_SHanQ
+
 103.35.189.77:443#🇺🇸 US 131 New York City_SHanQ
 
 129.159.84.71:443#🇺🇸 US 221 Virginia Reston_SHanQ
