@@ -15,9 +15,9 @@
 213.183.63.185:443#🇧🇬 BG 02 Sofia_SHanQ
 193.37.215.71:8443#🇧🇬 BG 03 Sofia_SHanQ
 # CA
-144.217.243.69:2053#🇨🇦 CA 01 Quebec_SHanQ
-51.222.31.182:8443#🇨🇦 CA 02 Quebec_SHanQ
-51.222.138.0:8443#🇨🇦 CA 03 Quebec_SHanQ
+144.217.243.69:2053#🇨🇦 CA 01 Mississauga_SHanQ
+51.222.31.182:8443#🇨🇦 CA 02 Mississauga_SHanQ
+51.222.138.0:8443#🇨🇦 CA 03 Mississauga_SHanQ
 # CH
 45.90.59.204:443#🇨🇭 CH 01 Winterthur_SHanQ
 195.15.240.63:443#🇨🇭 CH 02 Winterthur_SHanQ
@@ -37,8 +37,8 @@
 109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
 
 # ES
-
-
+93.93.118.158：8443#🇪🇸 ES 01 Chamartín_SHanQ
+93.93.118.158:2053#🇪🇸 ES 02 Chamartín_SHanQ
 
 # FI
 135.181.152.75:443#🇫🇮 FI 01 Vantaa_SHanQ
@@ -68,13 +68,13 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 129.154.46.115:443#🇮🇳 IN 03 Hyderabad_SHanQ
 # IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
-
+195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
 
 # IT
 38.180.15.138:443#🇮🇹 IT 01 Gallarate_SHanQ
 91.193.5.125:8443#🇮🇹 IT 02 Gallarate_SHanQ
 85.235.145.125:2053#🇮🇹 IT 03 Gallarate_SHanQ
-94.177.199.119:2053#🇮🇹 IT 04 Gallarate_SHanQ
+94.177.199.119:2053#🇮🇹 IT 04 Lido di Ostia_SHanQ
 140.238.212.95:443#🇮🇹 IT 05 Gallarate_SHanQ
 192.121.47.24:443#🇮🇹 IT 06 Gallarate_SHanQ
 # JP
@@ -85,6 +85,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 121.154.238.144:50000#🇰🇷 KR 021 Bakchon_SHanQ
 140.238.28.86:443#🇰🇷 KR 022 Bakchon_SHanQ
 13.125.218.78:443#🇰🇷 KR 023 Bakchon_SHanQ
+61.84.74.108:30017#🇰🇷 KR 024 Bakchon_SHanQ
 # LT
 
 
@@ -98,8 +99,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
 38.180.168.23:443#🇳🇱 NL 03 Amsterdam_SHanQ
 # MD
-45.84.0.218:2053#🇲🇩 MD Moldova_SHanQ
-
+45.84.0.218:2053#🇲🇩 MD 01 Moldova_SHanQ
+45.142.212.71:2053#🇲🇩 MD 02 Moldova_SHanQ
 
 # NO
 
@@ -110,9 +111,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 
 # PL
-
-
-
+37.252.7.9:2053#🇵🇱 PL 01 Pruszków_SHanQ
+145.239.27.230:443#🇵🇱 PL 02 Pruszków_SHanQ
+51.83.152.251:8443#🇵🇱 PL 03 Pruszków_SHanQ
 # RU
 213.159.208.88:2053#🇷🇺 RU 01 Skolkovo_SHanQ
 
@@ -124,7 +125,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # SA
 38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
 38.180.11.157:2053#🇸🇦 SA 02 Ar Riyad_SHanQ
-
+176.125.231.110:443#🇸🇦 SA 03 Ar Riyad_SHanQ
 # SE
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
 95.182.120.34:8443#🇸🇪 SE 02 Steninge_SHanQ
@@ -142,9 +143,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 89.35.73.171:8443#🇹🇷 TR 02 Osmangazi_SHanQ
 
 # TW
-
-
-
+85.237.207.79:31177#🇨🇳 TW 01_SHanQ
+35.201.203.106:443#🇨🇳 TW 02_SHanQ
+220.134.210.14:12161#🇨🇳 TW 03_SHanQ
 # UA
 
 
