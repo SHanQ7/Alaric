@@ -41,8 +41,10 @@ const country = country_ValidCheck(obj['country']);
 const region = Area_check(obj['regionName']);
 const city = City_ValidCheck(obj['city']);
 
+let displayCity = region !== city ? city : '';
+
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = city + ' ' + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
 
 let ip = obj['query'];
 let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
