@@ -8,8 +8,8 @@
 
 # AU
 45.32.245.32:443#🇦🇺 AU 01 Sydney_SHanQ
-
-
+139.99.236.163:443#🇦🇺 AU 02 Sydney_SHanQ
+51.161.134.202:2053#🇦🇺 AU 03 Sydney_SHanQ
 # BG
 193.37.215.115:443#🇧🇬 BG 01 Sofia_SHanQ
 213.183.63.185:443#🇧🇬 BG 02 Sofia_SHanQ
@@ -41,7 +41,7 @@
 # FI
 135.181.152.75:443#🇫🇮 FI 01 Vantaa_SHanQ
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
-135.181.46.229:443#🇫🇮 FI 03 Vantaa_SHanQ
+95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
 217.69.5.53:443#🇫🇷 FR 01 Aulnay-sous-Bois 快速通道_SHanQ
 136.244.118.247:443#🇫🇷 FR 02 Aulnay-sous-Bois 快速通道_SHanQ
@@ -53,9 +53,9 @@
 # HK
 cloudflare.182682.xyz:443#🇭🇰 HK 01 CM/CU优化_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
-
+46.3.109.250:27176#🇭🇰 HK 03_SHanQ
 # IL
-
+129.159.132.0:8443#🇮🇱 IL Petaẖ Tiqva_SHanQ
 
 
 # IN
@@ -70,10 +70,10 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 38.180.15.138:443#🇮🇹 IT 01 Gallarate_SHanQ
 91.193.5.125:8443#🇮🇹 IT 02 Gallarate_SHanQ
 85.235.145.125:2053#🇮🇹 IT 03 Gallarate_SHanQ
-94.177.199.119:2053#🇮🇹 IT 04 Arezzo_SHanQ
-
+94.177.199.119:2053#🇮🇹 IT 04 Gallarate_SHanQ
+140.238.212.95:443#🇮🇹 IT 05 Gallarate_SHanQ
 # JP
-
+8.212.167.243:8443#🇯🇵 JP Chiba Narita_SHanQ
 
 
 # KR
@@ -92,12 +92,16 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
 
+# MD
+45.84.0.218:2053#🇲🇩 MD Moldova_SHanQ
+
+
 # NO
 
 
 
 # PH
-8.212.167.243:8443#🇵🇭 PH 01 Metro Manila_SHanQ
+
 
 
 # PL
@@ -113,13 +117,13 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 
 # SA
-176.125.231.110:443#🇸🇦 SA 01 Ar Riyad_SHanQ
-38.180.11.201:443#🇸🇦 SA 02 Ar Riyad_SHanQ
-38.180.11.157:2053#🇸🇦 SA 03 Ar Riyad_SHanQ
+38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
+38.180.11.157:2053#🇸🇦 SA 02 Ar Riyad_SHanQ
+
 # SE
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
 95.182.120.34:8443#🇸🇪 SE 02 Steninge_SHanQ
-
+46.32.184.247#🇸🇪 SE 03 Steninge_SHanQ
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
 
@@ -137,9 +141,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 
 # UA
-45.84.0.218:2053#🇺🇦 UA 01 Kyyiv_SHanQ
-87.228.9.243:443#🇺🇦 UA 02 Kyyiv_SHanQ
-5.34.211.168:443#🇺🇦 UA 03 Kyyiv_SHanQ
+
+
+
 # US
 104.224.186.240:443#🇺🇸 US 021 California Los-Angeles_SHanQ
 160.123.255.19:443#🇺🇸 US 022 California Los-Angeles 优选_SHanQ
