@@ -45,10 +45,9 @@
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
-217.69.5.53:443#🇫🇷 FR 01 Aulnay-sous-Bois 快速通道_SHanQ
-136.244.118.247:443#🇫🇷 FR 02 Aulnay-sous-Bois 快速通道_SHanQ
+195.15.240.63:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
+136.244.118.247:443#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
 13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
-45.95.175.108:443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
