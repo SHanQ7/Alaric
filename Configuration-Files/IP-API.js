@@ -70,8 +70,10 @@ function Area_check(para) {
     "bucurești": "布加勒斯特",
     "capital region": "首都大区",
     "catalonia": "加泰罗尼亚",
+    "central singapore": "中区",
     "chișinău municipality": "基希讷乌",
     "dubai": "迪拜",
+    "gangwon-do": "江原道",
     "hesse": "黑森州",
     "hawalli": "哈瓦利省",
     "Île-de-france": "法兰西岛大区",
@@ -96,12 +98,14 @@ function Area_check(para) {
     "taoyuan": "桃园市", 
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷",
+    "tokyo": "东京都",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "哈爾尤縣": "哈留县",
     "加州": "加利福尼亚州",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
     "千葉縣": "千叶县",
     "圣地亚哥首都大区": "圣地亚哥大区",
+    "臺灣省or台灣省": "中部地区",
     "維爾紐斯縣": "维尔纽斯县",
     "伊爾福夫縣": "伊尔福夫县",
     "中华民国": "台湾",
@@ -146,8 +150,12 @@ function City_ValidCheck(para) {
     "tokyo": "东京都",
     "yeongdong-gun": "永同郡",
     "奧奈叢林": "奥奈丛林",
+    "波特蘭": "波特兰",
     "查馬丁區": "查马丁区",
+    "達拉斯": "达拉斯"，
     "聖荷西": "圣荷西",
+    "西雅圖": "西雅图",
+    "彰化": "彰化县"，
     "中壢": "中坜区",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
