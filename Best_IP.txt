@@ -7,8 +7,8 @@
 
 
 # AT
-
-
+94.177.8.40:443#🇦🇹 AT 011 Bruck-an-der-Leitha_SHanQ
+94.177.8.10:443#🇦🇹 AT 012 Bruck-an-der-Leitha_SHanQ
 
 # AU
 45.32.245.32:443#🇦🇺 AU 01 Sydney_SHanQ
@@ -27,7 +27,7 @@
 195.15.207.74:443#🇨🇭 CH 02 Meyrin_SHanQ
 45.85.93.96:443#🇨🇭 CH 03 Meyrin_SHanQ
 # CL
-
+186.67.70.55:443#🇨🇱 CL 121 Lamp_SHanQ
 
 
 # DE
@@ -103,7 +103,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 45.142.212.71:2053#🇲🇩 MD 02 Moldova_SHanQ
 
 # NO
-
+46.29.238.54:8443#🇳🇴 NO 101 Jessheim_SHanQ
 
 
 # PH
@@ -129,7 +129,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # SE
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
 95.182.120.34:8443#🇸🇪 SE 02 Steninge_SHanQ
-46.32.184.247#🇸🇪 SE 03 Steninge_SHanQ
+194.87.252.20:443#🇸🇪 SE 03 Steninge_SHanQ
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
 
@@ -141,27 +141,33 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # TR
 38.60.255.184:2082#🇹🇷 TR 01 Osmangazi_SHanQ
 89.35.73.171:8443#🇹🇷 TR 02 Osmangazi_SHanQ
-
+5.188.168.223:2053#🇹🇷 TR 03 Osmangazi_SHanQ
+62.3.12.185:443#🇹🇷 TR 04 Osmangazi_SHanQ
 # TW
 85.237.207.79:31177#🇨🇳 TW 01_SHanQ
-35.201.203.106:443#🇨🇳 TW 02_SHanQ
-220.134.210.14:12161#🇨🇳 TW 03_SHanQ
+
+
 # UA
 
 
 
-# US
-104.224.186.240:443#🇺🇸 US 021 California Los-Angeles_SHanQ
-160.123.255.19:443#🇺🇸 US 022 California Los-Angeles 优选_SHanQ
+# US Los-Angeles
+160.123.255.19:443#🇺🇸 US 021 California Los-Angeles_SHanQ
+172.64.149.205:4433#🇺🇸 US 022 California Los-Angeles_SHanQ
 
+# US San Jose
 digitalocean.com:443#🇺🇸 US 021 California San Jose_SHanQ
 104.17.170.159:443#🇺🇸 US 022 California San Jose_SHanQ
 174.137.59.73:443#🇺🇸 US 023 California San Jose_SHanQ
+# US New York
+103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
+38.147.188.89:8011#🇺🇸 US 132 New York_SHanQ
 
-103.35.189.77:443#🇺🇸 US 131 New York City_SHanQ
-
+# US Virginia Reston
 129.159.84.71:443#🇺🇸 US 221 Virginia Reston_SHanQ
 
+
+# US Washington Kent
 download.yunzhongzhuan.com:443#🇺🇸 US 231 Washington Kent_SHanQ
 162.159.34.75:443#🇺🇸 US 232 Washington Kent_SHanQ
 
