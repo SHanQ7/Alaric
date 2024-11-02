@@ -141,7 +141,7 @@ function City_ValidCheck(para) {
     "reston": "里斯顿",
     "roshha‘ayin": "罗什艾因",
     "santacruz": "圣克鲁斯",
-    "sha`ib al maiqah": "沙伊布·阿尔·马尔卡",
+    "sha`ibalmalqah": "沙伊布·阿尔·马尔卡",
     "singera": "摩尔多瓦",
     "sofia-capital": "索菲亚市",
     "steninge": "斯特宁厄",
