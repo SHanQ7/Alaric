@@ -3,7 +3,7 @@
 
 
 # AS
-8.212.167.243:8443#🇦🇸 AS Manila_SHanQ
+
 
 
 # AT
@@ -17,9 +17,7 @@
 # BG
 193.37.215.115:443#🇧🇬 BG 01 Sofia_SHanQ
 213.183.63.185:443#🇧🇬 BG 02 Sofia_SHanQ
-193.37.215.71:8443#🇧🇬 BG 03 Sofia_SHanQ
-91.210.166.82:443#🇧🇬 BG 04 Sofia_SHanQ
-195.123.230.40:443#🇧🇬 BG 05 Sofia_SHanQ
+195.123.230.40:443#🇧🇬 BG 03 Sofia_SHanQ
 # CA
 144.217.243.69:2053#🇨🇦 CA 01 Mississauga_SHanQ
 51.222.31.182:8443#🇨🇦 CA 02 Mississauga_SHanQ
@@ -36,7 +34,6 @@
 109.237.98.177:443#🇩🇪 DE 01 Dreieich_SHanQ
 212.113.106.102:443#🇩🇪 DE 02 Dreieich_SHanQ
 109.237.98.246:443#🇩🇪 DE 03 Dreieich_SHanQ
-49.13.215.89:8443#🇩🇪 DE 04 Dreieich_SHanQ
 # DK
 95.164.10.50:443#🇩🇰 DK 021 Copenhagen_SHanQ
 
@@ -54,11 +51,9 @@
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
-195.15.240.63:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
-136.244.118.247:443#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
-13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
-15.188.53.52:8443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
-95.182.98.206:2053#🇫🇷 FR 05 Aulnay-sous-Bois_SHanQ
+136.244.118.247:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
+13.37.224.156:2053#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
+15.188.53.52:8443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
@@ -70,8 +65,7 @@
 # HK
 8.218.148.106:443#🇭🇰 HK 01_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
-47.76.218.163:443#🇭🇰 HK 03_SHanQ
-47.243.106.124:34184#🇭🇰 HK 04_SHanQ
+47.243.106.124:34184#🇭🇰 HK 03_SHanQ
 # IL
 129.159.132.0:8443#🇮🇱 IL Petaẖ Tiqva_SHanQ
 
@@ -79,8 +73,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 # IN
 206.189.129.187:443#🇮🇳 IN 01 Bangalore_SHanQ
 129.154.46.115:443#🇮🇳 IN 02 Hyderabad_SHanQ
-129.154.46.115:443#🇮🇳 IN 03 Hyderabad_SHanQ
-141.148.203.6:443#🇮🇳 IN 03 Hyderabad_SHanQ
+141.148.203.6:443#🇮🇳 IN 03 Santa Cruz_SHanQ
 # IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
 195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
@@ -92,7 +85,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 # JP
 158.101.76.55:21953#🇯🇵 JP 021 Chiba Narita_SHanQ
-133.18.241.62:56516#🇯🇵 JP 023 Osaka_SHanQ
+20.78.8.44:31593#🇯🇵 JP 022 Osaka_SHanQ
 
 # KR
 121.154.238.144:50000#🇰🇷 KR 021 Bakchon_SHanQ
@@ -128,8 +121,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 # PL
 37.252.7.9:2053#🇵🇱 PL 01 Pruszków_SHanQ
-145.239.27.230:443#🇵🇱 PL 02 Pruszków_SHanQ
-51.83.152.251:8443#🇵🇱 PL 03 Pruszków_SHanQ
+51.83.152.251:8443#🇵🇱 PL 02 Pruszków_SHanQ
+
 # RU
 213.159.208.88:2053#🇷🇺 RU 01 Skolkovo_SHanQ
 
@@ -146,7 +139,6 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
 95.182.120.34:8443#🇸🇪 SE 02 Steninge_SHanQ
 194.87.252.20:443#🇸🇪 SE 03 Steninge_SHanQ
-46.32.186.61:8443#🇸🇪 SE 04 Steninge_SHanQ
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
 
@@ -157,12 +149,10 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 # TR
 38.60.255.184:2082#🇹🇷 TR 01 Osmangazi_SHanQ
-89.35.73.171:8443#🇹🇷 TR 02 Osmangazi_SHanQ
-5.188.168.223:2053#🇹🇷 TR 03 Osmangazi_SHanQ
-62.3.12.185:443#🇹🇷 TR 04 Osmangazi_SHanQ
+5.188.168.223:2053#🇹🇷 TR 02 Osmangazi_SHanQ
+62.3.12.185:443#🇹🇷 TR 03 Osmangazi_SHanQ
 # TW
-85.237.207.79:31177#🇨🇳 TW 01_SHanQ
-59.127.80.162:12224#🇨🇳 TW 02_SHanQ
+59.127.80.162:12224#🇨🇳 TW 01_SHanQ
 
 # UA
 
