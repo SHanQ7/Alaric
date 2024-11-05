@@ -95,6 +95,7 @@ function Area_check(para) {
     "sofia-capital": "索菲亚市",
     "southern peninsula": "南部半岛",
     "stockholm county": "斯德哥尔摩",
+    "taichung city": "台中市",
     "taoyuan": "桃园市", 
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷",
