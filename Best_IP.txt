@@ -65,7 +65,7 @@
 # HK
 8.218.148.106:443#🇭🇰 HK 01_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
-47.243.106.124:34184#🇭🇰 HK 03_SHanQ
+47.57.233.126:443#🇭🇰 HK 03_SHanQ
 # IL
 129.159.132.0:8443#🇮🇱 IL Petaẖ Tiqva_SHanQ
 
@@ -85,12 +85,14 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 # JP
 158.101.76.55:21953#🇯🇵 JP 021 Chiba Narita_SHanQ
-20.78.8.44:31593#🇯🇵 JP 022 Osaka_SHanQ
-
+103.20.199.196:8882#🇯🇵 JP 022 Chiba Narita_SHanQ
+195.245.241.130:587#🇯🇵 JP 023 Chiba Narita_SHanQ
+45.159.48.192:12212#🇯🇵 JP 024 Chiba Narita_SHanQ
 # KR
 121.154.238.144:50000#🇰🇷 KR 021 Bakchon_SHanQ
-152.70.245.66:12693#🇰🇷 KR 022 Bakchon_SHanQ
+210.87.195.152:44311#🇰🇷 KR 022 Bakchon_SHanQ
 185.213.62.199:39584#🇰🇷 KR 023 Bakchon_SHanQ
+220.118.142.151:50000#🇰🇷 KR 024 Bakchon_SHanQ
 # LT
 
 
@@ -177,3 +179,11 @@ digitalocean.com:443#🇺🇸 US 021 California San Jose_SHanQ
 # US Washington Kent
 download.yunzhongzhuan.com:443#🇺🇸 US 231 Washington Kent_SHanQ
 162.159.34.75:443#🇺🇸 US 232 Washington Kent_SHanQ
+
+
+8.213.197.132:8443
+8.212.167.243:8443
+140.84.179.114:443
+129.159.132.0:8443
+185.217.111.103:32335
+104.20.30.149:2087
