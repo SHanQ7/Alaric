@@ -51,7 +51,7 @@
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
-136.244.118.247:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
+35.181.77.67:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
 13.37.224.156:2053#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
 15.188.53.52:8443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 # GB 
@@ -86,10 +86,12 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 103.20.199.196:8882#🇯🇵 JP 021 Chiba Narita_SHanQ
 195.245.241.130:587#🇯🇵 JP 022 Chiba Narita_SHanQ
 45.159.48.192:12212#🇯🇵 JP 023 Chiba Narita_SHanQ
+103.201.131.135:443#🇯🇵 JP 024 Chiba Narita_SHanQ
 # KR
 210.87.195.152:44311#🇰🇷 KR 021 Bakchon_SHanQ
 185.213.62.199:39584#🇰🇷 KR 022 Bakchon_SHanQ
 220.118.142.151:50000#🇰🇷 KR 023 Bakchon_SHanQ
+150.230.248.166:443#🇰🇷 KR 023 Bakchon_SHanQ
 # LT
 
 
@@ -160,8 +162,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 
 # US Los-Angeles
 60.248.63.88:12308#🇺🇸 US 021 California Los-Angeles_SHanQ
-172.64.149.205:443#🇺🇸 US 022 California Los-Angeles_SHanQ
-104.17.79.145:443#🇺🇸 US 023 California Los-Angeles_SHanQ
+217.163.76.10:443#🇺🇸 US 022 California Los-Angeles_SHanQ
+185.16.110.11:443#🇺🇸 US 023 California Los-Angeles_SHanQ
 # US San Jose
 digitalocean.com:443#🇺🇸 US 021 California San Jose_SHanQ
 104.17.170.159:443#🇺🇸 US 022 California San Jose_SHanQ
