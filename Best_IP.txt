@@ -31,7 +31,7 @@
 
 
 # DE
-109.237.98.177:443#🇩🇪 DE 01 Dreieich_SHanQ
+217.61.105.75:2053#🇩🇪 DE 01 Dreieich_SHanQ
 212.113.106.102:443#🇩🇪 DE 02 Dreieich_SHanQ
 109.237.98.246:443#🇩🇪 DE 03 Dreieich_SHanQ
 # DK
@@ -74,19 +74,21 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 206.189.129.187:443#🇮🇳 IN 01 Bangalore_SHanQ
 129.154.46.115:443#🇮🇳 IN 02 Hyderabad_SHanQ
 141.148.203.6:443#🇮🇳 IN 03 Santa Cruz_SHanQ
+165.232.182.81:443#🇮🇳 IN 04 Santa Cruz_SHanQ
+141.148.203.6:443#🇮🇳 IN 05 Hyderabad_SHanQ
 # IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
 195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
 
 # IT
-91.193.5.121:8443#🇮🇹 IT 01 Gallarate Figino_SHanQ
+87.120.237.36:81#🇮🇹 IT 01 Gallarate Figino_SHanQ
 91.193.5.125:8443#🇮🇹 IT 02 Gallarate Figino_SHanQ
 94.177.199.119:2053#🇮🇹 IT 03 Lido di Ostia_SHanQ
 # JP
 103.20.199.196:8882#🇯🇵 JP 021 Chiba Narita_SHanQ
 195.245.241.130:587#🇯🇵 JP 022 Chiba Narita_SHanQ
 45.159.48.192:12212#🇯🇵 JP 023 Chiba Narita_SHanQ
-103.201.131.135:443#🇯🇵 JP 024 Chiba Narita_SHanQ
+103.20.199.101:33003#🇯🇵 JP 024 Chiba Narita_SHanQ
 # KR
 210.87.195.152:44311#🇰🇷 KR 021 Bakchon_SHanQ
 185.213.62.199:39584#🇰🇷 KR 022 Bakchon_SHanQ
@@ -142,7 +144,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 194.87.252.20:443#🇸🇪 SE 03 Steninge_SHanQ
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
-
+13.212.91.157:443#🇸🇬 SG 02_SHanQ
 
 # TH
 
@@ -154,7 +156,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 62.3.12.185:443#🇹🇷 TR 03 Osmangazi_SHanQ
 # TW
 59.127.80.162:12224#🇨🇳 TW 01_SHanQ
-
+103.148.72.147:1443#🇨🇳 TW 02_SHanQ
 
 # UA
 
@@ -166,7 +168,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02 自适应分流_SHanQ
 185.16.110.11:443#🇺🇸 US 023 California Los-Angeles_SHanQ
 # US San Jose
 digitalocean.com:443#🇺🇸 US 021 California San Jose_SHanQ
-104.17.170.159:443#🇺🇸 US 022 California San Jose_SHanQ
+47.57.245.232:443:443#🇺🇸 US 022 California San Jose_SHanQ
 174.137.59.73:443#🇺🇸 US 023 California San Jose_SHanQ
 # US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
@@ -179,3 +181,4 @@ digitalocean.com:443#🇺🇸 US 021 California San Jose_SHanQ
 # US Washington Kent
 download.yunzhongzhuan.com:443#🇺🇸 US 231 Washington Kent_SHanQ
 162.159.34.75:443#🇺🇸 US 232 Washington Kent_SHanQ
+91.219.237.49:443
