@@ -55,10 +55,11 @@
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
-35.181.77.67:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
-13.37.224.156:2053#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
-15.188.53.52:8443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
-158.178.196.15:2053#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
+158.178.192.221:443#🇫🇷 FR 01 快速通道_SHanQ
+35.181.77.67:443#🇫🇷 FR 02 快速通道_SHanQ
+13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
+15.188.53.52:8443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
+158.178.196.15:2053#🇫🇷 FR 05 Aulnay-sous-Bois_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
@@ -92,6 +93,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 103.20.199.101:33003#🇯🇵 JP 02 Chiba Narita_SHanQ
 14.48.49.133:10000#🇯🇵 JP 03 Chiba Narita_SHanQ
 59.29.116.20:11965#🇯🇵 JP 04 Chiba Narita_SHanQ
+103.201.131.135:443#🇯🇵 JP 05 快速通道_SHanQ
 # KR
 185.213.62.199:39584#🇰🇷 KR 01 Bakchon_SHanQ
 220.118.142.151:50000#🇰🇷 KR 02 Bakchon_SHanQ
