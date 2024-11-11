@@ -57,6 +57,7 @@
 # FR
 158.178.192.221:443#🇫🇷 FR 01 快速通道_SHanQ
 35.181.77.67:443#🇫🇷 FR 02 快速通道_SHanQ
+129.151.225.228:8443#🇫🇷 FR Istres_SHanQ
 13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 15.188.53.52:8443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
 158.178.196.15:2053#🇫🇷 FR 05 Aulnay-sous-Bois_SHanQ
@@ -69,17 +70,22 @@
 
 
 # HK
-8.218.148.106:443#🇭🇰 HK 01_SHanQ
-152.32.252.175:8969#🇭🇰 HK 02_SHanQ
-edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
+47.76.64.199:8880#🇭🇰 HK 01_SHanQ
+47.242.91.144:443#🇭🇰 HK 02_SHanQ
+47.57.233.126:443#🇭🇰 HK 03_SHanQ
+38.147.189.48:8013#🇭🇰 HK 04_SHanQ
+edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05 自适应分流_SHanQ
+162.159.153.99:443#🇭🇰 HK 06_SHanQ
 # IL
-129.159.132.0:8443#🇮🇱 IL 01_SHanQ
+129.159.132.0:8443#🇮🇱 IL 01 Jerusalem_SHanQ
 
 
 # IN
 206.189.129.187:443#🇮🇳 IN 01 Bangalore_SHanQ
 129.154.46.115:443#🇮🇳 IN 02 Hyderabad_SHanQ
-165.232.182.81:443#🇮🇳 IN 03 Santa Cruz_SHanQ
+129.154.46.115:4433#🇮🇳 IN 03 Hyderabad_SHanQ
+165.232.182.81:443#🇮🇳 IN 04 Santa Cruz_SHanQ
+141.148.212.27:443#🇮🇳 IN 05 Santa Cruz_SHanQ
 # IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
 195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
@@ -94,14 +100,15 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 14.48.49.133:10000#🇯🇵 JP 03 Chiba Narita_SHanQ
 59.29.116.20:11965#🇯🇵 JP 04 Chiba Narita_SHanQ
 103.201.131.135:443#🇯🇵 JP 05 快速通道_SHanQ
+121.152.127.130:31380#🇯🇵 JP 06 Fukuoka_SHanQ
 # KR
-185.213.62.199:39584#🇰🇷 KR 01 Bakchon_SHanQ
-220.118.142.151:50000#🇰🇷 KR 02 Bakchon_SHanQ
-150.230.248.166:443#🇰🇷 KR 03 Bakchon_SHanQ
+14.39.254.65:50000#🇰🇷 KR 01 Bakchon_SHanQ
+43.133.67.59:443#🇰🇷 KR 02 Bakchon_SHanQ
+61.111.247.253:587#🇰🇷 KR 03 Bakchon_SHanQ
 119.203.125.236:30001#🇰🇷 KR 04 Bakchon_SHanQ
 183.98.53.177:10911#🇰🇷 KR 05 Bakchon_SHanQ
 218.152.197.93:50000#🇰🇷 KR 06 Bakchon_SHanQ
-220.93.91.175:50000#🇰🇷 KR 07 Bakchon_SHanQ
+220.90.247.28:50000#🇰🇷 KR 07 Bakchon_SHanQ
 # LT
 
 
@@ -153,7 +160,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
 13.212.91.157:443#🇸🇬 SG 02_SHanQ
-
+8.222.159.134:12483#🇸🇬 SG 03_SHanQ
 # TH
 
 
@@ -175,9 +182,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 217.163.76.10:443#🇺🇸 US 022 Los-Angeles_SHanQ
 104.18.52.215:443#🇺🇸 US 023 Los-Angeles_SHanQ
 # US San Jose
-digitalocean.com:443#🇺🇸 US 021a San Jose_SHanQ
-47.57.245.232:443#🇺🇸 US 022 San Jose_SHanQ
-174.137.59.73:443#🇺🇸 US 023 San Jose_SHanQ
+digitalocean.com:443#🇺🇸 US 021 San Jose_SHanQ
+8.216.88.20:443#🇺🇸 US 022 San Jose_SHanQ
+8.209.250.150:443#🇺🇸 US 023 San Jose_SHanQ
 # US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
 38.147.188.89:8011#🇺🇸 US 132 New York_SHanQ
