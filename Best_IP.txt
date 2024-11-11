@@ -144,7 +144,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 # SA
 38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
-38.180.11.157:2053#🇸🇦 SA 02 Ar Riyad_SHanQ
+176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
 176.125.231.110:443#🇸🇦 SA 03 Ar Riyad_SHanQ
 # SE
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
