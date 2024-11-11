@@ -127,7 +127,7 @@ function City_ValidCheck(para) {
     "ashburn": "阿什本",
     "badaganhatti": "巴特那",
     "cedar knolls": "雪松诺尔斯",
-    “chiyoda”: "千代田区",
+    "chiyoda": "千代田区",
     "dublin": "都柏林",
     "frankfurtmmain": "法兰克福",
     "gallarate": "加拉拉泰市",
