@@ -179,7 +179,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05 自适应分流_SHanQ
 
 # US Los-Angeles
 60.248.63.88:12308#🇺🇸 US 021 Los-Angeles_SHanQ
-217.163.76.10:443#🇺🇸 US 022 Los-Angeles_SHanQ
+104.18.49.179:443#🇺🇸 US 022 Los-Angeles_SHanQ
 104.18.52.215:443#🇺🇸 US 023 Los-Angeles_SHanQ
 # US San Jose
 digitalocean.com:443#🇺🇸 US 021 San Jose_SHanQ
