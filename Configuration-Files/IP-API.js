@@ -149,7 +149,7 @@ function City_ValidCheck(para) {
     "roshha‘ayin": "罗什艾因",
     "santacruz": "圣克鲁斯",
     "sha`ibalmalqah": "沙伊布·阿尔·马尔卡",
-    "shbuya": "涩谷区",
+    "shibuya": "涩谷区",
     "singera": "摩尔多瓦",
     "sofia-capital": "索菲亚市",
     "steninge": "斯特宁厄",
