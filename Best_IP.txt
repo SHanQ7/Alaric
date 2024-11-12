@@ -27,7 +27,8 @@
 51.222.138.0:8443#🇨🇦 CA 03 Mississauga_SHanQ
 # CH
 45.90.59.204:443#🇨🇭 CH 01 Meyrin_SHanQ
-
+45.85.93.96:443#🇨🇭 CH 02 Meyrin_SHanQ
+45.85.93.59:443#🇨🇭 CH 03 Meyrin_SHanQ
 
 # CL
 186.67.70.55:443#🇨🇱 CL 121 Lamp_SHanQ
@@ -35,7 +36,7 @@
 
 # DE
 217.61.105.75:2053#🇩🇪 DE 01 Dreieich_SHanQ
-
+45.95.175.185:443#🇩🇪 DE 02 Dreieich_SHanQ
 
 # DK
 95.164.10.50:443#🇩🇰 DK 021 Copenhagen_SHanQ
@@ -59,8 +60,10 @@
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
 158.178.192.221:443#🇫🇷 FR 01 快速通道_SHanQ
-13.37.224.156:2053#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
-15.188.53.52:8443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
+141.145.217.226:443#🇫🇷 FR 02_SHanQ
+13.37.224.156:2053#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
+15.188.53.52:8443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
+172.232.34.174:443#🇫🇷 FR 05 Aulnay-sous-Bois_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
@@ -106,6 +109,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 04 自适应分流_SHanQ
 183.98.53.177:10911#🇰🇷 KR 05 Bakchon_SHanQ
 218.152.197.93:50000#🇰🇷 KR 06 Bakchon_SHanQ
 220.90.247.28:50000#🇰🇷 KR 07 Bakchon_SHanQ
+140.238.28.86:443#🇰🇷 KR 08 Bakchon_SHanQ
 # LT
 
 
