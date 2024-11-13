@@ -41,7 +41,7 @@
 # DK
 95.164.10.50:443#🇩🇰 DK 021 Copenhagen_SHanQ
 217.110.20.141:443#🇩🇰 DK 022 Copenhagen_SHanQ
-
+13.53.206.75:443#🇩🇰 DK 023 Copenhagen_SHanQ
 # EE
 46.22.213.78:8443#🇪🇪 EE 01 Järveotsa_SHanQ
 109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
@@ -63,7 +63,7 @@
 141.145.217.226:443#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
 172.232.34.174:443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 13.37.224.156:2053#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
-13.37.224.156:8443#🇫🇷 FR 05 Aulnay-sous-Bois_SHanQ
+45.85.93.96:443#🇫🇷 FR 05 Meyzieu_SHanQ
 # GB 
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
@@ -175,9 +175,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 
 # US Los-Angeles
-104.18.54.152:443#🇺🇸 US 021 Los-Angeles_SHanQ
-104.18.49.179:443#🇺🇸 US 022 Los-Angeles_SHanQ
-104.18.52.215:443#🇺🇸 US 023 Los-Angeles_SHanQ
+212.183.88.21:443#🇺🇸 US 021 Los Angeles_SHanQ
+154.197.121.129:443#🇺🇸 US 022 Los Angeles_SHanQ
+154.206.12.185:443#🇺🇸 US 023 Los Angeles_SHanQ
 # US San Jose
 digitalocean.com:443#🇺🇸 US 021 San Jose_SHanQ
 104.17.212.189:443#🇺🇸 US 022 San Jose_SHanQ
