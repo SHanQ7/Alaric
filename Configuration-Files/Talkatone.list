@@ -1,0 +1,33 @@
+#!name=Talkatone
+#!desc=Talkatone 代理规则模块，使 Talkatone APP 不再对不同代理节点过于敏感
+# 本模块主要为 Talkatone 进行策略分流，以解决使用某些节点无法直接使用 Talkatone 的问题。本模块仅适用于 Talkatone 登陆后使用，不适用于软件注册。
+# 本模块附带 Talkatone 去广告规则，可去除 APP 内的部分第三方广告
+# 整理作者：https://t.me/LOWERTOP
+# 仓库地址：https://github.com/LOWERTOP/Shadowrocket-First
+# 反馈渠道：https://t.me/ShadowrocketApp
+
+HOST-SUFFIX,ads.inmobi.com,REJECT
+HOST-SUFFIX,tappx.com,REJECT
+HOST-SUFFIX,criteo.com,REJECT
+HOST-SUFFIX,pubmatic.com,REJECT
+HOST-SUFFIX,smaato.net,REJECT
+HOST-SUFFIX,amazon-adsystem.com,REJECT
+HOST-SUFFIX, googleads.g.doubleclick.net,REJECT
+HOST-SUFFIX,adsappier.com,REJECT
+HOST-SUFFIX,appier.net,REJECT
+HOST-SUFFIX,appiersig.com,REJECT
+# DRIECT
+HOST-SUFFIX,inner-active.mobi,DIRECT
+HOST-SUFFIX,mobilefuse.com,DIRECT
+HOST-SUFFIX,inmobi.com,DIRECT
+HOST-SUFFIX,crashlytics.com,DIRECT
+HOST-SUFFIX,talkatone.com,DIRECT
+HOST-SUFFIX,kochava.com,DIRECT
+HOST-SUFFIX,cohere.com,DIRECT
+HOST-SUFFIX,ip-api.com,DIRECT
+HOST-SUFFIX,agkn.com,DIRECT
+HOST-SUFFIX,tktn.at,DIRECT
+IP-CIDR,50.117.27.0/24,DIRECT
+IP-CIDR,69.46.75.0/24,DIRECT
+IP-CIDR,205.164.56.0/24,DIRECT
+IP-CIDR,63.251.124.0/24,DIRECT
