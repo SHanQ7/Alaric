@@ -73,6 +73,7 @@ function Area_check(para) {
     "provincia de san josé": "圣何塞省",
     "quebec":"魁北克市",
     "rīga":"里加",
+    "Rucka":"鲁卡镇",
     "sofia-capital": "索菲亚市",
     "southern peninsula": "南部半岛",
     "stockholm county": "斯德哥尔摩",
