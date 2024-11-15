@@ -59,15 +59,14 @@
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
 # FR
-158.178.192.221:443#🇫🇷 FR 01 快速通道_SHanQ
-141.145.217.226:443#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
+158.178.192.221:443#🇫🇷 FR _SHanQ
+141.145.217.226:443#🇫🇷 FR 01_SHanQ
 172.232.34.174:443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 13.37.224.156:2053#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
-45.85.93.96:443#🇫🇷 FR 05 Meyzieu_SHanQ
-# GB 
+# GB
+35.177.50.118:443#🇬🇧 GB Hounslow_SHanQ
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
-35.177.50.118:443#🇬🇧 GB 02 Hounslow_SHanQ
-185.217.111.103:32335#🇬🇧 GB 03 Hounslow_SHanQ
+185.217.111.103:32335#🇬🇧 GB 02 Hounslow_SHanQ
 # GE
 185.143.179.94:443#🇬🇪 GE 01_SHanQ
 
@@ -99,9 +98,10 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 121.152.127.130:31380#🇯🇵 JP 051 Fukuoka_SHanQ
 14.48.49.133:10000#🇯🇵 JP 141 Osaka_SHanQ
 # KR
-61.111.247.253:587#🇰🇷 KR 011 Bakchon_SHanQ
-218.152.197.93:50000#🇰🇷 KR 012 Bakchon_SHanQ
-220.90.247.28:50000#🇰🇷 KR 013 Bakchon_SHanQ
+144.24.78.162:443#🇰🇷 KR Bakchon_SHanQ
+140.238.28.86:443#🇰🇷 KR 011 Bakchon_SHanQ
+61.111.247.253:587#🇰🇷 KR 012 Bakchon_SHanQ
+218.152.197.93:50000#🇰🇷 KR 013 Bakchon_SHanQ
 # LT
 
 
@@ -175,12 +175,12 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 
 # US Los-Angeles
-212.183.88.21:443#🇺🇸 US 021 Los Angeles_SHanQ
-154.197.121.129:443#🇺🇸 US 022 Los Angeles_SHanQ
+154.198.173.232:443#🇺🇸 US 021 Los Angeles_SHanQ
+154.92.9.4:443#🇺🇸 US 022 Los Angeles_SHanQ
 154.206.12.185:443#🇺🇸 US 023 Los Angeles_SHanQ
 # US San Jose
 digitalocean.com:443#🇺🇸 US 021 San Jose_SHanQ
-104.17.212.189:443#🇺🇸 US 022 San Jose_SHanQ
+174.137.59.73:443#🇺🇸 US 022 San Jose_SHanQ
 8.209.250.150:443#🇺🇸 US 023 San Jose_SHanQ
 # US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
