@@ -3,8 +3,8 @@
 
 
 # AM
-85.90.207.20:8081#🇦🇲 AM 241 Yerevan
-92.223.2.37:8443#🇦🇲 AM 242 Yerevan
+
+
 
 # AS
 
@@ -37,11 +37,11 @@
 # DE
 217.61.105.75:2053#🇩🇪 DE 031 Hessen_SHanQ
 82.115.30.115:56722#🇩🇪 DE 032 Hessen_SHanQ
-38.59.230.15:43042#🇩🇪 DE 033 Hessen_SHanQ
+
 # DK
-95.164.10.50:443#🇩🇰 DK 021 Copenhagen_SHanQ
-217.110.20.141:443#🇩🇰 DK 022 Copenhagen_SHanQ
-13.53.206.75:443#🇩🇰 DK 023 Copenhagen_SHanQ
+217.110.20.141:443#🇩🇰 DK 021 Copenhagen_SHanQ
+
+
 # EE
 46.22.213.78:8443#🇪🇪 EE 01 Järveotsa_SHanQ
 109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
@@ -51,7 +51,7 @@
 93.93.118.158:2053#🇪🇸 ES 02 Chamartín_SHanQ
 
 # EU
-91.219.237.49:443#🇭🇺 EU 01_SHanQ
+
 
 
 # FI
@@ -66,17 +66,21 @@
 # GB
 35.177.50.118:443#🇬🇧 GB Hounslow_SHanQ
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
-185.217.111.103:32335#🇬🇧 GB 02 Hounslow_SHanQ
+
 # GE
 185.143.179.94:443#🇬🇪 GE 01_SHanQ
 
 
 # HK
 47.242.91.144:443#🇭🇰 HK 01_SHanQ
-38.147.189.48:8013#🇭🇰 HK 02_SHanQ
+
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
+# HU
+91.219.237.49:443#🇭🇺HU Pest megye_SHanQ
+
+
 # IL
-129.159.132.0:8443#🇮🇱 IL 01 Jerusalem_SHanQ
+
 
 
 # IN
@@ -89,8 +93,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 # IT
 38.180.15.138:443#🇮🇹 IT 051 Gallarate _SHanQ
-94.177.199.119:2053#🇮🇹 IT 052 Gallarate_SHanQ
-87.120.237.36:81#🇮🇹 IT 053 Gallarate_SHanQ
+87.120.237.36:81#🇮🇹 IT 052 Gallarate_SHanQ
+
 # JP
 45.159.48.42:34237#🇯🇵 JP 021 Chiba_SHanQ
 103.20.199.101:33003#🇯🇵 JP 022 Chiba_SHanQ
@@ -101,22 +105,22 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 144.24.78.162:443#🇰🇷 KR Bakchon_SHanQ
 140.238.28.86:443#🇰🇷 KR 011 Bakchon_SHanQ
 61.111.247.253:587#🇰🇷 KR 012 Bakchon_SHanQ
-218.152.197.93:50000#🇰🇷 KR 013 Bakchon_SHanQ
-# LT
-
+218.152.197.93:50000#🇰🇷 KR 013 Bakchon_SHanQlitaowan
+# 🇱🇹 LT
+88.119.161.187:443#🇱🇹 LT Lentvaris_SHanQ
 
 
 # LV
-103.231.73.117:443#🇱🇻 LV 01 Riga_SHanQ
-195.123.212.237:2053#🇱🇻 LV 02 Riga_SHanQ
-185.237.218.134:8443#🇱🇻 LV 03 Riga_SHanQ
+
+
+
 # NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
 38.180.168.23:443#🇳🇱 NL 03 Amsterdam_SHanQ
 # MD
-45.84.0.218:2053#🇲🇩 MD 01 Moldova_SHanQ
-45.142.212.71:2053#🇲🇩 MD 02 Moldova_SHanQ
+45.142.212.71:2053#🇲🇩 MD Kishinev_SHanQ
+45.84.0.218:2053#🇲🇩 MD 01 Kishinev_SHanQ
 
 # NO
 46.29.238.54:8443#🇳🇴 NO 101 Jessheim_SHanQ
@@ -127,7 +131,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 
 # PK
-38.54.79.41:443#🇵🇰 PK 01_SHanQ
+
 
 
 # PL
@@ -143,8 +147,8 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 
 # RO
-45.142.212.71:2053#🇷🇴 RO 01_SHanQ
-45.84.0.218:2053#🇷🇴 RO 02_SHanQ
+
+
 
 # SA
 176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
@@ -156,16 +160,16 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 
 # SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
-8.222.159.134:12483#🇸🇬 SG 02_SHanQ
-158.178.245.117:12368#🇸🇬 SG 03_SHanQ
+158.178.245.117:12368#🇸🇬 SG 02_SHanQ
+
 # TH
 
 
 
 # TR
-185.188.147.79:443#🇹🇷 TR 01 Osmangazi_SHanQ
-38.60.255.184:2082#🇹🇷 TR 02 Osmangazi_SHanQ
-62.3.12.185:443#🇹🇷 TR 03 Osmangazi_SHanQ
+62.3.12.185:443#🇹🇷 TR 01 Kocasinan_SHanQ
+38.60.255.184:2082#🇹🇷 TR 02 Kocasinan_SHanQ
+
 # TW
 59.127.80.162:12224#🇨🇳 TW 01_SHanQ
 114.34.202.224:10004#🇨🇳 TW 02_SHanQ
