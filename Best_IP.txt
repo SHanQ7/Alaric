@@ -37,7 +37,8 @@
 # DE
 217.61.105.75:2053#🇩🇪 DE 031 Hessen_SHanQ
 82.115.30.115:56722#🇩🇪 DE 032 Hessen_SHanQ
-
+162.159.160.240:443#🇩🇪 DE 033 Hessen_SHanQ
+162.159.81.95:443#🇩🇪 DE 034 Hessen_SHanQ
 # DK
 217.110.20.141:443#🇩🇰 DK 021 Copenhagen_SHanQ
 
@@ -73,8 +74,8 @@
 
 # HK
 47.242.91.144:443#🇭🇰 HK 01_SHanQ
-
-edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
+172.67.65.247:443#🇭🇰 HK 03_SHanQ
+edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02_SHanQ
 # HU
 91.219.237.49:443#🇭🇺HU Pest megye_SHanQ
 
@@ -102,10 +103,11 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 121.152.127.130:31380#🇯🇵 JP 051 Fukuoka_SHanQ
 14.48.49.133:10000#🇯🇵 JP 141 Osaka_SHanQ
 # KR
-144.24.78.162:443#🇰🇷 KR Bakchon_SHanQ
-140.238.28.86:443#🇰🇷 KR 011 Bakchon_SHanQ
-61.111.247.253:587#🇰🇷 KR 012 Bakchon_SHanQ
-218.152.197.93:50000#🇰🇷 KR 013 Bakchon_SHanQlitaowan
+144.24.78.162:443#🇰🇷 KR 011 Bakchon_SHanQ
+140.238.28.86:443#🇰🇷 KR 012 Bakchon_SHanQ
+61.111.247.253:587#🇰🇷 KR 013 Bakchon_SHanQ
+218.152.197.93:50000#🇰🇷 KR 014 Bakchon_SHanQ
+132.226.22.106:34237#🇰🇷 KR 015 Bakchon_SHanQ
 # 🇱🇹 LT
 88.119.161.187:443#🇱🇹 LT Lentvaris_SHanQ
 
@@ -183,9 +185,14 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03 自适应分流_SHanQ
 154.92.9.4:443#🇺🇸 US 022 Los Angeles_SHanQ
 154.206.12.185:443#🇺🇸 US 023 Los Angeles_SHanQ
 # US San Jose
-digitalocean.com:443#🇺🇸 US 021 San Jose_SHanQ
-174.137.59.73:443#🇺🇸 US 022 San Jose_SHanQ
-8.209.250.150:443#🇺🇸 US 023 San Jose_SHanQ
+digitalocean.com:443#🇺🇸 US 191 San Jose_SHanQ
+174.137.59.73:443#🇺🇸 US 192 San Jose_SHanQ
+8.209.250.150:443#🇺🇸 US 193 San Jose_SHanQ
+104.19.178.68:443#🇺🇸 US 194 San Jose_SHanQ
+104.18.183.147:443#🇺🇸 US 195 San Jose_SHanQ
+104.17.75.31:443#🇺🇸 US 196 San Jose_SHanQ
+104.17.147.237:443#🇺🇸 US 197 San Jose_SHanQ
+104.19.172.62:443#🇺🇸 US 198 San Jose_SHanQ
 # US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
 38.147.188.89:8011#🇺🇸 US 132 New York_SHanQ
