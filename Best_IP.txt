@@ -149,7 +149,7 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02_SHanQ
 
 
 # RO
-
+146.70.254.232:8443#🇷🇴 RO Voluntari_SHanQ
 
 
 # SA
