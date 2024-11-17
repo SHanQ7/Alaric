@@ -77,7 +77,7 @@ cmc2.5gsieuvip.vn:443#🇻🇳 AS Hanoi_SHanQ
 172.67.65.247:443#🇭🇰 HK 03_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02_SHanQ
 # HU
-91.219.237.49:443#🇭🇺HU Pest megye_SHanQ
+91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
 
 # IL
