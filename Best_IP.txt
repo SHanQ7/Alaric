@@ -1,6 +1,6 @@
 # AE
-129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
-
+129.151.148.35:443#🇦🇪 AE 031 Dubai_SHanQ
+193.123.81.105:443#🇦🇪 AE 032 Dubai_SHanQ
 
 # AM
 
@@ -10,99 +10,103 @@
 cmc2.5gsieuvip.vn:443#🇻🇳 AS Hanoi_SHanQ
 
 
-# AT
+# 🇦🇹 AT
 94.177.8.40:443#🇦🇹 AT 011 Bruck-an-der-Leitha_SHanQ
-94.177.8.10:443#🇦🇹 AT 012 Bruck-an-der-Leitha_SHanQ
+94.177.8.10:443#🇦🇹 AT 012 Bruck-an-der-Leitha_SHanQgesidalijia
 
-# AU
+# 🇦🇺 AU
 45.32.245.32:443#🇦🇺 AU 01 Sydney_SHanQ
 139.99.236.163:443#🇦🇺 AU 02 Sydney_SHanQ
 51.161.134.202:2053#🇦🇺 AU 03 Sydney_SHanQ
-# BG
+# 🇧🇬 BG
 213.183.63.185:443#🇧🇬 BG 181 Sofia_SHanQ
 195.123.230.40:443#🇧🇬 BG 182 Sofia_SHanQ
 195.16.74.98:443#🇧🇬 BG 183 Sofia_SHanQ
-# CA
+# 🇧🇷 BR
+144.22.252.124:443#🇧🇷 BR 181 São Paulo_SHanQ
+168.138.141.235:2053#🇧🇷 BR 182 São Paulo_SHanQ
+
+# 🇨🇦 CA
 144.217.243.69:2053#🇨🇦 CA 01 Mississauga_SHanQ
 51.222.31.182:8443#🇨🇦 CA 02 Mississauga_SHanQ
 51.222.138.0:8443#🇨🇦 CA 03 Mississauga_SHanQ
-# CH
+# 🇨🇭 CH
 45.90.59.204:443#🇨🇭 CH 01 Meyrin_SHanQ
 45.85.93.96:443#🇨🇭 CH 02 Meyrin_SHanQ
 45.85.93.59:443#🇨🇭 CH 03 Meyrin_SHanQ
-# CL
+# 🇨🇱 CL
 186.67.70.55:443#🇨🇱 CL 121 Lamp_SHanQ
 
 
-# DE
+# 🇩🇪 DE
 217.61.105.75:2053#🇩🇪 DE 031 Hessen_SHanQ
 82.115.30.115:56722#🇩🇪 DE 032 Hessen_SHanQ
 162.159.160.240:443#🇩🇪 DE 033 Hessen_SHanQ
 162.159.81.95:443#🇩🇪 DE 034 Hessen_SHanQ
-# DK
+# 🇩🇰 DK
 217.110.20.141:443#🇩🇰 DK 021 Copenhagen_SHanQ
 
 
-# EE
+# 🇪🇪 EE
 46.22.213.78:8443#🇪🇪 EE 01 Järveotsa_SHanQ
 109.235.246.35:443#🇪🇪 EE 02 Järveotsa_SHanQ
 
-# ES
+# 🇪🇸 ES
 93.93.118.158:8443#🇪🇸 ES 01 Chamartín_SHanQ
 93.93.118.158:2053#🇪🇸 ES 02 Chamartín_SHanQ
 
-# EU
+# 🇪🇺 EU
 
 
 
-# FI
+# 🇫🇮 FI
 135.181.152.75:443#🇫🇮 FI 01 Vantaa_SHanQ
 65.109.173.136:443#🇫🇮 FI 02 Vantaa_SHanQ
 95.216.174.145:8443#🇫🇮 FI 03 Vantaa_SHanQ
-# FR
+# 🇫🇷 FR
 158.178.192.221:443#🇫🇷 FR _SHanQ
 141.145.217.226:443#🇫🇷 FR 01_SHanQ
 172.232.34.174:443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
 13.37.224.156:2053#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
-# GB
+# 🇬🇧 GB
 35.177.50.118:443#🇬🇧 GB Hounslow_SHanQ
 198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
 
-# GE
+# 🇬🇪 GE
 185.143.179.94:443#🇬🇪 GE 01_SHanQ
 
 
-# HK
+# 🇭🇰 HK
 47.242.91.144:443#🇭🇰 HK 01_SHanQ
 172.67.65.247:443#🇭🇰 HK 03_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02_SHanQ
-# HU
+# 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
 
-# IL
+# 🇮🇱 IL
+129.159.132.0:8443#🇮🇱 IL 151 Petaẖ Tiqva_SHanQ
+129.159.130.38:443#🇮🇱 IL 152 Petaẖ Tiqva_SHanQ
 
-
-
-# IN
+# 🇮🇳 IN
 206.189.129.187:443#🇮🇳 IN 01 Bangalore_SHanQ
 165.232.182.81:443#🇮🇳 IN 02 Bangalore_SHanQ
 129.154.46.115:443#🇮🇳 IN 03 Hyderabad_SHanQ
-# IS
+# 🇮🇸 IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
 195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
 
-# IT
+# 🇮🇹 IT
 38.180.15.138:443#🇮🇹 IT 051 Gallarate _SHanQ
 87.120.237.36:81#🇮🇹 IT 052 Gallarate_SHanQ
 
-# JP
+# 🇯🇵 JP
 45.159.48.42:34237#🇯🇵 JP 021 Chiba_SHanQ
 103.20.199.101:33003#🇯🇵 JP 022 Chiba_SHanQ
 168.138.197.97:8443#🇯🇵 JP 023 Chiba_SHanQ
 121.152.127.130:31380#🇯🇵 JP 051 Fukuoka_SHanQ
 14.48.49.133:10000#🇯🇵 JP 141 Osaka_SHanQ
-# KR
+# 🇰🇷 KR
 144.24.78.162:443#🇰🇷 KR 011 Bakchon_SHanQ
 140.238.28.86:443#🇰🇷 KR 012 Bakchon_SHanQ
 61.111.247.253:587#🇰🇷 KR 013 Bakchon_SHanQ
@@ -112,80 +116,80 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02_SHanQ
 88.119.161.187:443#🇱🇹 LT Lentvaris_SHanQ
 
 
-# LV
+# 🇱🇻 LV
 
 
 
-# NL
+# 🇳🇱 NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
 38.180.168.23:443#🇳🇱 NL 03 Amsterdam_SHanQ
-# MD
+# 🇲🇩 MD
 45.142.212.71:2053#🇲🇩 MD Kishinev_SHanQ
 45.84.0.218:2053#🇲🇩 MD 01 Kishinev_SHanQ
 
-# NO
+# 🇳🇴 NO
 46.29.238.54:8443#🇳🇴 NO 101 Jessheim_SHanQ
 
 
-# PH
+# 🇵🇭 PH
 
 
 
-# PK
+# 🇵🇰 PK
 
 
 
-# PL
+# 🇵🇱 PL
 51.83.152.251:8443#🇵🇱 PL 01 Pruszków_SHanQ
 
 
-# RS
+# 🇷🇸 RS
 217.196.104.83:8443#🇷🇸 RS 011 Beograd_SHanQ 
 45.89.55.200:8443#🇷🇸 RS 012 Beograd_SHanQ 
 
-# RU
+# 🇷🇺 RU
 213.159.208.88:2053#🇷🇺 RU 01 Skolkovo_SHanQ
 
 
-# RO
+# 🇷🇴 RO
 146.70.254.232:8443#🇷🇴 RO Voluntari_SHanQ
 
 
-# SA
+# 🇸🇦 SA
 176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
 38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
 176.125.231.110:443#🇸🇦 SA 03 Ar Riyad_SHanQ
-# SE
+# 🇸🇪 SE
 193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
 
 
-# SG
+# 🇸🇬 SG
 45.86.228.104:443#🇸🇬 SG 01_SHanQ
 158.178.245.117:12368#🇸🇬 SG 02_SHanQ
 
-# TH
+# 🇹🇭 TH
 
 
 
-# TR
+# 🇹🇷 TR
 62.3.12.185:443#🇹🇷 TR 01 Kocasinan_SHanQ
 38.60.255.184:2082#🇹🇷 TR 02 Kocasinan_SHanQ
 
-# TW
+# 🇨🇳 TW
 59.127.80.162:12224#🇨🇳 TW 01_SHanQ
 114.34.202.224:10004#🇨🇳 TW 02_SHanQ
 210.61.97.241:81#🇨🇳 TW 03_SHanQ
 118.163.37.32:81#🇨🇳 TW 04_SHanQ
-# UA
+# 🇺🇦 UA
 
 
 
-# US Los-Angeles
+# 🇺🇸 US Los-Angeles
 154.198.173.232:443#🇺🇸 US 021 Los Angeles_SHanQ
 154.92.9.4:443#🇺🇸 US 022 Los Angeles_SHanQ
 154.206.12.185:443#🇺🇸 US 023 Los Angeles_SHanQ
-# US San Jose
+# 🇺🇸 US San Jose
 digitalocean.com:443#🇺🇸 US 191 San Jose_SHanQ
 174.137.59.73:443#🇺🇸 US 192 San Jose_SHanQ
 8.209.250.150:443#🇺🇸 US 193 San Jose_SHanQ
@@ -194,11 +198,11 @@ digitalocean.com:443#🇺🇸 US 191 San Jose_SHanQ
 104.17.75.31:443#🇺🇸 US 196 San Jose_SHanQ
 104.17.147.237:443#🇺🇸 US 197 San Jose_SHanQ
 104.19.172.62:443#🇺🇸 US 198 San Jose_SHanQ
-# US New York
+# 🇺🇸 US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
 38.147.188.89:8011#🇺🇸 US 132 New York_SHanQ
 
-# US Virginia Reston
+# 🇺🇸 US Virginia Reston
 129.159.84.71:443#🇺🇸 US 221 Virginia Reston_SHanQ
 
 
