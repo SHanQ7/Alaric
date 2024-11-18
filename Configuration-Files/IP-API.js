@@ -107,7 +107,7 @@ function City_ValidCheck(para) {
     "cedar knolls": "雪松诺尔斯",
     "chiyoda": "千代田区",
     "dublin": "都柏林",
-    "frankfurtmmain": "法兰克福",
+    "frankfurtammain": "法兰克福",
     "gallarate": "加拉拉泰市",
     "haibatrung": "海巴仲区",
     "jessheim": "耶瑟海姆",
