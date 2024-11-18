@@ -24,18 +24,15 @@ const flags = new Map([
 ["UM", "🇺🇲"], ["US", "🇺🇸"], ["UY", "🇺🇾"], ["UZ", "🇺🇿"], ["VA", "🇻🇦"], ["VC", "🇻🇨"], ["VE", "🇻🇪"], ["VG", "🇻🇬"], ["VI", "🇻🇮"], ["VN", "🇻🇳"], ["VU", "🇻🇺"], ["WS", "🇼🇸"],
 ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"]
 ]);
-const emojis = [  "🆘","🈲","⚠️","🔞","📵","🚦","🏖","🖥","📺","🐧","🐬","🦉","🍄","⛳️","🚴","🤑","👽","🤖","🎃","👺","👁","🐶","🐼","🐌","👥",];
 
-var country0 = "MUC";
-var region0 = "韦恩大厦";
-var city0 = "高谭市";
-var isp0 = "MCU.com";
-
-
+const country0 = "MUC";
+const region0 = "韦恩大厦";
+const city0 = "高谭市";
+const isp0 = "MCU.com";
 
 function country_ValidCheck(para) {
   return para || country0;
-}
+};
 
 function Area_check(para) {
   const areaMap = {
@@ -159,9 +156,7 @@ function City_ValidCheck(para) {
 
 function ISP_ValidCheck(para) {
   return para || ips0;
-}
-
-
+};
 
 // 脚本开始
 let body = $response.body;
