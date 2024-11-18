@@ -160,12 +160,25 @@ function formatOutput(obj) {
   const city = mapValue(obj.city, cityMap, defaults.city);
   const isp = obj.isp || defaults.isp;
 
-  // 优化显示逻辑，避免重复
-  const displayCity = city !== country && city !== region ? city : "";
+const country = countryValidCheck(obj['country']);
+const region = areaCheck(obj['regionName']);
+const city = cityValidCheck(obj['city']);
+const isp = ispValidCheck(obj['isp']);
 
-  const title = `${flags.get(countryCode) || "🏳"} ${country} ${region}`;
-  const subtitle = `${displayCity ? displayCity + " " : ""}${obj.query || "未知IP"} ${isp}`;
-  const description = `国家：${countryCode} ${country}\n地区：${region}\n城市：${city}\nIP：${obj.query || "未知"}\n服务商：${isp}\n经纬度：${obj.lat || "未知"} / ${obj.lon || "未知"}\n时区：${obj.timezone || "未知"}`;
+const displayCity = (city !== country && city !== region) ? city : '';
 
-  return { title, subtitle, ip: obj.query, description };
-}
+const title = `${flags.get(obj['countryCode']) || "🏳"} ${country} ${region}`;
+const subtitle = `${displayCity ? displayCity + ' ' : ''}${obj['query']} ${isp}`;
+const ip = obj['query'];
+const description = [
+  `国家：${obj['countryCode']} ${country}`,
+  `地区：${obj['region']} ${region}`,
+  `城市：${city}`,
+  `IP：${obj['query']}`,
+  `服务商：${isp}`,
+  `经纬度：${obj['lat']} / ${obj['lon']}`,
+  `时区：${obj['timezone']}`
+].join('\n');
+
+// 输出结果
+$done({ title, subtitle, ip, description });
