@@ -69,9 +69,9 @@ cmc2.5gsieuvip.vn:443#🇻🇳 AS Hanoi_SHanQ
 158.178.192.221:443#🇫🇷 FR 03_SHanQ
 141.145.217.226:443#🇫🇷 FR 04_SHanQ
 # 🇬🇧 GB
-35.177.50.118:443#🇬🇧 GB Hounslow_SHanQ
-198.244.140.174:443#🇬🇧 GB 01 Hounslow_SHanQ
-
+35.177.50.118:443#🇬🇧 GB 071 Hounslow_SHanQ
+82.165.200.147:443#🇬🇧 GB 072 Hounslow_SHanQ
+198.244.140.174:443#🇬🇧 GB 073 Hounslow_SHanQ
 # 🇬🇪 GE
 185.143.179.94:443#🇬🇪 GE 01_SHanQ
 
@@ -186,9 +186,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 02_SHanQ
 
 
 # 🇺🇸 US Los-Angeles
-154.92.9.4:443#🇺🇸 US 022 Los Angeles_SHanQ
-103.133.1.2:443#🇺🇸 US 021 Los Angeles_SHanQ
-154.206.12.30:443#🇺🇸 US 023 Los Angeles_SHanQ
+45.135.235.1:443#🇺🇸 US 022 Los Angeles_SHanQ
+14.102.228.9:443#🇺🇸 US 021 Los Angeles_SHanQ
+160.123.255.19:443#🇺🇸 US 023 Los Angeles_SHanQ
 # 🇺🇸 US San Jose
 digitalocean.com:443#🇺🇸 US 191 San Jose_SHanQ
 174.137.59.73:443#🇺🇸 US 192 San Jose_SHanQ
