@@ -94,6 +94,7 @@ function Area_check(para) {
     "臺灣省 or 台灣省": "中部地区",
     "維爾紐斯縣": "维尔纽斯县",
     "伊爾福夫縣": "伊尔福夫县",
+    "葉里溫": "叶里温",
     "中华民国": "台湾",
 };
   para = para ? para.toLowerCase().trim() : para;
@@ -139,6 +140,7 @@ function City_ValidCheck(para) {
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷",
     "tokyo": "东京都",
+    "yerevan": "叶里温",
     "yeongdong-gun": "永同郡",
     "奧奈叢林": "奥奈丛林",
     "波特蘭": "波特兰",
