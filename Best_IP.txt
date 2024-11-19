@@ -36,8 +36,10 @@
 
 # 🇩🇪 DE
 162.159.81.95:443#🇩🇪 DE 031 Hessen_SHanQ
-217.61.105.75:2053#🇩🇪 DE 032 Hessen_SHanQ
-82.115.30.115:56722#🇩🇪 DE 033 Hessen_SHanQ
+162.159.81.123:443#🇩🇪 DE 032 Hessen_SHanQ
+217.61.105.75:2053#🇩🇪 DE 033 Hessen_SHanQ
+162.159.160.116:443#🇩🇪 DE 034 Hessen_SHanQ
+82.115.30.115:56722#🇩🇪 DE 0335 Hessen_SHanQ
 # 🇩🇰 DK
 217.110.20.141:443#🇩🇰 DK 021 Copenhagen_SHanQ
 
@@ -72,8 +74,10 @@
 
 
 # 🇭🇰 HK
-172.67.65.247:443#🇭🇰 HK 01_SHanQ
-165.154.43.92:35187#🇭🇰 HK 02_SHanQ
+172.67.69.65:443#🇭🇰 HK 01_SHanQ
+104.20.25.82:443#🇭🇰 HK 02_SHanQ
+172.67.73.159:443#🇭🇰 HK 03_SHanQ
+162.159.138.57:443#🇭🇰 HK 04_SHanQ
 edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03_SHanQ
 # 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
@@ -180,12 +184,12 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03_SHanQ
 
 
 # 🇺🇸 US Los-Angeles
-45.135.235.1:443#🇺🇸 US 022 Los Angeles_SHanQ
-14.102.228.9:443#🇺🇸 US 021 Los Angeles_SHanQ
-160.123.255.19:443#🇺🇸 US 023 Los Angeles_SHanQ
+104.19.254.91:443#🇺🇸 US 021 Los Angeles_SHanQ
+104.16.126.186:443#🇺🇸 US 022 Los Angeles_SHanQ
+154.198.173.232:443#🇺🇸 US 023 Los Angeles_SHanQ
 # 🇺🇸 US San Jose
-174.137.59.73:443#🇺🇸 US 191 San Jose_SHanQ
-8.209.250.150:443#🇺🇸 US 192 San Jose_SHanQ
+104.18.150.139:443#🇺🇸 US 191 San Jose_SHanQ
+104.21.237.213:443#🇺🇸 US 192 San Jose_SHanQ
 digitalocean.com:443#🇺🇸 US 193 San Jose_SHanQ
 # 🇺🇸 US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
