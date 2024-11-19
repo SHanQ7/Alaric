@@ -31,7 +31,12 @@ const city0 = "高谭市";
 const isp0 = "MCU.com";
 
 function country_ValidCheck(para) {
-  return para || country0;
+   const countryMap = {
+     "中華民國": "台湾",
+     "中华民国": "台湾",
+     };
+ para = para ? para.trim() : "";
+ return countryMap[para] || para || country0;
 };
 
 function Area_check(para) {
@@ -39,6 +44,8 @@ function Area_check(para) {
     "ampang": "安邦",
     "ang thong": "红统府", 
     "attica": "阿提卡",
+    "baku city": "巴库市",
+    "bagmati province": "巴格马蒂省",
     "belgrade": "贝尔格莱德",
     "bogota d.c.": "波哥大首都",
     "bucurești": "布加勒斯特",
@@ -78,12 +85,14 @@ function Area_check(para) {
     "taoyuan": "桃园市", 
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷",
+    "tsuen wan district": "荃湾区",
     "tokyo": "东京都",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "福岡縣": "福冈县",
     "哈爾尤縣": "哈留县",
     "加州": "加利福尼亚州",
     "堪薩斯州": "堪萨斯州",
+    "倫斯特省": "伦斯特省",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
     "千葉縣": "千叶县",
     "圣地亚哥首都大区": "圣地亚哥大区",
@@ -116,8 +125,10 @@ function City_ValidCheck(para) {
     "lampa": "拉帕",
     "lidodiostia": "丽都迪奥斯蒂亚",
     "melton": "墨尔顿",
+    "meppel": "梅珀尔",
     "meyzieu": "梅济约",
     "milan": "米兰",
+    "mumbai": "孟买",
     "muhadhdhib": "马什哈德",
     "odai": "奥拉迪亚",
     "okubo-naka": "大久保中",
@@ -136,6 +147,7 @@ function City_ValidCheck(para) {
     "szigetszentmiklos": "锡盖特圣米克洛什市",
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷",
+    "tsuenwan": "荃湾",
     "tokyo": "东京都",
     "yerevan": "叶里温",
     "yeongdong-gun": "永同郡",
@@ -145,6 +157,7 @@ function City_ValidCheck(para) {
     "達拉斯": "达拉斯",
     "福岡市": "福冈市",
     "聖荷西": "圣荷西",
+    "臺北市": "台北市",
     "西雅圖": "西雅图",
     "彰化": "彰化县",
     "中壢": "中坜区",
