@@ -28,8 +28,8 @@
 51.222.138.0:8443#🇨🇦 CA 03 Mississauga_SHanQ
 # 🇨🇭 CH
 45.90.59.204:443#🇨🇭 CH 01 Meyrin_SHanQ
-45.85.93.96:443#🇨🇭 CH 02 Meyrin_SHanQ
-45.85.93.59:443#🇨🇭 CH 03 Meyrin_SHanQ
+
+
 # 🇨🇱 CL
 186.67.70.55:443#🇨🇱 CL 121 Lamp_SHanQ
 
@@ -68,21 +68,19 @@
 82.165.200.147:443#🇬🇧 GB 072 Hounslow_SHanQ
 198.244.140.174:443#🇬🇧 GB 073 Hounslow_SHanQ
 # 🇬🇪 GE
-185.143.179.94:443#🇬🇪 GE 01_SHanQ
+
 
 
 # 🇭🇰 HK
-47.242.91.144:443#🇭🇰 HK 01_SHanQ
-172.67.65.247:443#🇭🇰 HK 02_SHanQ
-165.154.43.92:35187#🇭🇰 HK 03_SHanQ
-101.36.122.24:19351#🇭🇰 HK 04_SHanQ
-edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
+172.67.65.247:443#🇭🇰 HK 01_SHanQ
+165.154.43.92:35187#🇭🇰 HK 02_SHanQ
+edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 03_SHanQ
 # 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
 
 # 🇮🇱 IL
-129.159.132.0:8443#🇮🇱 IL 151 Petaẖ Tiqva_SHanQ
+
 
 
 # 🇮🇳 IN
@@ -96,25 +94,21 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 # 🇮🇹 IT
 38.180.15.138:443#🇮🇹 IT 051 Gallarate _SHanQ
 87.120.237.36:81#🇮🇹 IT 052 Gallarate_SHanQ
-91.193.5.125:8443#🇮🇹 IT 053 Gallarate_SHanQ
+
 # 🇯🇵 JP
-140.238.33.161:443#🇯🇵 JP 01_SHanQ
-14.48.49.133:10000#🇯🇵 JP 02_SHanQ
-103.75.70.171:14722#🇯🇵 JP 03_SHanQ
-168.138.201.26:10000#🇯🇵 JP 04_SHanQ
-121.152.127.130:31380#🇯🇵 JP 05_SHanQ
+14.48.49.133:10000#🇯🇵 JP 01_SHanQ
+103.75.70.171:14722#🇯🇵 JP 02_SHanQ
+168.138.201.26:10000#🇯🇵 JP 03_SHanQ
 # 🇰🇷 KR
-154.92.9.2:443#🇰🇷 KR 011 Bakchon_SHanQ
 117.123.207.117:50000#🇰🇷 KR 012 Bakchon_SHanQ
 61.111.247.253:587#🇰🇷 KR 013 Bakchon_SHanQ
-218.152.197.93:50000#🇰🇷 KR 014 Bakchon_SHanQ
 185.214.103.86:57569#🇰🇷 KR 015 Bakchon_SHanQ
 # 🇱🇹 LT
 88.119.161.187:443#🇱🇹 LT Lentvaris_SHanQ
 
 
 # 🇱🇻 LV
-46.32.184.187:443#🇱🇻 LV 01 Riga_SHanQ
+
 
 
 # 🇳🇱 NL
@@ -146,12 +140,12 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 45.89.55.200:8443#🇷🇸 RS 012 Beograd_SHanQ 
 
 # 🇷🇺 RU
-217.30.10.55:443#🇷🇺 RU 01_SHanQ
-185.233.82.227:2053#🇷🇺 RU 02_SHanQ
+
+
 
 # 🇷🇴 RO
-86.105.9.206:8443#🇷🇴 RO 01 Voluntari_SHanQ
-146.70.254.232:8443#🇷🇴 RO 02 Voluntari_SHanQ
+146.70.254.232:8443#🇷🇴 RO 01 Voluntari_SHanQ
+
 
 # 🇸🇦 SA
 176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
@@ -163,10 +157,10 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 
 # 🇸🇬 SG
 3.1.94.232:443#🇸🇬 SG 01_SHanQ
-13.212.78.66:443#🇸🇬 SG 02_SHanQ
-13.212.229.251:443#🇸🇬 SG 03_SHanQ
+
+
 # 🇹🇭 TH
-8.213.197.132:8443#🇹🇭 TH 01_SHanQ
+
 
 
 # 🇹🇷 TR
@@ -176,7 +170,6 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 # 🇨🇳 TW
 59.127.80.162:12224#🇨🇳 TW 01_SHanQ
 114.34.202.224:10004#🇨🇳 TW 02_SHanQ
-210.61.97.241:81#🇨🇳 TW 03_SHanQ
 118.163.37.32:81#🇨🇳 TW 04_SHanQ
 220.135.202.250:81#🇨🇳 TW 05_SHanQ
 # 🇺🇦 UA
@@ -188,14 +181,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 14.102.228.9:443#🇺🇸 US 021 Los Angeles_SHanQ
 160.123.255.19:443#🇺🇸 US 023 Los Angeles_SHanQ
 # 🇺🇸 US San Jose
-digitalocean.com:443#🇺🇸 US 191 San Jose_SHanQ
-174.137.59.73:443#🇺🇸 US 192 San Jose_SHanQ
-8.209.250.150:443#🇺🇸 US 193 San Jose_SHanQ
-104.19.178.68:443#🇺🇸 US 194 San Jose_SHanQ
-104.18.183.147:443#🇺🇸 US 195 San Jose_SHanQ
-104.17.75.31:443#🇺🇸 US 196 San Jose_SHanQ
-104.17.147.237:443#🇺🇸 US 197 San Jose_SHanQ
-104.19.172.62:443#🇺🇸 US 198 San Jose_SHanQ
+174.137.59.73:443#🇺🇸 US 191 San Jose_SHanQ
+8.209.250.150:443#🇺🇸 US 192 San Jose_SHanQ
+digitalocean.com:443#🇺🇸 US 193 San Jose_SHanQ
 # 🇺🇸 US New York
 103.35.189.77:443#🇺🇸 US 131 New York_SHanQ
 38.147.188.89:8011#🇺🇸 US 132 New York_SHanQ
@@ -207,4 +195,3 @@ digitalocean.com:443#🇺🇸 US 191 San Jose_SHanQ
 # US Washington Kent
 download.yunzhongzhuan.com:443#🇺🇸 US 231 Washington Kent_SHanQ
 162.159.34.75:443#🇺🇸 US 232 Washington Kent_SHanQ
-
