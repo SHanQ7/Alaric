@@ -76,3 +76,4 @@ ip-cidr, 180.163.214.155/24, reject
 ip-cidr, 123.138.253.200/24, reject
 ip-cidr, 153.3.240.47/24, reject
 ip-cidr, 153.3.240.56/24, reject
+ip-cidr, 220.196.137.122/32, reject
