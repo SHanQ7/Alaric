@@ -34,7 +34,7 @@ ip-cidr, 101.226.152.67/24, reject
 ip-cidr, 114.110.96.0/24, reject
 ip-cidr, 114.110.97.18/24, reject
 ip-cidr, 114.110.98.2/24, reject
-ip-cidr, 116.128.184.22/24, reject
+ip-cidr, 116.128.184.22/32, reject
 ip-cidr, 117.185.242.0/24, reject
 ip-cidr, 117.185.242.187/24, reject
 ip-cidr, 117.185.244.25/24, reject
