@@ -1,9 +1,9 @@
 # 🇦🇪 AE
-129.151.148.35:443#🇦🇪 AE 031 Dubai_SHanQ
+129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
 
 
 # 🇦🇲 AM
-85.90.207.20:8081#🇦🇲 AM 01_SHanQ
+85.90.207.20:8081#🇦🇲 AM Yerevan_SHanQ
 
 
 # 🇦🇹 AT
@@ -181,9 +181,9 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 
 
 # 🇺🇸 US Los-Angeles
-104.19.24.131:443#🇺🇸 US 021 Los Angeles_SHanQ
-172.64.199.202:443#🇺🇸 US 022 Los Angeles_SHanQ
-104.19.102.114:443#🇺🇸 US 023 Los Angeles_SHanQ
+104.16.126.186:443#🇺🇸 US 021 Los Angeles_SHanQ
+104.19.246.172:443#🇺🇸 US 022 Los Angeles_SHanQ
+104.16.126.23:443#🇺🇸 US 023 Los Angeles_SHanQ
 # 🇺🇸 US San Jose
 104.18.150.139:443#🇺🇸 US 191 San Jose_SHanQ
 digitalocean.com:443#🇺🇸 US 192 San Jose_SHanQ
