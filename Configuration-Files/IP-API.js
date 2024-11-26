@@ -32,8 +32,7 @@ const isp0 = "MCU.com";
 
 function country_ValidCheck(para) {
    const countryMap = {
-     "中華民國": "台湾",
-     "中华民国": "台湾",
+     "中華民國":"台湾", "中华民国":"台湾","俄罗斯联邦":"俄罗斯",
      };
  para = para ? para.trim() : "";
  return countryMap[para] || para || country0;
