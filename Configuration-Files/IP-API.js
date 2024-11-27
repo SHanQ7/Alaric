@@ -88,6 +88,7 @@ function Area_check(para) {
     "tassin-la-demi-lune": "塔桑拉德米吕讷",
     "tsuen wan district": "荃湾区",
     "tokyo": "东京都",
+    "victoria": "维多利亚州",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "福岡縣": "福冈县",
     "哈爾尤縣": "哈留县",
