@@ -1,0 +1,35 @@
+// 设置生日日期（月和日）
+const birthdayMonth = 8; // 生日月份（这里以9月为例）
+const birthdayDay = 24; // 生日日期（这里以24日为例）
+
+// 获取当前日期
+const today = new Date();
+const currentYear = today.getFullYear();
+
+// 设置生日当年的日期
+const birthdayThisYear = new Date(currentYear, birthdayMonth - 1, birthdayDay);
+const nextBirthday = birthdayThisYear > today ? birthdayThisYear : new Date(currentYear + 1, birthdayMonth - 1, birthdayDay);
+
+// 计算距离生日的时间
+const timeDiff = nextBirthday.getTime() - today.getTime();
+const daysLeft = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+// 创建小组件
+let widget = new ListWidget();
+widget.backgroundColor = new Color("#1e1e1e");
+
+let title = widget.addText("生日倒计时");
+title.textColor = Color.white();
+title.font = Font.boldSystemFont(16);
+
+let days = widget.addText(daysLeft.toString() + " 天");
+days.textColor = Color.orange();
+days.font = Font.systemFont(18);
+
+if (config.runsInWidget) {
+  Script.setWidget(widget);
+} else {
+  widget.presentMedium();
+}
+
+Script.complete();
