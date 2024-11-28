@@ -1,16 +1,11 @@
-// 自定义函数：根据农历年份、月份和日期计算出对应的阳历日期
-function lunarToSolar(lunarYear, lunarMonth, lunarDay, isLeapMonth) {
-    // 农历转换算法可以根据需求选择，这里是一个简化的示例
-    // 这里只是简单地返回一个固定的阳历日期示例，实际应用中需要更复杂的算法
-    // 你可以根据需要替换为更准确的农历转换算法
-    return new Date(2024, lunarMonth - 1, lunarDay); // 这里示例中的阳历日期是固定的 2024 年的日期
-}
+// 导入自定义的 lunar.module 模块
+const LunarModule = importModule('lunar.module');
 
 // 定义家庭成员的农历生日（年份需要和阳历当前年份对应）
 const lunarBirthdays = [
-    { name: "爸爸", lunarDate: { year: 1972, month: 4, day: 8, isLeapMonth: false } },    // 父亲的农历生日
-    { name: "妈妈", lunarDate: { year: 1973, month: 11, day: 8, isLeapMonth: false } },   // 母亲的农历生日
-    { name: "妹妹", lunarDate: { year: 2011, month: 12, day: 9, isLeapMonth: false } }    // 妹妹的农历生日
+    { name: "爸爸", lunarYear: 1972, lunarMonth: 4, lunarDay: 8 },    // 父亲的农历生日
+    { name: "妈妈", lunarYear: 1973, lunarMonth: 11, lunarDay: 8 },   // 母亲的农历生日
+    { name: "妹妹", lunarYear: 2011, lunarMonth: 12, lunarDay: 9 }    // 妹妹的农历生日
 ];
 
 // 获取当前日期
@@ -32,14 +27,14 @@ title.font = Font.boldSystemFont(16);
 
 // 循环处理每个家庭成员的生日
 lunarBirthdays.forEach(item => {
-    // 计算今年的阳历生日
-    const solarBirthdayThisYear = lunarToSolar(item.lunarDate.year, item.lunarDate.month, item.lunarDate.day, item.lunarDate.isLeapMonth);
+    // 计算阳历生日
+    const solarDate = LunarModule.lunarToSolar(item.lunarYear, item.lunarMonth, item.lunarDay);
 
     // 计算年龄
-    const age = currentYear - item.lunarDate.year;
+    const age = currentYear - item.lunarYear;
 
     // 显示家庭成员的生日信息
-    let birthdayText = widget.addText(`${item.name} ${age}岁，阳历生日：${solarBirthdayThisYear.toLocaleDateString()}`);
+    let birthdayText = widget.addText(`${item.name} ${age}岁，阳历生日：${solarDate.toLocaleDateString()}`);
     birthdayText.textColor = Color.orange();
 });
 
