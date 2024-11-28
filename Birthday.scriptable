@@ -27,15 +27,19 @@ title.font = Font.boldSystemFont(16);
 
 // 循环处理每个家庭成员的生日
 lunarBirthdays.forEach(item => {
-    // 计算阳历生日
-    const solarDate = LunarModule.lunarToSolar(item.lunarYear, item.lunarMonth, item.lunarDay);
+    try {
+        // 计算阳历生日
+        const solarDate = LunarModule.lunarToSolar(item.lunarYear, item.lunarMonth, item.lunarDay);
 
-    // 计算年龄
-    const age = currentYear - item.lunarYear;
+        // 计算年龄
+        const age = currentYear - item.lunarYear;
 
-    // 显示家庭成员的生日信息
-    let birthdayText = widget.addText(`${item.name} ${age}岁，阳历生日：${solarDate.toLocaleDateString()}`);
-    birthdayText.textColor = Color.orange();
+        // 显示家庭成员的生日信息
+        let birthdayText = widget.addText(`${item.name} ${age}岁，阳历生日：${solarDate.toLocaleDateString()}`);
+        birthdayText.textColor = Color.orange();
+    } catch (error) {
+        console.error(`处理 ${item.name} 的生日时出错：${error}`);
+    }
 });
 
 if (config.runsInWidget) {
