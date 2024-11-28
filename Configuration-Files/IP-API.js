@@ -81,7 +81,7 @@ function Area_check(para) {
     "rucka":"鲁卡镇",
     "sofia-capital": "索菲亚市",
     "south west": "西南区",
-    "south east": "东南区"，
+    "south east": "东南区",
     "southern peninsula": "南部半岛",
     "stockholm county": "斯德哥尔摩",
     "st.-petersburg": "圣彼得堡",
