@@ -1,3 +1,13 @@
+# 优选域名
+cf.090227.xyz:443#阿鹏一心跟党走
+speed.marisalnc.com:443#KTFF优选
+aldo.ns.cloudflare.com:443#不准失联 01
+cmcc.090227.xyz:443#不准失联CMCC 02
+icook.tw:2053#官方优选域名
+cloudflare.cfgo.cc:443#优选官方线路
+
+
+
 # 🇦🇪 AE
 129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
 
@@ -35,11 +45,9 @@
 
 
 # 🇩🇪 DE
-162.159.81.95:443#🇩🇪 DE 031 Hessen_SHanQ
-162.159.81.123:443#🇩🇪 DE 032 Hessen_SHanQ
-217.61.105.75:2053#🇩🇪 DE 033 Hessen_SHanQ
-162.159.160.116:443#🇩🇪 DE 034 Hessen_SHanQ
-82.115.30.115:56722#🇩🇪 DE 035 Hessen_SHanQ
+45.147.51.230:443#🇩🇪 DE Dreieich_SHanQ
+
+
 # 🇩🇰 DK
 217.110.20.141:443#🇩🇰 DK Copenhagen_SHanQ
 
@@ -57,15 +65,13 @@
 
 
 # 🇫🇮 FI
-65.109.173.136:443#🇫🇮 FI Vantaa_SHanQ
+
 
 
 # 🇫🇷 FR
-35.181.77.67:443#🇫🇷 FR 01 Aulnay-sous-Bois_SHanQ
-13.38.105.183:8443#🇫🇷 FR 02 Aulnay-sous-Bois_SHanQ
-158.178.192.221:443#🇫🇷 FR 03 Aulnay-sous-Bois_SHanQ
-193.242.145.154:8443#🇫🇷 FR 04 Aulnay-sous-Bois_SHanQ
-193.176.179.213:2053#🇫🇷 FR 05 Aulnay-sous-Bois_SHanQ
+158.178.192.221:443#🇫🇷 FR 151 Paris_SHanQ
+193.176.179.213:2053#🇫🇷 FR 152 Paris_SHanQ
+
 # 🇬🇧 GB
 35.177.50.118:443#🇬🇧 GB 071 Hounslow_SHanQ
 213.165.84.57:443#🇬🇧 GB 072 Hounslow_SHanQ
@@ -75,11 +81,9 @@
 
 
 # 🇭🇰 HK
-172.67.69.65:443#🇭🇰 HK 01_SHanQ
-104.20.25.82:443#🇭🇰 HK 02_SHanQ
-172.67.73.159:443#🇭🇰 HK 03_SHanQ
-162.159.138.57:443#🇭🇰 HK 04_SHanQ
-edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
+58.232.49.2:12454#🇭🇰 HK 01_SHanQ
+
+
 # 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
@@ -101,11 +105,11 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 38.180.15.138:443#🇮🇹 IT 052 Gallarate _SHanQ
 91.193.5.121:8443#🇮🇹 IT 053 Gallarate _SHanQ
 # 🇯🇵 JP
-14.48.49.133:10000#🇯🇵 JP 01_SHanQ
-103.75.70.171:14722#🇯🇵 JP 02_SHanQ
-168.138.201.26:10000#🇯🇵 JP 03_SHanQ
+154.31.113.72:443#🇯🇵 JP 01 Narita_SHanQ
+14.48.49.133:10000#🇯🇵 JP 02 Narita_SHanQ
+103.75.70.171:14722#🇯🇵 JP 03 Narita_SHanQ
 # 🇰🇷 KR
-61.111.247.253:587#🇰🇷 KR 011 Bakchon_SHanQ
+132.226.22.106:34237#🇰🇷 KR 011 Bakchon_SHanQ
 185.214.103.86:57569#🇰🇷 KR 012 Bakchon_SHanQ
 117.123.207.117:50000#🇰🇷 KR 013 Bakchon_SHanQ
 # 🇱🇹 LT
@@ -174,28 +178,15 @@ edt.SHanQ.us.kg.cf.090227.xyz:443#🇭🇰 HK 05_SHanQ
 
 # 🇨🇳 TW
 118.163.37.32:81#🇨🇳 TW 01_SHanQ
-220.135.202.250:81#🇨🇳 TW 02_SHanQ
-114.34.202.224:10004#🇨🇳 TW 03_SHanQ
+114.34.202.224:10004#🇨🇳 TW 02_SHanQ
+
 # 🇺🇦 UA
 
 
 
 # 🇺🇸 US Los-Angeles
-104.16.126.186:443#🇺🇸 US 021 Los Angeles_SHanQ
-104.19.246.172:443#🇺🇸 US 022 Los Angeles_SHanQ
-104.16.126.23:443#🇺🇸 US 023 Los Angeles_SHanQ
-# 🇺🇸 US San Jose
-104.18.150.139:443#🇺🇸 US 191 San Jose_SHanQ
-digitalocean.com:443#🇺🇸 US 192 San Jose_SHanQ
-
-# 🇺🇸 US New York
+104.16.116.221:443#🇺🇸 US 021 Los Angeles_SHanQ
+104.18.116.181:443#🇺🇸 US 022 Los Angeles_SHanQ
+104.16.115.106:443#🇺🇸 US 023 Los Angeles_SHanQ
 
 
-
-# 🇺🇸 US Virginia Reston
-129.159.84.71:443#🇺🇸 US 221 Virginia Reston_SHanQ
-
-
-# US Washington Kent
-download.yunzhongzhuan.com:443#🇺🇸 US 231 Washington Kent_SHanQ
-162.159.34.75:443#🇺🇸 US 232 Washington Kent_SHanQ
