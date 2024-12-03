@@ -1,11 +1,3 @@
-# 😊 优选域名
-cf.090227.xyz:443#阿鹏一心跟党走
-speed.marisalnc.com:443#KTFF优选
-aldo.ns.cloudflare.com:443#不准失联
-cmcc.090227.xyz:443#不准失联CMCC 01
-japan.com:443#不准失联CMCC 02
-icook.tw:2053#官方优选域名
-cloudflare.cfgo.cc:443#优选官方线路
 # 🇦🇪 AE
 129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
 
