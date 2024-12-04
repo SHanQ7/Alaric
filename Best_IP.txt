@@ -34,6 +34,10 @@
 186.67.70.55:443#🇨🇱 CL Lamp_SHanQ
 
 
+# 🇨🇿 CZ
+37.157.192.61:9902#🇨🇿 CZ 01 Kladno_SHanQ
+188.124.56.158:8443#🇨🇿 CZ 02 Kladno_SHanQ
+176.74.219.73:8443#🇨🇿 CZ 03 Kladno_SHanQ
 # 🇩🇪 DE
 45.147.51.230:443#🇩🇪 DE Dreieich_SHanQ
 
@@ -43,13 +47,13 @@
 
 
 # 🇪🇪 EE
-
-
-
+45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
+45.82.253.175:8443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
+109.206.241.55:8443#🇪🇪 EE 03 Harjumaa Tallinn_SHanQ
 # 🇪🇸 ES
-194.164.170.244:2053#🇪🇸 ES Chamartín_SHanQ
-
-
+185.114.72.148:443#🇪🇸 ES 01 Madrid Chamartín_SHanQ
+38.180.52.83:443#🇪🇸 ES 02 Madrid Chamartín_SHanQ
+194.164.170.244:2053#🇪🇸 ES 02 Madrid Chamartín_SHanQ
 # 🇪🇺 EU
 
 
@@ -83,6 +87,10 @@
 91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
 
+# 🇮🇪 IE 
+194.4.51.171:2053#🇮🇪 IE Leinster Dublin_SHanQ
+
+
 # 🇮🇱 IL
 
 
@@ -113,9 +121,9 @@
 
 
 # 🇱🇻 LV
-
-
-
+195.123.211.175:443#🇱🇻 LV 01 Riga_SHanQ
+195.123.212.237:8443#🇱🇻 LV 02 Riga_SHanQ
+176.223.130.237:8443#🇱🇻 LV 03 Riga_SHanQ
 # 🇳🇱 NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
@@ -149,9 +157,9 @@
 
 
 # 🇷🇴 RO
-146.70.254.232:8443#🇷🇴 RO Voluntari_SHanQ
-
-
+86.121.254.124:12545#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
+79.119.139.177:12274#🇷🇴 RO 02 Ilfov Voluntari_SHanQ
+146.70.254.232:8443#🇷🇴 RO 03 Ilfov Voluntari_SHanQ
 # 🇸🇦 SA
 
 
