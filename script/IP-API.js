@@ -30,6 +30,32 @@ const region0 = "韦恩大厦";
 const city0 = "高谭市";
 const isp0 = "MCU.com";
 
+
+// 脚本开始
+let body = $response.body;
+let obj = JSON.parse(body);
+
+const country = country_ValidCheck(obj['country']);
+const region = Area_check(obj['regionName']);
+const city = City_ValidCheck(obj['city']);
+
+let displayCity = (city !== country && city !== region) ? city : '';
+
+let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
+let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+
+let ip = obj['query'];
+let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
+  + '地区：' + obj['region'] + ' ' + region + '\n'
+  + 'IP：' + obj['query'] + '\n'
+  + '服务商：' + obj['isp'] + '\n'
+  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
+  + '时区：' + obj['timezone'];
+
+$done({title, subtitle, ip, description});
+
+
+
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾","俄罗斯联邦":"俄罗斯",
@@ -190,26 +216,3 @@ function City_ValidCheck(para) {
 function ISP_ValidCheck(para) {
   return para || ips0;
 };
-
-// 脚本开始
-let body = $response.body;
-let obj = JSON.parse(body);
-
-const country = country_ValidCheck(obj['country']);
-const region = Area_check(obj['regionName']);
-const city = City_ValidCheck(obj['city']);
-
-let displayCity = (city !== country && city !== region) ? city : '';
-
-let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
-
-let ip = obj['query'];
-let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
-  + '地区：' + obj['region'] + ' ' + region + '\n'
-  + 'IP：' + obj['query'] + '\n'
-  + '服务商：' + obj['isp'] + '\n'
-  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
-  + '时区：' + obj['timezone'];
-
-$done({title, subtitle, ip, description});
