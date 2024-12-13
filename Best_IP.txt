@@ -76,9 +76,10 @@
 213.165.84.57:443#🇬🇧 GB 071 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 072 Hounslow_SHanQ
 82.165.200.147:443#🇬🇧 GB 073 Hounslow_SHanQ
-82.165.220.6:8443#🇬🇧 GB 074 Hounslow_SHanQ
+132.145.54.84:8443#🇬🇧 GB 074 Hounslow_SHanQ
 195.20.233.219:8443#🇬🇧 GB 075 Hounslow_SHanQ
-5.101.149.248:35100#🇬🇧 GB 076 Hounslow_SHanQ
+143.47.243.144:8443#🇬🇧 GB 076 Hounslow_SHanQ
+5.101.149.248:35100#🇬🇧 GB 077 Hounslow_SHanQ
 # 🇬🇪 GE
 
 
@@ -211,11 +212,11 @@
 
 
 # 🇺🇸 US Los-Angeles
-152.69.171.12:443#🇺🇸 US 021 East Los Angeles_SHanQ
+129.159.34.122:443#🇺🇸 US 021 East Los Angeles_SHanQ
 91.149.239.122:443#🇺🇸 US 022 East Los Angeles_SHanQ
-154.21.85.62:22353#🇺🇸 US 023 East Los Angeles_SHanQ
-154.17.21.134:18446#🇺🇸 US 024 East Los Angeles_SHanQ
-142.171.174.14:12468#🇺🇸 US 025 East Los Angeles_SHanQ
+104.19.254.227:443#🇺🇸 US 023 East Los Angeles_SHanQ
+154.21.85.62:22353#🇺🇸 US 024 East Los Angeles_SHanQ
+154.17.21.134:18446#🇺🇸 US 025 East Los Angeles_SHanQ
 # 🇺🇸 US San Jose
 104.16.126.23:443#🇺🇸 US 191 San Jose_SHanQ
 104.16.112.237:443#🇺🇸 US 192 San Jose_SHanQ
