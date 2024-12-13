@@ -190,6 +190,7 @@ function City_ValidCheck(para) {
     "tsuenwan": "荃湾",
     "tokyo": "东京都",
     "thanhxuan": "清宣区",
+    "Tiruvānmiyūr": "泰尔万米尤尔",
     "umraniye": "乌姆兰尼耶",
     "yerevan": "叶里温",
     "yeongdong-gun": "永同郡",
