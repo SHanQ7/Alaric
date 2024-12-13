@@ -1,6 +1,6 @@
 # 🇦🇪 AE
 129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
-
+193.123.81.105:443#🇦🇪 AE 01 Dubai_SHanQ
 
 # 🇦🇲 AM
 85.90.207.20:8081#🇦🇲 AM Yerevan_SHanQ
@@ -36,7 +36,7 @@
 
 # 🇨🇿 CZ
 37.157.192.61:9902#🇨🇿 CZ 01 Kladno_SHanQ
-188.124.56.158:8443#🇨🇿 CZ 02 Kladno_SHanQ
+92.118.149.45:443#🇨🇿 CZ 02 Kladno_SHanQ
 176.74.219.73:8443#🇨🇿 CZ 03 Kladno_SHanQ
 # 🇩🇪 DE
 51.116.121.75:443#🇩🇪 DE 031 Dreieich_SHanQ
@@ -50,13 +50,14 @@
 
 
 # 🇪🇪 EE
-109.206.241.55:8443#🇪🇪 EE Harjumaa Tallinn_SHanQ
-
-
+45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
+45.82.253.175:8443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
+109.206.241.55:8443#🇪🇪 EE 03 Harjumaa Tallinn_SHanQ
 # 🇪🇸 ES
 185.114.72.148:443#🇪🇸 ES 01 Madrid Chamartín_SHanQ
 38.180.52.83:443#🇪🇸 ES 02 Madrid Chamartín_SHanQ
 194.164.170.244:2053#🇪🇸 ES 03 Madrid Chamartín_SHanQ
+212.227.144.37:8443#🇪🇸 ES 04 Madrid Chamartín_SHanQ
 # 🇪🇺 EU
 
 
@@ -107,6 +108,9 @@
 206.189.129.187:443#🇮🇳 IN 01 Bangalore_SHanQ
 165.232.182.81:443#🇮🇳 IN 02 Bangalore_SHanQ
 129.154.46.115:443#🇮🇳 IN 03 Hyderabad_SHanQ
+129.159.22.4:443#🇮🇳 IN 04 Hyderabad_SHanQ
+141.148.203.6:443#🇮🇳 IN 05 Hyderabad_SHanQ
+152.67.190.105:443#🇮🇳 IN 06 Hyderabad_SHanQ
 # 🇮🇸 IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
 195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
@@ -168,9 +172,12 @@
 
 
 # 🇷🇴 RO
-86.121.254.124:12545#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
-79.119.139.177:12274#🇷🇴 RO 02 Ilfov Voluntari_SHanQ
-146.70.254.232:8443#🇷🇴 RO 03 Ilfov Voluntari_SHanQ
+65.38.120.186:2053#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
+45.136.199.77:443#🇷🇴 RO 02 Ilfov Voluntari_SHanQ
+45.136.199.132:443#🇷🇴 RO 03 Ilfov Voluntari_SHanQ
+86.121.254.124:12545#🇷🇴 RO 04 Ilfov Voluntari_SHanQ
+79.119.139.177:12274#🇷🇴 RO 05 Ilfov Voluntari_SHanQ
+146.70.254.232:8443#🇷🇴 RO 06 Ilfov Voluntari_SHanQ
 # 🇸🇦 SA
 38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
 176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
@@ -185,6 +192,7 @@
 47.236.181.185:8443#🇸🇬 SG 03_SHanQ
 138.2.69.236:23334#🇸🇬 SG 04_SHanQ
 129.150.62.252:54774#🇸🇬 SG 05_SHanQ
+47.88.221.55:6445#🇸🇬 SG 06_SHanQ
 # 🇹🇭 TH
 
 
@@ -197,6 +205,7 @@
 118.163.37.32:81#🇨🇳 TW 01_SHanQ
 220.135.202.250:81#🇨🇳 TW 02_SHanQ
 114.34.202.224:10004#🇨🇳 TW 03_SHanQ
+210.61.97.241:81#🇨🇳 TW 04_SHanQ
 # 🇺🇦 UA
 
 
