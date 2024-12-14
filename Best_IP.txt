@@ -25,9 +25,11 @@
 
 
 # 🇨🇦 CA
-107.175.76.16:443#🇨🇦 CA 01 Mississauga_SHanQ
-81.19.140.166:443#🇨🇦 CA 02 Mississauga_SHanQ
-198.46.131.76:2053#🇨🇦 CA 03 Mississauga_SHanQ
+198.46.131.76:2053#🇨🇦 CA 01 Mississauga_SHanQ
+107.175.76.16:443#🇨🇦 CA 02 Mississauga_SHanQ
+107.175.37.179:443#🇨🇦 CA 03 Mississauga_SHanQ
+107.172.190.130:8443#🇨🇦 CA 04 Mississauga_SHanQ
+81.19.140.166:443#🇨🇦 CA 05 Mississauga_SHanQ
 # 🇨🇭 CH
 45.90.59.204:443#🇨🇭 CH Meyrin_SHanQ
 
@@ -105,9 +107,9 @@
 
 
 # 🇮🇱 IL
-129.159.131.133:8443#🇮🇱 IL 01 Petaẖ Tiqva_SHanQ
-129.159.131.190:8443#🇮🇱 IL 02 Petaẖ Tiqva_SHanQ
-129.159.132.159:8443#🇮🇱 IL 03 Petaẖ Tiqva_SHanQ
+
+
+
 # 🇮🇳 IN Karnataka Bengaluru
 165.232.182.81:443#🇮🇳 IN 101 Karnataka Bengaluru_SHanQ
 206.189.129.187:443#🇮🇳 IN 102 Karnataka Bengaluru_SHanQ
@@ -134,14 +136,12 @@
 
 # 🇯🇵 JP Narita
 103.20.199.196:8882#🇯🇵 JP 131 Narita_SHanQ
-140.83.81.109:443#🇯🇵 JP 132 Narita_SHanQ
-140.238.60.225:443#🇯🇵 JP 133 Narita_SHanQ
-141.147.147.180:443#🇯🇵 JP 134 Narita_SHanQ
-158.101.141.78:443#🇯🇵 JP 135 Narita_SHanQ
+140.238.60.225:443#🇯🇵 JP 132 Narita_SHanQ
+158.101.141.78:443#🇯🇵 JP 133 Narita_SHanQ
 # 🇯🇵 JP Osaka
-180.17.144.27:10333#🇯🇵 JP 141 Osaka_SHanQ
-
-
+140.83.81.109:443#🇯🇵 JP 141 Osaka_SHanQ
+141.147.147.180:443#🇯🇵 JP 142 Osaka_SHanQ
+180.17.144.27:10333#🇯🇵 JP 143 Osaka_SHanQ
 # 🇰🇷 KR
 117.123.207.117:50000#🇰🇷 KR 011 Bakchon_SHanQ
 119.195.219.150:18050#🇰🇷 KR 012 Bakchon_SHanQ
@@ -204,11 +204,11 @@
 
 
 # 🇸🇬 SG
-8.222.165.104:443#🇸🇬 SG 01_SHanQ
-47.88.221.55#🇸🇬 SG 02_SHanQ
-47.236.181.185:8443#🇸🇬 SG 03_SHanQ
-129.150.62.252:54774#🇸🇬 SG 04_SHanQ
-138.2.75.91:443#🇸🇬 SG 05_SHanQ
+47.236.181.185:8443#🇸🇬 SG 01_SHanQ
+129.150.62.252:54774#🇸🇬 SG 02_SHanQ
+138.2.75.91:443#🇸🇬 SG 03_SHanQ
+158.178.240.232:443#🇸🇬 SG 04_SHanQ
+158.178.238.239:443#🇸🇬 SG 05_SHanQ
 # 🇹🇭 TH
 
 
@@ -244,6 +244,4 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 
 # 🇺🇸 US Virginia Reston
 129.159.84.71:443#🇺🇸 US 221 Virginia Reston_SHanQ
-
-
 
