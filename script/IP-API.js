@@ -185,6 +185,7 @@ function City_ValidCheck(para) {
     "steninge": "斯特宁厄",
     "szigetszentmiklos": "锡盖特圣米克洛什市",
     "sheungwan":"上环",
+    "shinagawa": "品川区",
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷市",
     "tsuenwan": "荃湾",
