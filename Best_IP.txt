@@ -7,15 +7,15 @@
 
 
 # 🇦🇹 AT
-94.177.8.10:443#🇦🇹 AT Bruck-an-der-Leitha_SHanQ
-
-
+94.177.8.10:443#🇦🇹 AT 01 Bruck-an-der-Leitha_SHanQ
+91.239.148.100:443#🇦🇹 AT 02 Bruck-an-der-Leitha_SHanQ
+185.119.117.146:8443#🇦🇹 AT 03 Bruck-an-der-Leitha_SHanQ
 # 🇦🇺 AU
-45.32.245.32:443#🇦🇺 AU 01 Sydney_SHanQ
-3.106.116.226:443#🇦🇺 AU 02 Sydney_SHanQ
+13.54.198.183:443#🇦🇺 AU 01 Sydney_SHanQ
+54.79.133.41:443#🇦🇺 AU 02 Sydney_SHanQ
 139.99.236.163:443#🇦🇺 AU 03 Sydney_SHanQ
 # 🇧🇬 BG
-91.210.166.82:443#🇧🇬 BG 01_SHanQ
+91.210.166.82:443#🇧🇬 BG Sofia_SHanQ
 
 
 # 🇧🇷 BR
@@ -25,7 +25,7 @@
 # 🇨🇦 CA
 198.46.131.76:2053#🇨🇦 CA 01 Mississauga_SHanQ
 107.175.37.179:443#🇨🇦 CA 02 Mississauga_SHanQ
-
+81.19.140.166:443#🇨🇦 CA 03 Mississauga_SHanQ
 # 🇨🇭 CH
 45.90.59.204:443#🇨🇭 CH Meyrin_SHanQ
 
@@ -38,7 +38,7 @@
 37.157.192.61:9902#🇨🇿 CZ 01 Kladno_SHanQ
 92.118.149.45:443#🇨🇿 CZ 02 Kladno_SHanQ
 176.74.219.73:8443#🇨🇿 CZ 03 Kladno_SHanQ
-# 🇩🇪 DE
+# 🇩🇪 DE-FRA
 51.116.121.75:443#🇩🇪 DE 031 Dreieich_SHanQ
 188.166.162.201:443#🇩🇪 DE 032 Dreieich_SHanQ
 49.13.215.89:8443#🇩🇪 DE 033 Dreieich_SHanQ
@@ -46,9 +46,9 @@
 91.107.128.128:8443#🇩🇪 DE 035 Dreieich_SHanQ
 45.147.51.230:443#🇩🇪 DE 036 Dreieich_SHanQ
 # 🇩🇰 DK
-13.53.206.75:443#🇩🇰 DK 01 Copenhagen_SHanQ
-217.110.20.141:443#🇩🇰 DK 02 Copenhagen_SHanQ
-
+46.29.235.36:2053#🇩🇰 DK 01 Copenhagen_SHanQ
+13.53.206.75:443#🇩🇰 DK 02 Copenhagen_SHanQ
+217.110.20.141:443#🇩🇰 DK 03 Copenhagen_SHanQ
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
 45.82.253.175:8443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
@@ -65,11 +65,14 @@
 95.216.143.166:443#🇫🇮 FI Vantaa_SHanQ
 
 
-# 🇫🇷 FR
+# 🇫🇷 FR Istres-MRS
+129.151.225.228:8443#🇫🇷 FR 081 Istres_SHanQ
+129.151.225.228:2053#🇫🇷 FR 082 Istres_SHanQ
+# 🇫🇷 FR-MRS
 185.120.59.123:2053#🇫🇷 FR 151 Paris_SHanQ
 158.178.192.221:443#🇫🇷 FR 152 Paris_SHanQ
 193.176.179.213:2053#🇫🇷 FR 153 Paris_SHanQ
-# 🇬🇧 GB
+# 🇬🇧 GB-LHR
 213.165.84.57:443#🇬🇧 GB 071 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 072 Hounslow_SHanQ
 82.165.200.147:443#🇬🇧 GB 073 Hounslow_SHanQ
@@ -81,10 +84,8 @@
 
 # 🇭🇰 HK
 47.76.136.17:443#🇭🇰 HK 01_SHanQ
-38.207.172.42:443#🇭🇰 HK 02_SHanQ
-43.154.34.74:1935#🇭🇰 HK 03_SHanQ
-40.81.29.103:8089#🇭🇰 HK 04_SHanQ
-43.135.44.101:30002#🇭🇰 HK 05_SHanQ
+43.154.34.74:1935#🇭🇰 HK 02_SHanQ
+40.81.29.103:8089#🇭🇰 HK 03_SHanQ
 # 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU 01 Pest megye_SHanQ
 37.218.234.55:15630#🇭🇺 HU 02 Pest megye_SHanQ
@@ -129,20 +130,18 @@
 141.147.147.180:443#🇯🇵 JP 141 Osaka_SHanQ
 180.17.144.27:10333#🇯🇵 JP 142 Osaka_SHanQ
 
-# 🇰🇷 KR
-13.125.218.78:443#🇰🇷 KR 011 Bakchon_SHanQ
-140.238.28.86:443#🇰🇷 KR 012 Bakchon_SHanQ
-117.123.207.117:50000#🇰🇷 KR 013 Bakchon_SHanQ
-119.195.219.150:18050#🇰🇷 KR 014 Bakchon_SHanQ
-132.226.22.106:34237#🇰🇷 KR 015 Bakchon_SHanQ
+# 🇰🇷 KR-ICN
+158.179.194.146:12199#🇰🇷 KR 011 Bakchon_SHanQ
+119.195.219.150:18050#🇰🇷 KR 012 Bakchon_SHanQ
+132.226.22.106:34237#🇰🇷 KR 013 Bakchon_SHanQ
 # 🇱🇹 LT
-88.119.161.187:443#🇱🇹 LT Lentvaris_SHanQ
-
-
+80.209.230.16:443#🇱🇹 LT 01 Lentvaris_SHanQ
+46.32.184.187:443#🇱🇹 LT 02 Lentvaris_SHanQ
+195.135.254.75:443#🇱🇹 LT 03 Lentvaris_SHanQ
 # 🇱🇻 LV
-195.123.211.175:443#🇱🇻 LV 01 Riga_SHanQ
+46.8.233.77:39704#🇱🇻 LV 01 Riga_SHanQ
 195.123.212.237:8443#🇱🇻 LV 02 Riga_SHanQ
-176.223.130.237:8443#🇱🇻 LV 03 Riga_SHanQ
+176.223.142.112:8443#🇱🇻 LV 03 Riga_SHanQ
 # 🇳🇱 NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
@@ -164,9 +163,9 @@
 
 
 # 🇵🇱 PL
-51.83.152.251:8443#🇵🇱 PL Pruszków_SHanQ
-
-
+45.85.210.234:25463#🇵🇱 PL 01 Pruszków_SHanQ
+185.144.245.62:18556#🇵🇱 PL 02 Pruszków_SHanQ
+45.85.210.217:10913#🇵🇱 PL 03 Pruszków_SHanQ
 # 🇷🇸 RS
 217.196.104.83:8443#🇷🇸 RS Beograd_SHanQ
 
@@ -179,19 +178,17 @@
 65.38.120.186:2053#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
 45.136.199.77:443#🇷🇴 RO 02 Ilfov Voluntari_SHanQ
 45.136.199.132:443#🇷🇴 RO 03 Ilfov Voluntari_SHanQ
-86.121.254.124:12545#🇷🇴 RO 04 Ilfov Voluntari_SHanQ
-79.119.139.177:12274#🇷🇴 RO 05 Ilfov Voluntari_SHanQ
 146.70.254.232:8443#🇷🇴 RO 06 Ilfov Voluntari_SHanQ
 # 🇸🇦 SA
 38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
 176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
 176.125.231.110:443#🇸🇦 SA 03 Ar Riyad_SHanQ
 # 🇸🇪 SE
-193.42.39.188:443#🇸🇪 SE Steninge_SHanQ
-
-
+193.42.39.188:443#🇸🇪 SE 01 Steninge_SHanQ
+194.87.252.135:2053#🇸🇪 SE 02 Steninge_SHanQ
+185.105.90.45:2053#🇸🇪 SE 03 Steninge_SHanQ
 # 🇸🇬 SG
-158.178.238.239:443#🇸🇬 SG 01_SHanQ
+52.220.58.70:443#🇸🇬 SG 01_SHanQ
 47.236.181.185:8443#🇸🇬 SG 02_SHanQ
 129.150.62.252:54774#🇸🇬 SG 03_SHanQ
 # 🇹🇭 TH
@@ -211,13 +208,26 @@
 
 
 
-# 🇺🇸 US Los-Angeles
-129.159.34.122:443#🇺🇸 US 021 East Los Angeles_SHanQ
+# 🇺🇸 US Georgia-ATL
+35.196.72.166:443#🇺🇸 US Georgia South Fulton_SHanQ
+
+
+# 🇺🇸 US Illinois-ORD
+3.128.253.42:2053#🇺🇸 US0 81 Illinois Wheaton_SHanQ
+3.143.244.172:8443#🇺🇸 US0 82 Illinois Wheaton_SHanQ
+52.15.97.71:8443#🇺🇸 US0 83 Illinois Wheaton_SHanQ
+34.69.150.180:443#🇺🇸 US0 84 Illinois Wheaton_SHanQ
+# 🇺🇸 US Los Angeles-LAX
+152.70.155.147:443#🇺🇸 US 021 East Los Angeles_SHanQ
 91.149.239.122:443#🇺🇸 US 022 East Los Angeles_SHanQ
 104.19.254.227:443#🇺🇸 US 023 East Los Angeles_SHanQ
 154.21.85.62:22353#🇺🇸 US 024 East Los Angeles_SHanQ
 154.17.21.134:18446#🇺🇸 US 025 East Los Angeles_SHanQ
-# 🇺🇸 US San Jose
+# 🇺🇸 US Ohio-CMH
+18.216.55.100:443#🇺🇸 US Ohio Reynoldsburg_SHanQ
+
+
+# 🇺🇸 US San Jose-SJC
 104.16.126.23:443#🇺🇸 US 191 San Jose_SHanQ
 104.16.112.237:443#🇺🇸 US 192 San Jose_SHanQ
 104.16.121.229:443#🇺🇸 US 193 San Jose_SHanQ
@@ -227,6 +237,10 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 
 
 
-# 🇺🇸 US Virginia Reston
+# 🇺🇸 US Virginia Reston-IAD
 129.159.84.71:443#🇺🇸 US 221 Virginia Reston_SHanQ
-
+3.239.16.253:443#🇺🇸 US 222 Virginia Reston_SHanQ
+54.166.213.213:8443#🇺🇸 US 223 Virginia Reston_SHanQ
+# 🇺🇸 US Washington-PDX
+44.228.63.60:80#🇺🇸 US 231 Washington Kent_SHanQ
+54.190.156.147:8443#🇺🇸 US 232 Washington Kent_SHanQ
