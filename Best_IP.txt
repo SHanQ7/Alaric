@@ -91,9 +91,9 @@
 37.218.234.55:15630#🇭🇺 HU 02 Pest megye_SHanQ
 185.153.218.164:25974#🇭🇺 HU 03 Pest megye_SHanQ
 # 🇮🇪 IE 
-194.4.51.171:2053#🇮🇪 IE Leinster Dublin_SHanQ
-
-
+52.19.138.237:8443#🇮🇪 IE 01 Leinster Dublin_SHanQ
+193.57.138.65:81#🇮🇪 IE 02 Leinster Dublin_SHanQ
+52.209.71.47:2053#🇮🇪 IE 03 Leinster Dublin_SHanQ
 # 🇮🇱 IL
 
 
