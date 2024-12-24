@@ -95,8 +95,8 @@
 193.57.138.65:81#🇮🇪 IE 02 Leinster Dublin_SHanQ
 52.209.71.47:2053#🇮🇪 IE 03 Leinster Dublin_SHanQ
 # 🇮🇱 IL
-
-
+129.159.129.107:8443#🇮🇱 IL 01 Central Petaẖ Tiqva_SHanQ
+129.159.143.171:2053#🇮🇱 IL 02 Central Petaẖ Tiqva_SHanQ
 
 # 🇮🇳 IN Karnataka Bengaluru
 165.232.182.81:443#🇮🇳 IN 101 Karnataka Bengaluru_SHanQ
@@ -106,9 +106,17 @@
 141.148.203.6:443#🇮🇳 IN 121 Maharashtra Mumbai_SHanQ
 
 
+# 🇮🇳 IN Maharashtra Santa Cruz
+141.148.203.6:443#🇮🇳 IN 121 Maharashtra Santa Cruz_SHanQ
+
+
 # 🇮🇳 IN Telangana Hyderabad
 129.154.46.115:443#🇮🇳 IN 161 Telangana Hyderabad_SHanQ
 129.159.22.4:443#🇮🇳 IN 162 Telangana Hyderabad_SHanQ
+
+# 🇮🇳 IN Tamil Nadu Tiruvānmiyūr
+129.159.22.4:443#🇮🇳 IN Tamil Nadu Tiruvānmiyūr_SHanQ
+
 
 # 🇮🇸 IS
 93.95.230.139:443#🇮🇸 IS 01 Keflavík_SHanQ
