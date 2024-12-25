@@ -85,7 +85,7 @@ function Area_check(para) {
     "hesse": "黑森州",
     "hawalli": "哈瓦利省",
     "hanoi": "河内",
-    "Île-de-France": "法兰西岛",
+    "Île-de-france": "法兰西岛",
     "imārat umm al qaywayn": "乌姆盖万",
     "kocasinan": "科卡西楠市",
     "kowloon": "九龙城区",
