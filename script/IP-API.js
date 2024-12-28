@@ -154,6 +154,7 @@ function City_ValidCheck(para) {
     "cedar knolls": "雪松诺尔斯",
     "chiyoda": "千代田区",
     "cyberjaya": "赛城",
+    "changhua": "彰化市",
     "dublin": "都柏林",
     "frankfurtammain": "法兰克福",
     "gallarate": "加拉拉泰市",
@@ -213,7 +214,7 @@ function City_ValidCheck(para) {
     "臺中市": "台中市",
     "西雅圖": "西雅图",
     "新孟買": "新孟买",
-    "彰化": "彰化县",
+    "彰化": "彰化市",
     "中壢": "中坜区",
 };
   para = para.replace(/\s+/g, ''); // 去除所有空格
