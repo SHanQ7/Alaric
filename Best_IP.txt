@@ -7,13 +7,13 @@
 
 
 # 🇦🇹 AT
-94.177.8.10:443#🇦🇹 AT 01 Bruck-an-der-Leitha_SHanQ
-91.239.148.100:443#🇦🇹 AT 02 Bruck-an-der-Leitha_SHanQ
+91.239.148.100:443#🇦🇹 AT 01 Bruck-an-der-Leitha_SHanQ
+91.239.148.133:443#🇦🇹 AT 02 Bruck-an-der-Leitha_SHanQ
 185.119.117.146:8443#🇦🇹 AT 03 Bruck-an-der-Leitha_SHanQ
 # 🇦🇺 AU
-13.54.198.183:443#🇦🇺 AU 01 Sydney_SHanQ
-54.79.133.41:443#🇦🇺 AU 02 Sydney_SHanQ
-139.99.236.163:443#🇦🇺 AU 03 Sydney_SHanQ
+54.79.133.41:443#🇦🇺 AU 01 Sydney_SHanQ
+13.54.198.183:443#🇦🇺 AU 02 Sydney_SHanQ
+
 # 🇧🇬 BG
 91.210.166.82:443#🇧🇬 BG Sofia_SHanQ
 
@@ -46,17 +46,19 @@
 91.107.128.128:8443#🇩🇪 DE 035 Dreieich_SHanQ
 45.147.51.230:443#🇩🇪 DE 036 Dreieich_SHanQ
 # 🇩🇰 DK
-46.29.235.36:2053#🇩🇰 DK 01 Copenhagen_SHanQ
-13.53.206.75:443#🇩🇰 DK 02 Copenhagen_SHanQ
-217.110.20.141:443#🇩🇰 DK 03 Copenhagen_SHanQ
+217.110.20.141:443#🇩🇰 DK 01 Copenhagen_SHanQ
+46.29.235.36:2053#🇩🇰 DK 02 Copenhagen_SHanQ
+46.29.235.31:2053#🇩🇰 DK 03 Copenhagen_SHanQ
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
 45.82.253.175:8443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
 109.206.241.55:8443#🇪🇪 EE 03 Harjumaa Tallinn_SHanQ
 # 🇪🇸 ES
-185.114.72.148:443#🇪🇸 ES 01 Madrid Chamartín_SHanQ
-212.227.144.37:8443#🇪🇸 ES 02 Madrid Chamartín_SHanQ
-194.164.170.244:2053#🇪🇸 ES 03 Madrid Chamartín_SHanQ
+45.86.229.28:443#🇪🇸 ES 01 Madrid Chamartín_SHanQ
+185.114.72.148:443#🇪🇸 ES 02 Madrid Chamartín_SHanQ
+212.227.144.37:8443#🇪🇸 ES 03 Madrid Chamartín_SHanQ
+194.164.170.244:2053#🇪🇸 ES 04 Madrid Chamartín_SHanQ
+
 # 🇪🇺 EU
 
 
@@ -171,22 +173,22 @@
 
 
 # 🇵🇱 PL
-45.85.210.234:25463#🇵🇱 PL 01 Pruszków_SHanQ
-185.144.245.62:18556#🇵🇱 PL 02 Pruszków_SHanQ
+45.85.210.210:13019#🇵🇱 PL 01 Pruszków_SHanQ
+45.85.210.193:34130#🇵🇱 PL 02 Pruszków_SHanQ
 45.85.210.217:10913#🇵🇱 PL 03 Pruszków_SHanQ
 # 🇷🇸 RS
 217.196.104.83:8443#🇷🇸 RS Beograd_SHanQ
 
 
 # 🇷🇺 RU
-
-
+212.41.15.119:443#🇷🇺 RU 121 Moscow Domodedovo_SHanQ
+185.254.190.70:2053#🇷🇺 RU 122 Moscow Domodedovo_SHanQ
 
 # 🇷🇴 RO
-65.38.120.186:2053#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
-45.136.199.77:443#🇷🇴 RO 02 Ilfov Voluntari_SHanQ
-45.136.199.132:443#🇷🇴 RO 03 Ilfov Voluntari_SHanQ
-146.70.254.232:8443#🇷🇴 RO 06 Ilfov Voluntari_SHanQ
+45.136.199.77:443#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
+45.136.199.132:443#🇷🇴 RO 02 Ilfov Voluntari_SHanQ
+65.38.120.186:2053#🇷🇴 RO 03 Ilfov Voluntari_SHanQ
+146.70.254.232:8443#🇷🇴 RO 04 Ilfov Voluntari_SHanQ
 # 🇸🇦 SA
 38.180.11.201:443#🇸🇦 SA 01 Ar Riyad_SHanQ
 176.97.67.209:443#🇸🇦 SA 02 Ar Riyad_SHanQ
@@ -196,8 +198,8 @@
 194.87.252.135:2053#🇸🇪 SE 02 Steninge_SHanQ
 185.105.90.45:2053#🇸🇪 SE 03 Steninge_SHanQ
 # 🇸🇬 SG
-52.220.58.70:443#🇸🇬 SG 01_SHanQ
-47.236.181.185:8443#🇸🇬 SG 02_SHanQ
+13.250.38.94:443#🇸🇬 SG 01_SHanQ
+52.221.204.184:443#🇸🇬 SG 02_SHanQ
 129.150.62.252:54774#🇸🇬 SG 03_SHanQ
 # 🇹🇭 TH
 
@@ -208,10 +210,11 @@
 78.135.110.152:2053#🇹🇷 TR 02 Kocasinan_SHanQ
 141.11.109.119:12345#🇹🇷 TR 03 Kocasinan_SHanQ
 # 🇨🇳 TW
-118.163.37.32:81#🇨🇳 TW 01_SHanQ
-210.61.97.241:81#🇨🇳 TW 02_SHanQ
-220.135.202.250:81#🇨🇳 TW 03_SHanQ
+210.61.97.241:81#🇨🇳 TW 01_SHanQ
+220.135.202.250:81#🇨🇳 TW 02_SHanQ
+211.75.73.126:26547#🇨🇳 TW 03_SHanQ
 114.34.202.224:10004#🇨🇳 TW 04_SHanQ
+
 # 🇺🇦 UA
 
 
@@ -221,20 +224,23 @@
 
 
 # 🇺🇸 US Illinois-ORD
-3.128.253.42:2053#🇺🇸 US0 81 Illinois Wheaton_SHanQ
-3.143.244.172:8443#🇺🇸 US0 82 Illinois Wheaton_SHanQ
-52.15.97.71:8443#🇺🇸 US0 83 Illinois Wheaton_SHanQ
-34.69.150.180:443#🇺🇸 US0 84 Illinois Wheaton_SHanQ
+3.128.253.42:2053#🇺🇸 US0 081 Illinois Wheaton_SHanQ
+3.143.244.172:8443#🇺🇸 US0 082 Illinois Wheaton_SHanQ
+3.137.172.232:8443#🇺🇸 US0 083 Illinois Wheaton_SHanQ
 # 🇺🇸 US Los Angeles-LAX
 152.70.155.147:443#🇺🇸 US 021 East Los Angeles_SHanQ
 91.149.239.122:443#🇺🇸 US 022 East Los Angeles_SHanQ
 104.19.254.227:443#🇺🇸 US 023 East Los Angeles_SHanQ
-154.21.85.62:22353#🇺🇸 US 024 East Los Angeles_SHanQ
-154.17.21.134:18446#🇺🇸 US 025 East Los Angeles_SHanQ
+38.47.118.166:11001#🇺🇸 US 024 East Los Angeles_SHanQ
+38.148.249.118:32956#🇺🇸 US 025 East Los Angeles_SHanQ
 # 🇺🇸 US Ohio-CMH
-18.216.55.100:443#🇺🇸 US Ohio Reynoldsburg_SHanQ
+18.216.55.100:443#🇺🇸 US 141-18 Ohio Reynoldsburg_SHanQ
+3.129.183.128:443#🇺🇸 US 142-18 Ohio Reynoldsburg_SHanQ
 
-
+# 🇺🇸 US Oregon
+35.83.185.225:443#🇺🇸 US 141-16 Oregon Portland_SHanQ
+35.86.90.184:8080#🇺🇸 US 142-16Oregon Portland_SHanQ
+54.187.212.113::8443#🇺🇸 US 143-16 Oregon Portland_SHanQ
 # 🇺🇸 US San Jose-SJC
 104.16.126.23:443#🇺🇸 US 191 San Jose_SHanQ
 104.16.112.237:443#🇺🇸 US 192 San Jose_SHanQ
@@ -250,5 +256,6 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 3.239.16.253:443#🇺🇸 US 222 Virginia Reston_SHanQ
 54.166.213.213:8443#🇺🇸 US 223 Virginia Reston_SHanQ
 # 🇺🇸 US Washington-PDX
-44.228.63.60:80#🇺🇸 US 231 Washington Kent_SHanQ
-54.190.156.147:8443#🇺🇸 US 232 Washington Kent_SHanQ
+52.24.15.209:443#🇺🇸 US 231 Washington Kent_SHanQ
+52.40.102.162:443#🇺🇸 US 232 Washington Kent_SHanQ
+35.81.207.167:443#🇺🇸 US 233 Washington Kent_SHanQ
