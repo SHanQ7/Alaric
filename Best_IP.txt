@@ -249,8 +249,8 @@
 
 # 🇺🇸 US Oregon
 35.83.185.225:443#🇺🇸 US 141-16 Oregon Portland_SHanQ
-35.86.90.184:8080#🇺🇸 US 142-16Oregon Portland_SHanQ
-54.187.212.113::8443#🇺🇸 US 143-16 Oregon Portland_SHanQ
+35.86.90.184:8080#🇺🇸 US 142-16 Oregon Portland_SHanQ
+54.187.212.113:8443#🇺🇸 US 143-16 Oregon Portland_SHanQ
 # 🇺🇸 US San Jose-SJC
 104.16.126.23:443#🇺🇸 US 191 San Jose_SHanQ
 104.16.112.237:443#🇺🇸 US 192 San Jose_SHanQ
