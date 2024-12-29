@@ -39,12 +39,11 @@
 92.118.149.45:443#🇨🇿 CZ 02 Kladno_SHanQ
 176.74.219.73:8443#🇨🇿 CZ 03 Kladno_SHanQ
 # 🇩🇪 DE-FRA
-51.116.121.75:443#🇩🇪 DE 031 Dreieich_SHanQ
-188.166.162.201:443#🇩🇪 DE 032 Dreieich_SHanQ
-49.13.215.89:8443#🇩🇪 DE 033 Dreieich_SHanQ
-18.198.227.161:443#🇩🇪 DE 034 Dreieich_SHanQ
+45.147.51.230:443#🇩🇪 DE 031 Dreieich_SHanQ
+51.116.121.75:443#🇩🇪 DE 032 Dreieich_SHanQ
+3.64.216.209:2083#🇩🇪 DE 033 Dreieich_SHanQ
+49.13.215.89:8443#🇩🇪 DE 034 Dreieich_SHanQ
 91.107.128.128:8443#🇩🇪 DE 035 Dreieich_SHanQ
-45.147.51.230:443#🇩🇪 DE 036 Dreieich_SHanQ
 # 🇩🇰 DK
 217.110.20.141:443#🇩🇰 DK 01 Copenhagen_SHanQ
 46.29.235.36:2053#🇩🇰 DK 02 Copenhagen_SHanQ
@@ -143,7 +142,7 @@
 54.199.53.241:443#🇯🇵 JP 132 Narita_SHanQ
 43.206.221.71:443#🇯🇵 JP 133 Narita_SHanQ
 54.238.88.202:443#🇯🇵 JP 134 Narita_SHanQ
-13.230.138.145:443#🇯🇵 JP 135 Narita_SHanQ
+54.199.222.232:443#🇯🇵 JP 135 Narita_SHanQ
 # 🇯🇵 JP Osaka
 141.147.147.180:443#🇯🇵 JP 141 Osaka_SHanQ
 180.17.144.27:10333#🇯🇵 JP 142 Osaka_SHanQ
