@@ -142,6 +142,7 @@ function Area_check(para) {
     "中华民国": "台湾",
 };
   para = para ? para.toLowerCase().trim() : para;
+  para = para.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
   return areaMap[para] || para || region0;
 };
 
@@ -217,7 +218,7 @@ function City_ValidCheck(para) {
     "彰化": "彰化市",
     "中壢": "中坜区",
 };
-  para = para.replace(/\s+/g, ''); // 去除所有空格
+  para = para.replace(/\s+/g, ''); 
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return cityMap[para] || para || city0;
 };
