@@ -45,12 +45,13 @@ let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
 
 let ip = obj['query'];
-let description = '国家：' + obj['countryCode'] + ' ' + country + '\n'
-  + '地区：' + obj['region'] + ' ' + region + '\n'
-  + 'IP：' + obj['query'] + '\n'
-  + '服务商：' + obj['isp'] + '\n'
-  + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
-  + '时区：' + obj['timezone'];
+let description = 
+  '国家：'.padEnd(10) + obj['countryCode'] + ' ' + country + '\n' +
+  '地区：'.padEnd(10) + obj['region'] + ' ' + region + '\n' +
+  'IP：'.padEnd(10) + obj['query'] + '\n' +
+  '服务商：'.padEnd(10) + obj['isp'] + '\n' +
+  '经纬度：'.padEnd(10) + obj['lat'] + ' / ' + obj['lon'] + '\n' +
+  '时区：'.padEnd(10) + obj['timezone'];
 
 $done({title, subtitle, ip, description});
 
