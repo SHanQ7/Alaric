@@ -70,6 +70,10 @@
 129.151.225.228:8443#🇫🇷 FR 081 Istres_SHanQ
 129.151.225.228:2053#🇫🇷 FR 082 Istres_SHanQ
 
+# 🇫🇷 FR Lyon
+193.123.81.105：443#🇫🇷 FR 111 Lyon_SHanQ
+
+
 # 🇫🇷 FR-MRS
 51.44.146.223:2053#🇫🇷 FR 151 Paris_SHanQ
 158.178.192.221:443#🇫🇷 FR 152 Paris_SHanQ
@@ -106,7 +110,7 @@
 # 🇮🇱 IL
 129.159.129.107:8443#🇮🇱 IL 01 Central Petaẖ Tiqva_SHanQ
 129.159.143.171:2053#🇮🇱 IL 02 Central Petaẖ Tiqva_SHanQ
-
+129.159.143.171:8443#🇮🇱 IL 03 Central Petaẖ Tiqva_SHanQ
 # 🇮🇳 IN Karnataka Badaganhatti
 165.232.182.81:443#🇮🇳 IN 101 Badaganhatti_SHanQ
 
