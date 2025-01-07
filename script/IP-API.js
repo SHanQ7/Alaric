@@ -46,12 +46,12 @@ let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP
 
 let ip = obj['query'];
 let description = 
-  '国家：'.padEnd(5) + obj['countryCode'] + ' ' + country + '\n' +
-  '地区：'.padEnd(5) + obj['region'] + ' ' + region + '\n' +
-  'IP：'.padEnd(5) + obj['query'] + '\n' +
-  '服务商：'.padEnd(5) + obj['isp'] + '\n' +
-  '经纬度：'.padEnd(5) + obj['lat'] + ' / ' + obj['lon'] + '\n' +
-  '时区：'.padEnd(5) + obj['timezone'];
+  '国家：'.padEnd(3) + obj['countryCode'] + ' ' + country + '\n' +
+  '地区：'.padEnd(3) + obj['region'] + ' ' + region + '\n' +
+  'IP：'.padEnd(3) + obj['query'] + '\n' +
+  '服务商：'.padEnd(3) + obj['isp'] + '\n' +
+  '经纬度：'.padEnd(3) + obj['lat'] + ' / ' + obj['lon'] + '\n' +
+  '时区：'.padEnd(3) + obj['timezone'];
 
 $done({title, subtitle, ip, description});
 
