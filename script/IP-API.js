@@ -46,13 +46,13 @@ let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP
 
 let ip = obj['query'];
 let description = 
-  '国家：' + obj['countryCode'] + ' ' + country + '\n' +
-  '地区：' + obj['region'] + ' ' + region + '\n' +
-  '城市：' + obj['city'] +  '\n' +
-  'IP：' + obj['query'] + '\n' +
-  '服务商：' + obj['isp'] + '\n' +
-  '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n' +
-  '时区：' + obj['timezone'];
+  '国家：'.padStart(8, ' ') + obj['countryCode'] + ' ' + country + '\n' +
+  '地区：'.padStart(8, ' ') + obj['region'] + ' ' + region + '\n' +
+  '城市：'.padStart(8, ' ') + obj['city'] + '\n' +
+  'IP：'.padStart(8, ' ') + obj['query'] + '\n' +
+  '服务商：'.padStart(8, ' ') + obj['isp'] + '\n' +
+  '经纬度：'.padStart(8, ' ') + obj['lat'] + ' / ' + obj['lon'] + '\n' +
+  '时区：'.padStart(8, ' ') + obj['timezone'];
 
 $done({title, subtitle, ip, description});
 
@@ -132,7 +132,7 @@ function Area_check(para) {
     // 立陶宛 - Lithuania - LT
     "維爾紐斯縣" : "维尔纽斯县",
     // 拉脱维亚 - Latvia - LV
-    "Riga" : "里加",
+    "Rīga" : "里加",
     // 挪威 - Norway - NO
     // 墨西哥 - The United Mexican States - MX
     "克雷塔羅州" : "克雷塔罗州",
@@ -162,55 +162,57 @@ function Area_check(para) {
 function City_ValidCheck(para) {
   const cityMap = {
     // 亚美尼亚-叶里温
-    "YEREVAN" : "叶里温",
+    "Yerevan" : "叶里温",
     // 巴西-圣保罗州
     "São Paulo" : "圣保罗",
-    "VINHEDO" : "温赫杜",
+    "Vinhedo" : "温赫杜",
     // 智利-圣地亚哥大区
-    "LAMPA" : "拉帕",
+    "Lampa" : "拉帕",
     // 哥伦比亚-昆迪纳马尔卡省
-    "COTA" : "科塔",
+    "Cota" : "科塔",
     // 德国-黑森州
-    "FRANKFURT" : "法兰克福",
+    "Frankfurt am Main" : "法兰克福",
     // 德国-石勒苏益格-荷尔斯泰因
     "諾德施泰特" : "诺德施泰特",
     // 西班牙-马德里自治区
     "查馬丁區" : "查马丁区",
     // 法国-蔚蓝海岸大区
+    "奧奈叢林": "奥奈丛林",
+    // 法国-蔚蓝海岸大区
     "伊斯特爾" : "伊斯特尔",
     // 英国-英格兰
-    "HARLESDEN" : "伦敦",
+    "Harlesden" : "伦敦",
     // 匈牙利-佩斯州
-    "SZIGETSZENTMIKLOS" : "锡盖特圣米克洛什",
+    "Szigetszentmiklós" : "锡盖特圣米克洛什",
     // 以色列-中央区
      "RUSH HA‘AYIN" : "罗什艾因",
     // 印度-恰蒂斯加尔邦
     "BILASPUR" : "比拉斯布尔",
     // 印度-卡纳塔克邦
-    "BADAFANHATTI" : "巴达甘哈提",
+    "Badaganhatti" : "巴达甘哈提",
     // 印度-马哈拉施特拉邦
-    "SANTA CRUZ" : "孟买·圣克鲁兹",
+    "Santa Cruz" : "孟买·圣克鲁兹",
     "新孟買": "新孟买",
     // 印度-泰米尔纳德邦
-    "TIREVANMIYUR" : "钦奈市",
+    "Tiruvānmiyūr" : "钦奈市",
     // 意大利-伦巴第大区
-    "GALLARATE" : "加拉拉泰",
-    "PONTE SAN PIETRO" : "圣彼得桥",
+    "Gallarate" : "加拉拉泰",
+    "Ponte San Pietro" : "圣彼得桥",
     // 日本-东京都
     "東京都": "东京都",
-    "CHIYODA": "千代田区",
-    "SHIBUYA": "涩谷区",
+    "Chiyoda": "千代田区",
+    "Shibuya": "涩谷区",
     // 日本-埼玉县
-    "NEGISHI": "根岸",
+    "Negishi": "根岸",
     // 日本-大阪府
-    "OSAKA" : "大阪市",
-    "OKUBO-NAKA" : "大久保中",
+    "Osaka" : "大阪市",
+    "Ōkubo-naka" : "大久保中",
     // 日本-福冈县
     "福岡市" : "福冈市",
     // 韩国-忠清北道
-    "YEONGDONG-GUN" : "永同郡",
+    "Yeongdong-gun" : "永同郡",
     // 拉脱维亚-里加
-    "RIGA" : "里加",
+    "Riga" : "里加",
     // 墨西哥-克雷塔罗州
     "QUERETARO" : "克雷塔罗",
     // 波兰-摩拉维亚
@@ -218,32 +220,34 @@ function City_ValidCheck(para) {
     // 瑞典-斯德哥尔摩
     "STENINGE" : "斯特宁厄",
     // 挪威-阿克什胡斯郡
-    "JESSHEIM" : "杰斯海姆",
+    "Jessheim" : "杰斯海姆",
     // 塞尔维亚-贝尔格莱德
-    "RUCKA" : "鲁卡镇",
+    "Rucka" : "鲁卡镇",
     // 俄罗斯-莫斯科州
     "多莫傑多沃" : "多莫杰多沃",
     // 罗马尼亚-伊尔福夫县
-    "VOLUNTARI" : "沃伦塔里",
+    "Voluntari" : "沃伦塔里",
     // 沙特阿拉伯-利雅得省
-    "SHA`IB AL MALQAH" : "沙伊布·阿尔·马尔卡",
+    "Sha`ib al Malqah" : "沙伊布·阿尔·马尔卡",
+    // 瑞典-斯德哥尔摩
+    "Steninge" : "斯特宁厄",
     // 土耳其-伊斯坦布尔
-    "KOCASINAN" : "科卡西楠",
+    "Kocasinan" : "科卡西楠",
     // 台湾-桃园市
     "中壢" : "中坜区",
     // 美国-加利福尼亚州
-    "SAN JOSE" : "圣荷西",
+    "San Jose" : "圣荷西",
     "聖荷西" : "圣荷西",
     // 美国-弗吉尼亚州
-    "ASHBURN" : "阿什本",
-    "RESTON": "里斯顿",
+    "Ashburn" : "阿什本",
+    "Reston": "里斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国-德克萨斯州
     "達拉斯" : "达拉斯",
     // 美国-俄勒冈州
     "波特蘭": "波特兰",
     // 美国-俄亥俄州
-    "DUBLIN": "都柏林",
+    "Dublin": "都柏林",
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para;
