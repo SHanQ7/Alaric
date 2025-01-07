@@ -59,105 +59,95 @@ $done({title, subtitle, ip, description});
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾","俄罗斯联邦":"俄罗斯",
-     };
+};
  para = para ? para.trim() : "";
  return countryMap[para] || para || country0;
 };
 
 function Area_check(para) {
   const areaMap = {
-    // 亚美尼亚（Armenia） - AM
-    "葉里溫": "叶里温",
-
-    // 阿根廷（Argentina） - AR
-    "圣地亚哥首都大区": "圣地亚哥大区",
-
-    // 澳大利亚（Australia） - AU
-    "new south wales": "新南威尔士州", "victoria": "维多利亚州",
-
-    // 阿塞拜疆（Azerbaijan） - AZ
+    "ampang": "安邦",
+    "ang thong": "红统府", 
+    "attica": "阿提卡",
     "baku city": "巴库市",
-
-    // 巴西（Brazil） - BR
-    "Sao Paulo": "圣保罗", "聖保羅州": "圣保罗州",
-
-    // 保加利亚（Bulgaria） - BG
-    "sofia-capital": "索菲亚市",
-
-    // 加拿大（Canada） - CA
-    "quebec": "魁北克市",
-
-    // 哥伦比亚（Colombia） - CO
-    "bogota d.c.": "波哥大首都",
-
-    // 瑞士（Switzerland） - CH
-    "lombardy": "伦巴第大区",
-    
-    // 中国（China） - CN
-    "changhua": "彰化县", "taichung city": "台中市", "taoyuan": "桃园市", "臺灣省 or 台灣省": "中部地区", "臺北市": "台北市", "中西區": "中西区",
-
-    // 法国（France） - FR
-    "tassin-la-demi-lune": "塔桑拉德米吕讷", "Île-de-france": "法兰西岛", "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区", "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
-
-    // 英国（United Kingdom） - GB
-    "wales": "威尔士",
-
-    // 冰岛
-    "southern peninsula": "南部半岛",
-
-    // 立陶宛（Lithuania） - LT
-    "維爾紐斯縣": "维尔纽斯县",
-
-    // 拉脱维亚（Latvia） - LV
-    "rīga": "里加", "rucka": "鲁卡镇",
-
-    // 马来西亚（Malaysia） - MY
-    "ampang": "安邦", "kuala lumpur": "吉隆坡", "雪兰莪": "雪兰莪州",
-
-    // 摩洛哥（Morocco） - MA
-    "marrakesh-safi": "马拉喀什大区",
-
-    // 尼泊尔（Nepal） - NP
     "bagmati province": "巴格马蒂省",
-
-    // 荷兰（Netherlands） - NL
+    "belgrade": "贝尔格莱德",
+    "bogota d.c.": "波哥大首都",
+    "bucurești": "布加勒斯特",
+    "capital region": "首都大区",
+    "catalonia": "加泰罗尼亚",
+    "central singapore": "中区",
+    "central serbia": "中部地区",
+    "changhua": "彰化县",
+    "chișinău municipality": "基希讷乌",
+    "dubai": "迪拜",
+    "gangwon-do": "江原道",
+    "hesse": "黑森州",
+    "hawalli": "哈瓦利省",
+    "hanoi": "河内",
+    "Île-de-france": "法兰西岛",
+    "imārat umm al qaywayn": "乌姆盖万",
+    "kocasinan": "科卡西楠市",
+    "kowloon": "九龙城区",
+    "kuala lumpur": "吉隆坡",
+    "kyiv city":"基辅市",
+    "lombardy": "伦巴第大区",
     "luxembourg": "卢森堡市",
-
-    // 俄罗斯（Russia） - RU
-    "moscow": "莫斯科", "st.-petersburg": "圣彼得堡",
-
-    // 塞尔维亚（Serbia） - RS
-    "belgrade": "贝尔格莱德", "central serbia": "中部地区",
-
-    // 新加坡（Singapore） - SG
-    "central singapore": "中区", "south west": "西南区", "south east": "东南区",
-
-    // 泰国（Thailand） - TH
-    "ang thong": "红统府",  "nonthaburi": "暖武里省",
-
-    // 台湾（Taiwan） - TW
-    "聖保羅州": "圣保罗州",
-
-    // 香港（Hong Kong） - HK
-    "tsuen wan district": "荃湾区",
-
-    // 土耳其（Turkey） - TR
-    "imārat umm al qaywayn": "乌姆盖万", "kocasinan": "科卡西楠市",
-
-    // 乌克兰（Ukraine） - UA
-    "kyiv city": "基辅市",
-
-    // 美国（United States） - US
-    "加州": "加利福尼亚州", "堪薩斯州": "堪萨斯州", "new south wales": "新南威尔士州",
-
-    // 乌兹别克斯坦（Uzbekistan） - UZ
+    "marrakesh-safi": "马拉喀什大区",
+    "mazovia": "摩拉维亚",
+    "moscow": "莫斯科",
+    "mecca region": "麦加地区",
+    "new south wales": "新南威尔士州",
+    "north chungcheong": "忠清北道",
+    "north west":"西北区",
+    "nonthaburi":"暖武里省",
+    "oslo county": "奥斯陆市",
+    "oska": "大阪市",
+    "provincia de san josé": "圣何塞省",
+    "quebec":"魁北克市",
+    "rīga":"里加",
+    "rucka":"鲁卡镇",
+    "sofia-capital": "索菲亚市",
+    "south west": "西南区",
+    "south east": "东南区",
+    "southern peninsula": "南部半岛",
+    "stockholm county": "斯德哥尔摩",
+    "st.-petersburg": "圣彼得堡",
+    "Sao Paulo": "圣保罗"，
+    "taichung city": "台中市",
+    "taoyuan": "桃园市", 
     "tashkent": "塔什干",
-  };
-
+    "tassin-la-demi-lune": "塔桑拉德米吕讷",
+    "tsuen wan district": "荃湾区",
+    "tokyo": "东京都",
+    "victoria": "维多利亚州",
+    "wales": "威尔士",
+    "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
+    "福岡縣": "福冈县",
+    "哈爾尤縣": "哈留县",
+    "加州": "加利福尼亚州",
+    "堪薩斯州": "堪萨斯州",
+    "克雷塔羅州": "克雷塔罗州",
+    "倫斯特省": "伦斯特省",
+    "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
+    "千葉縣": "千叶县",
+    "埼玉縣": "埼玉县",
+    "聖保羅州": "圣保罗州",
+    "圣地亚哥首都大区": "圣地亚哥大区",
+    "神奈川縣": "神奈川县",
+    "臺灣省 or 台灣省": "中部地区",
+    "臺北市": "台北市",
+    "雪兰莪": "雪兰莪州",
+    "維爾紐斯縣": "维尔纽斯县",
+    "伊爾福夫縣": "伊尔福夫县",
+    "葉里溫": "叶里温",
+    "中西區": "中西区",
+    "中华民国": "台湾",
+};
   para = para ? para.toLowerCase().trim() : para;
   para = para.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-  return areaMap[para] || para || "region0";
-};
+  return areaMap[para] || para || region0;
+}; 
 
 function City_ValidCheck(para) {
   const cityMap = {
