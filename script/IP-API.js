@@ -46,12 +46,13 @@ let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP
 
 let ip = obj['query'];
 let description = 
-  '国家：'.padEnd(5, ' ') + obj['countryCode'] + ' ' + country + '\n' +
-  '地区：'.padEnd(5, ' ') + obj['region'] + ' ' + region + '\n' +
-  'IP：'.padEnd(5, ' ') + obj['query'] + '\n' +
-  '服务商：'.padEnd(5, ' ') + obj['isp'] + '\n' +
-  '经纬度：'.padEnd(5, ' ') + obj['lat'] + ' / ' + obj['lon'] + '\n' +
-  '时区：'.padEnd(5, ' ') + obj['timezone'];
+  '国家：'.padEnd(10, ' ') + obj['countryCode'] + ' ' + country + '\n' +
+  '地区：'.padEnd(10, ' ') + obj['region'] + ' ' + region + '\n' +
+  '城市：'.padEnd(10, ' ') + obj['city'] + ' ' + city + '\n' +
+  'IP：'.padEnd(10, ' ') + obj['query'] + '\n' +
+  '服务商：'.padEnd(10, ' ') + obj['isp'] + '\n' +
+  '经纬度：'.padEnd(10, ' ') + obj['lat'] + ' / ' + obj['lon'] + '\n' +
+  '时区：'.padEnd(10, ' ') + obj['timezone'];
 
 $done({title, subtitle, ip, description});
 
@@ -71,6 +72,7 @@ function Area_check(para) {
     "dubai" : "迪拜",
     // 亚美尼亚 - Armenia -  AM
     "葉里溫" : "叶里温",
+    "叶里温" : "耶列万省",
     // 澳大利亚 - Australia - AU
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
@@ -96,8 +98,13 @@ function Area_check(para) {
     "中华民国" : "台湾",
     // 德国 - Germany - DE
     "Hesse": "黑森州",
+    "石勒苏益格-荷尔斯泰因" : "石荷州",
+    // 丹麦 - The Kingdom of Denmark - DK
+    "Capital Region" : "哥本哈根大区",
+    // 爱沙尼亚 - Republic of Estonia - EE
+    "哈爾尤縣" : "哈尔尤县",
     // 法国 - France - FR
-    "Île-de-france" : "法兰西岛",
+    "Île-de-France" : "法兰西岛",
     "奧弗涅-羅訥-阿爾卑斯大區" : "阿尔卑斯大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "蔚蓝海岸大区",
     // 英国 - United Kingdom - GB
@@ -106,6 +113,8 @@ function Area_check(para) {
     "Attica" : "阿提卡",
     // 香港 - Hong Kong - HK
     "Kowloon" : "九龙区",
+    // 爱尔兰 - Ireland - IE
+    "倫斯特省" : "伦斯特省",
     // 冰岛 - Island - IS
     "Southern Peninsula" : "雷克雅未克半岛",
     // 意大利 - Italy - IT
@@ -125,6 +134,8 @@ function Area_check(para) {
     // 拉脱维亚 - Latvia - LV
     "Riga" : "里加",
     // 挪威 - Norway - NO
+    // 墨西哥 - The United Mexican States - MX
+    "克雷塔羅州" : "克雷塔罗州",
     // 波兰 - Porland - PL
     "Mazovia" : "摩拉维亚",
     // 塞尔维亚 - Serbia - RS 
@@ -136,10 +147,13 @@ function Area_check(para) {
     // 沙特阿拉伯 - Saudi Arabia - SA
     "Mecca Region" : "麦加地区",
     // 瑞典 - Sweden - SE
+    "Stockholm" : "斯德哥尔摩",
     "Stockholm County" : "斯德哥尔摩",
     // 新加坡 - Singapore - SG
     "Central Singapore" : "中环区",
     "North West" : "西北区",
+    // 美国 - The United States of America - US
+    "加州" : "加利福尼亚州",
  };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return areaMap[para] || para || region0;
@@ -147,7 +161,89 @@ function Area_check(para) {
 
 function City_ValidCheck(para) {
   const cityMap = {
-    "abadou": "豪兹省",
+    // 亚美尼亚-叶里温
+    "YEREVAN" : "叶里温",
+    // 巴西-圣保罗州
+    "SAO PAULO" : "圣保罗",
+    "VINHEDO" : "温赫杜",
+    // 智利-圣地亚哥大区
+    "LAMPA" : "拉帕",
+    // 哥伦比亚-昆迪纳马尔卡省
+    "COTA" : "科塔",
+    // 德国-黑森州
+    "FRANKFURT" : "法兰克福",
+    // 德国-石勒苏益格-荷尔斯泰因
+    "諾德施泰特" : "诺德施泰特",
+    // 西班牙-马德里自治区
+    "查馬丁區" : "查马丁区",
+    // 法国-蔚蓝海岸大区
+    "伊斯特爾" : "伊斯特尔",
+    // 英国-英格兰
+    "HARLESDEN" : "伦敦",
+    // 匈牙利-佩斯州
+    "SZIGETSZENTMIKLOS" : "锡盖特圣米克洛什",
+    // 以色列-中央区
+     "RUSH HA‘AYIN" : "罗什艾因",
+    // 印度-恰蒂斯加尔邦
+    "BILASPUR" : "比拉斯布尔",
+    // 印度-卡纳塔克邦
+    "BADAFANHATTI" : "巴达甘哈提",
+    // 印度-马哈拉施特拉邦
+    "SANTA CRUZ" : "孟买·圣克鲁兹",
+    "新孟買": "新孟买",
+    // 印度-泰米尔纳德邦
+    "TIREVANMIYUR" : "钦奈市",
+    // 意大利-伦巴第大区
+    "GALLARATE" : "加拉拉泰",
+    "PONTE SAN PIETRO" : "圣彼得桥",
+    // 日本-东京都
+    "東京都": "东京都",
+    "CHIYODA": "千代田区",
+    "SHIBUYA": "涩谷区",
+    // 日本-埼玉县
+    "NEGISHI": "根岸",
+    // 日本-大阪府
+    "OSAKA" : "大阪市",
+    "OKUBO-NAKA" : "大久保中",
+    // 日本-福冈县
+    "福岡市" : "福冈市",
+    // 韩国-忠清北道
+    "YEONGDONG-GUN" : "永同郡",
+    // 拉脱维亚-里加
+    "RIGA" : "里加",
+    // 墨西哥-克雷塔罗州
+    "QUERETARO" : "克雷塔罗",
+    // 波兰-摩拉维亚
+    "普魯斯科夫" : "普鲁斯科夫",
+    // 瑞典-斯德哥尔摩
+    "STENINGE" : "斯特宁厄",
+    // 挪威-阿克什胡斯郡
+    "JESSHEIM" : "杰斯海姆",
+    // 塞尔维亚-贝尔格莱德
+    "RUCKA" : "鲁卡镇",
+    // 俄罗斯-莫斯科州
+    "多莫傑多沃" : "多莫杰多沃",
+    // 罗马尼亚-伊尔福夫县
+    "VOLUNTARI" : "沃伦塔里",
+    // 沙特阿拉伯-利雅得省
+    "SHA`IB AL MALQAH" : "沙伊布·阿尔·马尔卡",
+    // 土耳其-伊斯坦布尔
+    "KOCASINAN" : "科卡西楠",
+    // 台湾-桃园市
+    "中壢" : "中坜区",
+    // 美国-加利福尼亚州
+    "SAN JOSE" : "圣荷西",
+    "聖荷西" : "圣荷西",
+    // 美国-弗吉尼亚州
+    "ASHBURN" : "阿什本",
+    "RESTON": "里斯顿",
+    "馬納薩斯" : "马纳萨斯",
+    // 美国-德克萨斯州
+    "達拉斯" : "达拉斯",
+    // 美国-俄勒冈州
+    "波特蘭": "波特兰",
+    // 美国-俄亥俄州
+    "DUBLIN": "都柏林",
    };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return cityMap[para] || para || city0;
