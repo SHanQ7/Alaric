@@ -73,8 +73,7 @@ function Area_check(para) {
     "圣地亚哥首都大区": "圣地亚哥大区",
 
     // 澳大利亚（Australia） - AU
-    "victoria": "维多利亚州",
-    "new south wales": "新南威尔士州",
+    "new south wales": "新南威尔士州", "victoria": "维多利亚州",
 
     // 阿塞拜疆（Azerbaijan） - AZ
     "baku city": "巴库市",
@@ -96,7 +95,7 @@ function Area_check(para) {
     
     // 中国（China） - CN
     "changhua": "彰化县", "taichung city": "台中市", "taoyuan": "桃园市", "臺灣省 or 台灣省": "中部地区", "臺北市": "台北市", "中西區": "中西区",
-    
+
     // 法国（France） - FR
     "tassin-la-demi-lune": "塔桑拉德米吕讷", "Île-de-france": "法兰西岛", "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区", "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
 
