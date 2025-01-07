@@ -59,7 +59,7 @@ $done({title, subtitle, ip, description});
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾","俄罗斯联邦":"俄罗斯",
-};
+     };
  para = para ? para.trim() : "";
  return countryMap[para] || para || country0;
 };
@@ -102,7 +102,6 @@ function Area_check(para) {
     "north west":"西北区",
     "nonthaburi":"暖武里省",
     "oslo county": "奥斯陆市",
-    "oska": "大阪市",
     "provincia de san josé": "圣何塞省",
     "quebec":"魁北克市",
     "rīga":"里加",
@@ -113,7 +112,6 @@ function Area_check(para) {
     "southern peninsula": "南部半岛",
     "stockholm county": "斯德哥尔摩",
     "st.-petersburg": "圣彼得堡",
-    "Sao Paulo": "圣保罗"，
     "taichung city": "台中市",
     "taoyuan": "桃园市", 
     "tashkent": "塔什干",
@@ -121,7 +119,6 @@ function Area_check(para) {
     "tsuen wan district": "荃湾区",
     "tokyo": "东京都",
     "victoria": "维多利亚州",
-    "wales": "威尔士",
     "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
     "福岡縣": "福冈县",
     "哈爾尤縣": "哈留县",
@@ -147,7 +144,7 @@ function Area_check(para) {
   para = para ? para.toLowerCase().trim() : para;
   para = para.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
   return areaMap[para] || para || region0;
-}; 
+};
 
 function City_ValidCheck(para) {
   const cityMap = {
@@ -197,7 +194,6 @@ function City_ValidCheck(para) {
     "sheungwan":"上环",
     "shinagawa": "品川区",
     "southfulton": "南富尔顿",
-    "Sao Paulo": "圣保罗"，
     "tashkent": "塔什干",
     "tassin-la-demi-lune": "塔桑拉德米吕讷市",
     "tsuenwan": "荃湾",
@@ -205,7 +201,6 @@ function City_ValidCheck(para) {
     "thanhxuan": "清宣区",
     "Tiruvānmiyūr": "泰尔万米尤尔",
     "umraniye": "乌姆兰尼耶",
-    "vinhedo": "维涅多",
     "yerevan": "叶里温",
     "yeongdong-gun": "永同郡",
     "奧奈叢林": "奥奈丛林",
@@ -223,7 +218,6 @@ function City_ValidCheck(para) {
     "彰化": "彰化市",
     "中壢": "中坜区",
 };
-
   para = para.replace(/\s+/g, ''); 
   para = para ? para.toLowerCase().trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return cityMap[para] || para || city0;
