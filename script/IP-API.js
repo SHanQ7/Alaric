@@ -46,13 +46,13 @@ let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP
 
 let ip = obj['query'];
 let description = 
-  '国家：'.padEnd(20, ' ') + obj['countryCode'] + ' ' + country + '\n' +
-  '地区：'.padEnd(20, ' ') + obj['region'] + ' ' + region + '\n' +
-  '城市：'.padEnd(20, ' ') + obj['city'] + ' ' + city + '\n' +
-  'IP：'.padEnd(20, ' ') + obj['query'] + '\n' +
-  '服务商：'.padEnd(20, ' ') + obj['isp'] + '\n' +
-  '经纬度：'.padEnd(20, ' ') + obj['lat'] + ' / ' + obj['lon'] + '\n' +
-  '时区：'.padEnd(20, ' ') + obj['timezone'];
+  '国家：' + obj['countryCode'] + ' ' + country + '\n' +
+  '地区：' + obj['region'] + ' ' + region + '\n' +
+  '城市：' + obj['city'] +  '\n' +
+  'IP：' + obj['query'] + '\n' +
+  '服务商：' + obj['isp'] + '\n' +
+  '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n' +
+  '时区：' + obj['timezone'];
 
 $done({title, subtitle, ip, description});
 
@@ -164,7 +164,7 @@ function City_ValidCheck(para) {
     // 亚美尼亚-叶里温
     "YEREVAN" : "叶里温",
     // 巴西-圣保罗州
-    "SAO PAULO" : "圣保罗",
+    "São Paulo" : "圣保罗",
     "VINHEDO" : "温赫杜",
     // 智利-圣地亚哥大区
     "LAMPA" : "拉帕",
