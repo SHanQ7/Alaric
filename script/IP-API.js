@@ -67,6 +67,8 @@ function country_ValidCheck(para) {
 
 function Area_check(para) {
   const areaMap = {
+    // 亚美尼亚 - Armenia - AM //
+    "葉里溫": "叶里温",
     "ampang": "安邦",
     "ang thong": "红统府", 
     "attica": "阿提卡",
