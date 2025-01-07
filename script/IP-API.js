@@ -46,12 +46,12 @@ let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP
 
 let ip = obj['query'];
 let description = 
-  '国家：'.padEnd(5) + obj['countryCode'] + ' ' + country + '\n' +
-  '地区：'.padEnd(5) + obj['region'] + ' ' + region + '\n' +
-  'IP：'.padEnd(5) + obj['query'] + '\n' +
-  '服务商：'.padEnd(5) + obj['isp'] + '\n' +
-  '经纬度：'.padEnd(5) + obj['lat'] + ' / ' + obj['lon'] + '\n' +
-  '时区：'.padEnd(5) + obj['timezone'];
+  '国家：'.padEnd(5, ' ') + obj['countryCode'] + ' ' + country + '\n' +
+  '地区：'.padEnd(5, ' ') + obj['region'] + ' ' + region + '\n' +
+  'IP：'.padEnd(5, ' ') + obj['query'] + '\n' +
+  '服务商：'.padEnd(5, ' ') + obj['isp'] + '\n' +
+  '经纬度：'.padEnd(5, ' ') + obj['lat'] + ' / ' + obj['lon'] + '\n' +
+  '时区：'.padEnd(5, ' ') + obj['timezone'];
 
 $done({title, subtitle, ip, description});
 
@@ -67,84 +67,79 @@ function country_ValidCheck(para) {
 
 function Area_check(para) {
   const areaMap = {
+    // 迪拜 - Dubai - AE
+    "dubai" : "迪拜",
     // 亚美尼亚 - Armenia -  AM
-    "葉里溫": "叶里温",
-    // 阿根廷 - Argentina -  AR
-    "圣地亚哥首都大区": "圣地亚哥大区",
-    "ampang": "安邦",
-    "ang thong": "红统府", 
-    "attica": "阿提卡",
-    "baku city": "巴库市",
-    "bagmati province": "巴格马蒂省",
-    "belgrade": "贝尔格莱德",
-    "bogota d.c.": "波哥大首都",
-    "bucurești": "布加勒斯特",
-    "capital region": "首都大区",
-    "catalonia": "加泰罗尼亚",
-    "central singapore": "中区",
-    "central serbia": "中部地区",
-    "changhua": "彰化县",
-    "chișinău municipality": "基希讷乌",
-    "dubai": "迪拜",
-    "gangwon-do": "江原道",
-    "hesse": "黑森州",
-    "hawalli": "哈瓦利省",
-    "hanoi": "河内",
-    "Île-de-france": "法兰西岛",
-    "imārat umm al qaywayn": "乌姆盖万",
-    "kocasinan": "科卡西楠市",
-    "kowloon": "九龙城区",
-    "kuala lumpur": "吉隆坡",
-    "kyiv city":"基辅市",
-    "lombardy": "伦巴第大区",
-    "luxembourg": "卢森堡市",
-    "marrakesh-safi": "马拉喀什大区",
-    "mazovia": "摩拉维亚",
-    "moscow": "莫斯科",
-    "mecca region": "麦加地区",
-    "new south wales": "新南威尔士州",
-    "north chungcheong": "忠清北道",
-    "north west":"西北区",
-    "nonthaburi":"暖武里省",
-    "oslo county": "奥斯陆市",
-    "provincia de san josé": "圣何塞省",
-    "quebec":"魁北克市",
-    "rīga":"里加",
-    "rucka":"鲁卡镇",
-    "sofia-capital": "索菲亚市",
-    "south west": "西南区",
-    "south east": "东南区",
-    "southern peninsula": "南部半岛",
-    "stockholm county": "斯德哥尔摩",
-    "st.-petersburg": "圣彼得堡",
-    "taichung city": "台中市",
-    "taoyuan": "桃园市", 
-    "tashkent": "塔什干",
-    "tassin-la-demi-lune": "塔桑拉德米吕讷",
-    "tsuen wan district": "荃湾区",
-    "tokyo": "东京都",
-    "victoria": "维多利亚州",
-    "奧弗涅-羅訥-阿爾卑斯大區": "阿尔卑斯大区",
-    "福岡縣": "福冈县",
-    "哈爾尤縣": "哈留县",
-    "加州": "加利福尼亚州",
-    "堪薩斯州": "堪萨斯州",
-    "克雷塔羅州": "克雷塔罗州",
-    "倫斯特省": "伦斯特省",
-    "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "蔚蓝海岸大区",
-    "千葉縣": "千叶县",
-    "埼玉縣": "埼玉县",
-    "聖保羅州": "圣保罗州",
-    "圣地亚哥首都大区": "圣地亚哥大区",
-    "神奈川縣": "神奈川县",
-    "臺灣省 or 台灣省": "中部地区",
-    "臺北市": "台北市",
-    "雪兰莪": "雪兰莪州",
-    "維爾紐斯縣": "维尔纽斯县",
+    "葉里溫" : "叶里温",
+    // 澳大利亚 - Australia - AU
+    "new south wales" : "新南威尔士州",
+    "Victoria" : "维多利亚州",
+    // 阿塞拜疆 - Azerbaijan - AZ
+    "baku city" : "巴库市",
+    // 巴西- Brazil - BR
+    "Sao Paulo" : "圣保罗州", 
+    "聖保羅州" : "圣保罗州",
+    // 保加利亚 - Bulgaria - BG
+    "Sofia-Capital" : "索菲亚市",
+    // 加拿大 - Canad - CA
+    "Quebec" : "魁北克市",
+    // 智利 - Chile -  CL
+    "圣地亚哥首都大区" : "圣地亚哥大区",
+    // 哥伦比亚 - Colombia - CO
+    "昆迪納馬卡省" : "昆迪纳马尔卡省",
+    // 中国 - China - CN
+    "Changhua" : "彰化县",
+    "taichung city" : "台中市",
+    "Taoyuan" : "桃园市",
+    "臺北市" : "台北市",
+    "臺灣省 or 台灣省" : "中部地区",
+    "中华民国" : "台湾",
+    // 德国 - Germany - DE
+    "Hesse": "黑森州",
+    // 法国 - France - FR
+    "Île-de-france" : "法兰西岛",
+    "奧弗涅-羅訥-阿爾卑斯大區" : "阿尔卑斯大区",
+    "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "蔚蓝海岸大区",
+    // 英国 - United Kingdom - GB
+    "Wales" : "威尔士",
+    // 希腊 - Greece - GR
+    "Attica" : "阿提卡",
+    // 香港 - Hong Kong - HK
+    "Kowloon" : "九龙区",
+    // 冰岛 - Island - IS
+    "Southern Peninsula" : "雷克雅未克半岛",
+    // 意大利 - Italy - IT
+    "Lombardy" : "伦巴第大区",
+    // 日本 - Japan - JP
+    "Tokyo" : "东京都",
+    "Osaka" : "大阪府",
+    "福岡縣" : "福冈县",
+    "千葉縣" : "千叶县",
+    "埼玉縣" : "埼玉县",
+    "神奈川縣" : "神奈川县",
+    // 韩国 - Korea - KR
+    "Gangwon-do" : "江原道",
+    "North Chungcheong" : "忠清北道",
+    // 立陶宛 - Lithuania - LT
+    "維爾紐斯縣" : "维尔纽斯县",
+    // 拉脱维亚 - Latvia - LV
+    "Riga" : "里加",
+    // 挪威 - Norway - NO
+    // 波兰 - Porland - PL
+    "Mazovia" : "摩拉维亚",
+    // 塞尔维亚 - Serbia - RS 
+    "Belgrade" : "贝尔格莱德",
+    // 俄罗斯 - Ruassia - RU
+    "Moscow" : "莫斯科州",
+    // 罗马尼亚 - Romania - RO
     "伊爾福夫縣": "伊尔福夫县",
-    "葉里溫": "叶里温",
-    "中西區": "中西区",
-    "中华民国": "台湾",
+    // 沙特阿拉伯 - Saudi Arabia - SA
+    "Mecca Region" : "麦加地区",
+    // 瑞典 - Sweden - SE
+    "Stockholm County" : "斯德哥尔摩",
+    // 新加坡 - Singapore - SG
+    "Central Singapore" : "中环区",
+    "North West" : "西北区",
  };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return areaMap[para] || para || region0;
@@ -153,74 +148,6 @@ function Area_check(para) {
 function City_ValidCheck(para) {
   const cityMap = {
     "abadou": "豪兹省",
-    "ampang": "安邦",
-    "ashburn": "阿什本",
-    "badaganhatti": "巴特那",
-    "cedar knolls": "雪松诺尔斯",
-    "chiyoda": "千代田区",
-    "cyberjaya": "赛城",
-    "changhua": "彰化市",
-    "dublin": "都柏林",
-    "frankfurtammain": "法兰克福",
-    "gallarate": "加拉拉泰市",
-    "haibatrung": "海巴仲区",
-    "hanam": "韩南市",
-    "Harlesden": "哈里斯登",
-    "jessheim": "耶瑟海姆",
-    "kocasinan": "科卡西楠市",
-    "kyiv": "基辅",
-    "lampa": "拉帕",
-    "lidodiostia": "丽都迪奥斯蒂亚",
-    "melton": "墨尔顿",
-    "meppel": "梅珀尔",
-    "meyzieu": "梅济约",
-    "milan": "米兰",
-    "mumbai": "孟买",
-    "muhadhdhib": "马什哈德",
-    "negishi": "根岸",
-    "odai": "奥拉迪亚",
-    "okubo-naka": "大久保中",
-    "paju": "坡州市",
-    "pomichna": "波米奇纳",
-    "queretaro": "克雷塔罗市",
-    "reston": "里斯顿",
-    "roshha‘ayin": "罗什艾因",
-    "rucka": "鲁茨卡",
-    "reynoldsburg": "雷诺兹堡",
-    "santacruz": "圣克鲁斯",
-    "sha`ibalmalqah": "沙伊布·阿尔·马尔卡",
-    "shibuya": "涩谷区",
-    "singera": "摩尔多瓦",
-    "sofia-capital": "索菲亚市",
-    "songpa-gu": "松坡区",
-    "steninge": "斯特宁厄",
-    "szigetszentmiklos": "锡盖特圣米克洛什市",
-    "sheungwan":"上环",
-    "shinagawa": "品川区",
-    "southfulton": "南富尔顿",
-    "tashkent": "塔什干",
-    "tassin-la-demi-lune": "塔桑拉德米吕讷市",
-    "tsuenwan": "荃湾",
-    "tokyo": "东京都",
-    "thanhxuan": "清宣区",
-    "Tiruvānmiyūr": "泰尔万米尤尔",
-    "umraniye": "乌姆兰尼耶",
-    "yerevan": "叶里温",
-    "yeongdong-gun": "永同郡",
-    "奧奈叢林": "奥奈丛林",
-    "波特蘭": "波特兰",
-    "班加羅爾": "班加罗尔",
-    "查馬丁區": "查马丁区",
-    "達拉斯": "达拉斯",
-    "福岡市": "福冈市",
-    "聖荷西": "圣荷西",
-    "盧森堡市": "卢森堡市",
-    "臺北市": "台北市",
-    "臺中市": "台中市",
-    "西雅圖": "西雅图",
-    "新孟買": "新孟买",
-    "彰化": "彰化市",
-    "中壢": "中坜区",
    };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return cityMap[para] || para || city0;
