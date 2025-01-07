@@ -60,7 +60,7 @@ $done({title, subtitle, ip, description});
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾","俄罗斯联邦":"俄罗斯",
-     };
+ };
  para = para ? para.trim() : "";
  return countryMap[para] || para || country0;
 };
@@ -69,7 +69,6 @@ function Area_check(para) {
   const areaMap = {
     // 亚美尼亚 - Armenia - AM //
     "葉里溫": "叶里温",
-    // 阿根廷 - Argentina - AR //
     "圣地亚哥首都大区": "圣地亚哥大区",
     "ampang": "安邦",
     "ang thong": "红统府", 
@@ -145,7 +144,7 @@ function Area_check(para) {
     "葉里溫": "叶里温",
     "中西區": "中西区",
     "中华民国": "台湾"
-};
+ };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return areaMap[para] || para || region0;
 };
@@ -221,7 +220,7 @@ function City_ValidCheck(para) {
     "新孟買": "新孟买",
     "彰化": "彰化市",
     "中壢": "中坜区"
-};
+   };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return cityMap[para] || para || city0;
 };
