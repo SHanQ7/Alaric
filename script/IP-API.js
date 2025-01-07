@@ -155,8 +155,8 @@ function Area_check(para) {
     // 美国 - The United States of America - US
     "加州" : "加利福尼亚州",
  };
-  para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
-  return areaMap[para] || para || region0;
+  para = para ? para.trim() : para;
+  return areaMap[para] || para;
 };
 
 function City_ValidCheck(para) {
@@ -245,8 +245,8 @@ function City_ValidCheck(para) {
     // 美国-俄亥俄州
     "DUBLIN": "都柏林",
    };
-  para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
-  return cityMap[para] || para || city0;
+  para = para ? para.trim() : para;
+  return cityMap[para] || para;
 };
 
 function ISP_ValidCheck(para) {
