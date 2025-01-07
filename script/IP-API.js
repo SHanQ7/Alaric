@@ -46,7 +46,6 @@ let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP
 
 let ip = obj['query'];
 let description = 
-let description = 
   '国家：'.padEnd(5) + obj['countryCode'] + ' ' + country + '\n' +
   '地区：'.padEnd(5) + obj['region'] + ' ' + region + '\n' +
   'IP：'.padEnd(5) + obj['query'] + '\n' +
@@ -68,7 +67,9 @@ function country_ValidCheck(para) {
 
 function Area_check(para) {
   const areaMap = {
+    // 亚美尼亚 - Armenia -  AM
     "葉里溫": "叶里温",
+    // 阿根廷 - Argentina -  AR
     "圣地亚哥首都大区": "圣地亚哥大区",
     "ampang": "安邦",
     "ang thong": "红统府", 
@@ -143,7 +144,7 @@ function Area_check(para) {
     "伊爾福夫縣": "伊尔福夫县",
     "葉里溫": "叶里温",
     "中西區": "中西区",
-    "中华民国": "台湾"
+    "中华民国": "台湾",
  };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return areaMap[para] || para || region0;
@@ -219,7 +220,7 @@ function City_ValidCheck(para) {
     "西雅圖": "西雅图",
     "新孟買": "新孟买",
     "彰化": "彰化市",
-    "中壢": "中坜区"
+    "中壢": "中坜区",
    };
   para = para ? para.trim().normalize('NFKD').replace(/[\u0300-\u036f]/g, '') : para;
   return cityMap[para] || para || city0;
