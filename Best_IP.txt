@@ -41,10 +41,11 @@
 # 🇩🇪 DE-FRA
 51.116.121.75:443#🇩🇪 DE 031 Dreieich_SHanQ
 18.193.144.17:443#🇩🇪 DE 032 Dreieich_SHanQ
-3.64.216.209:2083#🇩🇪 DE 033 Dreieich_SHanQ
-18.153.166.250:2053#🇩🇪 DE 034 Dreieich_SHanQ
-46.29.235.36:2053#🇩🇪 DE 034 SH_SHanQ
-91.239.148.100:443#🇩🇪 DE 035 Hennigsdorf_SHanQ
+38.180.86.246:443#🇩🇪 DE 033 Dreieich_SHanQ
+38.180.58.141:443#🇩🇪 DE 034 Dreieich_SHanQ
+3.64.216.209:2083#🇩🇪 DE 035 Dreieich_SHanQ
+46.29.235.36:2053#🇩🇪 DE SH_SHanQ
+91.239.148.100:443#🇩🇪 DE Hennigsdorf_SHanQ
 # 🇩🇰 DK
 89.27.8.25:443#🇩🇰 DK 01 Copenhagen_SHanQ
 38.180.20.59:2053#🇩🇰 DK 02 Copenhagen_SHanQ
@@ -111,13 +112,13 @@
 129.159.143.171:2053#🇮🇱 IL 02 Central Petaẖ Tiqva_SHanQ
 129.159.143.171:8443#🇮🇱 IL 03 Central Petaẖ Tiqva_SHanQ
 # 🇮🇳 IN Karnataka Badaganhatti
-165.232.182.81:443#🇮🇳 IN 101 Badaganhatti_SHanQ
+165.232.182.81:443#🇮🇳 IN Badaganhatti_SHanQ
 
 
 # 🇮🇳 IN Maharashtra Santa Cruz
 3.7.108.69:443#🇮🇳 IN 121 Santa Cruz_SHanQ
 141.148.203.6:443#🇮🇳 IN 122 Santa Cruz_SHanQ
-
+143.244.130.180:443#🇮🇳 IN 123 Santa Cruz_SHanQ
 # 🇮🇳 IN Tamil Nadu Tiruvānmiyūr
 129.159.22.4:443#🇮🇳 IN Tiruvānmiyūr_SHanQ
 
@@ -207,6 +208,7 @@
 13.250.38.94:443#🇸🇬 SG 03_SHanQ
 47.130.25.56:8443#🇸🇬 SG 04_SHanQ
 54.255.71.236:443#🇸🇬 SG 05_SHanQ
+185.81.29.187:443#🇸🇬 SG 06_SHanQ
 # 🇹🇭 TH
 
 
@@ -232,7 +234,7 @@
 34.69.150.180:443#🇺🇸 US0 082 Illinois Wheaton_SHanQ
 3.141.223.191:2053#🇺🇸 US0 083 Illinois Wheaton_SHanQ
 # 🇺🇸 US Los Angeles-LAX
-27.50.48.8:443#🇺🇸 US 021 East Los Angeles_SHanQ
+172.67.106.32:443#🇺🇸 US 021 East Los Angeles_SHanQ
 27.50.48.13:443#🇺🇸 US 022 East Los Angeles_SHanQ
 154.218.15.1:443#🇺🇸 US 023 East Los Angeles_SHanQ
 38.47.118.166:11001#🇺🇸 US 024 East Los Angeles_SHanQ
