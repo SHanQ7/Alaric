@@ -69,7 +69,7 @@ function country_ValidCheck(para) {
 function Area_check(para) {
   const areaMap = {
     // 迪拜 - Dubai - AE
-    "dubai" : "迪拜",
+    "Dubai" : "迪拜",
     // 亚美尼亚 - Armenia -  AM
     "葉里溫" : "叶里温",
     "叶里温" : "耶列万省",
@@ -77,7 +77,7 @@ function Area_check(para) {
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
     // 阿塞拜疆 - Azerbaijan - AZ
-    "baku city" : "巴库市",
+    "Baku City" : "巴库市",
     // 巴西- Brazil - BR
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
@@ -91,7 +91,7 @@ function Area_check(para) {
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
     // 中国 - China - CN
     "Changhua" : "彰化县",
-    "taichung city" : "台中市",
+    "Taichung City" : "台中市",
     "Taoyuan" : "桃园市",
     "臺北市" : "台北市",
     "臺灣省 or 台灣省" : "中部地区",
