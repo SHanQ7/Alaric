@@ -103,6 +103,8 @@ function Area_check(para) {
     "Capital Region" : "哥本哈根大区",
     // 爱沙尼亚 - Republic of Estonia - EE
     "哈爾尤縣" : "哈尔尤县",
+    // 葡萄牙 - Portugal - EU
+    "里斯本區" : "里斯本区",
     // 法国 - France - FR
     "Île-de-France" : "法兰西岛",
     "奧弗涅-羅訥-阿爾卑斯大區" : "阿尔卑斯大区",
@@ -113,8 +115,11 @@ function Area_check(para) {
     "Attica" : "阿提卡",
     // 香港 - Hong Kong - HK
     "Kowloon" : "九龙区",
+    "北區" : "北区",
     // 爱尔兰 - Ireland - IE
     "倫斯特省" : "伦斯特省",
+    // 以色列 - Israel - IL
+    "Rosh Ha‘Ayin" : "罗斯哈音",
     // 冰岛 - Island - IS
     "Southern Peninsula" : "雷克雅未克半岛",
     // 意大利 - Italy - IT
@@ -134,6 +139,7 @@ function Area_check(para) {
     // 拉脱维亚 - Latvia - LV
     "Rīga" : "里加",
     // 挪威 - Norway - NO
+    "Viken" : "维肯",
     // 墨西哥 - The United Mexican States - MX
     "克雷塔羅州" : "克雷塔罗州",
     // 波兰 - Porland - PL
@@ -142,6 +148,7 @@ function Area_check(para) {
     "Belgrade" : "贝尔格莱德",
     // 俄罗斯 - Ruassia - RU
     "Moscow" : "莫斯科州",
+    "Tatarstan Republic" : "塔塔尔斯坦共和国",
     // 罗马尼亚 - Romania - RO
     "伊爾福夫縣": "伊尔福夫县",
     // 沙特阿拉伯 - Saudi Arabia - SA
@@ -154,6 +161,9 @@ function Area_check(para) {
     "North West" : "西北区",
     // 美国 - The United States of America - US
     "加州" : "加利福尼亚州",
+    // 越南 - Vietnam - VN
+    "Hanoi" : "河内市",
+    "慶和省" : "庆和省",
  };
   para = para ? para.trim() : para;
   return areaMap[para] || para;
@@ -211,6 +221,8 @@ function City_ValidCheck(para) {
     "福岡市" : "福冈市",
     // 韩国-忠清北道
     "Yeongdong-gun" : "永同郡",
+    // 立陶宛-维尔纽斯县
+    "倫特瓦里斯" : "伦特瓦里斯",
     // 拉脱维亚-里加
     "Riga" : "里加",
     // 墨西哥-克雷塔罗州
@@ -221,6 +233,7 @@ function City_ValidCheck(para) {
     "STENINGE" : "斯特宁厄",
     // 挪威-阿克什胡斯郡
     "Jessheim" : "杰斯海姆",
+    "Lorenskog" : "洛伦斯科格",
     // 塞尔维亚-贝尔格莱德
     "Rucka" : "鲁卡镇",
     // 俄罗斯-莫斯科州
@@ -248,6 +261,9 @@ function City_ValidCheck(para) {
     "波特蘭": "波特兰",
     // 美国-俄亥俄州
     "Dublin": "都柏林",
+    // 美国-纽约州
+    "Cheektowaga" : "布法罗都",
+    "紐約" : "纽约",
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para;
