@@ -35,25 +35,37 @@ const isp0 = "MCU.com";
 let body = $response.body;
 let obj = JSON.parse(body);
 
+const countryCode = obj['countryCode'];
 const country = country_ValidCheck(obj['country']);
 const region = Area_check(obj['regionName']);
 const city = City_ValidCheck(obj['city']);
+const ip = obj['query'];
+const isp = ISP_ValidCheck(obj['isp']);
+const lat = obj['lat'];
+const lon = obj['lon'];
+const timezone = obj['timezone'];
 
 let displayCity = (city !== country && city !== region) ? city : '';
 
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+let description = `
+-------------------------
+国家：  ${countryCode} ${country}
 
-let ip = obj['query'];
-let description = 
-  '国家：'.padStart(3, ' ') + obj['countryCode'] + ' ' + country + '\n' +
-  '地区：'.padStart(3, ' ') + obj['region'] + ' ' + region + '\n' +
-  '城市：'.padStart(3, ' ') + obj['city'] + '\n' +
-  'IP：'.padStart(4, ' ') + obj['query'] + '\n' +
-  '服务商：'.padStart(2, ' ') + obj['isp'] + '\n' +
-  '经纬度：'.padStart(2, ' ') + obj['lat'] + ' / ' + obj['lon'] + '\n' +
-  '时区：'.padStart(3, ' ') + obj['timezone'];
+地区：  ${obj['region']} ${region}
 
+城市：  ${obj['city']}
+
+IP：    ${ip}
+
+服务商：${isp}
+
+经纬度：${lat} / ${lon}
+
+时区：  ${timezone}
+-------------------------
+`;
 $done({title, subtitle, ip, description});
 
 
@@ -166,7 +178,7 @@ function Area_check(para) {
     "慶和省" : "庆和省",
  };
   para = para ? para.trim() : para;
-  return areaMap[para] || para;
+  return areaMap[para] || para || region0;
 };
 
 function City_ValidCheck(para) {
@@ -270,7 +282,7 @@ function City_ValidCheck(para) {
     "芽莊市" : "芽庄市",
    };
   para = para ? para.trim() : para;
-  return cityMap[para] || para;
+  return cityMap[para] || para || city0;
 };
 
 function ISP_ValidCheck(para) {
