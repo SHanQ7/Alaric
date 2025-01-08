@@ -1,6 +1,6 @@
 # 🇦🇪 AE
 129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
-
+193.123.81.105:443##🇦🇪 AE|FR Dubai_SHanQ
 
 # 🇦🇲 AM
 85.90.207.20:8081#🇦🇲 AM Yerevan_SHanQ
@@ -43,11 +43,12 @@
 18.193.144.17:443#🇩🇪 DE 032 Dreieich_SHanQ
 3.64.216.209:2083#🇩🇪 DE 033 Dreieich_SHanQ
 18.153.166.250:2053#🇩🇪 DE 034 Dreieich_SHanQ
+46.29.235.36:2053#🇩🇪 DE 034 SH_SHanQ
 91.239.148.100:443#🇩🇪 DE 035 Hennigsdorf_SHanQ
 # 🇩🇰 DK
-38.180.20.59:2053#🇩🇰 DK 01 Copenhagen_SHanQ
-46.29.235.36:2053#🇩🇰 DK 02 Copenhagen_SHanQ
-89.27.8.25:443#🇩🇰 DK 03 Copenhagen_SHanQ
+89.27.8.25:443#🇩🇰 DK 01 Copenhagen_SHanQ
+38.180.20.59:2053#🇩🇰 DK 02 Copenhagen_SHanQ
+
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
 188.93.140.11:443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
@@ -71,7 +72,7 @@
 129.151.225.228:2053#🇫🇷 FR 082 Istres_SHanQ
 
 # 🇫🇷 FR Lyon
-193.123.81.105：443#🇫🇷 FR 111 Lyon_SHanQ
+
 
 
 # 🇫🇷 FR-MRS
@@ -79,8 +80,8 @@
 158.178.192.221:443#🇫🇷 FR 152 Paris_SHanQ
 129.151.225.228:8443#🇫🇷 FR 153 Paris_SHanQ
 # 🇬🇧 GB-LHR
-18.133.222.22:80#🇬🇧 GB 071 Hounslow_SHanQ
-3.8.148.92：2053#🇬🇧 GB 072 Hounslow_SHanQ
+3.8.148.92:2053#🇬🇧 GB 071 Hounslow_SHanQ
+18.133.222.22:80#🇬🇧 GB 072 Hounslow_SHanQ
 67.226.223.184:80#🇬🇧 GB 073 Hounslow_SHanQ
 213.165.84.57:443#🇬🇧 GB 074 Hounslow_SHanQ
 35.177.50.118:443#🇬🇧 GB 075 Hounslow_SHanQ
@@ -95,10 +96,8 @@
 
 # 🇭🇰 HK
 8.223.15.4:443#🇭🇰 HK 01_SHanQ
-47.76.85.84:443#🇭🇰 HK 02_SHanQ
-203.9.150.104:443#🇭🇰 HK 03_SHanQ
-43.154.34.74:1935#🇭🇰 HK 04_SHanQ
-40.81.29.103:8089#🇭🇰 HK 05_SHanQ
+203.9.150.104:443#🇭🇰 HK 02_SHanQ
+43.154.34.74:1935#🇭🇰 HK 03_SHanQ
 # 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU 01 Pest megye_SHanQ
 
@@ -117,8 +116,8 @@
 
 # 🇮🇳 IN Maharashtra Santa Cruz
 3.7.108.69:443#🇮🇳 IN 121 Santa Cruz_SHanQ
-141.148.203.6:443#🇮🇳 IN 121 Santa Cruz_SHanQ
 141.148.203.6:443#🇮🇳 IN 122 Santa Cruz_SHanQ
+
 # 🇮🇳 IN Tamil Nadu Tiruvānmiyūr
 129.159.22.4:443#🇮🇳 IN Tiruvānmiyūr_SHanQ
 
@@ -150,11 +149,11 @@
 193.122.122.217:59980#🇰🇷 KR 014 Bakchon_SHanQ
 
 # 🇱🇹 LT
-
+80.209.230.16:443#🇱🇹 LT Vilnius_SHanQ
 
 
 # 🇱🇻 LV
-80.209.230.16:443#🇱🇻 LV 01 Riga_SHanQ
+
 195.123.212.237:8443#🇱🇻 LV 02 Riga_SHanQ
 
 # 🇳🇱 NL
@@ -167,8 +166,8 @@
 
 # 🇳🇴 NO
 46.29.238.54:8443#🇳🇴 NO 01 Jessheim_SHanQ
-46.36.223.141:443#🇳🇴 NO 02 Jessheim_SHanQ
-91.227.248.40:443#🇳🇴 NO 03 Jessheim_SHanQ
+91.227.248.40:443#🇳🇴 NO 02 Jessheim_SHanQ
+
 # 🇵🇭 PH
 
 
@@ -225,7 +224,7 @@
 
 
 # 🇺🇸 US Georgia-ATL
-35.196.72.166:443#🇺🇸 US Georgia South Fulton_SHanQ
+
 
 
 # 🇺🇸 US Illinois-ORD
