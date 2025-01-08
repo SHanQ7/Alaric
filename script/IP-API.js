@@ -264,6 +264,8 @@ function City_ValidCheck(para) {
     // 美国-纽约州
     "Cheektowaga" : "布法罗都",
     "紐約" : "纽约",
+    // 越南-庆和省
+    "芽莊市" : "芽庄市",
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para;
