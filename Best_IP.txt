@@ -7,9 +7,9 @@
 
 
 # 🇦🇹 AT
-151.236.13.2:443#🇦🇹 AT 01 Bruck-an-der-Leitha_SHanQ
-91.184.248.39:443#🇦🇹 AT 02 Bruck-an-der-Leitha_SHanQ
-185.119.117.146:8443#🇦🇹 AT 03 Bruck-an-der-Leitha_SHanQ
+91.184.248.39:443#🇦🇹 AT Bruck-an-der-Leitha_SHanQ
+
+
 # 🇦🇺 AU
 13.54.198.183:443#🇦🇺 AU 01 Sydney_SHanQ
 45.77.236.204:443#🇦🇺 AU 02 Sydney_SHanQ
@@ -46,10 +46,10 @@
 3.64.216.209:2083#🇩🇪 DE 035 Dreieich_SHanQ
 46.29.235.36:2053#🇩🇪 DE SH_SHanQ
 91.239.148.100:443#🇩🇪 DE Hennigsdorf_SHanQ
-# 🇩🇰 DK
+# 🇩🇰 DK - AMS
 89.27.8.25:443#🇩🇰 DK 01 Copenhagen_SHanQ
+51.20.99.157:443#🇩🇰 DK 01 Copenhagen_SHanQ
 38.180.20.59:2053#🇩🇰 DK 02 Copenhagen_SHanQ
-
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
 188.93.140.11:443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
@@ -136,26 +136,26 @@
 
 
 # 🇯🇵 JP Narita
-47.74.42.114:443#🇯🇵 JP 131 Narita_SHanQ
-35.77.126.144:443#🇯🇵 JP 132 Narita_SHanQ
-48.210.68.216:443#🇯🇵 JP 133 Narita_SHanQ
+48.210.68.216:443#🇯🇵 JP 131 Narita_SHanQ
+155.248.184.178:30011#🇯🇵 JP 132 Narita_SHanQ
+168.138.197.147:12345#🇯🇵 JP 133 Narita_SHanQ
 # 🇯🇵 JP Osaka
 138.2.36.157:8443#🇯🇵 JP 141 Osaka_SHanQ
 141.147.147.180:443#🇯🇵 JP 142 Osaka_SHanQ
 180.17.144.27:10333#🇯🇵 JP 143 Osaka_SHanQ
 # 🇰🇷 KR-ICN
 129.154.207.203:443#🇰🇷 KR 011 Bakchon_SHanQ
-132.226.22.106:34237#🇰🇷 KR 012 Bakchon_SHanQ
-193.122.97.183:16666#🇰🇷 KR 013 Bakchon_SHanQ
-193.122.122.217:59980#🇰🇷 KR 014 Bakchon_SHanQ
-
+129.154.207.203:443#🇰🇷 KR 012 Bakchon_SHanQ
+132.226.22.106:34237#🇰🇷 KR 013 Bakchon_SHanQ
+132.226.171.151:40274#🇰🇷 KR 014 Bakchon_SHanQ
+129.154.197.218:40093#🇰🇷 KR 015 Bakchon_SHanQ
 # 🇱🇹 LT
 80.209.230.16:443#🇱🇹 LT Vilnius_SHanQ
 
 
 # 🇱🇻 LV
 
-195.123.212.237:8443#🇱🇻 LV 02 Riga_SHanQ
+195.123.212.237:8443#🇱🇻 LV Riga_SHanQ
 
 # 🇳🇱 NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
@@ -178,9 +178,9 @@
 
 
 # 🇵🇱 PL
-45.85.210.193:34130#🇵🇱 PL 01 Pruszków_SHanQ
-45.85.210.210:13019#🇵🇱 PL 02 Pruszków_SHanQ
-45.85.210.217:10913#🇵🇱 PL 03 Pruszków_SHanQ
+45.85.210.210:13019#🇵🇱 PL 01 Pruszków_SHanQ
+45.85.210.217:10913#🇵🇱 PL 02 Pruszków_SHanQ
+185.144.245.62:18556#🇵🇱 PL 03 Pruszków_SHanQ
 # 🇷🇸 RS
 217.196.104.83:8443#🇷🇸 RS Beograd_SHanQ
 
@@ -204,11 +204,10 @@
 194.87.252.135:2053#🇸🇪 SE 03 Steninge_SHanQ
 # 🇸🇬 SG
 8.222.218.30:443#🇸🇬 SG 01_SHanQ
-13.250.14.76:443#🇸🇬 SG 02_SHanQ
-13.250.38.94:443#🇸🇬 SG 03_SHanQ
-47.130.25.56:8443#🇸🇬 SG 04_SHanQ
-54.255.71.236:443#🇸🇬 SG 05_SHanQ
-185.81.29.187:443#🇸🇬 SG 06_SHanQ
+13.250.38.94:443#🇸🇬 SG 02_SHanQ
+47.130.25.56:8443#🇸🇬 SG 03_SHanQ
+54.255.71.236:443#🇸🇬 SG 04_SHanQ
+185.81.29.187:443#🇸🇬 SG 05_SHanQ
 # 🇹🇭 TH
 
 
@@ -234,10 +233,10 @@
 34.69.150.180:443#🇺🇸 US0 082 Illinois Wheaton_SHanQ
 3.141.223.191:2053#🇺🇸 US0 083 Illinois Wheaton_SHanQ
 # 🇺🇸 US Los Angeles-LAX
-172.67.106.32:443#🇺🇸 US 021 East Los Angeles_SHanQ
-27.50.48.13:443#🇺🇸 US 022 East Los Angeles_SHanQ
-154.218.15.1:443#🇺🇸 US 023 East Los Angeles_SHanQ
-38.47.118.166:11001#🇺🇸 US 024 East Los Angeles_SHanQ
+27.50.48.13:443#🇺🇸 US 021 East Los Angeles_SHanQ
+154.218.15.1:443#🇺🇸 US 022 East Los Angeles_SHanQ
+172.67.106.32:443#🇺🇸 US 023 East Los Angeles_SHanQ
+154.17.21.134:18446#🇺🇸 US 024 East Los Angeles_SHanQ
 38.148.249.118:32956#🇺🇸 US 025 East Los Angeles_SHanQ
 # 🇺🇸 US Ohio-CMH
 18.216.55.100:443#🇺🇸 US 141-18 Reynoldsburg_SHanQ
