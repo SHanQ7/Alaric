@@ -241,8 +241,8 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 
 
 # 🇺🇸 US Illinois - ORD
-3.18.162.191:2096#🇺🇸 US0 081 Illinois Wheaton_SHanQ
-34.69.150.180:443#🇺🇸 US0 082 Illinois Wheaton_SHanQ
+34.69.150.180:443#🇺🇸 US0 081 Illinois Wheaton_SHanQ
+3.18.162.191:2096#🇺🇸 US0 082 Illinois Wheaton_SHanQ
 3.141.223.191:2053#🇺🇸 US0 083 Illinois Wheaton_SHanQ
 # 🇺🇸 US Ohio - CMH
 18.216.55.100:443#🇺🇸 US 141-18 Reynoldsburg_SHanQ
@@ -260,8 +260,9 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 3.82.153.90:443#🇺🇸 US 221 Reston_SHanQ
 50.19.193.95:443#🇺🇸 US 222 Reston_SHanQ
 3.230.207.59:8443#🇺🇸 US 223 Reston_SHanQ
-# 🇺🇸 US Washington
-54.187.240.31:443#🇺🇸 US 232 Kent_SHanQ
-
+# 🇺🇸 US Washington - SEA
+54.187.240.31:443#🇺🇸 US 231 Kent_SHanQ
+35.167.93.200:443#🇺🇸 US 232 Kent_SHanQ
+18.236.152.142:443#🇺🇸 US 233 Kent_SHanQ
 
 
