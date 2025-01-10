@@ -100,7 +100,7 @@
 203.9.150.104:443#🇭🇰 HK 02_SHanQ
 43.154.34.74:1935#🇭🇰 HK 03_SHanQ
 # 🇭🇺 HU
-91.219.237.49:443#🇭🇺 HU 01 Pest megye_SHanQ
+91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
 
 # 🇮🇪 IE 
@@ -224,39 +224,39 @@
 
 
 
-# 🇺🇸 US Georgia-ATL
-
-
-
-# 🇺🇸 US Illinois-ORD
-3.18.162.191:2096#🇺🇸 US0 081 Illinois Wheaton_SHanQ
-34.69.150.180:443#🇺🇸 US0 082 Illinois Wheaton_SHanQ
-3.141.223.191:2053#🇺🇸 US0 083 Illinois Wheaton_SHanQ
-# 🇺🇸 US Los Angeles-LAX
+# 🇺🇸 US California - LAX
 27.50.48.13:443#🇺🇸 US 021 East Los Angeles_SHanQ
 154.218.15.1:443#🇺🇸 US 022 East Los Angeles_SHanQ
 172.67.106.32:443#🇺🇸 US 023 East Los Angeles_SHanQ
 154.17.21.134:18446#🇺🇸 US 024 East Los Angeles_SHanQ
 38.148.249.118:32956#🇺🇸 US 025 East Los Angeles_SHanQ
-# 🇺🇸 US Ohio-CMH
-18.216.55.100:443#🇺🇸 US 141-18 Reynoldsburg_SHanQ
-
-
-# 🇺🇸 US Oregon-PDX
-35.83.185.225:443#🇺🇸 US 141-16 Portland_SHanQ
-34.208.221.169:443#🇺🇸 US 231 Portland_SHanQ
-54.187.212.113:8443#🇺🇸 US 142-16 Portland_SHanQ
-# 🇺🇸 US California-SJC
+# 🇺🇸 US California - SJC
 104.16.126.23:443#🇺🇸 US 191 San Jose_SHanQ
 104.16.112.237:443#🇺🇸 US 192 San Jose_SHanQ
 104.16.121.229:443#🇺🇸 US 193 San Jose_SHanQ
 104.19.252.187:443#🇺🇸 US 194 San Jose_SHanQ
 digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
+# 🇺🇸 US Georgia-ATL
+
+
+
+# 🇺🇸 US Illinois - ORD
+3.18.162.191:2096#🇺🇸 US0 081 Illinois Wheaton_SHanQ
+34.69.150.180:443#🇺🇸 US0 082 Illinois Wheaton_SHanQ
+3.141.223.191:2053#🇺🇸 US0 083 Illinois Wheaton_SHanQ
+# 🇺🇸 US Ohio - CMH
+18.216.55.100:443#🇺🇸 US 141-18 Reynoldsburg_SHanQ
+
+
+# 🇺🇸 US Oregon - PDX
+35.83.185.225:443#🇺🇸 US 141-16 Portland_SHanQ
+34.208.221.169:443#🇺🇸 US 142-16 Portland_SHanQ
+54.187.212.113:8443#🇺🇸 US 142-16 Portland_SHanQ
 # 🇺🇸 US New York
 
 
 
-# 🇺🇸 US Virginia-IAD
+# 🇺🇸 US Virginia - IAD
 3.82.153.90:443#🇺🇸 US 221 Reston_SHanQ
 50.19.193.95:443#🇺🇸 US 222 Reston_SHanQ
 3.230.207.59:8443#🇺🇸 US 223 Reston_SHanQ
