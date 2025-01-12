@@ -172,6 +172,8 @@ function Area_check(para) {
     // 新加坡 - Singapore - SG
     "Central Singapore" : "中环区",
     "North West" : "西北区",
+    // 泰国 - Thailand - TH
+    "Ang Thong" : "安通省",
     // 美国 - The United States of America - US
     "加州" : "加利福尼亚州",
     // 越南 - Vietnam - VN
@@ -211,7 +213,7 @@ function City_ValidCheck(para) {
     // 匈牙利-佩斯州
     "Szigetszentmiklós" : "锡盖特圣米克洛什",
     // 以色列-中央区
-     "RUSH HA‘AYIN" : "罗什艾因",
+     "Rosh Ha‘Ayin" : "罗什艾因",
     // 印度-恰蒂斯加尔邦
     "BILASPUR" : "比拉斯布尔",
     // 印度-卡纳塔克邦
@@ -264,6 +266,8 @@ function City_ValidCheck(para) {
     "Kocasinan" : "科卡西楠",
     // 台湾-桃园市
     "中壢" : "中坜区",
+    // 泰国-安通省
+    "Ang Thong" : "安通市",
     // 美国-加利福尼亚州
     "San Jose" : "圣荷西",
     "聖荷西" : "圣荷西",
