@@ -127,6 +127,7 @@ function Area_check(para) {
     "Attica" : "阿提卡",
     // 香港 - Hong Kong - HK
     "Kowloon" : "九龙区",
+    "Wong Tai Sin" : "黄大仙区",
     "北區" : "北区",
     // 爱尔兰 - Ireland - IE
     "倫斯特省" : "伦斯特省",
@@ -175,6 +176,7 @@ function Area_check(para) {
     "加州" : "加利福尼亚州",
     // 越南 - Vietnam - VN
     "Hanoi" : "河内市",
+    "Hòa Bình Province" : "和平省",
     "慶和省" : "庆和省",
  };
   para = para ? para.trim() : para;
@@ -204,6 +206,8 @@ function City_ValidCheck(para) {
     "伊斯特爾" : "伊斯特尔",
     // 英国-英格兰
     "Harlesden" : "伦敦",
+    // 中国-香港
+    "The Latitude" : "誉港湾",
     // 匈牙利-佩斯州
     "Szigetszentmiklós" : "锡盖特圣米克洛什",
     // 以色列-中央区
@@ -280,6 +284,8 @@ function City_ValidCheck(para) {
     "河內市" : "河内市",
     // 越南-庆和省
     "芽莊市" : "芽庄市",
+    // 越南-和平省
+    "Bo" : "乐山县",
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para || city0;
