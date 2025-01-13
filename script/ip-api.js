@@ -133,6 +133,8 @@ function Area_check(para) {
     "倫斯特省" : "伦斯特省",
     // 以色列 - Israel - IL
     "Rosh Ha‘Ayin" : "罗斯哈音",
+    // 伊拉克 - Iraq - IQ
+     "巴格達省" : "巴格达省",
     // 冰岛 - Island - IS
     "Southern Peninsula" : "雷克雅未克半岛",
     // 意大利 - Italy - IT
