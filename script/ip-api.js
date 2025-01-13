@@ -293,6 +293,7 @@ function City_ValidCheck(para) {
     "波特蘭": "波特兰",
     // 美国-俄亥俄州
     "Dublin": "都柏林",
+    "Reynoldsburg": "雷诺兹堡",
     // 美国-纽约州
     "Cheektowaga" : "布法罗都",
     "紐約" : "纽约",
