@@ -159,6 +159,7 @@ function Area_check(para) {
     "克雷塔羅州" : "克雷塔罗州",
     // 菲律宾 - Philippines - PH
     "Metro Manila" : "大马尼拉地区",
+    "Northern Mindanao" : "米沙鄢地区北部",
     // 波兰 - Porland - PL
     "Mazovia" : "摩拉维亚",
     "波美拉尼亞省" : "波美拉尼亚省",
@@ -254,6 +255,8 @@ function City_ValidCheck(para) {
     "QUERETARO" : "克雷塔罗",
     // 菲律宾-大马尼拉地区
     "Taguig" : "塔吉格",
+    // 菲律宾-米沙鄢地区北部
+    "Impaya-ao" : "布基农省",
     // 波兰-摩拉维亚
     "普魯斯科夫" : "普鲁斯科夫",
     // 挪威-阿克什胡斯郡
