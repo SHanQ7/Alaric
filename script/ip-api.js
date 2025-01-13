@@ -166,7 +166,6 @@ function Area_check(para) {
     "Belgrade" : "贝尔格莱德",
     // 俄罗斯 - Ruassia - RU
     "Moscow" : "莫斯科州",
-    "city": "St Petersburg","
     "St.-Petersburg" : "圣彼得堡",
     "Tatarstan Republic" : "塔塔尔斯坦共和国",
     // 罗马尼亚 - Romania - RO
