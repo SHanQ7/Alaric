@@ -157,6 +157,8 @@ function Area_check(para) {
     "Viken" : "维肯",
     // 墨西哥 - The United Mexican States - MX
     "克雷塔羅州" : "克雷塔罗州",
+    // 菲律宾 - Philippines - PH
+    "Metro Manila" : "大马尼拉地区",
     // 波兰 - Porland - PL
     "Mazovia" : "摩拉维亚",
     // 塞尔维亚 - Serbia - RS 
@@ -247,6 +249,8 @@ function City_ValidCheck(para) {
     "Riga" : "里加",
     // 墨西哥-克雷塔罗州
     "QUERETARO" : "克雷塔罗",
+    // 菲律宾-大马尼拉地区
+    "Taguig" : "塔吉格",
     // 波兰-摩拉维亚
     "普魯斯科夫" : "普鲁斯科夫",
     // 瑞典-斯德哥尔摩
