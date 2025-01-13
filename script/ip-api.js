@@ -161,10 +161,13 @@ function Area_check(para) {
     "Metro Manila" : "大马尼拉地区",
     // 波兰 - Porland - PL
     "Mazovia" : "摩拉维亚",
+    "波美拉尼亞省" : "波美拉尼亚省",
     // 塞尔维亚 - Serbia - RS 
     "Belgrade" : "贝尔格莱德",
     // 俄罗斯 - Ruassia - RU
     "Moscow" : "莫斯科州",
+    "city": "St Petersburg","
+    "St.-Petersburg" : "圣彼得堡",
     "Tatarstan Republic" : "塔塔尔斯坦共和国",
     // 罗马尼亚 - Romania - RO
     "伊爾福夫縣": "伊尔福夫县",
@@ -194,6 +197,7 @@ function City_ValidCheck(para) {
     // 亚美尼亚-叶里温
     "Yerevan" : "叶里温",
     // 巴西-圣保罗州
+    "Osasco" : "奥萨斯科",
     "São Paulo" : "圣保罗",
     "Vinhedo" : "温赫杜",
     // 智利-圣地亚哥大区
@@ -262,6 +266,8 @@ function City_ValidCheck(para) {
     "Rucka" : "鲁卡镇",
     // 俄罗斯-莫斯科州
     "多莫傑多沃" : "多莫杰多沃",
+    // 俄罗斯-圣彼得堡
+    "St Petersburg" : "圣彼得堡",
     // 罗马尼亚-伊尔福夫县
     "Voluntari" : "沃伦塔里",
     // 沙特阿拉伯-利雅得省
