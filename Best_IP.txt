@@ -1,15 +1,15 @@
 # 🇦🇪 AE
 129.151.148.35:443#🇦🇪 AE Dubai_SHanQ
-193.123.81.105:443#🇦🇪 AE-FR Dubai_SHanQ
+193.123.81.105:443#🇦🇪 AE Dubai 01_SHanQ
 
 # 🇦🇲 AM
 85.90.207.20:8081#🇦🇲 AM Yerevan_SHanQ
 
 
 # 🇦🇹 AT
-91.184.248.39:443#🇦🇹 AT Bruck-an-der-Leitha_SHanQ
-94.177.8.51:443#🇦🇹 AT Bruck-an-der-Leitha_SHanQ
-185.119.117.146:8443#🇦🇹 AT Bruck-an-der-Leitha_SHanQ
+91.184.248.39:443#🇦🇹 AT 01 Bruck-an-der-Leitha_SHanQ
+94.177.8.51:443#🇦🇹 AT 02 Bruck-an-der-Leitha_SHanQ
+185.119.117.146:8443#🇦🇹 AT 03 Bruck-an-der-Leitha_SHanQ
 # 🇦🇺 AU
 13.54.198.183:443#🇦🇺 AU 01 Sydney_SHanQ
 45.77.236.204:443#🇦🇺 AU 02 Sydney_SHanQ
@@ -53,7 +53,7 @@
 46.29.235.36:2053#🇩🇪 DE SH_SHanQ
 # 🇩🇰 DK - AMS
 89.27.8.25:443#🇩🇰 DK 01 Copenhagen_SHanQ
-16.171.52.23:8443#🇩🇰 DK 02 Copenhagen_SHanQ
+35.204.231.100:443#🇩🇰 DK 02 Copenhagen_SHanQ
 38.180.20.59:2053#🇩🇰 DK 03 Copenhagen_SHanQ
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
@@ -120,20 +120,20 @@
 
 
 
-# 🇮🇳 IN Karnataka Badaganhatti
+# 🇮🇳 IN - Karnataka
 165.232.182.81:443#🇮🇳 IN Badaganhatti_SHanQ
 
 
-# 🇮🇳 IN Maharashtra Santa Cruz
+# 🇮🇳 IN - Maharashtra
 3.7.108.69:443#🇮🇳 IN 121 Santa Cruz_SHanQ
 172.65.90.9:443#🇮🇳 IN 122 Santa Cruz_SHanQ
 172.65.90.11:443#🇮🇳 IN 123 Santa Cruz_SHanQ
 141.148.203.6:443#🇮🇳 IN 124 Santa Cruz_SHanQ
 143.244.130.180:443#🇮🇳 IN 125 Santa Cruz_SHanQ
-# 🇮🇳 IN Tamil Nadu Tiruvānmiyūr
+# 🇮🇳 IN - Tamil Nadu
 
 
-# 🇮🇳 IN Telangana
+# 🇮🇳 IN - Telangana
 152.67.190.105:443#🇮🇳 IN Telangana_SHanQ
 
 
@@ -181,9 +181,9 @@
 195.123.212.237:8443#🇱🇻 LV 01 Riga_SHanQ
 
 # 🇲🇾 MY
-172.65.90.57:443#🇲🇾 MY 01 Kuala Lumpur_SHanQ
-172.65.90.56:443#🇲🇾 MY 02 Kuala Lumpur_SHanQ
-210.186.12.145:443#🇲🇾 MY 03 Kuala Lumpur_SHanQ
+
+
+
 # 🇳🇱 NL
 38.180.97.196:443#🇳🇱 NL 01 Amsterdam_SHanQ
 103.97.88.133:443#🇳🇱 NL 02 Amsterdam_SHanQ
@@ -198,7 +198,7 @@
 91.227.248.40:443#🇳🇴 NO 03 Jessheim_SHanQ
 # 🇵🇭 PH
 8.212.169.2:443#🇵🇭 PH Manila_SHanQ
-172.65.90.66:443#🇵🇭 PH 01 Manila_SHanQ
+
 
 # 🇵🇰 PK
 
@@ -212,9 +212,9 @@
 217.196.104.83:8443#🇷🇸 RS Beograd_SHanQ
 
 
-# 🇷🇺 RU
-212.41.15.119:443#🇷🇺 RU 121 Moscow Domodedovo_SHanQ
-185.254.190.70:2053#🇷🇺 RU 122 Moscow Domodedovo_SHanQ
+# 🇷🇺 RU - Moscow
+212.41.15.119:443#🇷🇺 RU 121 Domodedovo_SHanQ
+185.254.190.70:2053#🇷🇺 RU 122 Domodedovo_SHanQ
 
 # 🇷🇴 RO
 45.136.199.77:443#🇷🇴 RO 01 Ilfov Voluntari_SHanQ
@@ -237,8 +237,8 @@
 185.81.29.187:443#🇸🇬 SG 04_SHanQ
 52.187.95.20:2053#🇸🇬 SG 05_SHanQ
 # 🇹🇭 TH
-8.213.217.254:443#🇹🇭 TH 01 Bangkok_SHanQ
 8.213.237.199:443#🇹🇭 TH 02 Bangkok_SHanQ
+
 
 # 🇹🇷 TR
 62.3.12.185:443#🇹🇷 TR 01 Kocasinan_SHanQ
@@ -253,8 +253,8 @@
 35.201.175.67:2096#🇨🇳 TW 06_SHanQ
 114.34.202.224:10004#🇨🇳 TW 07_SHanQ
 # 🇺🇦 UA
-130.0.239.23:443#🇺🇦 UA Kyiv_SHanQ
 130.0.239.147:8443🇺🇦 UA 01 Kyiv_SHanQ
+
 
 # 🇺🇸 US California - LAX
 20.33.30.36:2083#🇺🇸 US 021 East Los Angeles_SHanQ
@@ -276,6 +276,10 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 34.69.150.180:443#🇺🇸 US0 081 Illinois Wheaton_SHanQ
 3.141.223.191:2053#🇺🇸 US0 082 Illinois Wheaton_SHanQ
 
+# 🇺🇸 US New York
+
+
+
 # 🇺🇸 US Ohio - CMH
 3.144.191.4#🇺🇸 US 141-18 Reynoldsburg_SHanQ
 3.18.196.26#🇺🇸 US 142-18 Reynoldsburg_SHanQ
@@ -284,9 +288,9 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 35.83.185.225:443#🇺🇸 US 141-16 Portland_SHanQ
 34.208.221.169:443#🇺🇸 US 142-16 Portland_SHanQ
 54.187.212.113:8443#🇺🇸 US 143-16 Portland_SHanQ
-# 🇺🇸 US New York
-192.227.175.231:443#🇺🇸 US New York 
-
+# 🇺🇸 US Texas
+172.65.90.57:443#🇺🇸 US Texas 01 Aldine_SHanQ
+172.65.90.56:443#🇺🇸 US Texas 02 Aldine_SHanQ
 
 # 🇺🇸 US Virginia - IAD
 3.82.153.90:443#🇺🇸 US 221 Reston_SHanQ
