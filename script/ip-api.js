@@ -256,8 +256,6 @@ function City_ValidCheck(para) {
     "Taguig" : "塔吉格",
     // 波兰-摩拉维亚
     "普魯斯科夫" : "普鲁斯科夫",
-    // 瑞典-斯德哥尔摩
-    "STENINGE" : "斯特宁厄",
     // 挪威-阿克什胡斯郡
     "Jessheim" : "杰斯海姆",
     "Lorenskog" : "洛伦斯科格",
