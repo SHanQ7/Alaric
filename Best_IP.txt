@@ -39,13 +39,14 @@
 92.118.149.45:443#🇨🇿 CZ 02 Kladno_SHanQ
 176.74.219.73:8443#🇨🇿 CZ 03 Kladno_SHanQ
 # 🇩🇪 DE - FRA
-51.116.121.75:443#🇩🇪 DE 031 Dreieich_SHanQ
+3.64.216.209:2083#🇩🇪 DE 031 Dreieich_SHanQ
 18.184.27.249:443#🇩🇪 DE 032 Dreieich_SHanQ
 38.180.86.246:443#🇩🇪 DE 033 Dreieich_SHanQ
 38.180.58.141:443#🇩🇪 DE 034 Dreieich_SHanQ
-3.64.216.209:2083#🇩🇪 DE 035 Dreieich_SHanQ
-46.29.235.36:2053#🇩🇪 DE SH_SHanQ
+51.116.121.75:443#🇩🇪 DE 035 Dreieich_SHanQ
+91.132.95.212:443#🇩🇪 DE 036 Dreieich_SHanQ
 91.239.148.100:443#🇩🇪 DE Hennigsdorf_SHanQ
+46.29.235.36:2053#🇩🇪 DE SH_SHanQ
 # 🇩🇰 DK - AMS
 89.27.8.25:443#🇩🇰 DK 01 Copenhagen_SHanQ
 51.20.99.157:443#🇩🇰 DK 02 Copenhagen_SHanQ
@@ -83,34 +84,34 @@
 51.44.146.223:2053#🇫🇷 FR 154 Paris_SHanQ
 158.178.192.221:443#🇫🇷 FR 155 Paris_SHanQ
 # 🇬🇧 GB - LHR
-3.8.148.92:2053#🇬🇧 GB 071 Hounslow_SHanQ
-3.8.210.128:8443#🇬🇧 GB 072 Hounslow_SHanQ
-18.175.224.91:2053#🇬🇧 GB 073 Hounslow_SHanQ
-18.175.224.91:8443#🇬🇧 GB 074 Hounslow_SHanQ
-35.177.50.118:443#🇬🇧 GB 075 Hounslow_SHanQ
-38.59.230.15:43042#🇬🇧 GB 076 Hounslow_SHanQ
-67.226.223.184:80#🇬🇧 GB 077 Hounslow_SHanQ
-67.226.223.232:80#🇬🇧 GB 078 Hounslow_SHanQ
-82.165.200.147:443#🇬🇧 GB 079 Hounslow_SHanQ
-213.165.84.57:443#🇬🇧 GB 080 Hounslow_SHanQ
+35.177.50.118:443#🇬🇧 GB 071 Hounslow_SHanQ
+213.165.84.57:443#🇬🇧 GB 072 Hounslow_SHanQ
+82.165.200.147:443#🇬🇧 GB 073 Hounslow_SHanQ
+3.8.210.128:8443#🇬🇧 GB 074 Hounslow_SHanQ
+18.175.224.91:8443#🇬🇧 GB 075 Hounslow_SHanQ
+3.9.9.137:2053#🇬🇧 GB 076 Hounslow_SHanQ
+3.8.148.92:2053#🇬🇧 GB 077 Hounslow_SHanQ
+18.175.224.91:2053#🇬🇧 GB 078 Hounslow_SHanQ
+67.226.223.184:80#🇬🇧 GB 079 Hounslow_SHanQ
+38.59.230.15:43042#🇬🇧 GB 080 Hounslow_SHanQ
 # 🇬🇪 GE
 
 
 
 # 🇭🇰 HK
-47.76.130.197:60001#🇭🇰 HK 01_SHanQ
+128.1.132.82:443#🇭🇰 HK 01_SHanQ
 47.76.218.163:443#🇭🇰 HK 02_SHanQ
 47.238.145.60:443#🇭🇰 HK 03_SHanQ
-128.1.132.82:443#🇭🇰 HK 04_SHanQ
-152.32.252.175:8969#🇭🇰 HK 05_SHanQ
+82.152.163.227:443#🇭🇰 HK 04_SHanQ
+47.76.130.197:60001#🇭🇰 HK 05_SHanQ
 # 🇭🇺 HU
 91.219.237.49:443#🇭🇺 HU Pest megye_SHanQ
 
 
 # 🇮🇪 IE - DUB
-52.19.138.237:8443#🇮🇪 IE 01 Leinster Dublin_SHanQ
-193.57.138.65:81#🇮🇪 IE 02 Leinster Dublin_SHanQ
-34.253.234.62:443#🇮🇪 IE 03 Leinster Dublin_SHanQ
+193.57.138.65:81#🇮🇪 IE 01 Leinster Dublin_SHanQ
+34.253.234.62:443#🇮🇪 IE 02 Leinster Dublin_SHanQ
+52.19.138.237:8443#🇮🇪 IE 03 Leinster Dublin_SHanQ
 # 🇮🇱 IL
 
 
@@ -143,21 +144,22 @@
 
 
 # 🇯🇵 JP Narita
-47.79.38.70:443#🇯🇵 JP 131 Narita_SHanQ
 47.79.34.47:443#🇯🇵 JP 132 Narita_SHanQ
 151.145.75.127:443#🇯🇵 JP 133 Narita_SHanQ
+176.119.148.163:443#🇯🇵 JP 131 Narita_SHanQ
 34.84.226.135:2096#🇯🇵 JP 134 Narita_SHanQ
 155.248.184.178:30011#🇯🇵 JP 135 Narita_SHanQ
 # 🇯🇵 JP Osaka
 138.2.61.180:443#🇯🇵 JP 141 Osaka_SHanQ
 141.147.144.246:8080#🇯🇵 JP 142 Osaka_SHanQ
 
-# 🇰🇷 KR-ICN
-211.218.223.130:30012#🇰🇷 KR 011 Bakchon_SHanQ
-118.47.65.248:30012#🇰🇷 KR 012 Bakchon_SHanQ
+# 🇰🇷 KR - ICN
+152.70.232.174:443#🇰🇷 KR Bakchon_SHanQ
+118.47.65.248:30012#🇰🇷 KR 011 Bakchon_SHanQ
+129.154.197.218:40093#🇰🇷 KR 012 Bakchon_SHanQ
 132.226.22.106:34237#🇰🇷 KR 013 Bakchon_SHanQ
 132.226.171.151:40274#🇰🇷 KR 014 Bakchon_SHanQ
-129.154.197.218:40093#🇰🇷 KR 015 Bakchon_SHanQ
+211.218.223.130:30012#🇰🇷 KR 015 Bakchon_SHanQ
 # 🇰🇿 KZ
 194.76.18.10:443#🇰🇿 KZ Almaty_SHanQ
 
@@ -248,12 +250,12 @@
 154.17.21.134:18446#🇺🇸 US 024 East Los Angeles_SHanQ
 38.148.249.118:32956#🇺🇸 US 025 East Los Angeles_SHanQ
 # 🇺🇸 US California - SJC
-92.243.75.49:2087#🇺🇸 US 191 San Jose_SHanQ
+109.176.239.70:443#🇺🇸 US 191 San Jose_SHanQ
 104.16.112.237:443#🇺🇸 US 192 San Jose_SHanQ
 152.67.231.219:443#🇺🇸 US 193 San Jose_SHanQ
 37.123.193.101:17475#🇺🇸 US 194 San Jose_SHanQ
 digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
-# 🇺🇸 US Georgia-ATL
+# 🇺🇸 US Georgia - ATL
 
 
 
@@ -262,8 +264,8 @@ digitalocean.com:443#🇺🇸 US 195 San Jose_SHanQ
 3.141.223.191:2053#🇺🇸 US0 082 Illinois Wheaton_SHanQ
 
 # 🇺🇸 US Ohio - CMH
-18.216.55.100:443#🇺🇸 US 141-18 Reynoldsburg_SHanQ
-
+3.144.191.4#🇺🇸 US 141-18 Reynoldsburg_SHanQ
+3.18.196.26#🇺🇸 US 142-18 Reynoldsburg_SHanQ
 
 # 🇺🇸 US Oregon - PDX
 35.83.185.225:443#🇺🇸 US 141-16 Portland_SHanQ
