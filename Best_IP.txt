@@ -12,8 +12,8 @@
 185.119.117.146:8443#🇦🇹 AT 03 Bruck-an-der-Leitha_SHanQ
 # 🇦🇺 AU
 13.54.198.183:443#🇦🇺 AU 01 Sydney_SHanQ
-54.79.133.41:443#🇦🇺 AU 03 Sydney_SHanQ
-58.96.86.5:443#🇦🇺 AU 04 Sydney_SHanQ
+54.79.133.41:443#🇦🇺 AU 02 Sydney_SHanQ
+58.96.86.5:443#🇦🇺 AU 03 Sydney_SHanQ
 # 🇧🇬 BG
 195.123.230.40:443#🇧🇬 BG Sofia_SHanQ
 
