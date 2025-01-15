@@ -43,19 +43,19 @@
 92.118.149.45:443#🇨🇿 CZ 02 Kladno_SHanQ
 176.74.219.73:8443#🇨🇿 CZ 03 Kladno_SHanQ
 # 🇩🇪 DE - FRA
-3.68.198.23:443#🇩🇪 DE Dreieich 031_SHanQ
-3.64.216.209:2083#🇩🇪 DE Dreieich 032_SHanQ
-18.184.27.249:443#🇩🇪 DE Dreieich 033_SHanQ
-52.57.37.222:2083#🇩🇪 DE Dreieich 034_SHanQ
-91.132.95.212:443#🇩🇪 DE Dreieich 035_SHanQ
+3.68.198.23:443#🇩🇪 DE 031 Dreieich_SHanQ
+3.64.216.209:2083#🇩🇪 DE 032 Dreieich_SHanQ
+18.184.27.249:443#🇩🇪 DE 033 Dreieich_SHanQ
+52.57.37.222:2083#🇩🇪 DE 034 Dreieich_SHanQ
+91.132.95.212:443#🇩🇪 DE 035 Dreieich_SHanQ
 # 🇩🇪 DE Schleswig-Holstein
 46.29.235.36:2053#🇩🇪 DE Schleswig-Holstein_SHanQ
 
 
 # 🇩🇰 DK - AMS
-89.27.8.25:443#🇩🇰 DK Copenhagen 01_SHanQ
-38.180.20.59:2053#🇩🇰 DK Copenhagen 02_SHanQ
-188.93.140.11:443#🇩🇰 DK Copenhagen 03_SHanQ
+89.27.8.25:443#🇩🇰 DK 021 Copenhagen_SHanQ
+38.180.20.59:2053#🇩🇰 DK 022 Copenhagen_SHanQ
+188.93.140.11:443#🇩🇰 DK 023 Copenhagen_SHanQ
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
 45.82.253.175:8443#🇪🇪 EE 03 Harjumaa Tallinn_SHanQ
@@ -121,9 +121,9 @@
 
 
 # 🇮🇳 IN - Maharashtra
-3.7.108.69:443#🇮🇳 IN Santa Cruz 121_SHanQ
-172.65.90.11:443#🇮🇳 IN Santa Cruz 122_SHanQ
-143.244.130.180:443#🇮🇳 IN Santa Cruz 123_SHanQ
+3.7.108.69:443#🇮🇳 IN 121 Santa Cruz_SHanQ
+172.65.90.11:443#🇮🇳 IN 122 Santa Cruz_SHanQ
+143.244.130.180:443#🇮🇳 IN 123 Santa Cruz_SHanQ
 # 🇮🇳 IN - Tamil Nadu
 
 
@@ -136,9 +136,9 @@
 195.246.230.157:443#🇮🇸 IS 02 Keflavík_SHanQ
 
 # 🇮🇹 IT
-87.120.237.36:81#🇮🇹 IT Gallarate 051_SHanQ
-38.180.15.138:443#🇮🇹 IT Gallarate 052_SHanQ
-89.168.17.228:443#🇮🇹 IT Gallarate 053_SHanQ
+87.120.237.36:81#🇮🇹 IT 051 Gallarate_SHanQ
+38.180.15.138:443#🇮🇹 IT 052 Gallarate_SHanQ
+89.168.17.228:443#🇮🇹 IT 053 Gallarate_SHanQ
 # 🇯🇵 JP Fukuoka
 14.48.49.133:10000#🇯🇵 JP 051 Fukuoka_SHanQ
 
@@ -164,8 +164,8 @@
 
 
 # 🇱🇹 LT
-46.32.184.247:443#🇱🇹 LT Vilnius 211_SHanQ
-80.209.230.16:443#🇱🇹 LT Vilnius 212_SHanQ
+46.32.184.247:443#🇱🇹 LT 211 Vilnius_SHanQ
+80.209.230.16:443#🇱🇹 LT 212 Vilnius_SHanQ
 
 
 # 🇱🇻 LV
@@ -225,9 +225,9 @@
 # 🇸🇬 SG
 8.219.72.167:443#🇸🇬 SG 01_SHanQ
 13.214.140.208:443#🇸🇬 SG 02_SHanQ
-18.141.138.141:443#🇸🇬 SG 05_SHanQ
-54.255.71.236:443#🇸🇬 SG 03_SHanQ
-185.81.29.187:443#🇸🇬 SG 04_SHanQ
+18.141.138.141:443#🇸🇬 SG 03_SHanQ
+54.255.71.236:443#🇸🇬 SG 04_SHanQ
+185.81.29.187:443#🇸🇬 SG 05_SHanQ
 # 🇹🇭 TH
 8.213.237.199:443#🇹🇭 TH 02 Bangkok_SHanQ
 
