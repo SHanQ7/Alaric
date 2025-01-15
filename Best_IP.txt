@@ -58,7 +58,7 @@
 188.93.140.11:443#🇩🇰 DK 023 Copenhagen_SHanQ
 # 🇪🇪 EE
 45.82.253.58:443#🇪🇪 EE 01 Harjumaa Tallinn_SHanQ
-45.82.253.175:8443#🇪🇪 EE 03 Harjumaa Tallinn_SHanQ
+45.82.253.175:8443#🇪🇪 EE 02 Harjumaa Tallinn_SHanQ
 
 # 🇪🇸 ES
 38.180.52.83:443#🇪🇸 ES 01 Madrid Chamartín_SHanQ
@@ -89,11 +89,11 @@
 51.44.146.223:2053#🇫🇷 FR 154 Paris_SHanQ
 158.178.192.221:443#🇫🇷 FR 155 Paris_SHanQ
 # 🇬🇧 GB - LHR
-3.8.148.92:2053#🇬🇧 GB Hounslow 071_SHanQ
-185.212.62.26:25122#🇬🇧 GB Hounslow 072_SHanQ
-18.175.224.91:2053#🇬🇧 GB Hounslow 073_SHanQ
-38.59.230.15:43042#🇬🇧 GB Hounslow 074_SHanQ
-213.165.84.57:443#🇬🇧 GB Hounslow 075_SHanQ
+3.8.148.92:2053#🇬🇧 GB 071 Hounslow_SHanQ
+185.212.62.26:25122#🇬🇧 GB 072 Hounslow_SHanQ
+18.175.224.91:2053#🇬🇧 GB 073 Hounslow_SHanQ
+38.59.230.15:43042#🇬🇧 GB 074 Hounslow_SHanQ
+213.165.84.57:443#🇬🇧 GB 075 Hounslow_SHanQ
 # 🇬🇪 GE
 
 
@@ -144,11 +144,11 @@
 
 
 # 🇯🇵 JP Narita
-3.113.10.193:443#🇯🇵 JP Narita 131_SHanQ
-35.77.18.194:8443#🇯🇵 JP Narita 132_SHanQ
-54.249.135.43:443#🇯🇵 JP Narita 133_SHanQ
-151.145.75.127:443#🇯🇵 JP Narita 134_SHanQ
-155.248.184.178:30011#🇯🇵 JP Narita 135_SHanQ
+3.113.10.193:443#🇯🇵 JP 131 Narita_SHanQ
+35.77.18.194:8443#🇯🇵 JP 132 Narita_SHanQ
+54.249.135.43:443#🇯🇵 JP 133 Narita_SHanQ
+151.145.75.127:443#🇯🇵 JP 134 Narita_SHanQ
+155.248.184.178:30011#🇯🇵 JP 135 Narita_SHanQ
 # 🇯🇵 JP Osaka
 141.147.144.246:8080#🇯🇵 JP 142 Osaka_SHanQ
 
@@ -241,13 +241,13 @@
 
 
 # 🇨🇳 TW Taoyuan
-172.65.90.51:443#🇨🇳 TW Taoyuan 191_SHanQ
-172.65.90.50:443#🇨🇳 TW Taoyuan 192_SHanQ
-220.135.202.250:81#🇨🇳 TW Taoyuan 193_SHanQ
-35.201.175.67:2096#🇨🇳 TW Taoyuan 194_SHanQ
-114.34.202.224:10004#🇨🇳 TW Taoyuan 195_SHanQ
+172.65.90.51:443#🇨🇳 TW 191 Taoyuan_SHanQ
+172.65.90.50:443#🇨🇳 TW 192 Taoyuan_SHanQ
+220.135.202.250:81#🇨🇳 TW 193 Taoyuan_SHanQ
+35.201.175.67:2096#🇨🇳 TW 194 Taoyuan_SHanQ
+114.34.202.224:10004#🇨🇳 TW 195 Taoyuan_SHanQ
 # 🇺🇦 UA
-130.0.239.147:8443🇺🇦 UA Kyiv 091_SHanQ
+130.0.239.147:8443🇺🇦 UA 091 Kyiv_SHanQ
 
 
 # 🇺🇸 US California - LAX
