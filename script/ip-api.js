@@ -155,6 +155,8 @@ function Area_check(para) {
     "Rīga" : "里加",
     // 挪威 - Norway - NO
     "Viken" : "维肯",
+    // 尼泊尔 - Nepal - NP
+    "Bagmati Province" : "巴格马蒂省",
     // 墨西哥 - The United Mexican States - MX
     "克雷塔羅州" : "克雷塔罗州",
     // 菲律宾 - Philippines - PH
@@ -253,6 +255,8 @@ function City_ValidCheck(para) {
     "Riga" : "里加",
     // 墨西哥-克雷塔罗州
     "QUERETARO" : "克雷塔罗",
+    // 尼泊尔-巴格马蒂省
+    "加德滿都" : "加德满都",
     // 菲律宾-大马尼拉地区
     "Taguig" : "塔吉格",
     // 菲律宾-米沙鄢地区北部
