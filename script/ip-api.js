@@ -285,7 +285,7 @@ function City_ValidCheck(para) {
     // 泰国-安通省
     "Ang Thong" : "安通市",
     // 乌克兰-克罗皮夫尼茨基州
-    "Promichna" : "普罗米奇纳",
+    "Pomichna" : "普罗米奇纳",
     // 美国-加利福尼亚州
     "San Jose" : "圣荷西",
     "聖荷西" : "圣荷西",
