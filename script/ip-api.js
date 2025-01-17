@@ -183,6 +183,8 @@ function Area_check(para) {
     "North West" : "西北区",
     // 泰国 - Thailand - TH
     "Ang Thong" : "安通省",
+    // 乌克兰 - Ukraine - UA
+    "Kyiv City" : "基辅市",
     // 美国 - The United States of America - US
     "加州" : "加利福尼亚州",
     // 越南 - Vietnam - VN
@@ -286,6 +288,8 @@ function City_ValidCheck(para) {
     "Ang Thong" : "安通市",
     // 乌克兰-克罗皮夫尼茨基州
     "Pomichna" : "普罗米奇纳",
+    // 乌克兰-基辅市
+    "Kyiv" : "基辅",
     // 美国-加利福尼亚州
     "San Jose" : "圣荷西",
     "聖荷西" : "圣荷西",
