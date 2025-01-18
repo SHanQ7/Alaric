@@ -51,7 +51,7 @@ let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
 let description = `
 --------------------------------------
-${flags.get(obj['countryCode'])} ${obj['countryCode']} ${obj['country']}
+${obj['countryCode']} ${obj['country']}
 \n
 ${obj['region']}
 \n
