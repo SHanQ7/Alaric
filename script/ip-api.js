@@ -51,19 +51,24 @@ let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
 let description = `
 --------------------------------------
-${countryCode} ${country}
-${obj['region']} ${region}
-${obj['city']}
-${ip}
-${isp}
-${lat} / ${lon}
-${timezone}
++ '\n'
+flags.get(obj['countryCode']) + ' ' + obj['countryCode'] + ' ' + obj['country'] + '\n'
++ '\n'
++ obj['region']
++ '\n'
++ city_check(obj['regionName'])
++ '\n'
++ obj['query']
++ '\n'
++ obj['isp']
++ '\n'
++ obj['lat'] + ' / ' + obj['lon']
++ '\n'
++ obj['timezone']
++ '\n'
 --------------------------------------
 `;
-
 $done({title, subtitle, ip, description});
-
-
 
 function country_ValidCheck(para) {
    const countryMap = {
