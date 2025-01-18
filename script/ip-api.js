@@ -49,8 +49,8 @@ let displayCity = (city !== country && city !== region) ? city : '';
 
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
-let description = 
--------------------------
+let description = `
+--------------------------------------
 ${countryCode} ${country}
 
 ${obj['region']} ${region}
@@ -64,8 +64,8 @@ ${isp}
 ${lat} / ${lon}
 
 ${timezone}
--------------------------
-;
+--------------------------------------
+`;
 $done({title, subtitle, ip, description});
 
 function country_ValidCheck(para) {
