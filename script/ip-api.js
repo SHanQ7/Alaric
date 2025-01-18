@@ -51,13 +51,13 @@ let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
 let description = `
 --------------------------------------
- 国家   | ${countryCode} ${country}
- 地区   | ${obj['region']} ${region}
- 城市   | ${obj['city']}
- IP     | ${ip}
- ISP    | ${isp}
- 经纬度 | ${lat} / ${lon}
- 时区   | ${timezone}
+${countryCode} ${country}
+${obj['region']} ${region}
+${obj['city']}
+${ip}
+${isp}
+${lat} / ${lon}
+${timezone}
 --------------------------------------
 `;
 
