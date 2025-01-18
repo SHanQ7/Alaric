@@ -113,6 +113,8 @@ function Area_check(para) {
     "石勒苏益格-荷尔斯泰因" : "石荷州",
     // 丹麦 - The Kingdom of Denmark - DK
     "Capital Region" : "哥本哈根大区",
+    // 厄尔多瓜 - Ecuador - EC
+    "皮欽查省" : "皮钦查省",
     // 爱沙尼亚 - Republic of Estonia - EE
     "哈爾尤縣" : "哈尔尤县",
     // 葡萄牙 - Portugal - EU
@@ -126,6 +128,8 @@ function Area_check(para) {
     // 希腊 - Greece - GR
     "Attica" : "阿提卡",
     // 香港 - Hong Kong - HK
+    "東區" : "东区",
+    "中西區" : "中西区",
     "Kowloon" : "九龙区",
     "Wong Tai Sin" : "黄大仙区",
     "北區" : "北区",
@@ -153,12 +157,14 @@ function Area_check(para) {
     "維爾紐斯縣" : "维尔纽斯县",
     // 拉脱维亚 - Latvia - LV
     "Rīga" : "里加",
+    // 摩尔多瓦 - Moldova -MD
+    "Chișinău Municipality" : "基希讷乌市",
+    // 墨西哥 - The United Mexican States - MX
+    "克雷塔羅州" : "克雷塔罗州",
     // 挪威 - Norway - NO
     "Viken" : "维肯",
     // 尼泊尔 - Nepal - NP
     "Bagmati Province" : "巴格马蒂省",
-    // 墨西哥 - The United Mexican States - MX
-    "克雷塔羅州" : "克雷塔罗州",
     // 菲律宾 - Philippines - PH
     "Metro Manila" : "大马尼拉地区",
     "Northern Mindanao" : "米沙鄢地区北部",
@@ -172,6 +178,7 @@ function Area_check(para) {
     "St.-Petersburg" : "圣彼得堡",
     "Tatarstan Republic" : "塔塔尔斯坦共和国",
     // 罗马尼亚 - Romania - RO
+    "蒂米什縣": "蒂米什县",
     "伊爾福夫縣": "伊尔福夫县",
     // 沙特阿拉伯 - Saudi Arabia - SA
     "Mecca Region" : "麦加地区",
@@ -180,6 +187,7 @@ function Area_check(para) {
     "Stockholm County" : "斯德哥尔摩",
     // 新加坡 - Singapore - SG
     "Central Singapore" : "中环区",
+    "South West" : "西南区",
     "North West" : "西北区",
     // 泰国 - Thailand - TH
     "Ang Thong" : "安通省",
@@ -198,8 +206,12 @@ function Area_check(para) {
 
 function City_ValidCheck(para) {
   const cityMap = {
+    // 阿联酋-阿布扎比
+    "Masdar City" : "马斯达尔城",
     // 亚美尼亚-叶里温
     "Yerevan" : "叶里温",
+    // 澳大利亚-维多利亚州
+    "Melton" : "梅尔顿",
     // 巴西-圣保罗州
     "Osasco" : "奥萨斯科",
     "São Paulo" : "圣保罗",
@@ -221,6 +233,7 @@ function City_ValidCheck(para) {
     // 英国-英格兰
     "Harlesden" : "伦敦",
     // 中国-香港
+    "Sheung Wan" : "上环",
     "The Latitude" : "誉港湾",
     // 匈牙利-佩斯州
     "Szigetszentmiklós" : "锡盖特圣米克洛什",
@@ -251,6 +264,17 @@ function City_ValidCheck(para) {
     "福岡市" : "福冈市",
     // 韩国-忠清北道
     "Yeongdong-gun" : "永同郡",
+    // 韩国-首尔
+    "Dongjak-gu" : "铜雀区",
+    "Gasan-dong" : "加山洞",
+    "Gangnam-gu" : "江南区",
+    "Gangseo-gu" : "江西区",
+    "Gwanak-gu" : "冠岳区",
+    "Jowon-dong" : "枣园洞",
+    // 韩国-京畿道
+    "Bucheon-si" : "富川市",
+    "Gimpo-si" : "金浦市",
+    "Seongnam-si:" : "城南市",
     // 立陶宛-维尔纽斯县
     "倫特瓦里斯" : "伦特瓦里斯",
     // 拉脱维亚-里加
@@ -276,6 +300,8 @@ function City_ValidCheck(para) {
     "St Petersburg" : "圣彼得堡",
     // 罗马尼亚-伊尔福夫县
     "Voluntari" : "沃伦塔里",
+    // 罗马尼亚-蒂米什县
+    "Dumbrăviţa" : "杜姆布拉维察",
     // 沙特阿拉伯-利雅得省
     "Sha`ib al Malqah" : "沙伊布·阿尔·马尔卡",
     // 瑞典-斯德哥尔摩
@@ -295,6 +321,7 @@ function City_ValidCheck(para) {
     "聖荷西" : "圣荷西",
     // 美国-弗吉尼亚州
     "Ashburn" : "阿什本",
+    "Boydton" : "博伊顿",
     "Reston": "里斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国-德克萨斯州
