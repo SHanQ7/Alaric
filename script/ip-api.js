@@ -70,7 +70,7 @@ $done({title, subtitle, ip, description});
 
 function country_ValidCheck(para) {
    const countryMap = {
-     "中華民國":"台湾", "中华民国":"台湾","俄罗斯联邦":"俄罗斯",
+     "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国",
  };
  para = para ? para.trim() : "";
  return countryMap[para] || para || country0;
