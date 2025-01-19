@@ -314,6 +314,7 @@ function City_ValidCheck(para) {
     "Pomichna" : "普罗米奇纳",
     // 乌克兰-基辅市
     "Kyiv" : "基辅",
+    "Yahotyn" : "雅赫特恩",
     // 美国-加利福尼亚州
     "San Jose" : "圣荷西",
     "聖荷西" : "圣荷西",
