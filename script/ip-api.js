@@ -219,6 +219,7 @@ function City_ValidCheck(para) {
     // 哥伦比亚-昆迪纳马尔卡省
     "Cota" : "科塔",
     // 德国-黑森州
+    "Frankfurt" : "法兰克福",
     "Frankfurt am Main" : "法兰克福",
     // 德国-石勒苏益格-荷尔斯泰因
     "諾德施泰特" : "诺德施泰特",
