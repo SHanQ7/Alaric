@@ -273,7 +273,7 @@ function City_ValidCheck(para) {
     // 韩国-京畿道
     "Bucheon-si" : "富川市",
     "Gimpo-si" : "金浦市",
-    "Seongnam-si:" : "城南市",
+    "Seongnam-si" : "城南市",
     // 立陶宛-维尔纽斯县
     "倫特瓦里斯" : "伦特瓦里斯",
     // 拉脱维亚-里加
