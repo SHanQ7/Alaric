@@ -333,7 +333,7 @@ function City_ValidCheck(para) {
     // 罗马尼亚 - 蒂米什县
     "Dumbrăviţa" : "敦布勒维察",
     // 沙特阿拉伯 - 利雅得省
-    "Sha`ib al Malqah" : "沙伊布·阿尔·马尔卡",
+    "Sha`ib al Malqah" : "埃尔奥拉",
     // 瑞典 - 斯德哥尔摩
     "Steninge" : "斯特宁厄",
     // 土耳其 - 伊斯坦布尔
