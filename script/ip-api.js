@@ -78,7 +78,7 @@ function country_ValidCheck(para) {
 
 function Area_check(para) {
   const areaMap = {
-    // 迪拜 - Dubai - AE
+    // 阿拉伯联合酋长国 - Dubai - AE
     "Dubai" : "迪拜",
     // 亚美尼亚 - Armenia -  AM
     "葉里溫" : "叶里温",
@@ -100,7 +100,7 @@ function Area_check(para) {
     // 哥伦比亚 - Colombia - CO
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
     // 中国 - China - CN
-    "Changhua" : "彰化县",
+    "Changhua" : "彰化市",
     "Taichung City" : "台中市",
     "Taoyuan" : "桃园市",
     "臺北市" : "台北市",
@@ -128,13 +128,13 @@ function Area_check(para) {
     // 香港 - Hong Kong - HK
     "東區" : "东区",
     "中西區" : "中西区",
-    "Kowloon" : "九龙区",
+    "Kowloon" : "九龙",
     "Wong Tai Sin" : "黄大仙区",
     "北區" : "北区",
     // 爱尔兰 - Ireland - IE
     "倫斯特省" : "伦斯特省",
     // 以色列 - Israel - IL
-    "Rosh Ha‘Ayin" : "罗斯哈音",
+    "Rosh Ha‘Ayin" : "罗什艾因",
     // 伊拉克 - Iraq - IQ
      "巴格達省" : "巴格达省",
     // 冰岛 - Island - IS
@@ -143,7 +143,7 @@ function Area_check(para) {
     "Lombardy" : "伦巴第大区",
     // 日本 - Japan - JP
     "Tokyo" : "东京都",
-    "Osaka" : "大阪府",
+    "Osaka" : "大阪市",
     "福岡縣" : "福冈县",
     "千葉縣" : "千叶县",
     "埼玉縣" : "埼玉县",
@@ -160,35 +160,35 @@ function Area_check(para) {
     // 墨西哥 - The United Mexican States - MX
     "克雷塔羅州" : "克雷塔罗州",
     // 挪威 - Norway - NO
-    "Viken" : "维肯",
+    "Viken" : "维肯郡",
     // 尼泊尔 - Nepal - NP
     "Bagmati Province" : "巴格马蒂省",
     // 菲律宾 - Philippines - PH
-    "Metro Manila" : "大马尼拉地区",
-    "Northern Mindanao" : "米沙鄢地区北部",
+    "Metro Manila" : "马尼拉大都会",
+    "Northern Mindanao" : "北棉兰老大区",
     // 波兰 - Porland - PL
-    "Mazovia" : "摩拉维亚",
+    "Mazovia" : "马佐夫舍省",
     "波美拉尼亞省" : "波美拉尼亚省",
     // 塞尔维亚 - Serbia - RS 
     "Belgrade" : "贝尔格莱德",
     // 俄罗斯 - Ruassia - RU
     "Moscow" : "莫斯科州",
     "St.-Petersburg" : "圣彼得堡",
-    "Tatarstan Republic" : "塔塔尔斯坦共和国",
+    "Tatarstan Republic" : "鞑靼斯坦共和国",
     // 罗马尼亚 - Romania - RO
     "蒂米什縣": "蒂米什县",
     "伊爾福夫縣": "伊尔福夫县",
     // 沙特阿拉伯 - Saudi Arabia - SA
-    "Mecca Region" : "麦加地区",
+    "Mecca Region" : "麦加省",
     // 瑞典 - Sweden - SE
     "Stockholm" : "斯德哥尔摩",
     "Stockholm County" : "斯德哥尔摩",
     // 新加坡 - Singapore - SG
-    "Central Singapore" : "中环区",
+    "Central Singapore" : "中区",
     "South West" : "西南区",
     "North West" : "西北区",
     // 泰国 - Thailand - TH
-    "Ang Thong" : "安通省",
+    "Ang Thong" : "红统府",
     // 乌克兰 - Ukraine - UA
     "Kyiv City" : "基辅市",
     // 美国 - The United States of America - US
@@ -207,15 +207,15 @@ function City_ValidCheck(para) {
     // 阿联酋-阿布扎比
     "Masdar City" : "马斯达尔城",
     // 亚美尼亚-叶里温
-    "Yerevan" : "叶里温",
+    "Yerevan" : "耶烈万",
     // 澳大利亚-维多利亚州
     "Melton" : "梅尔顿",
     // 巴西-圣保罗州
-    "Osasco" : "奥萨斯科",
+    "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
-    "Vinhedo" : "温赫杜",
+    "Vinhedo" : "维涅杜",
     // 智利-圣地亚哥大区
-    "Lampa" : "拉帕",
+    "Lampa" : "兰帕",
     // 哥伦比亚-昆迪纳马尔卡省
     "Cota" : "科塔",
     // 德国-黑森州
@@ -230,7 +230,7 @@ function City_ValidCheck(para) {
     // 法国-蔚蓝海岸大区
     "伊斯特爾" : "伊斯特尔",
     // 英国-英格兰
-    "Harlesden" : "伦敦",
+    "Harlesden" : "哈利斯登",
     // 中国-香港
     "Sheung Wan" : "上环",
     "The Latitude" : "誉港湾",
@@ -249,7 +249,7 @@ function City_ValidCheck(para) {
     "Tiruvānmiyūr" : "钦奈市",
     // 意大利-伦巴第大区
     "Gallarate" : "加拉拉泰",
-    "Ponte San Pietro" : "圣彼得桥",
+    "Ponte San Pietro" : "蓬泰圣彼得罗",
     // 日本-东京都
     "東京都": "东京都",
     "Chiyoda": "千代田区",
@@ -290,7 +290,7 @@ function City_ValidCheck(para) {
     "普魯斯科夫" : "普鲁斯科夫",
     // 挪威-阿克什胡斯郡
     "Jessheim" : "杰斯海姆",
-    "Lorenskog" : "洛伦斯科格",
+    "Lorenskog" : "勒伦斯科格",
     // 塞尔维亚-贝尔格莱德
     "Rucka" : "鲁卡镇",
     // 俄罗斯-莫斯科州
@@ -300,19 +300,19 @@ function City_ValidCheck(para) {
     // 罗马尼亚-伊尔福夫县
     "Voluntari" : "沃伦塔里",
     // 罗马尼亚-蒂米什县
-    "Dumbrăviţa" : "杜姆布拉维察",
+    "Dumbrăviţa" : "敦布勒维察",
     // 沙特阿拉伯-利雅得省
     "Sha`ib al Malqah" : "沙伊布·阿尔·马尔卡",
     // 瑞典-斯德哥尔摩
     "Steninge" : "斯特宁厄",
     // 土耳其-伊斯坦布尔
-    "Kocasinan" : "科卡西楠",
+    "Kocasinan" : "科卡西南",
     // 台湾-桃园市
     "中壢" : "中坜区",
     // 泰国-安通省
-    "Ang Thong" : "安通市",
+    "Ang Thong" : "红统府",
     // 乌克兰-克罗皮夫尼茨基州
-    "Pomichna" : "普罗米奇纳",
+    "Pomichna" : "波莫什纳亚",
     // 乌克兰-基辅市
     "Kyiv" : "基辅",
     "Yahotyn" : "雅赫特恩",
@@ -326,7 +326,7 @@ function City_ValidCheck(para) {
     "馬納薩斯" : "马纳萨斯",
     // 美国-德克萨斯州
     "達拉斯" : "达拉斯",
-    "Aldine": "奥尔丁",
+    "Aldine": "奥尔代恩",
     "Flower Mound": "弗洛尔蒙特",
     // 美国-俄勒冈州
     "波特蘭": "波特兰",
@@ -334,7 +334,7 @@ function City_ValidCheck(para) {
     "Dublin": "都柏林",
     "Reynoldsburg": "雷诺兹堡",
     // 美国-纽约州
-    "Cheektowaga" : "布法罗都",
+    "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
     // 越南-河内
     "河內市" : "河内市",
