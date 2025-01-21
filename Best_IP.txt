@@ -251,7 +251,7 @@ aliyun.2096.us.kg:443#SHanQ-VIP专属02
 172.65.90.51:443#🇨🇳 TW 191 Taoyuan_SHanQ
 172.65.90.50:443#🇨🇳 TW 192 Taoyuan_SHanQ
 220.135.202.250:81#🇨🇳 TW 193 Taoyuan_SHanQ
-141.11.86.109:8080#🇨🇳 TW 193 Taoyuan_SHanQ
+141.11.86.109:8080#🇨🇳 TW 194 Taoyuan_SHanQ
 114.34.202.224:10004#🇨🇳 TW 195 Taoyuan_SHanQ
 # 🇺🇦 UA
 130.0.239.147:8443🇺🇦 UA 091 Kyiv_SHanQ
@@ -281,19 +281,19 @@ digitalocean.com:443#🇺🇸 US 193 San Jose_SHanQ
 
 # 🇺🇸 US Ohio - CMH
 3.144.191.4#🇺🇸 US 141-18 Reynoldsburg_SHanQ
-
-
+3.18.196.26#🇺🇸 US 142-18 Reynoldsburg_SHanQ
+3.147.73.220#🇺🇸 US 143-18 Reynoldsburg_SHanQ
 # 🇺🇸 US Oregon - PDX
-35.83.185.225:443#🇺🇸 US 141-16 Portland_SHanQ
-54.187.212.113:8443#🇺🇸 US 142-16 Portland_SHanQ
-
+35.155.38.149:443#🇺🇸 US 141-16 Portland_SHanQ
+35.83.185.225:443#🇺🇸 US 142-16 Portland_SHanQ
+54.187.212.113:8443#🇺🇸 US 143-16 Portland_SHanQ
 # 🇺🇸 US Texas
 172.65.90.57:443#🇺🇸 US 181 Aldine_SHanQ
 172.65.90.56:443#🇺🇸 US 182 Aldine_SHanQ
 107.174.225.21:58938#🇺🇸 US Flower Mound_SHanQ
 # 🇺🇸 US Virginia - IAD
 3.82.153.90:443#🇺🇸 US 211 Reston_SHanQ
-129.213.130.70:443#🇺🇸 US 212 Reston_SHanQ
+3.230.207.59:443#🇺🇸 US 212 Reston_SHanQ
 129.213.136.180:443#🇺🇸 US 214 Reston_SHanQ
 # 🇺🇸 US Washington - SEA
 34.208.221.169:443#🇺🇸 US 221 Kent_SHanQ
