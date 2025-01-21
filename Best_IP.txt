@@ -289,12 +289,12 @@ digitalocean.com:443#🇺🇸 US 193 San Jose_SHanQ
 107.174.225.21:58938#🇺🇸 US Flower Mound_SHanQ
 # 🇺🇸 US Virginia - IAD
 3.82.153.90:443#🇺🇸 US 211 Reston_SHanQ
-3.230.207.59:443#🇺🇸 US 212 Reston_SHanQ
-129.213.136.180:443#🇺🇸 US 214 Reston_SHanQ
+34.193.164.187:443#🇺🇸 US 212 Reston_SHanQ
+129.213.136.180:443#🇺🇸 US 213 Reston_SHanQ
 # 🇺🇸 US Washington - SEA
-34.208.221.169:443#🇺🇸 US 221 Kent_SHanQ
-154.218.15.198:443#🇺🇸 US 222 Kent_SHanQ
-27.50.48.13:443#🇺🇸 US 223 Kent_SHanQ
+cdnjs.com:443#🇺🇸 US 221 Kent_SHanQ
+34.208.221.169:443#🇺🇸 US 222 Kent_SHanQ
+154.218.15.198:443#🇺🇸 US 223 Kent_SHanQ
 # 🇿🇦 ZA
 160.123.255.120:443#🇿🇦 ZA Cape Town_SHanQ
 
