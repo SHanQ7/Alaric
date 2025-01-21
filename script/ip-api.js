@@ -322,7 +322,7 @@ function City_ValidCheck(para) {
     // 美国-弗吉尼亚州
     "Ashburn" : "阿什本",
     "Boydton" : "博伊顿",
-    "Reston": "里斯顿",
+    "Reston": "雷斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国-德克萨斯州
     "達拉斯" : "达拉斯",
