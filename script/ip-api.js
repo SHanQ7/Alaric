@@ -78,140 +78,140 @@ function country_ValidCheck(para) {
 
 function Area_check(para) {
   const areaMap = {
-    // 阿拉伯联合酋长国 - Dubai - AE
+    // AE - 阿拉伯联合酋长国 - Dubai
     "Dubai" : "迪拜",
-    // 亚美尼亚 - Armenia -  AM
+    // AM - 亚美尼亚 - Armenia
     "葉里溫" : "叶里温",
-    "叶里温" : "耶列万省",
-    // 奥地利 - Austria - AT
+    "叶里温" : "耶烈万",
+    // AT - 奥地利 - Austria
     "Vienna" : "维也纳",
-    // 澳大利亚 - Australia - AU
+    // AU - 澳大利亚 - Australia
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
-    // 阿塞拜疆 - Azerbaijan - AZ
+    // AZ - 阿塞拜疆 - Azerbaijan
     "Baku City" : "巴库市",
-    // 巴西- Brazil - BR
+    // BR - 巴西- Brazil
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
-    // 保加利亚 - Bulgaria - BG
+    // BG - 保加利亚 - Bulgaria
     "Sofia-Capital" : "索菲亚市",
-    // 加拿大 - Canad - CA
+    // CA - 加拿大 - Canad
     "Quebec" : "魁北克市",
-    // 瑞士 - Switzerland - CH
+    // CH - 瑞士 - Switzerland
     "Zurich" : "苏黎世",
-    // 智利 - Chile -  CL
+    // CL - 智利 - Chile
     "圣地亚哥首都大区" : "圣地亚哥大区",
-    // 哥伦比亚 - Colombia - CO
+    // CO - 哥伦比亚 - Colombia
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
-    // 中国 - China - CN
+    // CN - 中国 - China
     "Changhua" : "彰化市",
     "Taichung City" : "台中市",
     "Taoyuan" : "桃园市",
     "臺北市" : "台北市",
     "臺灣省 or 台灣省" : "中部地区",
     "中华民国" : "台湾",
-    // 德国 - Germany - DE
+    // DE - 德国 - Germany
     "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
-    // 丹麦 - The Kingdom of Denmark - DK
+    // DK - 丹麦 - The Kingdom of Denmark
     "Capital Region" : "哥本哈根大区",
-    // 厄尔多瓜 - Ecuador - EC
+    // EC - 厄尔多瓜 - Ecuador
     "皮欽查省" : "皮钦查省",
-    // 爱沙尼亚 - Republic of Estonia - EE
+    // EE - 爱沙尼亚 - Republic of Estonia
     "哈爾尤縣" : "哈尔尤县",
-    // 葡萄牙 - Portugal - EU
+    // EU - 葡萄牙 - Portugal
     "里斯本區" : "里斯本区",
     "維也納堡區" : "维也纳堡区",
-    // 法国 - France - FR
+    // FR - 法国 - France
     "Île-de-France" : "法兰西岛",
     "奧弗涅-羅訥-阿爾卑斯大區" : "阿尔卑斯大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "蔚蓝海岸大区",
-    // 英国 - United Kingdom - GB
+    // GB - 英国 - United Kingdom
     "Wales" : "威尔士",
-    // 希腊 - Greece - GR
+    // GR - 希腊 - Greece
     "Attica" : "阿提卡",
-    // 香港 - Hong Kong - HK
+    // HK - 香港 - Hong Kong
     "Kowloon" : "九龙",
     "Wong Tai Sin" : "黄大仙区",
     "北區" : "北区",
     "東區" : "东区",
     "葵青區" : "葵青区",
     "中西區" : "中西区",
-    // 匈牙利 - Hungary - HU
+    // HU - 匈牙利 - Hungary
     "Budapest" : "布达佩斯",
-    // 爱尔兰 - Ireland - IE
+    // IE - 爱尔兰 - Ireland
     "倫斯特省" : "伦斯特省",
-    // 以色列 - Israel - IL
+    // IL - 以色列 - Israel
     "Rosh Ha‘Ayin" : "罗什艾因",
-    // 伊拉克 - Iraq - IQ
+    // IQ - 伊拉克 - Iraq
      "巴格達省" : "巴格达省",
-    // 冰岛 - Island - IS
+    // IS - 冰岛 - Island
     "Southern Peninsula" : "雷克雅未克半岛",
-    // 意大利 - Italy - IT
+    // IT - 意大利 - Italy
     "Lombardy" : "伦巴第大区",
-    // 印度尼西亚 - Indonesia - JK
+    // JK - 印度尼西亚 - Indonesia
     "Jakarta" : "雅加达",
-    // 日本 - Japan - JP
+    // JP - 日本 - Japan
     "Tokyo" : "东京都",
     "Osaka" : "大阪市",
     "福岡縣" : "福冈县",
     "千葉縣" : "千叶县",
     "埼玉縣" : "埼玉县",
     "神奈川縣" : "神奈川县",
-    // 韩国 - Korea - KR
+    // KR - 韩国 - Korea
     "Gangwon-do" : "江原道",
     "North Chungcheong" : "忠清北道",
-    // 哈萨克斯坦 - Kazakhstan - KZ
+    // KZ - 哈萨克斯坦 - Kazakhstan
     "Almaty" : "阿拉木图",
-    // 立陶宛 - Lithuania - LT
+    // LT - 立陶宛 - Lithuania
     "維爾紐斯縣" : "维尔纽斯县",
-    // 拉脱维亚 - Latvia - LV
+    // LV - 拉脱维亚 - Latvia
     "Rīga" : "里加",
-    // 摩尔多瓦 - Moldova -MD
+    // MD - 摩尔多瓦 - Moldova
     "Chișinău Municipality" : "基希讷乌市",
-    // 墨西哥 - The United Mexican States - MX
+    // MX - 墨西哥 - The United Mexican States
     "克雷塔羅州" : "克雷塔罗州",
-    // 马来西亚 - Malaysia - MY
+    // MY - 马来西亚 - Malaysia
     "Kuala Lumpur" : "吉隆坡",
-    // 荷兰 - Netherlands - NL
+    // NL - 荷兰 - Netherlands
     "North Holland" : "北荷兰省",
-    // 挪威 - Norway - NO
-    "Oslo County" : "奥斯陆",
+    // NO - 挪威 - Norway
+    "Oslo County" : "东挪威",
     "Viken" : "维肯郡",
-    // 尼泊尔 - Nepal - NP
+    // NP - 尼泊尔 - Nepal
     "Bagmati Province" : "巴格马蒂省",
-    // 菲律宾 - Philippines - PH
+    // PH - 菲律宾 - Philippines
     "Metro Manila" : "马尼拉大都会",
     "Northern Mindanao" : "北棉兰老",
-    // 波兰 - Porland - PL
+    // PL - 波兰 - Porland
     "Mazovia" : "马佐夫舍省",
     "波美拉尼亞省" : "波美拉尼亚省",
-    // 塞尔维亚 - Serbia - RS 
+    // RS - 塞尔维亚 - Serbia
     "Belgrade" : "贝尔格莱德",
-    // 俄罗斯 - Ruassia - RU
+    // RU - 俄罗斯 - Ruassia
     "Moscow" : "莫斯科州",
     "St.-Petersburg" : "圣彼得堡",
     "Tatarstan Republic" : "鞑靼斯坦共和国",
-    // 罗马尼亚 - Romania - RO
+    // RO - 罗马尼亚 - Romania
     "București": "布加勒斯特",
     "蒂米什縣": "蒂米什县",
     "伊爾福夫縣": "伊尔福夫县",
-    // 沙特阿拉伯 - Saudi Arabia - SA
+    // SA - 沙特阿拉伯 - Saudi Arabia
     "Mecca Region" : "麦加省",
-    // 瑞典 - Sweden - SE
+    // SE - 瑞典 - Sweden
     "Stockholm" : "斯德哥尔摩",
     "Stockholm County" : "斯德哥尔摩",
-    // 新加坡 - Singapore - SG
+    // SG - 新加坡 - Singapore
     "Central Singapore" : "中区",
     "South West" : "西南区",
     "North West" : "西北区",
-    // 泰国 - Thailand - TH
+    // TH - 泰国 - Thailand
     "Ang Thong" : "红统府",
-    // 乌克兰 - Ukraine - UA
+    // UA - 乌克兰 - Ukraine
     "Kyiv City" : "基辅市",
-    // 美国 - The United States of America - US
+    // US - 美国 - The United States of America
     "加州" : "加利福尼亚州",
-    // 越南 - Vietnam - VN
+    // VN - 越南 - Vietnam - VN
     "Hanoi" : "河内市",
     "Hòa Bình Province" : "和平省",
     "慶和省" : "庆和省",
@@ -323,7 +323,7 @@ function City_ValidCheck(para) {
     "Jessheim" : "杰斯海姆",
     "Lorenskog" : "勒伦斯科格",
     // 塞尔维亚 - 贝尔格莱德
-    "Rucka" : "鲁卡镇",
+    "Rucka" : "新贝尔格莱德",
     // 俄罗斯 - 莫斯科州
     "多莫傑多沃" : "多莫杰多沃",
     // 俄罗斯 - 圣彼得堡
