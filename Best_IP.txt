@@ -31,8 +31,8 @@ aliyun.2096.us.kg:443#SHanQ-VIP专属02
 
 
 # 🇨🇦 CA
-81.19.140.166:443#🇨🇦 CA Mississauga_SHanQ
-168.138.90.241:443
+81.19.140.166:443#🇨🇦 CA 01 Mississauga_SHanQ
+168.138.90.241:443#🇨🇦 CA 02 Mississauga_SHanQ
 
 # 🇨🇭 CH Geneva
 45.90.59.204:443#🇨🇭 CH Meyrin_SHanQ
