@@ -1,7 +1,3 @@
-# SHanQ-VIP专属
-cdnjs.com:443#SHanQ-VIP专属01
-aliyun.2096.us.kg:443#SHanQ-VIP专属02
-
 # 🇦🇪 AE
 
 
@@ -246,7 +242,7 @@ aliyun.2096.us.kg:443#SHanQ-VIP专属02
 # 🇨🇳 TW Kaohsiung
 118.163.37.32:81#🇨🇳 TW Kaohsiung 091_SHanQ
 210.61.97.241:81#🇨🇳 TW Kaohsiung 092_SHanQ
-103.137.63.3:443#🇨🇳 TW Kaohsiung 093_SHanQ
+
 # 🇨🇳 TW Taoyuan
 172.65.90.51:443#🇨🇳 TW 191 Taoyuan_SHanQ
 172.65.90.50:443#🇨🇳 TW 192 Taoyuan_SHanQ
@@ -254,7 +250,7 @@ aliyun.2096.us.kg:443#SHanQ-VIP专属02
 141.11.86.109:8080#🇨🇳 TW 194 Taoyuan_SHanQ
 114.34.202.224:10004#🇨🇳 TW 195 Taoyuan_SHanQ
 # 🇺🇦 UA
-130.0.239.147:8443🇺🇦 UA 091 Kyiv_SHanQ
+130.0.239.147:8443🇺🇦 UA Kyiv_SHanQ
 
 
 # 🇺🇸 US California - LAX
@@ -301,5 +297,4 @@ digitalocean.com:443#🇺🇸 US 193 San Jose_SHanQ
 27.50.48.13:443#🇺🇸 US 223 Kent_SHanQ
 # 🇿🇦 ZA
 160.123.255.120:443#🇿🇦 ZA Cape Town_SHanQ
-
 
