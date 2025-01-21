@@ -83,6 +83,8 @@ function Area_check(para) {
     // 亚美尼亚 - Armenia -  AM
     "葉里溫" : "叶里温",
     "叶里温" : "耶列万省",
+    // 奥地利 - Austria - AT
+    "Vienna" : "维也纳",
     // 澳大利亚 - Australia - AU
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
@@ -95,6 +97,8 @@ function Area_check(para) {
     "Sofia-Capital" : "索菲亚市",
     // 加拿大 - Canad - CA
     "Quebec" : "魁北克市",
+    // 瑞士 - Switzerland - CH
+    "Zurich" : "苏黎世",
     // 智利 - Chile -  CL
     "圣地亚哥首都大区" : "圣地亚哥大区",
     // 哥伦比亚 - Colombia - CO
@@ -117,6 +121,7 @@ function Area_check(para) {
     "哈爾尤縣" : "哈尔尤县",
     // 葡萄牙 - Portugal - EU
     "里斯本區" : "里斯本区",
+    "維也納堡區" : "维也纳堡区",
     // 法国 - France - FR
     "Île-de-France" : "法兰西岛",
     "奧弗涅-羅訥-阿爾卑斯大區" : "阿尔卑斯大区",
@@ -126,11 +131,14 @@ function Area_check(para) {
     // 希腊 - Greece - GR
     "Attica" : "阿提卡",
     // 香港 - Hong Kong - HK
-    "東區" : "东区",
-    "中西區" : "中西区",
     "Kowloon" : "九龙",
     "Wong Tai Sin" : "黄大仙区",
     "北區" : "北区",
+    "東區" : "东区",
+    "葵青區" : "葵青区",
+    "中西區" : "中西区",
+    // 匈牙利 - Hungary - HU
+    "Budapest" : "布达佩斯",
     // 爱尔兰 - Ireland - IE
     "倫斯特省" : "伦斯特省",
     // 以色列 - Israel - IL
@@ -141,6 +149,8 @@ function Area_check(para) {
     "Southern Peninsula" : "雷克雅未克半岛",
     // 意大利 - Italy - IT
     "Lombardy" : "伦巴第大区",
+    // 印度尼西亚 - Indonesia - JK
+    "Jakarta" : "雅加达",
     // 日本 - Japan - JP
     "Tokyo" : "东京都",
     "Osaka" : "大阪市",
@@ -151,6 +161,8 @@ function Area_check(para) {
     // 韩国 - Korea - KR
     "Gangwon-do" : "江原道",
     "North Chungcheong" : "忠清北道",
+    // 哈萨克斯坦 - Kazakhstan - KZ
+    "Almaty" : "阿拉木图",
     // 立陶宛 - Lithuania - LT
     "維爾紐斯縣" : "维尔纽斯县",
     // 拉脱维亚 - Latvia - LV
@@ -159,13 +171,18 @@ function Area_check(para) {
     "Chișinău Municipality" : "基希讷乌市",
     // 墨西哥 - The United Mexican States - MX
     "克雷塔羅州" : "克雷塔罗州",
+    // 马来西亚 - Malaysia - MY
+    "Kuala Lumpur" : "吉隆坡",
+    // 荷兰 - Netherlands - NL
+    "North Holland" : "北荷兰省",
     // 挪威 - Norway - NO
+    "Oslo County" : "奥斯陆",
     "Viken" : "维肯郡",
     // 尼泊尔 - Nepal - NP
     "Bagmati Province" : "巴格马蒂省",
     // 菲律宾 - Philippines - PH
     "Metro Manila" : "马尼拉大都会",
-    "Northern Mindanao" : "北棉兰老大区",
+    "Northern Mindanao" : "北棉兰老",
     // 波兰 - Porland - PL
     "Mazovia" : "马佐夫舍省",
     "波美拉尼亞省" : "波美拉尼亚省",
@@ -176,6 +193,7 @@ function Area_check(para) {
     "St.-Petersburg" : "圣彼得堡",
     "Tatarstan Republic" : "鞑靼斯坦共和国",
     // 罗马尼亚 - Romania - RO
+    "București": "布加勒斯特",
     "蒂米什縣": "蒂米什县",
     "伊爾福夫縣": "伊尔福夫县",
     // 沙特阿拉伯 - Saudi Arabia - SA
@@ -204,143 +222,157 @@ function Area_check(para) {
 
 function City_ValidCheck(para) {
   const cityMap = {
-    // 阿联酋-阿布扎比
+    // 阿联酋 - 阿布扎比
     "Masdar City" : "马斯达尔城",
-    // 亚美尼亚-叶里温
+    // 亚美尼亚 - 耶烈万
     "Yerevan" : "耶烈万",
-    // 澳大利亚-维多利亚州
+    // 奥地利 - 维也纳
+    "Vienna" : "维也纳",
+    "維也納" : "维也纳",
+    // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
-    // 巴西-圣保罗州
+    // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
     "Vinhedo" : "维涅杜",
-    // 智利-圣地亚哥大区
+    // 智利 - 圣地亚哥大区
     "Lampa" : "兰帕",
-    // 哥伦比亚-昆迪纳马尔卡省
+    // 捷克 - 南波希米亚州
+    "České Budějovice" : "捷克布杰约维采",
+    // 哥伦比亚 - 昆迪纳马尔卡省
     "Cota" : "科塔",
-    // 德国-黑森州
+    // 德国 - 黑森州
     "Frankfurt" : "法兰克福",
     "Frankfurt am Main" : "法兰克福",
-    // 德国-石勒苏益格-荷尔斯泰因
+    // 德国 - 石勒苏益格-荷尔斯泰因
     "諾德施泰特" : "诺德施泰特",
-    // 西班牙-马德里自治区
+    // 爱沙尼亚 - 哈尔尤县
+    "Harjumaa" : "哈尔尤县",
+    // 西班牙 - 马德里自治区
     "查馬丁區" : "查马丁区",
-    // 法国-蔚蓝海岸大区
+    // 法国 - 蔚蓝海岸大区
     "奧奈叢林": "奥奈丛林",
-    // 法国-蔚蓝海岸大区
     "伊斯特爾" : "伊斯特尔",
-    // 英国-英格兰
+    // 英国 - 英格兰
     "Harlesden" : "哈利斯登",
-    // 中国-香港
+    "Slough" : "斯劳",
+    // 中国 - 香港
     "Sheung Wan" : "上环",
     "The Latitude" : "誉港湾",
-    // 匈牙利-佩斯州
+    // 匈牙利 - 佩斯州
     "Szigetszentmiklós" : "锡盖特圣米克洛什",
-    // 以色列-中央区
+    // 以色列 - 中央区
      "Rosh Ha‘Ayin" : "罗什艾因",
-    // 印度-恰蒂斯加尔邦
+    // 印度 - 恰蒂斯加尔邦
     "BILASPUR" : "比拉斯布尔",
-    // 印度-卡纳塔克邦
+    // 印度 - 卡纳塔克邦
     "Badaganhatti" : "巴达甘哈提",
-    // 印度-马哈拉施特拉邦
+    // 印度 - 马哈拉施特拉邦
     "Santa Cruz" : "孟买·圣克鲁兹",
     "新孟買": "新孟买",
-    // 印度-泰米尔纳德邦
+    // 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr" : "钦奈市",
-    // 意大利-伦巴第大区
+    // 意大利 - 伦巴第大区
     "Gallarate" : "加拉拉泰",
     "Ponte San Pietro" : "蓬泰圣彼得罗",
-    // 日本-东京都
-    "東京都": "东京都",
+    "Siziano" : "西齐亚诺",
+    // 日本 - 东京都
     "Chiyoda": "千代田区",
     "Shibuya": "涩谷区",
-    // 日本-埼玉县
+    "東京都": "东京都",
+    // 日本 - 埼玉县
     "Negishi": "根岸",
-    // 日本-大阪府
+    // 日本 - 大阪府
     "Osaka" : "大阪市",
     "Ōkubo-naka" : "大久保中",
-    // 日本-福冈县
+    // 日本 - 福冈县
     "福岡市" : "福冈市",
-    // 韩国-忠清北道
+    // 韩国 - 忠清北道
     "Yeongdong-gun" : "永同郡",
-    // 韩国-首尔
+    // 韩国 - 首尔
     "Dongjak-gu" : "铜雀区",
     "Gasan-dong" : "加山洞",
     "Gangnam-gu" : "江南区",
     "Gangseo-gu" : "江西区",
     "Gwanak-gu" : "冠岳区",
     "Jowon-dong" : "枣园洞",
-    // 韩国-京畿道
+    // 韩国 - 京畿道
     "Bucheon-si" : "富川市",
     "Gimpo-si" : "金浦市",
     "Seongnam-si" : "城南市",
-    // 立陶宛-维尔纽斯县
+    // 哈萨克斯坦 - 阿拉木图
+    "阿拉木圖" : "阿拉木图",
+    // 立陶宛 - 维尔纽斯县
+    "Vilnius" : "维尔纽斯",
     "倫特瓦里斯" : "伦特瓦里斯",
-    // 拉脱维亚-里加
+    // 拉脱维亚 - 里加
     "Riga" : "里加",
-    // 墨西哥-克雷塔罗州
-    "QUERETARO" : "克雷塔罗",
-    // 尼泊尔-巴格马蒂省
+    // 墨西哥 - 克雷塔罗州
+    "Querétaro" : "克雷塔罗",
+    // 尼泊尔 - 巴格马蒂省
     "加德滿都" : "加德满都",
-    // 菲律宾-大马尼拉地区
+    // 菲律宾 - 大马尼拉地区
     "Taguig" : "塔吉格",
-    // 菲律宾-米沙鄢地区北部
+    // 菲律宾 - 北棉兰老
     "Impaya-ao" : "布基农省",
-    // 波兰-摩拉维亚
+    // 葡萄牙 - 维也纳堡区
+    "Viana do Castelo" : "维亚纳堡",
+    // 波兰 - 摩拉维亚
     "普魯斯科夫" : "普鲁斯科夫",
-    // 挪威-阿克什胡斯郡
+    // 挪威 - 阿克什胡斯郡
     "Jessheim" : "杰斯海姆",
     "Lorenskog" : "勒伦斯科格",
-    // 塞尔维亚-贝尔格莱德
+    // 塞尔维亚 - 贝尔格莱德
     "Rucka" : "鲁卡镇",
-    // 俄罗斯-莫斯科州
+    // 俄罗斯 - 莫斯科州
     "多莫傑多沃" : "多莫杰多沃",
-    // 俄罗斯-圣彼得堡
+    // 俄罗斯 - 圣彼得堡
     "St Petersburg" : "圣彼得堡",
-    // 罗马尼亚-伊尔福夫县
+    // 罗马尼亚 - 伊尔福夫县
     "Voluntari" : "沃伦塔里",
-    // 罗马尼亚-蒂米什县
+    // 罗马尼亚 - 蒂米什县
     "Dumbrăviţa" : "敦布勒维察",
-    // 沙特阿拉伯-利雅得省
+    // 沙特阿拉伯 - 利雅得省
     "Sha`ib al Malqah" : "沙伊布·阿尔·马尔卡",
-    // 瑞典-斯德哥尔摩
+    // 瑞典 - 斯德哥尔摩
     "Steninge" : "斯特宁厄",
-    // 土耳其-伊斯坦布尔
+    // 土耳其 - 伊斯坦布尔
     "Kocasinan" : "科卡西南",
-    // 台湾-桃园市
+    // 台湾 - 桃园市
     "中壢" : "中坜区",
-    // 泰国-安通省
+    // 泰国 - 红统府
     "Ang Thong" : "红统府",
-    // 乌克兰-克罗皮夫尼茨基州
+    // 乌克兰 - 克罗皮夫尼茨基州
     "Pomichna" : "波莫什纳亚",
-    // 乌克兰-基辅市
+    // 乌克兰 - 基辅市
     "Kyiv" : "基辅",
     "Yahotyn" : "雅赫特恩",
-    // 美国-加利福尼亚州
+    // 美国 - 加利福尼亚州
     "San Jose" : "圣荷西",
+    "费利蒙" : "費利蒙",
     "聖荷西" : "圣荷西",
-    // 美国-弗吉尼亚州
+    // 美国 - 弗吉尼亚州
     "Ashburn" : "阿什本",
     "Boydton" : "博伊顿",
     "Reston": "雷斯顿",
     "馬納薩斯" : "马纳萨斯",
-    // 美国-德克萨斯州
+    // 美国 - 德克萨斯州
     "達拉斯" : "达拉斯",
     "Aldine": "奥尔代恩",
     "Flower Mound": "弗洛尔蒙特",
-    // 美国-俄勒冈州
+    // 美国 - 俄勒冈州
     "波特蘭": "波特兰",
-    // 美国-俄亥俄州
+    // 美国 - 俄亥俄州
     "Dublin": "都柏林",
     "Reynoldsburg": "雷诺兹堡",
-    // 美国-纽约州
+    // 美国 - 纽约州
     "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
-    // 越南-河内
+    // 越南 - 河内
     "河內市" : "河内市",
-    // 越南-庆和省
+    // 越南 - 庆和省
     "芽莊市" : "芽庄市",
-    // 越南-和平省
+    // 越南 - 和平省
     "Bo" : "乐山县",
    };
   para = para ? para.trim() : para;
