@@ -98,7 +98,7 @@ function Area_check(para) {
     // CA - 加拿大 - Canad
     "Quebec" : "魁北克市",
     // CH - 瑞士 - Switzerland
-    "Zurich" : "苏黎世",
+    "Zurich" : "苏黎世州",
     // CL - 智利 - Chile
     "圣地亚哥首都大区" : "圣地亚哥大区",
     // CO - 哥伦比亚 - Colombia
@@ -121,11 +121,11 @@ function Area_check(para) {
     "哈爾尤縣" : "哈尔尤县",
     // EU - 葡萄牙 - Portugal
     "里斯本區" : "里斯本区",
-    "維也納堡區" : "维也纳堡区",
+    "維亚納堡區" : "维亚纳堡区",
     // FR - 法国 - France
     "Île-de-France" : "法兰西岛",
-    "奧弗涅-羅訥-阿爾卑斯大區" : "阿尔卑斯大区",
-    "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "蔚蓝海岸大区",
+    "奧弗涅-羅訥-阿爾卑斯大區" : "奥罗阿大区",
+    "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "普阿蓝大区",
     // GB - 英国 - United Kingdom
     "Wales" : "威尔士",
     // GR - 希腊 - Greece
