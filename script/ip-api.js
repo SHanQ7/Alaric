@@ -268,7 +268,7 @@ function City_ValidCheck(para) {
     // 印度 - 卡纳塔克邦
     "Badaganhatti" : "巴达甘哈提",
     // 印度 - 马哈拉施特拉邦
-    "Santa Cruz" : "孟买·圣克鲁兹",
+    "Santa Cruz" : "圣克鲁斯",
     "新孟買": "新孟买",
     // 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr" : "钦奈市",
