@@ -6,6 +6,11 @@
 # IP-CIDR: 2
 # TOTAL: 20
 payload:
+  - DOMAIN-SUFFIX,dmm.com
+  - DOMAIN-SUFFIX,dmm.co.jp
+  - DOMAIN-SUFFIX,dmmgames.com
+  - DOMAIN-SUFFIX,dmm.hk
+  - DOMAIN-SUFFIX,dmm-extension.com
   - DOMAIN-SUFFIX,akabeesoft2.com
   - DOMAIN-SUFFIX,akabeesoft3.com
   - DOMAIN-SUFFIX,akatsukiworks.com
@@ -13,10 +18,6 @@ payload:
   - DOMAIN-SUFFIX,api-p.videomarket.jp
   - DOMAIN-SUFFIX,cosmiccute.com
   - DOMAIN-SUFFIX,ddo.jp
-  - DOMAIN-SUFFIX,dmm-extension.com
-  - DOMAIN-SUFFIX,dmm.co.jp
-  - DOMAIN-SUFFIX,dmm.com
-  - DOMAIN-SUFFIX,dmm.hk
   - DOMAIN-SUFFIX,dmmapis.com
   - DOMAIN-SUFFIX,dmmrex.com
   - DOMAIN-SUFFIX,hibiki-site.com
