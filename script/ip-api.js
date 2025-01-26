@@ -81,8 +81,7 @@ function Area_check(para) {
     // AE - 阿拉伯联合酋长国 - Dubai
     "Dubai" : "迪拜",
     // AM - 亚美尼亚 - Armenia
-    "葉里溫" : "叶里温",
-    "叶里温" : "耶烈万",
+    "葉里溫" : "埃里温",
     // AT - 奥地利 - Austria
     "Vienna" : "维也纳",
     // AU - 澳大利亚 - Australia
@@ -224,8 +223,8 @@ function City_ValidCheck(para) {
   const cityMap = {
     // 阿联酋 - 阿布扎比
     "Masdar City" : "马斯达尔城",
-    // 亚美尼亚 - 耶烈万
-    "Yerevan" : "耶烈万",
+    // 亚美尼亚 - 埃里温
+    "Yerevan" : "埃里温",
     // 奥地利 - 维也纳
     "Vienna" : "维也纳",
     "維也納" : "维也纳",
