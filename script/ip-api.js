@@ -367,6 +367,8 @@ function City_ValidCheck(para) {
     // 美国 - 纽约州
     "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
+    // 美国 - 新泽西州
+    "Secaucus" : "锡考克斯",
     // 越南 - 河内
     "河內市" : "河内市",
     // 越南 - 庆和省
