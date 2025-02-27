@@ -1,10 +1,11 @@
 # NAME: IPLocation
 # UPDATED: 2025-02-28 04:12:52
 # DOMAIN: 51
-# DOMAIN-KEYWORD: 36
+# DOMAIN-KEYWORD: 14
 # DOMAIN-SUFFIX: 49
-# IP-CIDR: 112
+# IP-CIDR: 115
 # TOTAL: 229
+payload:
   - DOMAIN,ac.dun.163.com
   - DOMAIN,api.coolapk.com
   - DOMAIN,api.iplay.163.com
