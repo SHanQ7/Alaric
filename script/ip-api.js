@@ -398,7 +398,7 @@ function City_ValidCheck(para) {
     // 越南 - 和平省
     "Bo" : "乐山县",
     // 南非 - 西开普省
-    "開普敦" : "开普敦"，
+    "開普敦" : "开普敦",
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para || city0;
