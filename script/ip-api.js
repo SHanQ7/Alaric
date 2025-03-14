@@ -90,6 +90,8 @@ function Area_check(para) {
     // AU - 澳大利亚联邦 - Commonwealth of Australia
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
+    // AR - 阿根廷共和国 - The República Argentina
+    "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
     // BR - 巴西联邦共和国- Federative Republic of Brazil
@@ -107,7 +109,7 @@ function Area_check(para) {
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
     "Bogota D.C." : "波哥大首都地区",
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica
-    "San José" : "圣荷西",
+    "Provincia de San José" : "圣荷西",
     // CN - 中华人民共和国 - The People's Republic of China
     "Changhua" : "彰化市",
     "Taichung City" : "台中市",
@@ -246,6 +248,8 @@ function City_ValidCheck(para) {
     "維也納" : "维也纳",
     // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
+    // 阿根廷共和国 - 布宜诺斯艾利斯联邦区
+    "Buenos Aires" : "布宜诺斯艾利斯",
     // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
@@ -276,6 +280,7 @@ function City_ValidCheck(para) {
     // 危地马拉 - 危地马拉
     "Guatemala City" : "危地马拉城",
     // 中国 - 香港
+    "柴灣" : "柴湾",
     "油尖旺區" : "油尖旺区",
     "Sheung Wan" : "上环",
     "The Latitude" : "誉港湾",
@@ -293,13 +298,14 @@ function City_ValidCheck(para) {
     // 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr" : "钦奈市",
     // 意大利 - 伦巴第大区
+    "Milan" : "米兰",
     "Gallarate" : "加拉拉泰",
     "Ponte San Pietro" : "蓬泰圣彼得罗",
     "Siziano" : "西齐亚诺",
     // 日本 - 东京都
     "Chiyoda": "千代田区",
     "Shibuya": "涩谷区",
-    "東京都": "东京都",
+    "東京都": "东京",
     // 日本 - 埼玉县
     "Negishi": "根岸",
     // 日本 - 大阪府
