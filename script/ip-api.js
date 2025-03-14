@@ -80,6 +80,9 @@ function Area_check(para) {
   const areaMap = {
     // AE - 阿拉伯联合酋长国 - Dubai
     "Dubai" : "迪拜",
+    "Imārat Umm al Qaywayn" : "乌姆盖万",
+    // AF - 摩洛哥
+    "Fès-Meknès" : "非斯-梅克内斯大区",
     // AM - 亚美尼亚 - Armenia
     "葉里溫" : "埃里温",
     // AT - 奥地利 - Austria
@@ -102,6 +105,9 @@ function Area_check(para) {
     "圣地亚哥首都大区" : "圣地亚哥大区",
     // CO - 哥伦比亚 - Colombia
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
+    "Bogota D.C." : "波哥大",
+    // CR - 哥斯达黎加 - Costa Rica
+    "San José" : "圣荷西",
     // CN - 中国 - China
     "Changhua" : "彰化市",
     "Taichung City" : "台中市",
@@ -118,6 +124,8 @@ function Area_check(para) {
     "皮欽查省" : "皮钦查省",
     // EE - 爱沙尼亚 - Republic of Estonia
     "哈爾尤縣" : "哈尔尤县",
+    // ES - 西班牙 - The Kingdom of Spain
+    "Catalonia" : "加泰罗尼亚",
     // EU - 葡萄牙 - Portugal
     "里斯本區" : "里斯本区",
     "維亞納堡區" : "维亚纳堡区",
@@ -129,6 +137,8 @@ function Area_check(para) {
     "Wales" : "威尔士",
     // GR - 希腊 - Greece
     "Attica" : "阿提卡",
+    // GT - 危地马拉 - Republic of Guatemala
+    "瓜地馬拉省" : "瓜地马拉省",
     // HK - 香港 - Hong Kong
     "Kowloon" : "九龙",
     "Wong Tai Sin" : "黄大仙区",
@@ -214,6 +224,8 @@ function Area_check(para) {
     "Hanoi" : "河内市",
     "Hòa Bình Province" : "和平省",
     "慶和省" : "庆和省",
+    // ZA - 南非
+    "西開普省" : "西开普省",
  };
   para = para ? para.trim() : para;
   return areaMap[para] || para || region0;
@@ -223,6 +235,10 @@ function City_ValidCheck(para) {
   const cityMap = {
     // 阿联酋 - 阿布扎比
     "Masdar City" : "马斯达尔城",
+    // 阿联酋 - 乌姆盖万
+    "Muhadhdhib" : "穆哈德布地区",
+    // 摩洛哥 - 非斯-梅克内斯大区
+    "Fes" : "非斯",
     // 亚美尼亚 - 埃里温
     "Yerevan" : "埃里温",
     // 奥地利 - 维也纳
@@ -233,6 +249,7 @@ function City_ValidCheck(para) {
     // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
+    "Sao Paulo" : "圣保罗",
     "Vinhedo" : "维涅杜",
     // 智利 - 圣地亚哥大区
     "Lampa" : "兰帕",
@@ -253,9 +270,13 @@ function City_ValidCheck(para) {
     "奧奈叢林": "奥奈丛林",
     "伊斯特爾" : "伊斯特尔",
     // 英国 - 英格兰
+    "倫敦金融城" : "伦敦",
     "Harlesden" : "哈利斯登",
     "Slough" : "斯劳",
+    // 危地马拉 - 危地马拉
+    "Guatemala City" : "危地马拉城",
     // 中国 - 香港
+    "油尖旺區" : "油尖旺区",
     "Sheung Wan" : "上环",
     "The Latitude" : "誉港湾",
     // 匈牙利 - 佩斯州
@@ -339,6 +360,7 @@ function City_ValidCheck(para) {
     "Kocasinan" : "科卡西南",
     // 台湾 - 桃园市
     "中壢" : "中坜区",
+    "Taoyuan" : "桃园",
     // 泰国 - 红统府
     "Ang Thong" : "红统府",
     // 乌克兰 - 克罗皮夫尼茨基州
@@ -375,6 +397,8 @@ function City_ValidCheck(para) {
     "芽莊市" : "芽庄市",
     // 越南 - 和平省
     "Bo" : "乐山县",
+    // 南非 - 西开普省
+    "開普敦" : "开普敦"，
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para || city0;
