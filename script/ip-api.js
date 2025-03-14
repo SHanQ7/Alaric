@@ -78,66 +78,66 @@ function country_ValidCheck(para) {
 
 function Area_check(para) {
   const areaMap = {
-    // AE - 阿拉伯联合酋长国 - Dubai
+    // AE - 阿拉伯联合酋长国 - United Arab Emirates
     "Dubai" : "迪拜",
     "Imārat Umm al Qaywayn" : "乌姆盖万",
-    // AF - 摩洛哥
+    // AF - 摩洛哥王国 - Kingdom of Morocco
     "Fès-Meknès" : "非斯-梅克内斯大区",
-    // AM - 亚美尼亚 - Armenia
+    // AM - 亚美尼亚共和国 - Republic of Armenia
     "葉里溫" : "埃里温",
-    // AT - 奥地利 - Austria
+    // AT - 奥地利共和国 - Republic of Austria
     "Vienna" : "维也纳",
-    // AU - 澳大利亚 - Australia
+    // AU - 澳大利亚联邦 - Commonwealth of Australia
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
-    // AZ - 阿塞拜疆 - Azerbaijan
+    // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
-    // BR - 巴西- Brazil
+    // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
-    // BG - 保加利亚 - Bulgaria
+    // BG - 保加利亚共和国 - Republic of Bulgaria
     "Sofia-Capital" : "索菲亚市",
-    // CA - 加拿大 - Canad
+    // CA - 加拿大自治领 - The Dominion of Canada
     "Quebec" : "魁北克市",
-    // CH - 瑞士 - Switzerland
+    // CH - 瑞士联邦 - Swiss Confederation
     "Zurich" : "苏黎世州",
-    // CL - 智利 - Chile
+    // CL - 智利共和国 - Republic of Chile
     "圣地亚哥首都大区" : "圣地亚哥大区",
-    // CO - 哥伦比亚 - Colombia
+    // CO - 哥伦比亚共和国 - Republic of Colombia
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
-    "Bogota D.C." : "波哥大",
-    // CR - 哥斯达黎加 - Costa Rica
+    "Bogota D.C." : "波哥大首都地区",
+    // CR - 哥斯达黎加共和国 - Republic of Costa Rica
     "San José" : "圣荷西",
-    // CN - 中国 - China
+    // CN - 中华人民共和国 - The People's Republic of China
     "Changhua" : "彰化市",
     "Taichung City" : "台中市",
     "Taoyuan" : "桃园市",
     "臺北市" : "台北市",
     "臺灣省 or 台灣省" : "中部地区",
     "中华民国" : "台湾",
-    // DE - 德国 - Germany
+    // DE - 德意志联邦共和国 - Federal Republic of Germany
     "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
-    // DK - 丹麦 - The Kingdom of Denmark
+    // DK - 丹麦王国 - The Kingdom of Denmark
     "Capital Region" : "哥本哈根大区",
-    // EC - 厄尔多瓜 - Ecuador
+    // EC - 厄瓜多尔共和国 - Republic of Ecuador
     "皮欽查省" : "皮钦查省",
-    // EE - 爱沙尼亚 - Republic of Estonia
+    // EE - 爱沙尼亚共和国 - Republic of Estonia
     "哈爾尤縣" : "哈尔尤县",
-    // ES - 西班牙 - The Kingdom of Spain
+    // ES - 西班牙王国 - The Kingdom of Spain
     "Catalonia" : "加泰罗尼亚",
-    // EU - 葡萄牙 - Portugal
+    // EU - 葡萄牙共和国 - Portuguese Republic
     "里斯本區" : "里斯本区",
     "維亞納堡區" : "维亚纳堡区",
-    // FR - 法国 - France
+    // FR - 法兰西共和国 - French Republic
     "Île-de-France" : "法兰西岛",
     "奧弗涅-羅訥-阿爾卑斯大區" : "奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "普阿蓝大区",
-    // GB - 英国 - United Kingdom
+    // GB - 大不列颠及北爱尔兰联合王国 - United Kingdom of Great Britain and Northern Ireland
     "Wales" : "威尔士",
-    // GR - 希腊 - Greece
+    // GR - 希腊共和国 - Hellenic Republic
     "Attica" : "阿提卡",
-    // GT - 危地马拉 - Republic of Guatemala
+    // GT - 危地马拉共和国 - Republic of Guatemala
     "瓜地馬拉省" : "瓜地马拉省",
     // HK - 香港 - Hong Kong
     "Kowloon" : "九龙",
@@ -146,85 +146,85 @@ function Area_check(para) {
     "東區" : "东区",
     "葵青區" : "葵青区",
     "中西區" : "中西区",
-    // HU - 匈牙利 - Hungary
+    // HU - 匈牙利共和国 - Hungarian Republic
     "Budapest" : "布达佩斯",
-    // IE - 爱尔兰 - Ireland
+    // IE - 爱尔兰共和国 - Republic of Ireland
     "倫斯特省" : "伦斯特省",
-    // IL - 以色列 - Israel
+    // IL - 以色列国 - State of Israel
     "Rosh Ha‘Ayin" : "罗什艾因",
-    // IQ - 伊拉克 - Iraq
+    // IQ - 伊拉克共和国 - Republic of Iraq
      "巴格達省" : "巴格达省",
-    // IS - 冰岛 - Island
+    // IS - 冰岛共和国 - Republic of Iceland
     "Southern Peninsula" : "雷克雅未克半岛",
-    // IT - 意大利 - Italy
+    // IT - 意大利共和国 - Italian Republic
     "Lombardy" : "伦巴第大区",
-    // JK - 印度尼西亚 - Indonesia
+    // JK - 印度尼西亚共和国 - Republic of Indonesia
     "Jakarta" : "雅加达",
-    // JP - 日本 - Japan
+    // JP - 日本国 - State of Japan
     "Tokyo" : "东京都",
     "Osaka" : "大阪府",
     "福岡縣" : "福冈县",
     "千葉縣" : "千叶县",
     "埼玉縣" : "埼玉县",
     "神奈川縣" : "神奈川县",
-    // KR - 韩国 - Korea
+    // KR - 大韩民国 - Republic of Korea
     "Gangwon-do" : "江原道",
     "North Chungcheong" : "忠清北道",
-    // KZ - 哈萨克斯坦 - Kazakhstan
+    // KZ - 哈萨克斯坦共和国 - Republic of Kazakhstan
     "Almaty" : "阿拉木图",
-    // LT - 立陶宛 - Lithuania
+    // LT - 立陶宛共和国 - Republic of Lithuania
     "維爾紐斯縣" : "维尔纽斯县",
-    // LV - 拉脱维亚 - Latvia
+    // LV - 拉脱维亚共和国 - Republic of Latvia
     "Rīga" : "里加",
-    // MD - 摩尔多瓦 - Moldova
+    // MD - 摩尔多瓦共和国 - Republic of Moldova
     "Chișinău Municipality" : "基希讷乌市",
-    // MX - 墨西哥 - The United Mexican States
+    // MX - 墨西哥合众国 - The United Mexican States
     "克雷塔羅州" : "克雷塔罗州",
-    // MY - 马来西亚 - Malaysia
+    // MY - 马来西亚联邦 - Federation of Malaysia
     "Kuala Lumpur" : "吉隆坡",
-    // NL - 荷兰 - Netherlands
+    // NL - 荷兰王国 - Kingdom of the Netherlands
     "North Holland" : "北荷兰省",
-    // NO - 挪威 - Norway
+    // NO - 挪威王国 - Kingdom of Norway
     "Oslo County" : "东挪威",
     "Viken" : "维肯郡",
     // NP - 尼泊尔 - Nepal
     "Bagmati Province" : "巴格马蒂省",
-    // PH - 菲律宾 - Philippines
+    // PH - 菲律宾共和国 - Republic of the Philippines
     "Metro Manila" : "马尼拉大都会",
     "Northern Mindanao" : "北棉兰老",
-    // PL - 波兰 - Porland
+    // PL - 波兰共和国 - Republic of Poland
     "Mazovia" : "马佐夫舍省",
     "波美拉尼亞省" : "波美拉尼亚省",
-    // RS - 塞尔维亚 - Serbia
+    // RS - 塞尔维亚共和国 - Republic of Serbia
     "Belgrade" : "贝尔格莱德",
-    // RU - 俄罗斯 - Ruassia
+    // RU - 俄罗斯联邦 - Russian Federation
     "Moscow" : "莫斯科州",
     "St.-Petersburg" : "圣彼得堡",
     "Tatarstan Republic" : "鞑靼斯坦共和国",
-    // RO - 罗马尼亚 - Romania
+    // RO - 罗马尼亚共和国 - The Republic of Romania
     "București": "布加勒斯特",
     "蒂米什縣": "蒂米什县",
     "伊爾福夫縣": "伊尔福夫县",
-    // SA - 沙特阿拉伯 - Saudi Arabia
+    // SA - 沙特阿拉伯王国 - Kingdom of Saudi Arabia
     "Mecca Region" : "麦加省",
-    // SE - 瑞典 - Sweden
+    // SE - 瑞典王国 - Kingdom of Sweden
     "Stockholm" : "斯德哥尔摩",
     "Stockholm County" : "斯德哥尔摩",
-    // SG - 新加坡 - Singapore
+    // SG - 新加坡共和国 - Republic of Singapore
     "Central Singapore" : "中区",
     "South West" : "西南区",
     "North West" : "西北区",
-    // TH - 泰国 - Thailand
+    // TH - 泰王国 - Kingdom of Thailand
     "Ang Thong" : "红统府",
-    // UA - 乌克兰 - Ukraine
+    // UA - 乌克兰共和国 - The Republic of Ukraine
     "Kyiv City" : "基辅市",
-    // US - 美国 - The United States of America
+    // US - 美利坚合众国 - The United States of America
     "加州" : "加利福尼亚州",
-    // VN - 越南 - Vietnam - VN
+    // VN - 越南社会主义共和国 - Socialist Republic of Vietnam
     "Hanoi" : "河内市",
     "Hòa Bình Province" : "和平省",
     "慶和省" : "庆和省",
-    // ZA - 南非
+    // ZA - 南非共和国 - Republic of South Africa
     "西開普省" : "西开普省",
  };
   para = para ? para.trim() : para;
@@ -266,7 +266,7 @@ function City_ValidCheck(para) {
     "Harjumaa" : "哈尔尤县",
     // 西班牙 - 马德里自治区
     "查馬丁區" : "查马丁区",
-    // 法国 - 蔚蓝海岸大区
+    // 法国 - 法兰西岛大区
     "奧奈叢林": "奥奈丛林",
     "伊斯特爾" : "伊斯特尔",
     // 英国 - 英格兰
