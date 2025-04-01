@@ -94,6 +94,8 @@ function Area_check(para) {
     "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
+    // BE - 比利时王国- Kingdom of Belgium
+    "布鲁塞尔首都大区" : "布鲁塞尔", 
     // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
@@ -106,6 +108,7 @@ function Area_check(para) {
     // CL - 智利共和国 - Republic of Chile
     "圣地亚哥首都大区" : "圣地亚哥大区",
     // CO - 哥伦比亚共和国 - Republic of Colombia
+    "波哥大首都地区" : "波哥大",
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
     "Bogota D.C." : "波哥大首都地区",
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica
@@ -116,6 +119,7 @@ function Area_check(para) {
     "Taoyuan" : "桃园市",
     "臺北市" : "台北市",
     "臺灣省 or 台灣省" : "中部地区",
+    "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
     "Hesse": "黑森州",
@@ -176,6 +180,9 @@ function Area_check(para) {
     "Almaty" : "阿拉木图",
     // LT - 立陶宛共和国 - Republic of Lithuania
     "維爾紐斯縣" : "维尔纽斯县",
+    // LU - 卢森堡大公国- Grand Duchy of Luxembourg
+    "Luxembourg" : "卢森堡市",
+    "Diekirch" : "迪基希", 
     // LV - 拉脱维亚共和国 - Republic of Latvia
     "Rīga" : "里加",
     // MD - 摩尔多瓦共和国 - Republic of Moldova
@@ -221,6 +228,7 @@ function Area_check(para) {
     // UA - 乌克兰共和国 - The Republic of Ukraine
     "Kyiv City" : "基辅市",
     // US - 美利坚合众国 - The United States of America
+    "Arizona" : "亚利桑那州",
     "加州" : "加利福尼亚州",
     // VN - 越南社会主义共和国 - Socialist Republic of Vietnam
     "Hanoi" : "河内市",
@@ -328,6 +336,10 @@ function City_ValidCheck(para) {
     "Seongnam-si" : "城南市",
     // 哈萨克斯坦 - 阿拉木图
     "阿拉木圖" : "阿拉木图",
+    // 卢森堡 - 迪基希
+    "Schieren" : "希伦",
+    // 卢森堡 - 卢森堡市
+    "Contern" : "孔特恩",
     // 立陶宛 - 维尔纽斯县
     "Vilnius" : "维尔纽斯",
     "倫特瓦里斯" : "伦特瓦里斯",
