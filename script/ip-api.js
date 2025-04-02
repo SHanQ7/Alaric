@@ -233,6 +233,7 @@ function Area_check(para) {
     // VN - 越南社会主义共和国 - Socialist Republic of Vietnam
     "Hanoi" : "河内市",
     "Hòa Bình Province" : "和平省",
+    "Hải Dương Province" : "海阳省",
     "慶和省" : "庆和省",
     // ZA - 南非共和国 - Republic of South Africa
     "西開普省" : "西开普省",
@@ -415,6 +416,8 @@ function City_ValidCheck(para) {
     "芽莊市" : "芽庄市",
     // 越南 - 和平省
     "Bo" : "乐山县",
+    // 越南 - 海阳省
+    "Hải Dương" : "海阳市",
     // 南非 - 西开普省
     "開普敦" : "开普敦",
    };
