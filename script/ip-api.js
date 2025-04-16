@@ -95,7 +95,7 @@ function Area_check(para) {
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
     // BE - 比利时王国- Kingdom of Belgium
-    "布鲁塞尔首都大区" : "布鲁塞尔", 
+    "布鲁塞尔首都大区" : "布鲁塞尔大区", 
     // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
@@ -114,11 +114,13 @@ function Area_check(para) {
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica
     "Provincia de San José" : "圣荷西",
     // CN - 中华人民共和国 - The People's Republic of China
+    "Taiwan" : "台湾",
     "Changhua" : "彰化市",
     "Taichung City" : "台中市",
     "Taoyuan" : "桃园市",
+    "Yunlin" : "云林县",
     "臺北市" : "台北市",
-    "臺灣省 or 台灣省" : "中部地区",
+    "臺灣省 or 台灣省" : "台北市",
     "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
@@ -148,6 +150,8 @@ function Area_check(para) {
     // HK - 香港 - Hong Kong
     "Kowloon" : "九龙",
     "Wong Tai Sin" : "黄大仙区",
+    "Sham Shui Po" : "深水埗区",
+    "Tsuen Wan District" : "荃湾区",
     "北區" : "北区",
     "東區" : "东区",
     "葵青區" : "葵青区",
@@ -198,6 +202,8 @@ function Area_check(para) {
     "Viken" : "维肯郡",
     // NP - 尼泊尔 - Nepal
     "Bagmati Province" : "巴格马蒂省",
+    // PE - 秘鲁共和国 - Republic of Peru
+    "利馬省" : "利马省",
     // PH - 菲律宾共和国 - Republic of the Philippines
     "Metro Manila" : "马尼拉大都会",
     "Northern Mindanao" : "北棉兰老",
@@ -290,10 +296,12 @@ function City_ValidCheck(para) {
     // 危地马拉 - 危地马拉
     "Guatemala City" : "危地马拉城",
     // 中国 - 香港
-    "柴灣" : "柴湾",
-    "油尖旺區" : "油尖旺区",
     "Sheung Wan" : "上环",
     "The Latitude" : "誉港湾",
+    "Cheung Sha Wan" : "长沙湾",
+    "Tsuen Wan" : "荃湾",
+    "柴灣" : "柴湾",
+    "油尖旺區" : "油尖旺区",
     // 匈牙利 - 佩斯州
     "Szigetszentmiklós" : "锡盖特圣米克洛什",
     // 以色列 - 中央区
@@ -351,6 +359,10 @@ function City_ValidCheck(para) {
     "Querétaro" : "克雷塔罗",
     // 尼泊尔 - 巴格马蒂省
     "加德滿都" : "加德满都",
+    // 尼日利亚 - 拉各斯州
+    "拉哥斯" : "拉各斯",
+    // 秘鲁 - 利马省
+    "利馬" : "利马",
     // 菲律宾 - 大马尼拉地区
     "Taguig" : "塔吉格",
     // 菲律宾 - 北棉兰老
@@ -379,8 +391,11 @@ function City_ValidCheck(para) {
     // 土耳其 - 伊斯坦布尔
     "Kocasinan" : "科卡西南",
     // 台湾 - 桃园市
-    "中壢" : "中坜区",
     "Taoyuan" : "桃园",
+    "中壢" : "中坜区",
+    "平鎮區" : "平镇区",
+    // 台湾 - 彰化县
+    "Yuanlin" : "员林市",
     // 泰国 - 红统府
     "Ang Thong" : "红统府",
     // 乌克兰 - 克罗皮夫尼茨基州
@@ -414,7 +429,8 @@ function City_ValidCheck(para) {
     // 美国 - 科罗拉多州
     "阿瓦達" : "阿瓦达",
     // 越南 - 河内
-    "河內市" : "河内市",
+    "Trâu Quỳ" : "嘉林县",
+    "河內市" : "河内",
     // 越南 - 庆和省
     "芽莊市" : "芽庄市",
     // 越南 - 和平省
