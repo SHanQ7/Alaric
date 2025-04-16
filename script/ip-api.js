@@ -108,11 +108,10 @@ function Area_check(para) {
     // CL - 智利共和国 - Republic of Chile
     "圣地亚哥首都大区" : "圣地亚哥大区",
     // CO - 哥伦比亚共和国 - Republic of Colombia
-    "波哥大首都地区" : "波哥大",
+    "Bogota D.C." : "波哥大首都区",
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
-    "Bogota D.C." : "波哥大首都地区",
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica
-    "Provincia de San José" : "圣荷西",
+    "Provincia de San José" : "圣何塞省",
     // CN - 中华人民共和国 - The People's Republic of China
     "Taiwan" : "台湾",
     "Changhua" : "彰化市",
@@ -178,8 +177,10 @@ function Area_check(para) {
     "埼玉縣" : "埼玉县",
     "神奈川縣" : "神奈川县",
     // KR - 大韩民国 - Republic of Korea
+    "Daegu" : "大邱广域市",
     "Gangwon-do" : "江原道",
     "North Chungcheong" : "忠清北道",
+    "Incheon" : "仁川广域市",
     // KZ - 哈萨克斯坦共和国 - Republic of Kazakhstan
     "Almaty" : "阿拉木图",
     // LT - 立陶宛共和国 - Republic of Lithuania
@@ -277,6 +278,8 @@ function City_ValidCheck(para) {
     "České Budějovice" : "捷克布杰约维采",
     // 哥伦比亚 - 昆迪纳马尔卡省
     "Cota" : "科塔",
+    // 哥斯达黎加 - 圣何塞省
+    "San José" : "圣何塞",
     // 德国 - 黑森州
     "Frankfurt" : "法兰克福",
     "Frankfurt am Main" : "法兰克福",
@@ -331,6 +334,8 @@ function City_ValidCheck(para) {
     "Ōkubo-naka" : "熊取町",
     // 日本 - 福冈县
     "福岡市" : "福冈市",
+    // 韩国
+    "大邱廣域市" : "大邱广域市",
     // 韩国 - 忠清北道
     "Yeongdong-gun" : "永同郡",
     // 韩国 - 首尔
@@ -366,7 +371,7 @@ function City_ValidCheck(para) {
     // 菲律宾 - 大马尼拉地区
     "Taguig" : "塔吉格",
     // 菲律宾 - 北棉兰老
-    "Impaya-ao" : "布基农省",
+    "Impaya-ao" : "布基农",
     // 葡萄牙 - 维也纳堡区
     "Viana do Castelo" : "维亚纳堡",
     // 波兰 - 摩拉维亚
@@ -413,9 +418,9 @@ function City_ValidCheck(para) {
     "Reston": "雷斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国 - 德克萨斯州
-    "達拉斯" : "达拉斯",
     "Aldine": "奥尔代恩",
     "Flower Mound": "弗洛尔蒙特",
+    "達拉斯" : "达拉斯",
     // 美国 - 俄勒冈州
     "波特蘭": "波特兰",
     // 美国 - 俄亥俄州
