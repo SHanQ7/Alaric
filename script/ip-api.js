@@ -122,6 +122,8 @@ function Area_check(para) {
     "臺灣省 or 台灣省" : "台北市",
     "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
+    // CZ - 捷克共和国 - The Czech Republic
+    "Prague": "布拉格",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
     "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
