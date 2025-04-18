@@ -173,7 +173,8 @@ function Area_check(para) {
     "Jakarta" : "雅加达",
     // JP - 日本国 - State of Japan
     "Tokyo" : "东京都",
-    "Osaka" : "大阪府",
+    "Osaka" : "大阪市",
+    "Ōsaka" : "大阪市",
     "福岡縣" : "福冈县",
     "千葉縣" : "千叶县",
     "埼玉縣" : "埼玉县",
@@ -331,8 +332,8 @@ function City_ValidCheck(para) {
     "東京都": "东京",
     // 日本 - 埼玉县
     "Negishi": "根岸",
-    // 日本 - 大阪府
-    "Osaka" : "大阪市",
+    // 日本 - 大阪市
+    "Osaka" : "大阪府",
     "Ōkubo-naka" : "熊取町",
     // 日本 - 福冈县
     "福岡市" : "福冈市",
