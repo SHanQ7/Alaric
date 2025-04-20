@@ -135,6 +135,7 @@ function Area_check(para) {
     "哈爾尤縣" : "哈尔尤县",
     // ES - 西班牙王国 - The Kingdom of Spain
     "Catalonia" : "加泰罗尼亚",
+    "Madrid" : "马德里自治区",
     // EU - 葡萄牙共和国 - Portuguese Republic
     "里斯本區" : "里斯本区",
     "維亞納堡區" : "维亚纳堡区",
@@ -291,14 +292,15 @@ function City_ValidCheck(para) {
     // 爱沙尼亚 - 哈尔尤县
     "Harjumaa" : "哈尔尤县",
     // 西班牙 - 马德里自治区
+    "Madrid" : "马德里",
     "查馬丁區" : "查马丁区",
     // 法国 - 法兰西岛大区
     "奧奈叢林": "奥奈丛林",
     "伊斯特爾" : "伊斯特尔",
     // 英国 - 英格兰
-    "倫敦金融城" : "伦敦",
     "Harlesden" : "哈利斯登",
     "Slough" : "斯劳",
+    "倫敦金融城" : "伦敦",
     // 危地马拉 - 危地马拉
     "Guatemala City" : "危地马拉城",
     // 中国 - 香港
