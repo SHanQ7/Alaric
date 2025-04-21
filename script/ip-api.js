@@ -102,7 +102,8 @@ function Area_check(para) {
     // BG - 保加利亚共和国 - Republic of Bulgaria
     "Sofia-Capital" : "索菲亚市",
     // CA - 加拿大自治领 - The Dominion of Canada
-    "Quebec" : "魁北克市",
+    "Ontario" : "安大略省",
+    "Quebec" : "魁北克省",
     // CH - 瑞士联邦 - Swiss Confederation
     "Zurich" : "苏黎世州",
     // CL - 智利共和国 - Republic of Chile
@@ -270,7 +271,9 @@ function City_ValidCheck(para) {
     // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
     // 阿根廷共和国 - 布宜诺斯艾利斯联邦区
-    "Buenos Aires" : "布宜诺斯艾利斯",
+    "Buenos Aires" : "布宜诺市",
+    // 加拿大 - 安大略
+    "Ottawa" : "渥太华",
     // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
@@ -287,6 +290,9 @@ function City_ValidCheck(para) {
     // 德国 - 黑森州
     "Frankfurt" : "法兰克福",
     "Frankfurt am Main" : "法兰克福",
+    "Frankfurt Am Main" : "法兰克福",
+    // 德国 - 萨克森自由州
+    "Frankfurt" : "法尔肯施泰因",
     // 德国 - 石勒苏益格-荷尔斯泰因
     "諾德施泰特" : "诺德施泰特",
     // 爱沙尼亚 - 哈尔尤县
@@ -342,6 +348,7 @@ function City_ValidCheck(para) {
     // 韩国
     "大邱廣域市" : "大邱广域市",
     // 韩国 - 忠清北道
+    "Cheongju-si" : "清州市",
     "Yeongdong-gun" : "永同郡",
     // 韩国 - 首尔
     "Dongjak-gu" : "铜雀区",
@@ -354,6 +361,8 @@ function City_ValidCheck(para) {
     "Bucheon-si" : "富川市",
     "Gimpo-si" : "金浦市",
     "Seongnam-si" : "城南市",
+    // 韩国 - 大邱广域市
+    "Yuseong-gu" : "儒城区",
     // 哈萨克斯坦 - 阿拉木图
     "阿拉木圖" : "阿拉木图",
     // 卢森堡 - 迪基希
@@ -438,6 +447,8 @@ function City_ValidCheck(para) {
     "Secaucus" : "锡考克斯",
     // 美国 - 科罗拉多州
     "阿瓦達" : "阿瓦达",
+    // 美国 - 伊利诺伊州
+    "Elk Grove Village" : " 埃尔克格罗夫村",
     // 越南 - 河内
     "Trâu Quỳ" : "嘉林县",
     "河內市" : "河内",
