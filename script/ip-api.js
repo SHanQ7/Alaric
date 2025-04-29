@@ -125,6 +125,8 @@ function Area_check(para) {
     "中华民国" : "台湾",
     // CZ - 捷克共和国 - The Czech Republic
     "Prague": "布拉格",
+    // DA - 卡塔尔国 - The State of Qatar
+    "Baladīyat ad Dawḩah" : "多哈",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
     "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
@@ -166,6 +168,7 @@ function Area_check(para) {
     // IL - 以色列国 - State of Israel
     "Rosh Ha‘Ayin" : "罗什艾因",
     // IQ - 伊拉克共和国 - Republic of Iraq
+    "Erbil" : "埃尔比勒",
      "巴格達省" : "巴格达省",
     // IS - 冰岛共和国 - Republic of Iceland
     "Southern Peninsula" : "雷克雅未克半岛",
@@ -237,10 +240,12 @@ function Area_check(para) {
     "North West" : "西北区",
     // TH - 泰王国 - Kingdom of Thailand
     "Ang Thong" : "红统府",
+    "Nonthaburi" : "暖武里府",
     // UA - 乌克兰共和国 - The Republic of Ukraine
     "Kyiv City" : "基辅市",
     // US - 美利坚合众国 - The United States of America
     "Arizona" : "亚利桑那州",
+    "Georgia" : "乔治亚州",
     "科羅拉多州" : "科罗拉多州",
     "加州" : "加利福尼亚州",
     // VN - 越南社会主义共和国 - Socialist Republic of Vietnam
@@ -416,7 +421,9 @@ function City_ValidCheck(para) {
     // 台湾 - 彰化县
     "Yuanlin" : "员林市",
     // 泰国 - 红统府
-    "Ang Thong" : "红统府",
+    "Ang Thong" : "红统",
+    // 泰国 - 暖武里府
+    "Nonthaburi" : "暖武里"
     // 乌克兰 - 克罗皮夫尼茨基州
     "Pomichna" : "波莫什纳亚",
     // 乌克兰 - 基辅市
