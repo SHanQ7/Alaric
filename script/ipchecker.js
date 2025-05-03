@@ -32,8 +32,8 @@ const isp0 = "MCU.com";
 
 
 // 脚本开始
-let body = $response.body;
-let obj = JSON.parse(body);
+var body = $response.body;
+var obj = JSON.parse(body);
 
 const countryCode = obj['countryCode'];
 const country = country_ValidCheck(obj['country']);
@@ -45,11 +45,11 @@ const lat = obj['lat'];
 const lon = obj['lon'];
 const timezone = obj['timezone'];
 
-let displayCity = (city !== country && city !== region) ? city : '';
+var displayCity = (city !== country && city !== region) ? city : '';
 
-let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
-let description = `
+var title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
+var subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+var description = `
 --------------------------------------
 ${countryCode} ${country}
 
