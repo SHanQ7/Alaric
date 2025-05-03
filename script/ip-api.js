@@ -25,10 +25,47 @@ const flags = new Map([
 ["WS", "🇼🇸"], ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"]
 ]);
 
-const country0 = "MUC";
-const region0 = "韦恩大厦";
-const city0 = "高谭市";
-const isp0 = "MCU.com";
+const countryCode = obj['countryCode'];
+const country = country_ValidCheck(obj['country']);
+const region = Area_check(obj['regionName']);
+const city = City_ValidCheck(obj['city']);
+const ip = obj['query'] || '';
+const isp = ISP_ValidCheck(obj['isp']);
+const lat = obj['lat'] || '';
+const lon = obj['lon'] || '';
+const timezone = obj['timezone'] || '';
+
+var city0 = "高谭市";
+var isp0 = "Cross-GFW.org";
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+// 脚本开始
+var body = $response.body;
+var obj = JSON.parse(body);
+
+var displayCity = (city !== country && city !== region) ? city : '';
+var title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
+var subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+var description = `
+--------------------------------------
+${countryCode} ${country}
+
+${obj['region']} ${region}
+
+${obj['city']}
+
+${ip}
+
+${isp}
+
+${lat} / ${lon}
+
+${timezone}
+--------------------------------------
+`;
+$done({title, subtitle, ip, description});
 
 function country_ValidCheck(para) {
    const countryMap = {
@@ -437,37 +474,3 @@ function City_ValidCheck(para) {
 function ISP_ValidCheck(para) {
   return para || ips0;
 };
-
-// 脚本开始
-var body = $response.body;
-var obj = JSON.parse($response.body);
-
-const countryCode = obj['countryCode'];
-const country = country_ValidCheck(obj['country']);
-const region = Area_check(obj['regionName']);
-const city = City_ValidCheck(obj['city']);
-const ip = obj['query'];
-const isp = ISP_ValidCheck(obj['isp']);
-
-var displayCity = (city !== country && city !== region) ? city : '';
-
-var title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-var subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
-var description = `
---------------------------------------
-${countryCode} ${country}
-
-${obj['region']} ${region}
-
-${obj['city']}
-
-${ip}
-
-${isp}
-
-${lat} / ${lon}
-
-${timezone}
---------------------------------------
-`;
-$done({title, subtitle, ip, description});
