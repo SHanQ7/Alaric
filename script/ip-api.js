@@ -448,9 +448,6 @@ const region = Area_check(obj['regionName']);
 const city = City_ValidCheck(obj['city']);
 const ip = obj['query'];
 const isp = ISP_ValidCheck(obj['isp']);
-const lat = obj['lat'];
-const lon = obj['lon'];
-const timezone = obj['timezone'];
 
 var displayCity = (city !== country && city !== region) ? city : '';
 
