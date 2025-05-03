@@ -449,6 +449,8 @@ function City_ValidCheck(para) {
     "阿瓦達" : "阿瓦达",
     // 美国 - 伊利诺伊州
     "Elk Grove Village" : " 埃尔克格罗夫村",
+    // 越南 - 胡志明市
+    "Quận Phú Nhuận" : "富润区",
     // 越南 - 河内
     "Trâu Quỳ" : "嘉林县",
     "河內市" : "河内",
