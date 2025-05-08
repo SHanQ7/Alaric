@@ -25,49 +25,6 @@ const flags = new Map([
 ["WS", "🇼🇸"], ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"]
 ]);
 
-const country0 = "MUC";
-const region0 = "韦恩大厦";
-const city0 = "高谭市";
-const isp0 = "MCU.com";
-
-
-// 脚本开始
-let body = $response.body;
-let obj = JSON.parse(body);
-
-const countryCode = obj['countryCode'];
-const country = country_ValidCheck(obj['country']);
-const region = Area_check(obj['regionName']);
-const city = City_ValidCheck(obj['city']);
-const ip = obj['query'];
-const isp = ISP_ValidCheck(obj['isp']);
-const lat = obj['lat'];
-const lon = obj['lon'];
-const timezone = obj['timezone'];
-
-let displayCity = (city !== country && city !== region) ? city : '';
-
-let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = (displayCity ? displayCity + ' ' : '') + '·' + obj['query'] + '·' + ISP_ValidCheck(obj['isp']);
-let description = `
---------------------------------------
-${countryCode} ${country}
-
-${obj['region']} ${region}
-
-${obj['city']}
-
-${ip}
-
-${isp}
-
-${lat} / ${lon}
-
-${timezone}
---------------------------------------
-`;
-$done({title, subtitle, ip, description});
-
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国",
@@ -299,8 +256,6 @@ function City_ValidCheck(para) {
     "Frankfurt" : "法尔肯施泰因",
     // 德国 - 石勒苏益格-荷尔斯泰因
     "諾德施泰特" : "诺德施泰特",
-    // 爱沙尼亚 - 哈尔尤县
-    "Harjumaa" : "哈尔尤县",
     // 西班牙 - 马德里自治区
     "Madrid" : "马德里",
     "查馬丁區" : "查马丁区",
@@ -476,3 +431,44 @@ function City_ValidCheck(para) {
 function ISP_ValidCheck(para) {
   return para || ips0;
 };
+
+const country0 = "MUC";
+const region0 = "韦恩大厦";
+const city0 = "高谭市";
+const isp0 = "MCU.com";
+
+const countryCode = obj['countryCode'];
+const country = country_ValidCheck(obj['country']);
+const region = Area_check(obj['regionName']);
+const city = City_ValidCheck(obj['city']);
+const ip = obj['query'];
+const isp = ISP_ValidCheck(obj['isp']);
+const lat = obj['lat'];
+const lon = obj['lon'];
+const timezone = obj['timezone'];
+
+// 脚本开始
+let body = $response.body;
+let obj = JSON.parse(body);
+
+let displayCity = (city !== country && city !== region) ? city : '';
+let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
+let subtitle = (displayCity ? displayCity + ' ' : '') + '·' + obj['query'] + '·' + ISP_ValidCheck(obj['isp']);
+let description = `
+--------------------------------------
+${countryCode} ${country}
+
+${obj['region']} ${region}
+
+${obj['city']}
+
+${ip}
+
+${isp}
+
+${lat} / ${lon}
+
+${timezone}
+--------------------------------------
+`;
+$done({title, subtitle, ip, description});
