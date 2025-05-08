@@ -95,11 +95,11 @@ function Area_check(para) {
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
     // BD - 孟加拉人民共和国 - People's Republic of Bangladesh
-    "達卡專區" : "达卡专区", 
+    "達卡專區" : "达卡专区",
     // BE - 比利时王国 - The Kingdom of Belgium
-    "布鲁塞尔首都大区" : "布鲁塞尔", 
+    "布鲁塞尔首都大区" : "布鲁塞尔",
     // BR - 巴西联邦共和国- Federative Republic of Brazil
-    "Sao Paulo" : "圣保罗州", 
+    "Sao Paulo" : "圣保罗州",
     "聖保羅州" : "圣保罗州",
     // BG - 保加利亚共和国 - The Republic of Bulgaria
     "Sofia-Capital" : "索非亚市",
