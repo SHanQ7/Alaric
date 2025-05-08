@@ -136,7 +136,7 @@ function Area_check(para) {
     // CZ - 捷克共和国 - The Czech Republic
     "Prague" : "布拉格市",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
-    "Hesse": "黑森州",
+    "Hesse" : "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
     // DK - 丹麦王国 - The Kingdom of Denmark
     "Capital Region" : "哥本哈根大区",
@@ -161,7 +161,7 @@ function Area_check(para) {
     // GT - 危地马拉共和国 - Republic of Guatemala
     "瓜地馬拉省" : "瓜地马拉省",
     // HK - 香港 - Hong Kong
-    "Kowloon" : "九龙",
+    "Kowloon" : "九龙城区",
     "Wong Tai Sin" : "黄大仙区",
     "Sham Shui Po" : "深水埗区",
     "Tsuen Wan District" : "荃湾区",
@@ -173,8 +173,6 @@ function Area_check(para) {
     "Budapest" : "布达佩斯",
     // IE - 爱尔兰共和国 - Republic of Ireland
     "倫斯特省" : "伦斯特省",
-    // IL - 以色列国 - State of Israel
-    "Rosh Ha‘Ayin" : "罗什艾因",
     // IQ - 伊拉克共和国 - Republic of Iraq
      "巴格達省" : "巴格达省",
     // IS - 冰岛共和国 - Republic of Iceland
@@ -278,12 +276,16 @@ function City_ValidCheck(para) {
     // 奥地利 - 维也纳
     "Vienna" : "维也纳",
     "維也納" : "维也纳",
+    // 奥地利 - 下奥地利州
+    "莱塔河畔布魯克" : "莱塔河畔布鲁克县",
     // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
     // 阿根廷共和国 - 布宜诺斯艾利斯联邦区
     "Buenos Aires" : "布宜诺市",
     // 加拿大 - 安大略
     "Ottawa" : "渥太华",
+    // 孟加拉 - 达卡专区
+    "达卡" : "达卡市",
     // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
@@ -341,6 +343,7 @@ function City_ValidCheck(para) {
     "Tiruvānmiyūr" : "钦奈市",
     // 意大利 - 伦巴第大区
     "Milan" : "米兰",
+    "Milano" : "米兰",
     "Gallarate" : "加拉拉泰",
     "Ponte San Pietro" : "蓬泰圣彼得罗",
     "Siziano" : "西齐亚诺",
