@@ -48,7 +48,7 @@ const timezone = obj['timezone'];
 let displayCity = (city !== country && city !== region) ? city : '';
 
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+let subtitle = (displayCity ? displayCity + ' ' : '') + '·' + obj['query'] + '·' + ISP_ValidCheck(obj['isp']);
 let description = `
 --------------------------------------
 ${countryCode} ${country}
@@ -81,37 +81,37 @@ function Area_check(para) {
     // AE - 阿拉伯联合酋长国 - United Arab Emirates
     "Dubai" : "迪拜",
     "Imārat Umm al Qaywayn" : "乌姆盖万",
-    // AF - 摩洛哥王国 - Kingdom of Morocco
+    // AF - 摩洛哥王国 - The Kingdom of Morocco
     "Fès-Meknès" : "非斯-梅克内斯大区",
-    // AM - 亚美尼亚共和国 - Republic of Armenia
+    // AM - 亚美尼亚共和国 - The Republic of Armenia
     "葉里溫" : "埃里温",
-    // AT - 奥地利共和国 - Republic of Austria
+    // AT - 奥地利共和国 - The Republic of Austria
     "Vienna" : "维也纳",
-    // AU - 澳大利亚联邦 - Commonwealth of Australia
+    // AU - 澳大利亚联邦 - The Commonwealth of Australia
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
     // AR - 阿根廷共和国 - The República Argentina
-    "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
+    "Buenos Aires F.D." : "布宜诺斯艾利斯省",
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
-    // BE - 比利时王国- Kingdom of Belgium
-    "布鲁塞尔首都大区" : "布鲁塞尔大区", 
+    // BD - 孟加拉人民共和国 - People's Republic of Bangladesh
+    "達卡專區" : "达卡专区", 
+    // BE - 比利时王国 - The Kingdom of Belgium
+    "布鲁塞尔首都大区" : "布鲁塞尔", 
     // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
-    // BG - 保加利亚共和国 - Republic of Bulgaria
-    "Sofia-Capital" : "索菲亚市",
+    // BG - 保加利亚共和国 - The Republic of Bulgaria
+    "Sofia-Capital" : "索非亚市",
     // CA - 加拿大自治领 - The Dominion of Canada
     "Ontario" : "安大略省",
     "Quebec" : "魁北克省",
     // CH - 瑞士联邦 - Swiss Confederation
     "Zurich" : "苏黎世州",
-    // CL - 智利共和国 - Republic of Chile
-    "圣地亚哥首都大区" : "圣地亚哥大区",
-    // CO - 哥伦比亚共和国 - Republic of Colombia
+    // CO - 哥伦比亚共和国 - The Republic of Colombia
     "Bogota D.C." : "波哥大首都区",
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
-    // CR - 哥斯达黎加共和国 - Republic of Costa Rica
+    // CR - 哥斯达黎加共和国 - The Republic of Costa Rica
     "Provincia de San José" : "圣何塞省",
     // CN - 中华人民共和国 - The People's Republic of China
     "Taiwan" : "台湾",
@@ -124,7 +124,7 @@ function Area_check(para) {
     "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
     // CZ - 捷克共和国 - The Czech Republic
-    "Prague": "布拉格",
+    "Prague": "布拉格市",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
     "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
@@ -133,15 +133,15 @@ function Area_check(para) {
     // EC - 厄瓜多尔共和国 - Republic of Ecuador
     "皮欽查省" : "皮钦查省",
     // EE - 爱沙尼亚共和国 - Republic of Estonia
-    "哈爾尤縣" : "哈尔尤县",
+    "哈爾尤縣" : "哈留县",
     // ES - 西班牙王国 - The Kingdom of Spain
-    "Catalonia" : "加泰罗尼亚",
+    "Catalonia" : "加泰罗尼亚自治区",
     "Madrid" : "马德里自治区",
     // EU - 葡萄牙共和国 - Portuguese Republic
     "里斯本區" : "里斯本区",
     "維亞納堡區" : "维亚纳堡区",
     // FR - 法兰西共和国 - French Republic
-    "Île-de-France" : "法兰西岛",
+    "Île-de-France" : "法兰西岛大区",
     "奧弗涅-羅訥-阿爾卑斯大區" : "奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "普阿蓝大区",
     // GB - 大不列颠及北爱尔兰联合王国 - United Kingdom of Great Britain and Northern Ireland
@@ -151,7 +151,7 @@ function Area_check(para) {
     // GT - 危地马拉共和国 - Republic of Guatemala
     "瓜地馬拉省" : "瓜地马拉省",
     // HK - 香港 - Hong Kong
-    "Kowloon" : "九龙",
+    "Kowloon" : "九龙城区",
     "Wong Tai Sin" : "黄大仙区",
     "Sham Shui Po" : "深水埗区",
     "Tsuen Wan District" : "荃湾区",
@@ -268,12 +268,16 @@ function City_ValidCheck(para) {
     // 奥地利 - 维也纳
     "Vienna" : "维也纳",
     "維也納" : "维也纳",
+    // 奥地利 - 下奥地利州
+    "莱塔河畔布魯克" : "莱塔河畔布鲁克县"
     // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
     // 阿根廷共和国 - 布宜诺斯艾利斯联邦区
     "Buenos Aires" : "布宜诺市",
     // 加拿大 - 安大略
     "Ottawa" : "渥太华",
+    // 孟加拉 - 达卡专区
+    "达卡" : "达卡市",
     // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
@@ -331,6 +335,7 @@ function City_ValidCheck(para) {
     "Tiruvānmiyūr" : "钦奈市",
     // 意大利 - 伦巴第大区
     "Milan" : "米兰",
+    "Milano" : "米兰",
     "Gallarate" : "加拉拉泰",
     "Ponte San Pietro" : "蓬泰圣彼得罗",
     "Siziano" : "西齐亚诺",
@@ -444,6 +449,7 @@ function City_ValidCheck(para) {
     "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
     // 美国 - 新泽西州
+    "Piscataway" : "皮斯卡特维镇",
     "Secaucus" : "锡考克斯",
     // 美国 - 科罗拉多州
     "阿瓦達" : "阿瓦达",
