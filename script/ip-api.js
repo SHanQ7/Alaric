@@ -24,11 +24,11 @@ const flags = new Map([
 ["UK", "🇬🇧"], ["UM", "🇺🇲"], ["US", "🇺🇸"], ["UY", "🇺🇾"], ["UZ", "🇺🇿"], ["VA", "🇻🇦"], ["VC", "🇻🇨"], ["VE", "🇻🇪"], ["VG", "🇻🇬"], ["VI", "🇻🇮"], ["VN", "🇻🇳"], ["VU", "🇻🇺"],
 ["WS", "🇼🇸"], ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"]
 ]);
+
 const country0 = "MUC";
 const region0 = "韦恩大厦";
 const city0 = "高谭市";
 const isp0 = "MCU.com";
-
 
 
 // 脚本开始
@@ -45,16 +45,10 @@ const lat = obj['lat'];
 const lon = obj['lon'];
 const timezone = obj['timezone'];
 
-// 避免重复显示城市名称
 let displayCity = (city !== country && city !== region) ? city : '';
 
-// 展示在顶部开关左边（第1行） 格式：国旗 国家名 地区名
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-
-// 展示在顶部开关左边（第2行） 格式：城市 IP IPS
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
-
-// 长按节点选择“查看节点信息”时的信息
 let description = `
 --------------------------------------
 ${countryCode} ${country}
@@ -72,8 +66,8 @@ ${lat} / ${lon}
 ${timezone}
 --------------------------------------
 `;
+$done({title, subtitle, ip, description});
 
-// 国家映射表
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国",
@@ -82,41 +76,42 @@ function country_ValidCheck(para) {
  return countryMap[para] || para || country0;
 };
 
-// 地区映射表
 function Area_check(para) {
   const areaMap = {
     // AE - 阿拉伯联合酋长国 - United Arab Emirates
     "Dubai" : "迪拜",
     "Imārat Umm al Qaywayn" : "乌姆盖万",
-    // AF - 摩洛哥王国 - The Kingdom of Morocco
+    // AF - 摩洛哥王国 - Kingdom of Morocco
     "Fès-Meknès" : "非斯-梅克内斯大区",
-    // AM - 亚美尼亚共和国 - The Republic of Armenia
+    // AM - 亚美尼亚共和国 - Republic of Armenia
     "葉里溫" : "埃里温",
-    // AT - 奥地利共和国 - The Republic of Austria
+    // AT - 奥地利共和国 - Republic of Austria
     "Vienna" : "维也纳",
-    // AU - 澳大利亚联邦 - The Commonwealth of Australia
+    // AU - 澳大利亚联邦 - Commonwealth of Australia
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
     // AR - 阿根廷共和国 - The República Argentina
-    "Buenos Aires F.D." : "布宜诺斯艾利斯省",
+    "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
-    // BD - 孟加拉人民共和国 - People's Republic of Bangladesh
-    "達卡專區" : "达卡专区",
+    // BE - 比利时王国- Kingdom of Belgium
+    "布鲁塞尔首都大区" : "布鲁塞尔大区", 
     // BR - 巴西联邦共和国- Federative Republic of Brazil
-    "Sao Paulo" : "圣保罗州",
+    "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
-    // BG - 保加利亚共和国 - The Republic of Bulgaria
-    "Sofia-Capital" : "索非亚市",
+    // BG - 保加利亚共和国 - Republic of Bulgaria
+    "Sofia-Capital" : "索菲亚市",
     // CA - 加拿大自治领 - The Dominion of Canada
     "Ontario" : "安大略省",
     "Quebec" : "魁北克省",
     // CH - 瑞士联邦 - Swiss Confederation
     "Zurich" : "苏黎世州",
-    // CO - 哥伦比亚共和国 - The Republic of Colombia
+    // CL - 智利共和国 - Republic of Chile
+    "圣地亚哥首都大区" : "圣地亚哥大区",
+    // CO - 哥伦比亚共和国 - Republic of Colombia
     "Bogota D.C." : "波哥大首都区",
     "昆迪納馬卡省" : "昆迪纳马尔卡省",
-    // CR - 哥斯达黎加共和国 - The Republic of Costa Rica
+    // CR - 哥斯达黎加共和国 - Republic of Costa Rica
     "Provincia de San José" : "圣何塞省",
     // CN - 中华人民共和国 - The People's Republic of China
     "Taiwan" : "台湾",
@@ -129,24 +124,24 @@ function Area_check(para) {
     "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
     // CZ - 捷克共和国 - The Czech Republic
-    "Prague" : "布拉格市",
+    "Prague": "布拉格",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
-    "Hesse" : "黑森州",
+    "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
     // DK - 丹麦王国 - The Kingdom of Denmark
     "Capital Region" : "哥本哈根大区",
     // EC - 厄瓜多尔共和国 - Republic of Ecuador
     "皮欽查省" : "皮钦查省",
     // EE - 爱沙尼亚共和国 - Republic of Estonia
-    "哈爾尤縣" : "哈留县",
+    "哈爾尤縣" : "哈尔尤县",
     // ES - 西班牙王国 - The Kingdom of Spain
-    "Catalonia" : "加泰罗尼亚自治区",
+    "Catalonia" : "加泰罗尼亚",
     "Madrid" : "马德里自治区",
     // EU - 葡萄牙共和国 - Portuguese Republic
     "里斯本區" : "里斯本区",
     "維亞納堡區" : "维亚纳堡区",
     // FR - 法兰西共和国 - French Republic
-    "Île-de-France" : "法兰西岛大区",
+    "Île-de-France" : "法兰西岛",
     "奧弗涅-羅訥-阿爾卑斯大區" : "奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "普阿蓝大区",
     // GB - 大不列颠及北爱尔兰联合王国 - United Kingdom of Great Britain and Northern Ireland
@@ -156,7 +151,7 @@ function Area_check(para) {
     // GT - 危地马拉共和国 - Republic of Guatemala
     "瓜地馬拉省" : "瓜地马拉省",
     // HK - 香港 - Hong Kong
-    "Kowloon" : "九龙城区",
+    "Kowloon" : "九龙",
     "Wong Tai Sin" : "黄大仙区",
     "Sham Shui Po" : "深水埗区",
     "Tsuen Wan District" : "荃湾区",
@@ -168,6 +163,8 @@ function Area_check(para) {
     "Budapest" : "布达佩斯",
     // IE - 爱尔兰共和国 - Republic of Ireland
     "倫斯特省" : "伦斯特省",
+    // IL - 以色列国 - State of Israel
+    "Rosh Ha‘Ayin" : "罗什艾因",
     // IQ - 伊拉克共和国 - Republic of Iraq
      "巴格達省" : "巴格达省",
     // IS - 冰岛共和国 - Republic of Iceland
@@ -258,7 +255,6 @@ function Area_check(para) {
   return areaMap[para] || para || region0;
 };
 
-// 城市映射表
 function City_ValidCheck(para) {
   const cityMap = {
     // 阿联酋 - 阿布扎比
@@ -272,16 +268,12 @@ function City_ValidCheck(para) {
     // 奥地利 - 维也纳
     "Vienna" : "维也纳",
     "維也納" : "维也纳",
-    // 奥地利 - 下奥地利州
-    "莱塔河畔布魯克" : "莱塔河畔布鲁克县",
     // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
     // 阿根廷共和国 - 布宜诺斯艾利斯联邦区
     "Buenos Aires" : "布宜诺市",
     // 加拿大 - 安大略
     "Ottawa" : "渥太华",
-    // 孟加拉 - 达卡专区
-    "达卡" : "达卡市",
     // 巴西 - 圣保罗州
     "Osasco" : "奥萨斯库",
     "São Paulo" : "圣保罗",
@@ -303,6 +295,8 @@ function City_ValidCheck(para) {
     "Frankfurt" : "法尔肯施泰因",
     // 德国 - 石勒苏益格-荷尔斯泰因
     "諾德施泰特" : "诺德施泰特",
+    // 爱沙尼亚 - 哈尔尤县
+    "Harjumaa" : "哈尔尤县",
     // 西班牙 - 马德里自治区
     "Madrid" : "马德里",
     "查馬丁區" : "查马丁区",
@@ -337,7 +331,6 @@ function City_ValidCheck(para) {
     "Tiruvānmiyūr" : "钦奈市",
     // 意大利 - 伦巴第大区
     "Milan" : "米兰",
-    "Milano" : "米兰",
     "Gallarate" : "加拉拉泰",
     "Ponte San Pietro" : "蓬泰圣彼得罗",
     "Siziano" : "西齐亚诺",
@@ -436,29 +429,26 @@ function City_ValidCheck(para) {
     // 美国 - 弗吉尼亚州
     "Ashburn" : "阿什本",
     "Boydton" : "博伊顿",
-    "Reston" : "雷斯顿",
+    "Reston": "雷斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国 - 德克萨斯州
-    "Aldine" : "奥尔代恩",
-    "Flower Mound" : "弗洛尔蒙特",
+    "Aldine": "奥尔代恩",
+    "Flower Mound": "弗洛尔蒙特",
     "達拉斯" : "达拉斯",
     // 美国 - 俄勒冈州
     "波特蘭": "波特兰",
     // 美国 - 俄亥俄州
-    "Dublin" : "都柏林",
-    "Reynoldsburg" : "雷诺兹堡",
+    "Dublin": "都柏林",
+    "Reynoldsburg": "雷诺兹堡",
     // 美国 - 纽约州
     "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
     // 美国 - 新泽西州
-    "Piscataway" : "皮斯卡特维镇",
     "Secaucus" : "锡考克斯",
     // 美国 - 科罗拉多州
     "阿瓦達" : "阿瓦达",
     // 美国 - 伊利诺伊州
-    "Elk Grove Village" : "埃尔克格罗夫村",
-    // 越南 - 胡志明市
-    "Quận Phú Nhuận" : "富润区",
+    "Elk Grove Village" : " 埃尔克格罗夫村",
     // 越南 - 河内
     "Trâu Quỳ" : "嘉林县",
     "河內市" : "河内",
@@ -475,7 +465,6 @@ function City_ValidCheck(para) {
   return cityMap[para] || para || city0;
 };
 
-// ISP映射表
 function ISP_ValidCheck(para) {
   return para || ips0;
 };
