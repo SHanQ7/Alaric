@@ -45,10 +45,16 @@ const lat = obj['lat'];
 const lon = obj['lon'];
 const timezone = obj['timezone'];
 
+// 避免重复显示城市名称
 let displayCity = (city !== country && city !== region) ? city : '';
 
+// 展示在顶部开关左边（第1行） 格式：国旗 国家名 地区名
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
+
+// 展示在顶部开关左边（第2行） 格式：城市 IP IPS
 let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+
+// 长按节点选择“查看节点信息”时的信息
 let description = `
 --------------------------------------
 ${countryCode} ${country}
@@ -68,6 +74,7 @@ ${timezone}
 `;
 $done({title, subtitle, ip, description});
 
+// 国家映射表
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国",
@@ -76,16 +83,17 @@ function country_ValidCheck(para) {
  return countryMap[para] || para || country0;
 };
 
+// 地区映射表
 function Area_check(para) {
   const areaMap = {
     // AE - 阿拉伯联合酋长国 - United Arab Emirates
     "Dubai" : "迪拜",
     "Imārat Umm al Qaywayn" : "乌姆盖万",
-    // AF - 摩洛哥王国 - Kingdom of Morocco
+    // AF - 摩洛哥王国 - The Kingdom of Morocco
     "Fès-Meknès" : "非斯-梅克内斯大区",
-    // AM - 亚美尼亚共和国 - Republic of Armenia
+    // AM - 亚美尼亚共和国 - The Republic of Armenia
     "葉里溫" : "埃里温",
-    // AT - 奥地利共和国 - Republic of Austria
+    // AT - 奥地利共和国 - The Republic of Austria
     "Vienna" : "维也纳",
     // AU - 澳大利亚联邦 - Commonwealth of Australia
     "new south wales" : "新南威尔士州",
@@ -94,13 +102,15 @@ function Area_check(para) {
     "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
+    // BD - 孟加拉人民共和国 - People's Republic of Bangladesh
+    "達卡專區" : "达卡专区",
     // BE - 比利时王国- Kingdom of Belgium
-    "布鲁塞尔首都大区" : "布鲁塞尔大区", 
+    "布鲁塞尔首都大区" : "布鲁塞尔首都大区", 
     // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州", 
     "聖保羅州" : "圣保罗州",
     // BG - 保加利亚共和国 - Republic of Bulgaria
-    "Sofia-Capital" : "索菲亚市",
+    "Sofia-Capital" : "索非亚市",
     // CA - 加拿大自治领 - The Dominion of Canada
     "Ontario" : "安大略省",
     "Quebec" : "魁北克省",
@@ -124,7 +134,7 @@ function Area_check(para) {
     "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
     // CZ - 捷克共和国 - The Czech Republic
-    "Prague": "布拉格",
+    "Prague" : "布拉格市",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
     "Hesse": "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
@@ -133,15 +143,15 @@ function Area_check(para) {
     // EC - 厄瓜多尔共和国 - Republic of Ecuador
     "皮欽查省" : "皮钦查省",
     // EE - 爱沙尼亚共和国 - Republic of Estonia
-    "哈爾尤縣" : "哈尔尤县",
+    "哈爾尤縣" : "哈留县",
     // ES - 西班牙王国 - The Kingdom of Spain
-    "Catalonia" : "加泰罗尼亚",
+    "Catalonia" : "加泰罗尼亚自治区",
     "Madrid" : "马德里自治区",
     // EU - 葡萄牙共和国 - Portuguese Republic
     "里斯本區" : "里斯本区",
     "維亞納堡區" : "维亚纳堡区",
     // FR - 法兰西共和国 - French Republic
-    "Île-de-France" : "法兰西岛",
+    "Île-de-France" : "法兰西岛大区",
     "奧弗涅-羅訥-阿爾卑斯大區" : "奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "普阿蓝大区",
     // GB - 大不列颠及北爱尔兰联合王国 - United Kingdom of Great Britain and Northern Ireland
