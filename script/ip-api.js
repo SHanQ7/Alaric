@@ -120,8 +120,6 @@ function Area_check(para) {
     "Budapest" : "布达佩斯",
     // IE - 爱尔兰共和国 - Republic of Ireland
     "倫斯特省" : "伦斯特省",
-    // IL - 以色列国 - State of Israel
-    "Rosh Ha‘Ayin" : "罗什艾因",
     // IQ - 伊拉克共和国 - Republic of Iraq
      "巴格達省" : "巴格达省",
     // IS - 冰岛共和国 - Republic of Iceland
@@ -206,7 +204,7 @@ function Area_check(para) {
     "Hải Dương Province" : "海阳省",
     "慶和省" : "庆和省",
     // ZA - 南非共和国 - Republic of South Africa
-    "西開普省" : "西开普省",
+    "西開普省" : "西开普省"
  };
   para = para ? para.trim() : para;
   return areaMap[para] || para || region0;
@@ -226,7 +224,7 @@ function City_ValidCheck(para) {
     "Vienna" : "维也纳",
     "維也納" : "维也纳",
     // 奥地利 - 下奥地利州
-    "莱塔河畔布魯克" : "莱塔河畔布鲁克县"
+    "莱塔河畔布魯克" : "莱塔河畔布鲁克县",
     // 澳大利亚 - 维多利亚州
     "Melton" : "梅尔顿",
     // 阿根廷共和国 - 布宜诺斯艾利斯联邦区
@@ -409,7 +407,7 @@ function City_ValidCheck(para) {
     // 美国 - 科罗拉多州
     "阿瓦達" : "阿瓦达",
     // 美国 - 伊利诺伊州
-    "Elk Grove Village" : " 埃尔克格罗夫村",
+    "Elk Grove Village" : "埃尔克格罗夫村",
     // 越南 - 胡志明市
     "Quận Phú Nhuận" : "富润区",
     // 越南 - 河内
@@ -422,7 +420,7 @@ function City_ValidCheck(para) {
     // 越南 - 海阳省
     "Hải Dương" : "海阳市",
     // 南非 - 西开普省
-    "開普敦" : "开普敦",
+    "開普敦" : "开普敦"
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para || city0;
