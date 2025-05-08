@@ -89,17 +89,23 @@ function Area_check(para) {
     // AE - 阿拉伯联合酋长国 - United Arab Emirates
     "Dubai" : "迪拜",
     "Imārat Umm al Qaywayn" : "乌姆盖万",
+    
     // AF - 摩洛哥王国 - The Kingdom of Morocco
     "Fès-Meknès" : "非斯-梅克内斯大区",
+    
     // AM - 亚美尼亚共和国 - The Republic of Armenia
     "葉里溫" : "埃里温",
+    
     // AT - 奥地利共和国 - The Republic of Austria
     "Vienna" : "维也纳",
+    
     // AU - 澳大利亚联邦 - Commonwealth of Australia
     "new south wales" : "新南威尔士州",
     "Victoria" : "维多利亚州",
+    
     // AR - 阿根廷共和国 - The República Argentina
     "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
+    
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
     // BD - 孟加拉人民共和国 - People's Republic of Bangladesh
@@ -338,7 +344,7 @@ function City_ValidCheck(para) {
     "Badaganhatti" : "巴达甘哈提",
     // 印度 - 马哈拉施特拉邦
     "Santa Cruz" : "圣克鲁斯",
-    "新孟買": "新孟买",
+    "新孟買" : "新孟买",
     // 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr" : "钦奈市",
     // 意大利 - 伦巴第大区
@@ -348,8 +354,8 @@ function City_ValidCheck(para) {
     "Ponte San Pietro" : "蓬泰圣彼得罗",
     "Siziano" : "西齐亚诺",
     // 日本 - 东京都
-    "Chiyoda": "千代田区",
-    "Shibuya": "涩谷区",
+    "Chiyoda" : "千代田区",
+    "Shibuya" : "涩谷区",
     "東京都": "东京",
     // 日本 - 埼玉县
     "Negishi": "根岸",
@@ -442,26 +448,29 @@ function City_ValidCheck(para) {
     // 美国 - 弗吉尼亚州
     "Ashburn" : "阿什本",
     "Boydton" : "博伊顿",
-    "Reston": "雷斯顿",
+    "Reston" : "雷斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国 - 德克萨斯州
-    "Aldine": "奥尔代恩",
-    "Flower Mound": "弗洛尔蒙特",
+    "Aldine" : "奥尔代恩",
+    "Flower Mound" : "弗洛尔蒙特",
     "達拉斯" : "达拉斯",
     // 美国 - 俄勒冈州
-    "波特蘭": "波特兰",
+    "波特蘭" : "波特兰",
     // 美国 - 俄亥俄州
-    "Dublin": "都柏林",
-    "Reynoldsburg": "雷诺兹堡",
+    "Dublin" : "都柏林",
+    "Reynoldsburg" : "雷诺兹堡",
     // 美国 - 纽约州
     "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
     // 美国 - 新泽西州
+    "Piscataway" : "皮斯卡特维镇",
     "Secaucus" : "锡考克斯",
     // 美国 - 科罗拉多州
     "阿瓦達" : "阿瓦达",
     // 美国 - 伊利诺伊州
     "Elk Grove Village" : " 埃尔克格罗夫村",
+    // 越南 - 胡志明市
+    "Quận Phú Nhuận" : "富润区",
     // 越南 - 河内
     "Trâu Quỳ" : "嘉林县",
     "河內市" : "河内",
@@ -478,6 +487,7 @@ function City_ValidCheck(para) {
   return cityMap[para] || para || city0;
 };
 
+// ISP映射表
 function ISP_ValidCheck(para) {
   return para || ips0;
 };
