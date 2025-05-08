@@ -24,7 +24,56 @@ const flags = new Map([
 ["UK", "🇬🇧"], ["UM", "🇺🇲"], ["US", "🇺🇸"], ["UY", "🇺🇾"], ["UZ", "🇺🇿"], ["VA", "🇻🇦"], ["VC", "🇻🇨"], ["VE", "🇻🇪"], ["VG", "🇻🇬"], ["VI", "🇻🇮"], ["VN", "🇻🇳"], ["VU", "🇻🇺"],
 ["WS", "🇼🇸"], ["YE", "🇾🇪"], ["YT", "🇾🇹"], ["ZA", "🇿🇦"], ["ZM", "🇿🇲"], ["ZW", "🇿🇼"]
 ]);
+const country0 = "MUC";
+const region0 = "韦恩大厦";
+const city0 = "高谭市";
+const isp0 = "MCU.com";
 
+
+
+// 脚本开始
+let body = $response.body;
+let obj = JSON.parse(body);
+
+const countryCode = obj['countryCode'];
+const country = country_ValidCheck(obj['country']);
+const region = Area_check(obj['regionName']);
+const city = City_ValidCheck(obj['city']);
+const ip = obj['query'];
+const isp = ISP_ValidCheck(obj['isp']);
+const lat = obj['lat'];
+const lon = obj['lon'];
+const timezone = obj['timezone'];
+
+// 避免重复显示城市名称
+let displayCity = (city !== country && city !== region) ? city : '';
+
+// 展示在顶部开关左边（第1行） 格式：国旗 国家名 地区名
+let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
+
+// 展示在顶部开关左边（第2行） 格式：城市 IP IPS
+let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+
+// 长按节点选择“查看节点信息”时的信息
+let description = `
+--------------------------------------
+${countryCode} ${country}
+
+${obj['region']} ${region}
+
+${obj['city']}
+
+${ip}
+
+${isp}
+
+${lat} / ${lon}
+
+${timezone}
+--------------------------------------
+`;
+
+// 国家映射表
 function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国",
@@ -33,6 +82,7 @@ function country_ValidCheck(para) {
  return countryMap[para] || para || country0;
 };
 
+// 地区映射表
 function Area_check(para) {
   const areaMap = {
     // AE - 阿拉伯联合酋长国 - United Arab Emirates
@@ -210,6 +260,7 @@ function Area_check(para) {
   return areaMap[para] || para || region0;
 };
 
+// 城市映射表
 function City_ValidCheck(para) {
   const cityMap = {
     // 阿联酋 - 阿布扎比
@@ -426,47 +477,7 @@ function City_ValidCheck(para) {
   return cityMap[para] || para || city0;
 };
 
+// ISP映射表
 function ISP_ValidCheck(para) {
   return para || ips0;
 };
-
-const country0 = "MUC";
-const region0 = "韦恩大厦";
-const city0 = "高谭市";
-const isp0 = "MCU.com";
-
-const countryCode = obj['countryCode'];
-const country = country_ValidCheck(obj['country']);
-const region = Area_check(obj['regionName']);
-const city = City_ValidCheck(obj['city']);
-const ip = obj['query'];
-const isp = ISP_ValidCheck(obj['isp']);
-const lat = obj['lat'];
-const lon = obj['lon'];
-const timezone = obj['timezone'];
-
-// 脚本开始
-let body = $response.body;
-let obj = JSON.parse(body);
-
-let displayCity = (city !== country && city !== region) ? city : '';
-let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
-let description = `
---------------------------------------
-${countryCode} ${country}
-
-${obj['region']} ${region}
-
-${obj['city']}
-
-${ip}
-
-${isp}
-
-${lat} / ${lon}
-
-${timezone}
---------------------------------------
-`;
-$done({title, subtitle, ip, description});
