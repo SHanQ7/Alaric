@@ -451,7 +451,7 @@ let obj = JSON.parse(body);
 
 let displayCity = (city !== country && city !== region) ? city : '';
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
-let subtitle = (displayCity ? displayCity + ' ' : '') + '·' + obj['query'] + '·' + ISP_ValidCheck(obj['isp']);
+let subtitle = (displayCity ? displayCity + ' ' : '') + '•' + obj['query'] + '•' + ISP_ValidCheck(obj['isp']);
 let description = `
 --------------------------------------
 ${countryCode} ${country}
