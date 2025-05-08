@@ -103,8 +103,6 @@ function Area_check(para) {
     "Baku City" : "巴库市",
     // BD - 孟加拉人民共和国 - People's Republic of Bangladesh
     "達卡專區" : "达卡专区",
-    // BE - 比利时王国 - The Kingdom of Belgium
-    "布鲁塞尔首都大区" : "布鲁塞尔",
     // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州",
     "聖保羅州" : "圣保罗州",
@@ -131,9 +129,9 @@ function Area_check(para) {
     "油尖旺區" : "油尖旺区",
     "中华民国" : "台湾",
     // CZ - 捷克共和国 - The Czech Republic
-    "Prague": "布拉格市",
+    "Prague" : "布拉格市",
     // DE - 德意志联邦共和国 - Federal Republic of Germany
-    "Hesse": "黑森州",
+    "Hesse" : "黑森州",
     "石勒苏益格-荷尔斯泰因" : "石荷州",
     // DK - 丹麦王国 - The Kingdom of Denmark
     "Capital Region" : "哥本哈根大区",
@@ -254,7 +252,7 @@ function Area_check(para) {
     "Hải Dương Province" : "海阳省",
     "慶和省" : "庆和省",
     // ZA - 南非共和国 - Republic of South Africa
-    "西開普省" : "西开普省"
+    "西開普省" : "西开普省",
  };
   para = para ? para.trim() : para;
   return areaMap[para] || para || region0;
@@ -438,17 +436,17 @@ function City_ValidCheck(para) {
     // 美国 - 弗吉尼亚州
     "Ashburn" : "阿什本",
     "Boydton" : "博伊顿",
-    "Reston": "雷斯顿",
+    "Reston" : "雷斯顿",
     "馬納薩斯" : "马纳萨斯",
     // 美国 - 德克萨斯州
-    "Aldine": "奥尔代恩",
-    "Flower Mound": "弗洛尔蒙特",
+    "Aldine" : "奥尔代恩",
+    "Flower Mound" : "弗洛尔蒙特",
     "達拉斯" : "达拉斯",
     // 美国 - 俄勒冈州
     "波特蘭": "波特兰",
     // 美国 - 俄亥俄州
-    "Dublin": "都柏林",
-    "Reynoldsburg": "雷诺兹堡",
+    "Dublin" : "都柏林",
+    "Reynoldsburg" : "雷诺兹堡",
     // 美国 - 纽约州
     "Cheektowaga" : "布法罗",
     "紐約" : "纽约",
@@ -471,7 +469,7 @@ function City_ValidCheck(para) {
     // 越南 - 海阳省
     "Hải Dương" : "海阳市",
     // 南非 - 西开普省
-    "開普敦" : "开普敦"
+    "開普敦" : "开普敦",
    };
   para = para ? para.trim() : para;
   return cityMap[para] || para || city0;
