@@ -55,23 +55,16 @@ let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' · ' : '') + obj['query'] + ' · ' + ISP_ValidCheck(obj['isp']);
 
 // 长按节点选择“查看节点信息”时的信息
-let description = `
---------------------------------------
-${countryCode} ${country}
-
-${obj['region']} ${region}
-
-${obj['city']}
-
-${ip}
-
-${isp}
-
-${lat} / ${lon}
-
-${timezone}
---------------------------------------
-`;
+let description = 
+  '--------------------------------------\n' +
+  '国家      : ' + countryCode + ' ' + country + '\n' +
+  '地区      : ' + obj['region'] + ' ' + region + '\n' +
+  '城市      : ' + obj['city'] + '\n' +
+  'IP地址    : ' + ip + '\n' +
+  '运营商    : ' + isp + '\n' +
+  '经纬度    : ' + lat + ' / ' + lon + '\n' +
+  '时区      : ' + timezone + '\n' +
+  '--------------------------------------';
 $done({title, subtitle, ip, description});
 
 // 国家映射表
@@ -137,7 +130,7 @@ function Area_check(para) {
     
     // CO - 哥伦比亚共和国 - Republic of Colombia
     "Bogota D.C." : "波哥大首都区",
-    "昆迪納馬卡省" : "昆迪纳马尔卡省",0
+    "昆迪納馬卡省" : "昆迪纳马尔卡省",
     
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica
     "Provincia de San José" : "圣何塞省",
