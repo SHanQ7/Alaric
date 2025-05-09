@@ -52,26 +52,20 @@ let displayCity = (city !== country && city !== region) ? city : '';
 let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 
 // 展示在顶部开关左边（第2行） 格式：城市 IP IPS
-let subtitle = (displayCity ? displayCity + ' ' : '') + obj['query'] + ' ' + ISP_ValidCheck(obj['isp']);
+let subtitle = (displayCity ? displayCity + ' · ' : '') + obj['query'] + ' · ' + ISP_ValidCheck(obj['isp']);
 
 // 长按节点选择“查看节点信息”时的信息
-let description = `
---------------------------------------
-${countryCode} ${country}
+let description = 
+  '--------------------------------------\n' +
+  '国家      : ' + countryCode + ' ' + country + '\n' +
+  '地区      : ' + obj['region'] + ' ' + region + '\n' +
+  '城市      : ' + obj['city'] + '\n' +
+  'IP地址    : ' + ip + '\n' +
+  '运营商    : ' + isp + '\n' +
+  '经纬度    : ' + lat + ' / ' + lon + '\n' +
+  '时区      : ' + timezone + '\n' +
+  '--------------------------------------';
 
-${obj['region']} ${region}
-
-${obj['city']}
-
-${ip}
-
-${isp}
-
-${lat} / ${lon}
-
-${timezone}
---------------------------------------
-`;
 $done({title, subtitle, ip, description});
 
 // 国家映射表
@@ -107,7 +101,7 @@ function Area_check(para) {
     "Victoria" : "维多利亚州",
     
     // AR - 阿根廷共和国 - The República Argentina
-    "Buenos Aires F.D." : "布宜诺斯艾利斯联邦区",
+    "Buenos Aires F.D." : "布宜诺斯艾利斯",
     
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan
     "Baku City" : "巴库市",
@@ -137,7 +131,7 @@ function Area_check(para) {
     
     // CO - 哥伦比亚共和国 - Republic of Colombia
     "Bogota D.C." : "波哥大首都区",
-    "昆迪納馬卡省" : "昆迪纳马尔卡省",
+    "昆迪納馬卡省" : "昆迪纳马尔卡省",0
     
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica
     "Provincia de San José" : "圣何塞省",
@@ -242,7 +236,7 @@ function Area_check(para) {
     
     // LU - 卢森堡大公国- Grand Duchy of Luxembourg
     "Luxembourg" : "卢森堡市",
-    "Diekirch" : "迪基希", 
+    "Diekirch" : "迪基希区", 
     
     // LV - 拉脱维亚共和国 - Republic of Latvia
     "Rīga" : "里加",
@@ -260,7 +254,7 @@ function Area_check(para) {
     "North Holland" : "北荷兰省",
     
     // NO - 挪威王国 - Kingdom of Norway
-    "Oslo County" : "东挪威",
+    "Oslo County" : "奥斯陆市",
     "Viken" : "维肯郡",
     
     // NP - 尼泊尔 - Nepal
@@ -270,8 +264,8 @@ function Area_check(para) {
     "利馬省" : "利马省",
     
     // PH - 菲律宾共和国 - Republic of the Philippines
-    "Metro Manila" : "马尼拉大都会",
-    "Northern Mindanao" : "北棉兰老",
+    "Metro Manila" : "大马尼拉地区",
+    "Northern Mindanao" : "北棉兰老大区",
     
     // PL - 波兰共和国 - Republic of Poland
     "Mazovia" : "马佐夫舍省",
@@ -282,7 +276,7 @@ function Area_check(para) {
     
     // RU - 俄罗斯联邦 - Russian Federation
     "Moscow" : "莫斯科州",
-    "St.-Petersburg" : "圣彼得堡",
+    "St.-Petersburg" : "西北联邦区",
     "Tatarstan Republic" : "鞑靼斯坦共和国",
     
     // RO - 罗马尼亚共和国 - The Republic of Romania
