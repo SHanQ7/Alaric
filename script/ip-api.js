@@ -57,14 +57,16 @@ let subtitle = (displayCity ? displayCity + ' · ' : '') + obj['query'] + ' · '
 // 长按节点选择“查看节点信息”时的信息
 let description =
   '--------------------------------------\n' +
-  '国家　　：' + countryCode + ' ' + country + '\n' +
-  '地区　　：' + obj['region'] + ' ' + region + '\n' +
-  '城市　　：' + obj['city'] + '\n' +
-  'IP地址　：' + ip + '\n' +
-  '运营商　：' + isp + '\n' +
-  '经纬度　：' + lat + ' / ' + lon + '\n' +
-  '时区　　：' + timezone + '\n' +
+  'Country   : ' + countryCode + ' ' + country + '\n' +
+  'Region    : ' + obj['region'] + ' ' + region + '\n' +
+  'City      : ' + obj['city'] + '\n' +
+  'IP        : ' + ip + '\n' +
+  'ISP       : ' + isp + '\n' +
+  'Latitude  : ' + lat + '\n' +
+  'Longitude : ' + lon + '\n' +
+  'Timezone  : ' + timezone + '\n' +
   '--------------------------------------';
+
 
 $done({title, subtitle, ip, description});
 
