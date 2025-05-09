@@ -57,17 +57,14 @@ let subtitle = (displayCity ? displayCity + ' · ' : '') + obj['query'] + ' · '
 // 长按节点选择“查看节点信息”时的信息
 let description =
   '--------------------------------------\n' +
-  'Country   : ' + countryCode + ' ' + country + '\n' +
-  'Region    : ' + obj['region'] + ' ' + region + '\n' +
-  'City      : ' + obj['city'] + '\n' +
-  'IP        : ' + ip + '\n' +
-  'ISP       : ' + isp + '\n' +
-  'Latitude  : ' + lat + '\n' +
-  'Longitude : ' + lon + '\n' +
-  'Timezone  : ' + timezone + '\n' +
+  '🌍 国家 / Country:\n' + countryCode + ' ' + country + '\n\n' +
+  '📍 地区 / Region:\n' + obj['region'] + ' ' + region + '\n\n' +
+  '🏙️ 城市 / City:\n' + obj['city'] + '\n\n' +
+  '🌐 IP地址 / IP:\n' + ip + '\n\n' +
+  '🏢 运营商 / ISP:\n' + isp + '\n\n' +
+  '📌 经纬度 / Lat & Lon:\n' + lat + ' / ' + lon + '\n\n' +
+  '🕒 时区 / Timezone:\n' + timezone + '\n' +
   '--------------------------------------';
-
-
 $done({title, subtitle, ip, description});
 
 // 国家映射表
