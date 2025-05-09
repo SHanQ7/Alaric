@@ -55,16 +55,17 @@ let title = flags.get(obj['countryCode']) + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' · ' : '') + obj['query'] + ' · ' + ISP_ValidCheck(obj['isp']);
 
 // 长按节点选择“查看节点信息”时的信息
-let description = 
+let description =
   '--------------------------------------\n' +
-  '国家      : ' + countryCode + ' ' + country + '\n' +
-  '地区      : ' + obj['region'] + ' ' + region + '\n' +
-  '城市      : ' + obj['city'] + '\n' +
-  'IP地址    : ' + ip + '\n' +
-  '运营商    : ' + isp + '\n' +
-  '经纬度    : ' + lat + ' / ' + lon + '\n' +
-  '时区      : ' + timezone + '\n' +
+  '国家　　：' + countryCode + ' ' + country + '\n' +
+  '地区　　：' + obj['region'] + ' ' + region + '\n' +
+  '城市　　：' + obj['city'] + '\n' +
+  'IP地址　：' + ip + '\n' +
+  '运营商　：' + isp + '\n' +
+  '经纬度　：' + lat + ' / ' + lon + '\n' +
+  '时区　　：' + timezone + '\n' +
   '--------------------------------------';
+
 $done({title, subtitle, ip, description});
 
 // 国家映射表
