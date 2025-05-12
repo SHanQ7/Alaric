@@ -172,6 +172,7 @@ function Area_check(para) {
     
     // FR - 法兰西共和国 - French Republic
     "Île-de-France" : "法兰西岛大区",
+    "法兰西岛" : "法兰西岛大区",
     "奧弗涅-羅訥-阿爾卑斯大區" : "奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区" : "普阿蓝大区",
     
@@ -433,6 +434,7 @@ function City_ValidCheck(para) {
     
     // 日本 - 东京都
     "Chiyoda" : "千代田区",
+    "Ebara" : "品川区",
     "Shibuya" : "涩谷区",
     "東京都": "东京",
     
