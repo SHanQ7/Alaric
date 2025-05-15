@@ -215,8 +215,8 @@ function Area_check(para) {
     
     // JP - 日本国 - State of Japan
     "Tokyo" : "东京都",
-    "Osaka" : "大阪市",
-    "Ōsaka" : "大阪市",
+    "Osaka" : "大阪府",
+    "Ōsaka" : "大阪府",
     "福岡縣" : "福冈县",
     "千葉縣" : "千叶县",
     "埼玉縣" : "埼玉县",
@@ -225,8 +225,11 @@ function Area_check(para) {
     // KR - 大韩民国 - Republic of Korea
     "Daegu" : "大邱广域市",
     "Gangwon-do" : "江原道",
-    "North Chungcheong" : "忠清北道",
     "Incheon" : "仁川广域市",
+    "North Chungcheong" : "忠清北道",
+
+    // KH - 柬埔寨王国 - The Kingdom of Cambodia 
+    "Phnom Penh" : "金边市",
     
     // KZ - 哈萨克斯坦共和国 - Republic of Kazakhstan
     "Almaty" : "阿拉木图",
@@ -235,9 +238,9 @@ function Area_check(para) {
     "維爾紐斯縣" : "维尔纽斯县",
     
     // LU - 卢森堡大公国- Grand Duchy of Luxembourg
+    "Diekirch" : "迪基希区",
     "Luxembourg" : "卢森堡市",
-    "Diekirch" : "迪基希区", 
-    
+     
     // LV - 拉脱维亚共和国 - Republic of Latvia
     "Rīga" : "里加",
     
@@ -436,13 +439,13 @@ function City_ValidCheck(para) {
     "Chiyoda" : "千代田区",
     "Ebara" : "品川区",
     "Shibuya" : "涩谷区",
-    "東京都": "东京",
+    "東京都": "涩谷区",
     
     // 日本 - 埼玉县
     "Negishi": "根岸",
     
-    // 日本 - 大阪市
-    "Osaka" : "大阪府",
+    // 日本 - 大阪府
+    "Osaka" : "大阪市",
     "Ōkubo-naka" : "熊取町",
     
     // 日本 - 福冈县
@@ -597,7 +600,7 @@ function City_ValidCheck(para) {
     // 越南 - 胡志明市
     "Quận Phú Nhuận" : "富润区",
     
-    // 越南 - 河内
+    // 越南 - 河内市
     "Trâu Quỳ" : "嘉林县",
     "河內市" : "河内",
     
