@@ -109,7 +109,7 @@ function Area_check(para) {
     "達卡專區" : "达卡专区",
     
     // BE - 比利时王国- Kingdom of Belgium
-    "布鲁塞尔首都大区" : "布鲁塞尔首都大区", 
+    "布鲁塞尔首都大区" : "布鲁塞尔", 
     
     // BR - 巴西联邦共和国- Federative Republic of Brazil
     "Sao Paulo" : "圣保罗州", 
