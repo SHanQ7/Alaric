@@ -395,6 +395,7 @@ function City_ValidCheck(para) {
     
     // 英国 - 英格兰
     "Harlesden" : "哈利斯登",
+    "Hounslow" : "伦敦",
     "Slough" : "斯劳",
     "倫敦金融城" : "伦敦",
     
