@@ -409,7 +409,10 @@ function City_ValidCheck(para) {
     "Tsuen Wan" : "荃湾",
     "柴灣" : "柴湾",
     "油尖旺區" : "油尖旺区",
-    
+
+    // 中国 - 台湾
+    "臺北市" : "台北市",
+
     // 匈牙利 - 佩斯州
     "Szigetszentmiklós" : "锡盖特圣米克洛什",
     
