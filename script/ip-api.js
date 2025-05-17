@@ -306,10 +306,11 @@ function Area_check(para) {
     "Kyiv City" : "基辅市",
     
     // US - 美利坚合众国 - The United States of America
-    "Arizona" : "亚利桑那州",
     "科羅拉多州" : "科罗拉多州",
     "加州" : "加利福尼亚州",
-    
+    "亞利桑那州" : "亚利桑那州",
+    "Arizona" : "亚利桑那州",
+
     // VN - 越南社会主义共和国 - Socialist Republic of Vietnam
     "Hanoi" : "河内市",
     "Hòa Bình Province" : "和平省",
