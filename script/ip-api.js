@@ -273,7 +273,10 @@ function Area_check(para) {
     // PL - 波兰共和国 - Republic of Poland
     "Mazovia" : "马佐夫舍省",
     "波美拉尼亞省" : "波美拉尼亚省",
-    
+
+    // PT - 葡萄牙共和国 - The Portuguese Republic
+    "塞圖巴爾區" : "塞图巴尔区",
+
     // RS - 塞尔维亚共和国 - Republic of Serbia
     "Belgrade" : "贝尔格莱德",
     
@@ -353,6 +356,7 @@ function City_ValidCheck(para) {
     
     // 加拿大 - 安大略
     "Ottawa" : "渥太华",
+    "渥太華" : "渥太华",
     
     // 孟加拉 - 达卡专区
     "达卡" : "达卡市",
@@ -522,6 +526,9 @@ function City_ValidCheck(para) {
     // 挪威 - 阿克什胡斯郡
     "Jessheim" : "杰斯海姆",
     "Lorenskog" : "勒伦斯科格",
+
+    // 葡萄牙 - 塞图巴尔区
+    "Montijo" : "蒙蒂茹",
     
     // 塞尔维亚 - 贝尔格莱德
     "Rucka" : "新贝尔格莱德",
