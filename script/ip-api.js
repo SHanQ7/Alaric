@@ -192,8 +192,10 @@ function Area_check(para) {
     "Tsuen Wan District" : "荃湾区",
     "北區" : "北区",
     "東區" : "东区",
+    "中環" : "中环",
     "葵青區" : "葵青区",
     "中西區" : "中西区",
+    "九龍城區" : "九龙城区",
     
     // HU - 匈牙利共和国 - Hungarian Republic
     "Budapest" : "布达佩斯",
@@ -412,6 +414,7 @@ function City_ValidCheck(para) {
     "The Latitude" : "誉港湾",
     "Cheung Sha Wan" : "长沙湾",
     "Tsuen Wan" : "荃湾",
+    "Tsing Yi" : '青衣',
     "柴灣" : "柴湾",
     "油尖旺區" : "油尖旺区",
 
