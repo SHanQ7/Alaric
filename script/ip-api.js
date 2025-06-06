@@ -202,6 +202,9 @@ function Area_check(para) {
     
     // IE - 爱尔兰共和国 - Republic of Ireland
     "倫斯特省" : "伦斯特省",
+
+    // IL - 以色列国 - The State of Israel
+    "Tel Aviv" : " 特拉维夫区",
     
     // IQ - 伊拉克共和国 - Republic of Iraq
      "巴格達省" : "巴格达省",
