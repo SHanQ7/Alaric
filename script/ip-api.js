@@ -237,8 +237,9 @@ function Area_check(para) {
     "Phnom Penh" : "金边市",
     
     // KZ - 哈萨克斯坦共和国 - Republic of Kazakhstan
-    "Almaty" : "阿拉木图",
-    
+    "Almaty" : "阿拉木图州",
+    "Almaty Oblysy" : "阿拉木图州",
+
     // LT - 立陶宛共和国 - Republic of Lithuania
     "維爾紐斯縣" : "维尔纽斯县",
     
@@ -492,7 +493,8 @@ function City_ValidCheck(para) {
     
     // 哈萨克斯坦 - 阿拉木图
     "阿拉木圖" : "阿拉木图",
-    
+    "Talghar" : "塔尔加尔",
+
     // 卢森堡 - 迪基希
     "Schieren" : "希伦",
     
@@ -508,6 +510,9 @@ function City_ValidCheck(para) {
     
     // 墨西哥 - 克雷塔罗州
     "Querétaro" : "克雷塔罗",
+
+    // 摩尔多瓦 - 基希讷乌市政区
+    "Sîngera" : "辛热拉",
     
     // 尼泊尔 - 巴格马蒂省
     "加德滿都" : "加德满都",
