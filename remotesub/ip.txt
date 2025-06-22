@@ -1,9 +1,224 @@
-132.145.245.100:443#🇩🇪 DE IDC-2x¹
-129.159.202.83:443#🇩🇪 DE IDC-2x² 
-150.230.146.170:443#🇩🇪 DE IDC-2x³
-104.25.253.27:443#🇭🇰 HK IDC-2x¹
-104.25.247.241:443#🇭🇰 HK IDC-2x²
-104.25.246.238:443#🇭🇰 HK IDC-2x³
-104.26.11.31:443#🇺🇸 US IDC-2x¹
-104.18.76.47:443#🇺🇸 US IDC-2x²
-172.66.40.190:443#🇺🇸 US IDC-2x³
+# 优选域名
+cmcc.090227.xyz#到期时间 : 2025-06-29
+tg.wxgqlfx.top:50000#套餐流量 : 500G
+
+# 🇦🇪 AE
+
+
+
+# 🇦🇲 AM
+
+
+
+# 🇦🇷 AR
+190.183.61.62:8443#🇦🇷 AR IDC Direct-1x -SHanQ
+
+
+# 🇦🇹 AT
+94.177.8.21:443#🇦🇹 AT IDC Direct-1x -SHanQ
+
+
+# 🇦🇺 AU
+170.64.152.77:7443#🇦🇺 AU IDC Direct-1x - SHanQ
+
+
+# 🇧🇬 BG
+193.239.160.25:443#🇧🇬 BG IDC Direct-1x - SHanQ
+
+
+# 🇧🇷 BR
+38.180.79.9:443#🇧🇷 BR IDC Direct-1x - SHanQ
+
+
+# 🇨🇦 CA
+138.197.152.31:2053#🇨🇦 CA IDC Direct-1x - SHanQ
+
+
+# 🇨🇭 CH
+94.131.12.56:443#🇨🇭 CH IDC Direct-1x - SHanQ
+
+
+# 🇨🇱 CL
+
+
+
+# 🇨🇾 CY
+91.223.208.217:443#🇨🇾 CY IDC Direct-1x - SHanQ
+
+
+# 🇨🇿 CZ
+
+
+
+# 🇩🇪 DE
+54.38.219.132:12055#🇩🇪 DE IDC Direct-1x - SHanQ
+
+
+# 🇩🇰 DK
+46.29.235.29:8443#🇩🇰 DK IDC Direct-1x - SHanQ
+
+
+# 🇪🇪 EE
+38.180.10.150:443#🇪🇪 EE IDC Direct-1x - SHanQ
+
+
+# 🇪🇸 ES
+194.87.45.19:2053#🇪🇸 ES IDC Direct-1x - SHanQ
+
+
+# 🇪🇺 EU
+
+
+
+# 🇫🇮 FI
+198.105.124.180:443#🇫🇮 FI IDC Direct-1x - SHanQ
+
+
+# 🇫🇷 FR
+95.182.98.206:8443#🇫🇷 FR IDC Direct-1x - SHanQ
+
+
+# 🇬🇧 GB
+206.238.239.120:443#🇬🇧 GB IDC Direct-1x¹ - SHanQ
+217.163.76.141:443#🇬🇧 GB IDC Direct-1x² - SHanQ
+160.153.1.16:443#🇬🇧 GB IDC Direct-1x³ - SHanQ
+# 🇬🇪 GE
+
+
+
+# 🇭🇰 HK - HKG
+104.17.167.87:443#🇭🇰 HK IDC Direct-1x¹ - SHanQ
+104.19.155.251:443#🇭🇰 HK IDC Direct-1x² - SHanQ
+104.19.58.17:443#🇭🇰 HK IDC Direct-1x³ - SHanQ
+# 🇭🇺 HU - BUD
+38.180.20.59:2053#🇭🇺 HU IDC Direct-1x - SHanQ
+
+
+# 🇮🇩 ID
+43.218.77.16:1443#🇮🇩 ID IDC Direct-1x - SHanQ
+
+
+# 🇮🇪 IE - DUB
+63.32.194.15:2053#🇮🇪 IE IDC Direct-1x - SHanQ
+
+
+# 🇮🇱 IL
+212.80.205.244:8443#🇮🇱 IL IDC Direct-1x - SHanQ
+
+
+# 🇮🇳 IN - Maharashtra - BOM
+65.20.74.136:2053#🇮🇳 IN IDC Direct-1x¹ - SHanQ
+65.20.76.125:8443#🇮🇳 IN IDC Direct-1x² - SHanQ
+65.20.82.22:443#🇮🇳 IN IDC Direct-1x³ - SHanQ
+# 🇮🇸 IS
+93.95.230.139:443#🇮🇸 IS IDC Direct-1x - SHanQ
+
+
+# 🇮🇹 IT
+82.118.16.12:8443#🇮🇹 IT IDC Direct-1x - SHanQ
+
+
+# 🇯🇵 JP - NRT
+139.162.108.5:443#🇯🇵 JP IDC Direct-1x¹ - SHanQ
+154.31.113.72:443#🇯🇵 JP IDC Direct-1x² - SHanQ
+103.160.100.205:29844#🇯🇵 JP IDC Direct-1x³ - SHanQ
+# 🇰🇷 KR - ICN
+146.56.99.255:56789#🇰🇷 KR IDC Direct-1x¹ - SHanQ
+144.24.84.212:49888#🇰🇷 KR IDC Direct-1x² - SHanQ
+131.186.22.50:443#🇰🇷 KR IDC Direct-1x³ - SHanQ
+# 🇰🇿 KZ
+94.131.2.187:2053#🇰🇿 KZ IDC Direct-1x - SHanQ
+
+
+# 🇱🇹 LT
+
+
+
+# 🇱🇻 LV
+77.73.71.196:443#🇱🇻 LV IDC Direct-1x - SHanQ
+
+
+# 🇲🇩 MD
+45.140.146.80:2053#🇲🇩 MD IDC Direct-1x - SHanQ
+
+
+# 🇲🇾 MY
+38.60.193.247:13300#🇲🇾 MY IDC Direct-1x - SHanQ
+
+
+# 🇳🇱 NL
+188.253.24.16:443#🇳🇱 NL IDC Direct-1x - SHanQ
+
+
+# 🇳🇴 NO
+95.164.84.9:81#🇳🇴 NO IDC Direct-1x¹ - SHanQ
+46.29.238.54:8443#🇳🇴 NO IDC Direct-1x² - SHanQ
+91.227.248.40:443#🇳🇴 NO IDC Direct-1x³ - SHanQ
+# 🇴🇲 OM
+38.180.11.201:443#🇴🇲 OM IDC Direct-1x¹ - SHanQ
+176.97.67.38:443#🇴🇲 OM IDC Direct-1x² - SHanQ
+176.97.66.175:443#🇴🇲 OM IDC Direct-1x³ - SHanQ
+# 🇵🇭 PH
+
+
+
+# 🇵🇰 PK
+
+
+
+# 🇵🇱 PL
+195.238.126.52:443#🇵🇱 PL IDC Direct-1x - SHanQ
+
+# 🇵🇹 PT
+172.65.90.56:443#🇵🇹 PT IDC Direct-1x - SHanQ
+
+
+# 🇷🇴 RO
+176.97.76.48:2053#🇷🇴 RO IDC Direct-1x - SHanQ
+
+
+# 🇷🇸 RS
+217.196.104.83:8443#🇷🇸 RS IDC Direct-1x - SHanQ
+
+
+# 🇷🇺 RU
+89.248.207.37:443#🇷🇺 RU IDC Direct-1x¹ - SHanQ
+91.201.113.193:443#🇷🇺 RU IDC Direct-1x² - SHanQ
+62.84.102.169:8443#🇷🇺 RU IDC Direct-1x³ - SHanQ
+# 🇸🇦 SA
+
+
+
+# 🇸🇪 SE
+135.181.35.98:443#🇸🇪 SE IDC Direct-1x - SHanQ
+
+
+# 🇸🇰 SK
+5.180.55.184:2053#🇸🇰 SK IDC Direct-1x - SHanQ
+
+
+# 🇸🇬 SG - SIN
+143.42.66.91:443#🇸🇬 SG IDC Direct-1x¹ - SHanQ
+160.22.79.166:443#🇸🇬 SG IDC Direct-1x² - SHanQ
+194.127.193.124:24467#🇸🇬 SG IDC Direct-1x³ - SHanQ
+# 🇹🇭 TH
+
+
+
+# 🇹🇷 TR
+185.219.134.124:20206#🇹🇷 TR IDC Direct-1x - SHanQ
+
+
+# 🇨🇳 TW
+8.210.160.69:443#🇨🇳 TW IDC Direct-1x¹ - SHanQ
+210.61.97.241:81#🇨🇳 TW IDC Direct-1x² - SHanQ
+118.163.37.32:81#🇨🇳 TW IDC Direct-1x³ - SHanQ
+# 🇺🇦 UA
+213.218.238.63:2053#🇺🇦 UA IDC Direct-1x - SHanQ
+
+
+# 🇺🇸 US
+195.26.229.65:443#🇺🇸 US IDC Direct-1x¹ - SHanQ
+156.59.91.176:443#🇺🇸 US IDC Direct-1x² - SHanQ
+89.116.161.89:443#🇺🇸 US IDC Direct-1x³ - SHanQ
+
