@@ -334,7 +334,7 @@ const ispMap = [
 // 默认关键词映射表
 const defaultOthers = [
   { key: '[Premium]', value: '[Premium]' },
-  { key: '专线', value: 'Pro' },
+  { key: '专线', value: 'Spec' },
   { key: '核心', value: 'Core' },
   { key: '边缘', value: 'Edge' },
   { key: '高级', value: 'Pro' },
@@ -342,7 +342,14 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
-  { key: 'LB', value: 'LB' }
+  { key: 'LB', value: 'LB' },
+  { key: '沪日', value: 'SH-Japan' },
+  { key: '沪韩', value: 'SH-Korea' },
+  { key: '沪美', 沪美: 'SH-United States' },
+  { key: '广港', value: 'GZ-Hong Kong },
+  { key: '广新', value: 'GZ-Singapore' },
+  { key: '深港', value: 'SZ-Hong Kong' },
+  { key: '莞港', value: 'DG-Hong Kong' }
 ];
 
 // 动态构建国家映射 Map
