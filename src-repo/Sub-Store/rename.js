@@ -395,6 +395,10 @@ function simplify(text) {
   return result;
 }
 
+function buildName(parts) {
+  return parts.filter(Boolean).join(' ');
+}
+
 function operator(proxies) {
   const inputKey = $arguments.input || 'zh';
   const outputKey = $arguments.output || 'zh';
@@ -408,7 +412,7 @@ function operator(proxies) {
     const name = simplify(res.name);
     const parts = [];
 
-    // 来源地区 + 运营商前缀拼接
+    // 来源前缀
     let sourcePrefix = '';
     for (const src of sourceMap) {
       if (name.includes(src.key)) {
@@ -424,7 +428,7 @@ function operator(proxies) {
     }
 
     // 国家识别与编号
-    let flag = '', cname = '', countStr = '', tag = '', rateStr = '';
+    let flag = '', cname = '', countStr = '';
     for (const [key, val] of countryMap.entries()) {
       if (name.includes(key)) {
         val.count += 1;
@@ -435,7 +439,8 @@ function operator(proxies) {
       }
     }
 
-    // 匹配关键词标签（Pro、Core等）
+    // 标签匹配
+    let tag = '';
     for (const { key, value } of others) {
       if (name.includes(key)) {
         tag = value;
@@ -443,23 +448,28 @@ function operator(proxies) {
       }
     }
 
-    // 匹配倍率
+    // 倍率匹配
+    let rateStr = '';
     const rateMatch = name.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
     if (rateMatch) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // 组装最终格式
-    const composed = [flag, cname, countStr];
+    // 构建最终名称
+    const composed = [flag, cname];
+    if (tag) composed.push(tag);
     if (airport) composed.push(airport);
-    if (sourcePrefix) composed.push(sourcePrefix + rateStr);
-    else if (rateStr) composed.push(rateStr);
-    if (tag) composed.splice(3, 0, tag); // 插入到国家后编号前
+    composed.push(countStr);
+    if (sourcePrefix || rateStr) {
+      composed.push(sourcePrefix + rateStr);
+    }
 
     res.name = buildName(composed);
+
+    // 移除原始倍率标签
+    res.name = res.name.replace(/\[倍率:\d+(?:\.\d+)?\]/, '');
   });
 
-  // 修正编号为 1 的国家名称
   if (del1) {
     proxies = stripOnes(proxies, countryMap);
   }
