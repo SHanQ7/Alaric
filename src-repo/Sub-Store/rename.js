@@ -395,25 +395,6 @@ function simplify(text) {
   return result;
 }
 
-// 构建最终名称
-function buildName(parts) {
-  return parts.filter(Boolean).join(' ');
-}
-
-// 删除单个编号的“1”
-function stripOnes(proxies, countryMap) {
-  for (const [key, val] of countryMap.entries()) {
-    if (val.count === 1) {
-      proxies.forEach(res => {
-        if (res.name.includes(val.name)) {
-          res.name = res.name.replace(/(?:0|1)/g, '');
-        }
-      });
-    }
-  }
-  return proxies;
-}
-
 function operator(proxies) {
   const inputKey = $arguments.input || 'zh';
   const outputKey = $arguments.output || 'zh';
@@ -441,47 +422,44 @@ function operator(proxies) {
         break;
       }
     }
-    if (sourcePrefix) parts.push(sourcePrefix);
 
     // 国家识别与编号
-    let matched = false;
+    let flag = '', cname = '', countStr = '', tag = '', rateStr = '';
     for (const [key, val] of countryMap.entries()) {
       if (name.includes(key)) {
         val.count += 1;
-        const countStr = autofill ? val.count.toString().padStart(autofill, '0') : val.count;
-        parts.push(val.emoji, val.name);
-        if (airport) parts.push(airport); // 👈 插入机场名
-        parts.push(countStr);
-        matched = true;
+        flag = val.emoji;
+        cname = val.name;
+        countStr = val.count.toString().padStart(autofill, '0');
         break;
       }
     }
-    if (!matched) {
-      parts.push(res.name); // 未识别国家则保留原名
-    }
 
-    // 关键词映射（如 Pro）
+    // 匹配关键词标签（Pro、Core等）
     for (const { key, value } of others) {
       if (name.includes(key)) {
-        const idx = parts.findIndex(p => /^\d+$/.test(p));
-        if (idx !== -1) {
-          parts.splice(idx, 0, value);
-        } else {
-          parts.push(value);
-        }
+        tag = value;
         break;
       }
     }
 
-    // 处理倍率标签并放在末尾（支持小数）
+    // 匹配倍率
     const rateMatch = name.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
     if (rateMatch) {
-      parts.push(`-${rateMatch[1]}x`);
-}
+      rateStr = `-${rateMatch[1]}x`;
+    }
 
-    res.name = res.name.replace(/\[倍率:\d+(?:\.\d+)?\]/, '');
+    // 组装最终格式
+    const composed = [flag, cname, countStr];
+    if (airport) composed.push(airport);
+    if (sourcePrefix) composed.push(sourcePrefix + rateStr);
+    else if (rateStr) composed.push(rateStr);
+    if (tag) composed.splice(3, 0, tag); // 插入到国家后编号前
+
+    res.name = buildName(composed);
   });
 
+  // 修正编号为 1 的国家名称
   if (del1) {
     proxies = stripOnes(proxies, countryMap);
   }
