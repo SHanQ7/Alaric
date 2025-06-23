@@ -341,9 +341,7 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
-  { key: 'ISP', value: 'ISP' },
-  { key: 'LB', value: 'LB' },
-  { key: 'VIP', value: 'VIP' }
+  { key: 'LB', value: 'LB' }
 ];
 
 // 动态构建国家映射 Map
