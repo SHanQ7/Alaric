@@ -97,7 +97,7 @@ const countryList = [
   { enShort: "GF", enShort3: "GUF", zh: "法属圭亚那", enFull: "French Guiana", emoji: "🇬🇫" },
   { enShort: "GU", enShort3: "GUM", zh: "关岛", enFull: "Guam", emoji: "🇬🇺" },
   { enShort: "GY", enShort3: "GUY", zh: "圭亚那", enFull: "Guyana", emoji: "🇬🇾" },
-  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong'], ['深港'], ['广港'], ['沪港'], ['莞港'] },
+  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong', '深港', '广港', '沪港', '莞港'] },
   { enShort: "HM", enShort3: "HMD", zh: "赫德岛和麦克唐纳群岛", enFull: "Heard Island and McDonald Islands", emoji: "🇭🇲" },
   { enShort: "HN", enShort3: "HND", zh: "洪都拉斯", enFull: "Honduras", emoji: "🇭🇳" },
   { enShort: "HR", enShort3: "HRV", zh: "克罗地亚", enFull: "Croatia", emoji: "🇭🇷" },
@@ -123,7 +123,7 @@ const countryList = [
   { enShort: "KH", enShort3: "KHM", zh: "柬埔寨", enFull: "Cambodia", emoji: "🇰🇭" },
   { enShort: "KI", enShort3: "KIR", zh: "基里巴斯", enFull: "Kiribati", emoji: "🇰🇮" },
   { enShort: "KN", enShort3: "KNA", zh: "圣基茨和尼维斯", enFull: "Saint Kitts and Nevis", emoji: "🇰🇳" },
-  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Korea, Republic of", emoji: "🇰🇷", alias: ['South Korea', 'Busan', 'Incheon', 'KR', '韩国'] },
+  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Korea", emoji: "🇰🇷", alias: ['South Korea', 'Busan', 'Incheon', 'KR', '韩国'] },
   { enShort: "KW", enShort3: "KWT", zh: "科威特", enFull: "Kuwait", emoji: "🇰🇼" },
   { enShort: "LA", enShort3: "LAO", zh: "老挝人民民主共和国", enFull: "Lao People's Democratic Republic", emoji: "🇱🇦" },
   { enShort: "LB", enShort3: "LBN", zh: "黎巴嫩", enFull: "Lebanon", emoji: "🇱🇧" },
@@ -195,7 +195,7 @@ const countryList = [
   { enShort: "SA", enShort3: "SAU", zh: "沙特阿拉伯", enFull: "Saudi Arabia", emoji: "🇸🇦" },
   { enShort: "SD", enShort3: "SDN", zh: "苏丹", enFull: "Sudan", emoji: "🇸🇩" },
   { enShort: "SN", enShort3: "SEN", zh: "塞内加尔", enFull: "Senegal", emoji: "🇸🇳" },
-  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬", alias: ['广新'], ['深新'] },
+  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬", alias: ['广新', '深新'] },
   { enShort: "GS", enShort3: "SGS", zh: "南乔治亚岛和南桑威奇群岛", enFull: "South Georgia and the South Sandwich Islands", emoji: "🇬🇸" },
   { enShort: "SH", enShort3: "SHN", zh: "圣赫勒拿、阿森松和特里斯坦达库尼亚", enFull: "Saint Helena, Ascension and Tristan da Cunha", emoji: "🇸🇭" },
   { enShort: "SJ", enShort3: "SJM", zh: "斯瓦尔巴和扬马延", enFull: "Svalbard and Jan Mayen", emoji: "🇸🇯" },
@@ -229,7 +229,7 @@ const countryList = [
   { enShort: "TN", enShort3: "TUN", zh: "突尼斯", enFull: "Tunisia", emoji: "🇹🇳" },
   { enShort: "TR", enShort3: "TUR", zh: "土耳其", enFull: "Turkey", emoji: "🇹🇷" },
   { enShort: "TV", enShort3: "TUV", zh: "图瓦卢", enFull: "Tuvalu", emoji: "🇹🇻" },
-  { enShort: "TW", enShort3: "TWN", zh: "台湾", enFull: "Taiwan, Province of China", emoji: "🇨🇳", alias: ['Taiwan'] },
+  { enShort: "TW", enShort3: "TWN", zh: "台湾", enFull: "Taiwan", emoji: "🇨🇳", alias: ['中华民国'] },
   { enShort: "TZ", enShort3: "TZA", zh: "坦桑尼亚", enFull: "Tanzania, United Republic of", emoji: "🇹🇿" },
   { enShort: "UG", enShort3: "UGA", zh: "乌干达", enFull: "Uganda", emoji: "🇺🇬" },
   { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Ukraine", emoji: "🇺🇦" },
@@ -343,7 +343,7 @@ const defaultOthers = [
   { key: '家宽', value: 'Fam' },
   { key: 'ISP', value: 'ISP' },
   { key: 'LB', value: 'LB' },
-  { key: 'VIP', value: 'VIP' },
+  { key: 'VIP', value: 'VIP' }
 ];
 
 // 动态构建国家映射 Map
