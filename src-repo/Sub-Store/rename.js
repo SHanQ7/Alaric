@@ -97,7 +97,7 @@ const countryList = [
   { enShort: "GF", enShort3: "GUF", zh: "法属圭亚那", enFull: "French Guiana", emoji: "🇬🇫" },
   { enShort: "GU", enShort3: "GUM", zh: "关岛", enFull: "Guam", emoji: "🇬🇺" },
   { enShort: "GY", enShort3: "GUY", zh: "圭亚那", enFull: "Guyana", emoji: "🇬🇾" },
-  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong'] },
+  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong'], ['深港'], ['广港'], ['沪港'], ['莞港'] },
   { enShort: "HM", enShort3: "HMD", zh: "赫德岛和麦克唐纳群岛", enFull: "Heard Island and McDonald Islands", emoji: "🇭🇲" },
   { enShort: "HN", enShort3: "HND", zh: "洪都拉斯", enFull: "Honduras", emoji: "🇭🇳" },
   { enShort: "HR", enShort3: "HRV", zh: "克罗地亚", enFull: "Croatia", emoji: "🇭🇷" },
@@ -195,7 +195,7 @@ const countryList = [
   { enShort: "SA", enShort3: "SAU", zh: "沙特阿拉伯", enFull: "Saudi Arabia", emoji: "🇸🇦" },
   { enShort: "SD", enShort3: "SDN", zh: "苏丹", enFull: "Sudan", emoji: "🇸🇩" },
   { enShort: "SN", enShort3: "SEN", zh: "塞内加尔", enFull: "Senegal", emoji: "🇸🇳" },
-  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬" },
+  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬", alias: ['广新'], ['深新'] },
   { enShort: "GS", enShort3: "SGS", zh: "南乔治亚岛和南桑威奇群岛", enFull: "South Georgia and the South Sandwich Islands", emoji: "🇬🇸" },
   { enShort: "SH", enShort3: "SHN", zh: "圣赫勒拿、阿森松和特里斯坦达库尼亚", enFull: "Saint Helena, Ascension and Tristan da Cunha", emoji: "🇸🇭" },
   { enShort: "SJ", enShort3: "SJM", zh: "斯瓦尔巴和扬马延", enFull: "Svalbard and Jan Mayen", emoji: "🇸🇯" },
@@ -341,14 +341,9 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
+  { key: 'ISP', value: 'ISP' },
   { key: 'LB', value: 'LB' },
-  { key: '沪日', value: 'SH-Japan' },
-  { key: '沪韩', value: 'SH-Korea' },
-  { key: '沪美', value: 'SH-United States' },
-  { key: '广港', value: 'GZ-Hong Kong' },
-  { key: '广新', value: 'GZ-Singapore' },
-  { key: '深港', value: 'SZ-Hong Kong' },
-  { key: '莞港', value: 'DG-Hong Kong' }
+  { key: 'VIP', value: 'VIP' },
 ];
 
 // 动态构建国家映射 Map
