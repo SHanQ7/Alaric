@@ -342,14 +342,7 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
-  { key: 'LB', value: 'LB' },
-  { key: '沪日', value: 'SH-Japan' },
-  { key: '沪韩', value: 'SH-Korea' },
-  { key: '沪美', value: 'SH-United States' },
-  { key: '广港', value: 'GZ-Hong Kong' },
-  { key: '广新', value: 'GZ-Singapore' },
-  { key: '深港', value: 'SZ-Hong Kong' },
-  { key: '莞港', value: 'DG-Hong Kong' }
+  { key: 'LB', value: 'LB' }
 ];
 
 // 动态构建国家映射 Map
