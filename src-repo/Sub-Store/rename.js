@@ -316,7 +316,7 @@ const sourceMap = [
   { key: "西安", prefix: "XA" },
   { key: "长沙", prefix: "CS" },
   { key: "武汉", prefix: "WH" },
-  { key: "郑州", prefix: "ZZ" },
+  { key: "郑州", prefix: "ZZ" }
 ];
 
 const ispMap = [
@@ -338,7 +338,7 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
-  { key: 'LB', value: 'LB' },
+  { key: 'LB', value: 'LB' }
 ];
 
 // 动态构建国家映射 Map
