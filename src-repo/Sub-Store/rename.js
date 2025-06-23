@@ -229,7 +229,7 @@ const countryList = [
   { enShort: "TN", enShort3: "TUN", zh: "突尼斯", enFull: "Tunisia", emoji: "🇹🇳" },
   { enShort: "TR", enShort3: "TUR", zh: "土耳其", enFull: "Turkey", emoji: "🇹🇷" },
   { enShort: "TV", enShort3: "TUV", zh: "图瓦卢", enFull: "Tuvalu", emoji: "🇹🇻" },
-  { enShort: "TW", enShort3: "TWN", zh: "台湾", enFull: "Taiwan, Province of China", emoji: "🇹🇼" },
+  { enShort: "TW", enShort3: "TWN", zh: "台湾", enFull: "Taiwan, Province of China", emoji: "🇨🇳" },
   { enShort: "TZ", enShort3: "TZA", zh: "坦桑尼亚", enFull: "Tanzania, United Republic of", emoji: "🇹🇿" },
   { enShort: "UG", enShort3: "UGA", zh: "乌干达", enFull: "Uganda", emoji: "🇺🇬" },
   { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Ukraine", emoji: "🇺🇦" },
@@ -406,7 +406,7 @@ function stripOnes(proxies, countryMap) {
 function operator(proxies) {
   const inputKey = $arguments.input || 'zh';
   const outputKey = $arguments.output || 'zh';
-  const autofill = parseInt($arguments.autofill) || false;
+  const autofill = parseInt($arguments.autofill) || 2;
   const del1 = !!$arguments.del1;
 
   const countryMap = buildCountryMap(inputKey, outputKey);
@@ -447,15 +447,22 @@ function operator(proxies) {
       parts.push(res.name); // 未识别国家则保留原名
     }
 
-    // 关键词映射（如 Pro 等）
-    for (const { key, value } of others) {
-      if (name.includes(key)) {
-        parts.splice(3, 0, value); // 插入国家名后面编号前
-        break;
-      }
-    }
+// 关键词映射（如 Pro 等）
+for (const { key, value } of others) {
+  if (name.includes(key)) {
+    parts.splice(3, 0, value);
+    break;
+  }
+}
 
-    res.name = buildName(parts);
+// 处理倍率标签并放在末尾
+const rateMatch = name.match(/\[倍率:(\d+)\]/);
+if (rateMatch) {
+  parts.push(`-${rateMatch[1]}x`);
+}
+
+res.name = buildName(parts);
+
   });
 
   if (del1) {
