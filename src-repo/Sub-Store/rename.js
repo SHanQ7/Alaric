@@ -40,7 +40,7 @@ const countryList = [
   { enShort: "BV", enShort3: "BVT", zh: "布韦岛", enFull: "Bouvet Island", emoji: "🇧🇻" },
   { enShort: "BW", enShort3: "BWA", zh: "博茨瓦纳", enFull: "Botswana", emoji: "🇧🇼" },
   { enShort: "CF", enShort3: "CAF", zh: "中非共和国", enFull: "Central African Republic", emoji: "🇨🇫" },
-  { enShort: "CA", enShort3: "CAN", zh: "加拿大", enFull: "Canada", emoji: "🇨🇦", alias: ['Toronto', 'Montreal', 'Vancouver', 'Calgary', 'Ottawa', 'Edmonton', 'Winnipeg', 'Quebec', 'Halifax', 'Victoria', 'Saskatoon', 'Regina', 'Hamilton', 'Mississauga'] },
+  { enShort: "CA", enShort3: "CAN", zh: "加拿大", enFull: "Canada", emoji: "🇨🇦" },
   { enShort: "CC", enShort3: "CCK", zh: "科科斯（基林）群岛", enFull: "Cocos (Keeling) Islands", emoji: "🇨🇨" },
   { enShort: "CH", enShort3: "CHE", zh: "瑞士", enFull: "Switzerland", emoji: "🇨🇭" },
   { enShort: "CL", enShort3: "CHL", zh: "智利", enFull: "Chile", emoji: "🇨🇱" },
@@ -76,7 +76,7 @@ const countryList = [
   { enShort: "FI", enShort3: "FIN", zh: "芬兰", enFull: "Finland", emoji: "🇫🇮" },
   { enShort: "FJ", enShort3: "FJI", zh: "斐济", enFull: "Fiji", emoji: "🇫🇯" },
   { enShort: "FK", enShort3: "FLK", zh: "福克兰群岛（马尔维纳斯）", enFull: "Falkland Islands (Malvinas)", emoji: "🇫🇰" },
-  { enShort: "FR", enShort3: "FRA", zh: "法国", enFull: "France", emoji: "🇫🇷", alias: ['France'] },
+  { enShort: "FR", enShort3: "FRA", zh: "法国", enFull: "France", emoji: "🇫🇷" },
   { enShort: "FO", enShort3: "FRO", zh: "法罗群岛", enFull: "Faroe Islands", emoji: "🇫🇴" },
   { enShort: "FM", enShort3: "FSM", zh: "密克罗尼西亚联邦", enFull: "Micronesia, Federated States of", emoji: "🇫🇲" },
   { enShort: "GA", enShort3: "GAB", zh: "加蓬", enFull: "Gabon", emoji: "🇬🇦" },
@@ -97,7 +97,7 @@ const countryList = [
   { enShort: "GF", enShort3: "GUF", zh: "法属圭亚那", enFull: "French Guiana", emoji: "🇬🇫" },
   { enShort: "GU", enShort3: "GUM", zh: "关岛", enFull: "Guam", emoji: "🇬🇺" },
   { enShort: "GY", enShort3: "GUY", zh: "圭亚那", enFull: "Guyana", emoji: "🇬🇾" },
-  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong'] },
+  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰" },
   { enShort: "HM", enShort3: "HMD", zh: "赫德岛和麦克唐纳群岛", enFull: "Heard Island and McDonald Islands", emoji: "🇭🇲" },
   { enShort: "HN", enShort3: "HND", zh: "洪都拉斯", enFull: "Honduras", emoji: "🇭🇳" },
   { enShort: "HR", enShort3: "HRV", zh: "克罗地亚", enFull: "Croatia", emoji: "🇭🇷" },
@@ -116,14 +116,14 @@ const countryList = [
   { enShort: "JM", enShort3: "JAM", zh: "牙买加", enFull: "Jamaica", emoji: "🇯🇲" },
   { enShort: "JE", enShort3: "JEY", zh: "泽西岛", enFull: "Jersey", emoji: "🇯🇪" },
   { enShort: "JO", enShort3: "JOR", zh: "约旦", enFull: "Jordan", emoji: "🇯🇴" },
-  { enShort: "JP", enShort3: "JPN", zh: "日本", enFull: "Japan", emoji: "🇯🇵", alias: ['Japan'] },
+  { enShort: "JP", enShort3: "JPN", zh: "日本", enFull: "Japan", emoji: "🇯🇵" },
   { enShort: "KZ", enShort3: "KAZ", zh: "哈萨克斯坦", enFull: "Kazakhstan", emoji: "🇰🇿" },
   { enShort: "KE", enShort3: "KEN", zh: "肯尼亚", enFull: "Kenya", emoji: "🇰🇪" },
   { enShort: "KG", enShort3: "KGZ", zh: "吉尔吉斯斯坦", enFull: "Kyrgyzstan", emoji: "🇰🇬" },
   { enShort: "KH", enShort3: "KHM", zh: "柬埔寨", enFull: "Cambodia", emoji: "🇰🇭" },
   { enShort: "KI", enShort3: "KIR", zh: "基里巴斯", enFull: "Kiribati", emoji: "🇰🇮" },
   { enShort: "KN", enShort3: "KNA", zh: "圣基茨和尼维斯", enFull: "Saint Kitts and Nevis", emoji: "🇰🇳" },
-  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Korea", emoji: "🇰🇷", alias: ['South Korea', 'Seoul', 'Busan', 'Incheon', 'KR', '韩国'] },
+  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Korea, Republic of", emoji: "🇰🇷" },
   { enShort: "KW", enShort3: "KWT", zh: "科威特", enFull: "Kuwait", emoji: "🇰🇼" },
   { enShort: "LA", enShort3: "LAO", zh: "老挝人民民主共和国", enFull: "Lao People's Democratic Republic", emoji: "🇱🇦" },
   { enShort: "LB", enShort3: "LBN", zh: "黎巴嫩", enFull: "Lebanon", emoji: "🇱🇧" },
@@ -195,7 +195,7 @@ const countryList = [
   { enShort: "SA", enShort3: "SAU", zh: "沙特阿拉伯", enFull: "Saudi Arabia", emoji: "🇸🇦" },
   { enShort: "SD", enShort3: "SDN", zh: "苏丹", enFull: "Sudan", emoji: "🇸🇩" },
   { enShort: "SN", enShort3: "SEN", zh: "塞内加尔", enFull: "Senegal", emoji: "🇸🇳" },
-  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬", alias: ['Singapore', 'Sing', 'SG'] },
+  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬" },
   { enShort: "GS", enShort3: "SGS", zh: "南乔治亚岛和南桑威奇群岛", enFull: "South Georgia and the South Sandwich Islands", emoji: "🇬🇸" },
   { enShort: "SH", enShort3: "SHN", zh: "圣赫勒拿、阿森松和特里斯坦达库尼亚", enFull: "Saint Helena, Ascension and Tristan da Cunha", emoji: "🇸🇭" },
   { enShort: "SJ", enShort3: "SJM", zh: "斯瓦尔巴和扬马延", enFull: "Svalbard and Jan Mayen", emoji: "🇸🇯" },
@@ -229,13 +229,13 @@ const countryList = [
   { enShort: "TN", enShort3: "TUN", zh: "突尼斯", enFull: "Tunisia", emoji: "🇹🇳" },
   { enShort: "TR", enShort3: "TUR", zh: "土耳其", enFull: "Turkey", emoji: "🇹🇷" },
   { enShort: "TV", enShort3: "TUV", zh: "图瓦卢", enFull: "Tuvalu", emoji: "🇹🇻" },
-  { enShort: "TW", enShort3: "TWN", zh: "台湾", enFull: "Taiwan, Province of China", emoji: "🇨🇳", alias: ['Taiwan'] },
+  { enShort: "TW", enShort3: "TWN", zh: "台湾", enFull: "Taiwan, Province of China", emoji: "🇹🇼" },
   { enShort: "TZ", enShort3: "TZA", zh: "坦桑尼亚", enFull: "Tanzania, United Republic of", emoji: "🇹🇿" },
   { enShort: "UG", enShort3: "UGA", zh: "乌干达", enFull: "Uganda", emoji: "🇺🇬" },
   { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Ukraine", emoji: "🇺🇦" },
   { enShort: "UM", enShort3: "UMI", zh: "美国本土外小岛屿", enFull: "United States Minor Outlying Islands", emoji: "🇺🇲" },
   { enShort: "UY", enShort3: "URY", zh: "乌拉圭", enFull: "Uruguay", emoji: "🇺🇾" },
-  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸", alias: ['NewYork', 'New York', 'Los Angeles', 'San Francisco', 'Dallas', 'Chicago', 'Seattle', 'Miami', 'Atlanta', 'Phoenix', 'Las Vegas', 'Silicon Valley', 'Washington', 'San Jose', 'LA'], }
+  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸" },
   { enShort: "UZ", enShort3: "UZB", zh: "乌兹别克斯坦", enFull: "Uzbekistan", emoji: "🇺🇿" },
   { enShort: "VA", enShort3: "VAT", zh: "梵蒂冈", enFull: "Holy See (Vatican City State)", emoji: "🇻🇦" },
   { enShort: "VC", enShort3: "VCT", zh: "圣文森特和格林纳丁斯", enFull: "Saint Vincent and the Grenadines", emoji: "🇻🇨" },
@@ -249,7 +249,58 @@ const countryList = [
   { enShort: "YE", enShort3: "YEM", zh: "也门", enFull: "Yemen", emoji: "🇾🇪" },
   { enShort: "ZA", enShort3: "ZAF", zh: "南非", enFull: "South Africa", emoji: "🇿🇦" },
   { enShort: "ZM", enShort3: "ZMB", zh: "赞比亚", enFull: "Zambia", emoji: "🇿🇲" },
-  { enShort: "ZW", enShort3: "ZWE", zh: "津巴布韦", enFull: "Zimbabwe", emoji: "🇿🇼" }
+  { enShort: "ZW", enShort3: "ZWE", zh: "津巴布韦", enFull: "Zimbabwe", emoji: "🇿🇼" },
+  { enShort: "AT", enShort3: "AUT", zh: "奥地利", enFull: "Vienna", emoji: "🇦🇹" },
+  { enShort: "AZ", enShort3: "AZE", zh: "阿塞拜疆", enFull: "Baku", emoji: "🇦🇿" },
+  { enShort: "BE", enShort3: "BEL", zh: "比利时", enFull: "Brussels", emoji: "🇧🇪" },
+  { enShort: "BG", enShort3: "BGR", zh: "保加利亚", enFull: "Sofia", emoji: "🇧🇬" },
+  { enShort: "BR", enShort3: "BRA", zh: "巴西", enFull: "São Paulo", emoji: "🇧🇷" },
+  { enShort: "BY", enShort3: "BLR", zh: "白俄罗斯", enFull: "Minsk", emoji: "🇧🇾" },
+  { enShort: "CA", enShort3: "CAN", zh: "加拿大", enFull: "Toronto", emoji: "🇨🇦" },
+  { enShort: "CA", enShort3: "CAN", zh: "加拿大", enFull: "Montreal", emoji: "🇨🇦" },
+  { enShort: "CH", enShort3: "CHE", zh: "瑞士", enFull: "Zurich", emoji: "🇨🇭" },
+  { enShort: "CN", enShort3: "CHN", zh: "中国", enFull: "Beijing", emoji: "🇨🇳" },
+  { enShort: "CY", enShort3: "CYP", zh: "塞浦路斯", enFull: "Nicosia", emoji: "🇨🇾" },
+  { enShort: "CZ", enShort3: "CZE", zh: "捷克", enFull: "Prague", emoji: "🇨🇿" },
+  { enShort: "DE", enShort3: "DEU", zh: "德国", enFull: "Berlin", emoji: "🇩🇪" },
+  { enShort: "DK", enShort3: "DNK", zh: "丹麦", enFull: "Copenhagen", emoji: "🇩🇰" },
+  { enShort: "ES", enShort3: "ESP", zh: "西班牙", enFull: "Madrid", emoji: "🇪🇸" },
+  { enShort: "EE", enShort3: "EST", zh: "爱沙尼亚", enFull: "Tallinn", emoji: "🇪🇪" },
+  { enShort: "FI", enShort3: "FIN", zh: "芬兰", enFull: "Helsinki", emoji: "🇫🇮" },
+  { enShort: "FR", enShort3: "FRA", zh: "法国", enFull: "Paris", emoji: "🇫🇷" },
+  { enShort: "GB", enShort3: "GBR", zh: "英国", enFull: "London", emoji: "🇬🇧" },
+  { enShort: "GE", enShort3: "GEO", zh: "格鲁吉亚", enFull: "Tbilisi", emoji: "🇬🇪" },
+  { enShort: "GR", enShort3: "GRC", zh: "希腊", enFull: "Athens", emoji: "🇬🇷" },
+  { enShort: "HU", enShort3: "HUN", zh: "匈牙利", enFull: "Budapest", emoji: "🇭🇺" },
+  { enShort: "IN", enShort3: "IND", zh: "印度", enFull: "Mumbai", emoji: "🇮🇳" },
+  { enShort: "IE", enShort3: "IRL", zh: "爱尔兰", enFull: "Dublin", emoji: "🇮🇪" },
+  { enShort: "IS", enShort3: "ISL", zh: "冰岛", enFull: "Reykjavik", emoji: "🇮🇸" },
+  { enShort: "IT", enShort3: "ITA", zh: "意大利", enFull: "Rome", emoji: "🇮🇹" },
+  { enShort: "JP", enShort3: "JPN", zh: "日本", enFull: "Tokyo", emoji: "🇯🇵" },
+  { enShort: "KZ", enShort3: "KAZ", zh: "哈萨克斯坦", enFull: "Almaty", emoji: "🇰🇿" },
+  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Seoul", emoji: "🇰🇷" },
+  { enShort: "LT", enShort3: "LTU", zh: "立陶宛", enFull: "Vilnius", emoji: "🇱🇹" },
+  { enShort: "LU", enShort3: "LUX", zh: "卢森堡", enFull: "Luxembourg", emoji: "🇱🇺" },
+  { enShort: "LV", enShort3: "LVA", zh: "拉脱维亚", enFull: "Riga", emoji: "🇱🇻" },
+  { enShort: "MT", enShort3: "MLT", zh: "马耳他", enFull: "Valletta", emoji: "🇲🇹" },
+  { enShort: "ME", enShort3: "MNE", zh: "黑山", enFull: "Podgorica", emoji: "🇲🇪" },
+  { enShort: "MD", enShort3: "MDA", zh: "摩尔多瓦", enFull: "Chișinău", emoji: "🇲🇩" },
+  { enShort: "MX", enShort3: "MEX", zh: "墨西哥", enFull: "Mexico City", emoji: "🇲🇽" },
+  { enShort: "NL", enShort3: "NLD", zh: "荷兰", enFull: "Amsterdam", emoji: "🇳🇱" },
+  { enShort: "NO", enShort3: "NOR", zh: "挪威", enFull: "Oslo", emoji: "🇳🇴" },
+  { enShort: "PL", enShort3: "POL", zh: "波兰", enFull: "Warsaw", emoji: "🇵🇱" },
+  { enShort: "PT", enShort3: "PRT", zh: "葡萄牙", enFull: "Lisbon", emoji: "🇵🇹" },
+  { enShort: "RO", enShort3: "ROU", zh: "罗马尼亚", enFull: "Bucharest", emoji: "🇷🇴" },
+  { enShort: "RS", enShort3: "SRB", zh: "塞尔维亚", enFull: "Belgrade", emoji: "🇷🇸" },
+  { enShort: "RU", enShort3: "RUS", zh: "俄罗斯", enFull: "Moscow", emoji: "🇷🇺" },
+  { enShort: "SE", enShort3: "SWE", zh: "瑞典", enFull: "Stockholm", emoji: "🇸🇪" },
+  { enShort: "SI", enShort3: "SVN", zh: "斯洛文尼亚", enFull: "Ljubljana", emoji: "🇸🇮" },
+  { enShort: "SK", enShort3: "SVK", zh: "斯洛伐克", enFull: "Bratislava", emoji: "🇸🇰" },
+  { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Kyiv", emoji: "🇺🇦" },
+  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "New York", emoji: "🇺🇸" },
+  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "NewYork", emoji: "🇺🇸" },
+  { enShort: "ZA", enShort3: "ZAF", zh: "南非", enFull: "Johannesburg", emoji: "🇿🇦" },
+
 ];
 
 // 来源识别映射（用于构建机场前缀）
@@ -290,26 +341,15 @@ const defaultOthers = [
   { key: 'LB', value: 'LB' },
 ];
 
+// 动态构建国家映射 Map
 function buildCountryMap(inputKey, outputKey) {
   const map = new Map();
   for (const country of countryList) {
     map.set(country[inputKey], {
       name: country[outputKey],
       emoji: country.emoji,
-      count: 0,
-      alias: country.alias || [],
+      count: 0
     });
-    // 将别名也加入 key 列表
-    if (country.alias) {
-      for (const alias of country.alias) {
-        map.set(alias, {
-          name: country[outputKey],
-          emoji: country.emoji,
-          count: 0,
-          isAlias: true
-        });
-      }
-    }
   }
   return map;
 }
@@ -362,12 +402,12 @@ function stripOnes(proxies, countryMap) {
   return proxies;
 }
 
-// 主操作函数
 function operator(proxies) {
   const inputKey = $arguments.input || 'zh';
   const outputKey = $arguments.output || 'zh';
   const autofill = parseInt($arguments.autofill) || 2;
   const del1 = !!$arguments.del1;
+  const airport = $arguments.airport || '';
 
   const countryMap = buildCountryMap(inputKey, outputKey);
 
@@ -398,6 +438,7 @@ function operator(proxies) {
         val.count += 1;
         const countStr = autofill ? val.count.toString().padStart(autofill, '0') : val.count;
         parts.push(val.emoji, val.name);
+        if (airport) parts.push(airport); // 👈 插入机场名
         parts.push(countStr);
         matched = true;
         break;
@@ -407,26 +448,32 @@ function operator(proxies) {
       parts.push(res.name); // 未识别国家则保留原名
     }
 
-// 关键词映射（如 Pro 等）
-for (const { key, value } of others) {
-  if (name.includes(key)) {
-    parts.splice(3, 0, value);
-    break;
-  }
-}
+    // 关键词映射（如 Pro）
+    for (const { key, value } of others) {
+      if (name.includes(key)) {
+        const idx = parts.findIndex(p => /^\d+$/.test(p));
+        if (idx !== -1) {
+          parts.splice(idx, 0, value);
+        } else {
+          parts.push(value);
+        }
+        break;
+      }
+    }
 
-// 处理倍率标签并放在末尾
-const rateMatch = name.match(/\[倍率:(\d+)\]/);
-if (rateMatch) {
-  parts.push(`-${rateMatch[1]}x`);
-}
+    // 处理倍率标签
+    const rateMatch = name.match(/\[倍率:(\d+)\]/);
+    if (rateMatch) {
+      parts.push(`-${rateMatch[1]}x`);
+      res.name = res.name.replace(/\[倍率:\d+\]/, '');
+    }
 
-res.name = buildName(parts);
-
+    res.name = buildName(parts);
   });
 
   if (del1) {
     proxies = stripOnes(proxies, countryMap);
   }
+
   return proxies;
 }
