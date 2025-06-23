@@ -473,14 +473,13 @@ function operator(proxies) {
       }
     }
 
-    // 处理倍率标签
-    const rateMatch = name.match(/\[倍率:(\d+)\]/);
+    // 处理倍率标签并放在末尾（支持小数）
+    const rateMatch = name.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
     if (rateMatch) {
       parts.push(`-${rateMatch[1]}x`);
-      res.name = res.name.replace(/\[倍率:\d+\]/, '');
-    }
+}
 
-    res.name = buildName(parts);
+    res.name = res.name.replace(/\[倍率:\d+(?:\.\d+)?\]/, '');
   });
 
   if (del1) {
