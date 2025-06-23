@@ -345,7 +345,7 @@ const defaultOthers = [
   { key: 'LB', value: 'LB' },
   { key: '沪日', value: 'SH-Japan' },
   { key: '沪韩', value: 'SH-Korea' },
-  { key: '沪美', 沪美: 'SH-United States' },
+  { key: '沪美', value: 'SH-United States' },
   { key: '广港', value: 'GZ-Hong Kong },
   { key: '广新', value: 'GZ-Singapore' },
   { key: '深港', value: 'SZ-Hong Kong' },
