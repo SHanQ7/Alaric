@@ -97,7 +97,7 @@ const countryList = [
   { enShort: "GF", enShort3: "GUF", zh: "法属圭亚那", enFull: "French Guiana", emoji: "🇬🇫" },
   { enShort: "GU", enShort3: "GUM", zh: "关岛", enFull: "Guam", emoji: "🇬🇺" },
   { enShort: "GY", enShort3: "GUY", zh: "圭亚那", enFull: "Guyana", emoji: "🇬🇾" },
-  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong'] },
+  { enShort: "HK", enShort3: "HKG", zh: "香港", enFull: "Hong Kong", emoji: "🇭🇰", alias: ['Hongkong', '广港', '深港'] },
   { enShort: "HM", enShort3: "HMD", zh: "赫德岛和麦克唐纳群岛", enFull: "Heard Island and McDonald Islands", emoji: "🇭🇲" },
   { enShort: "HN", enShort3: "HND", zh: "洪都拉斯", enFull: "Honduras", emoji: "🇭🇳" },
   { enShort: "HR", enShort3: "HRV", zh: "克罗地亚", enFull: "Croatia", emoji: "🇭🇷" },
@@ -307,6 +307,7 @@ const countryList = [
 const sourceMap = [
   { key: "上海", prefix: "SH" },
   { key: "广州", prefix: "GZ" },
+  { key: "广东", prefix: "GD" },
   { key: "深圳", prefix: "SZ" },
   { key: "北京", prefix: "BJ" },
   { key: "杭州", prefix: "HZ" },
@@ -316,6 +317,9 @@ const sourceMap = [
   { key: "西安", prefix: "XA" },
   { key: "长沙", prefix: "CS" },
   { key: "武汉", prefix: "WH" },
+  { key: "湖北", prefix: "HB" },
+  { key: "安徽", prefix: "AH" },
+  { key: "江苏", prefix: "JS" },
   { key: "郑州", prefix: "ZZ" }
 ];
 
