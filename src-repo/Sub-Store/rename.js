@@ -391,16 +391,27 @@ function operator(proxies) {
     }
     const sourcePrefix = prefixes.join('');
 
-    // 国家匹配 — 找到最后出现且最长的关键词
+    // 国家匹配：先尝试精确匹配（词边界），再模糊匹配（包含关键词）
     const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
     let matched = null;
-    let matchedIndex = -1;
+
+    // 先精确匹配
     for (const key of countryKeys) {
-      const lowerKey = key.toLowerCase();
-      const idx = name.lastIndexOf(lowerKey);
-      if (idx > matchedIndex && lowerKey.length >= 2) {
-        matched = countryMap.get(lowerKey);
-        matchedIndex = idx;
+      const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // 转义正则特殊字符
+      const regex = new RegExp(`\\b${safeKey}\\b`, 'i');
+      if (regex.test(name)) {
+        matched = countryMap.get(key);
+        break;
+      }
+    }
+
+    // 如果没匹配上，再模糊匹配（只匹配长度≥3避免误匹配）
+    if (!matched) {
+      for (const key of countryKeys) {
+        if (key.length >= 3 && name.includes(key)) {
+          matched = countryMap.get(key);
+          break;
+        }
       }
     }
 
