@@ -345,17 +345,17 @@ function buildName(parts) {
 }
 
 function operator(proxies) {
-  const outputKey = $arguments.output || 'zh';  // 只用outputKey决定输出名称字段
-  const autofill = parseInt($arguments.autofill) || 2;
-  const del1 = !!$arguments.del1;
-  const airport = $arguments.airport || '';
+  const outputKey = $arguments.output || 'zh';           // 输出字段（如 zh）
+  const autofill = parseInt($arguments.autofill) || 2;   // 编号补零宽度
+  const del1 = !!$arguments.del1;                        // 是否去掉编号为1的节点
+  const airport = $arguments.airport || '';              // 机场后缀
 
-  const countryMap = buildCountryMap(outputKey);
+  const countryMap = buildCountryMap(outputKey);         // 构建国家映射表（支持别名）
 
   proxies.forEach(res => {
-    const name = simplify(res.name.toLowerCase());
+    const name = simplify(res.name.toLowerCase());       // 原始名称小写 & 简体转换
 
-    // 来源前缀
+    // === 来源前缀标记（如 QZ, BGP） ===
     let sourcePrefix = '';
     for (const src of sourceMap) {
       if (name.includes(src.key)) {
@@ -370,29 +370,44 @@ function operator(proxies) {
       }
     }
 
-    // 国家识别与编号
+    // === 国家匹配与编号 ===
     let flag = '', cname = '', countStr = '';
-    // 先完全匹配
+    let matchedVal = null;
+
     if (countryMap.has(name)) {
-      const val = countryMap.get(name);
-      val.count++;
-      flag = val.emoji;
-      cname = val.name;
-      countStr = val.count.toString().padStart(autofill, '0');
+      matchedVal = countryMap.get(name);
     } else {
-      // 模糊匹配包含关键词
-      for (const [key, val] of countryMap.entries()) {
-        if (name.includes(key)) {
-          val.count++;
-          flag = val.emoji;
-          cname = val.name;
-          countStr = val.count.toString().padStart(autofill, '0');
+      const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
+
+      // 优先：精确正则匹配 \bword\b
+      for (const key of countryKeys) {
+        const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`\\b${safeKey}\\b`, 'i');
+        if (regex.test(name)) {
+          matchedVal = countryMap.get(key);
           break;
+        }
+      }
+
+      // 其次：模糊包含匹配
+      if (!matchedVal) {
+        for (const key of countryKeys) {
+          if (name.includes(key)) {
+            matchedVal = countryMap.get(key);
+            break;
+          }
         }
       }
     }
 
-    // 标签匹配
+    if (matchedVal) {
+      matchedVal.count += 1;
+      flag = matchedVal.emoji;
+      cname = matchedVal.name;
+      countStr = matchedVal.count.toString().padStart(autofill, '0');
+    }
+
+    // === 标签识别 ===
     let tag = '';
     for (const { key, value } of others) {
       if (name.includes(key)) {
@@ -401,14 +416,14 @@ function operator(proxies) {
       }
     }
 
-    // 倍率匹配
+    // === 倍率提取 ===
     let rateStr = '';
     const rateMatch = name.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
     if (rateMatch) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // 构建最终名称
+    // === 构建最终名称 ===
     const composed = [flag, cname];
     if (tag) composed.push(tag);
     composed.push(countStr);
