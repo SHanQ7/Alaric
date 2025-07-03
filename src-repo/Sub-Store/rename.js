@@ -406,15 +406,43 @@ function operator(proxies) {
       }
     }
 
-    // 模糊匹配（长度≥2）
-    if (!matched) {
-      for (const key of countryKeys) {
-        if (key.length >= 2 && name.includes(key)) {
-          matched = countryMap.get(key);
+  // 如果没匹配上，再模糊匹配（只匹配长度≥2避免误匹配）
+  if (!matched) {
+    for (const key of countryKeys) {
+      if (key.length >= 2 && name.includes(key)) {
+        matched = countryMap.get(key);
+        break;
+      }
+    }
+  }
+
+  // 如果仍未匹配，尝试通过 emoji 反查（优先最后一个 emoji）
+  if (!matched) {
+    const emojis = originalName.match(/[\u{1F1E6}-\u{1F1FF}]{2}/gu) || [];
+    const excludeEmoji = ['🇨🇳', '🇭🇰', '🇲🇴']; // 可选：排除中转源 emoji
+    let fallbackEmoji = null;
+
+    for (let i = emojis.length - 1; i >= 0; i--) {
+      if (!excludeEmoji.includes(emojis[i])) {
+        fallbackEmoji = emojis[i];
+        break;
+      }
+    }
+
+    if (!fallbackEmoji && emojis.length > 0) {
+      // 所有 emoji 都是中转源时，仍保底选最后一个
+      fallbackEmoji = emojis[emojis.length - 1];
+    }
+
+    if (fallbackEmoji) {
+      for (const val of countryMap.values()) {
+        if (val.emoji === fallbackEmoji) {
+          matched = val;
           break;
         }
       }
     }
+  }
 
     let flag = '', cname = '', countStr = '';
     if (matched) {
