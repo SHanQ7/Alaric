@@ -308,7 +308,7 @@ function buildCountryMap(outputKey) {
     ];
 
     for (const key of keys) {
-      if (key && key.length >= 3) {
+      if (key && key.length >= 2) {
         map.set(key.toLowerCase(), entry);
       }
     }
@@ -358,15 +358,16 @@ function operator(proxies) {
 
   const countryMap = buildCountryMap(outputKey);
 
-  // 标签映射，全部小写 key
+  // 用户标签映射，全部转小写key
   let others = [];
   try {
     const userOthers = JSON.parse($arguments.others || '{}');
     others = Object.entries(userOthers).map(([key, value]) => ({ key: key.toLowerCase(), value }));
   } catch (e) {}
+  // 默认标签，key小写化
   others = others.concat(defaultOthers.map(({ key, value }) => ({ key: key.toLowerCase(), value })));
 
-  // 重置国家计数，防止多次调用累加
+  // 重置国家计数
   for (const val of countryMap.values()) {
     val.count = 0;
   }
@@ -376,7 +377,7 @@ function operator(proxies) {
     const name = simplify(originalName.toLowerCase());
 
     // 来源前缀和ISP后缀组合
-    let prefixes = [];
+    const prefixes = [];
     for (const src of sourceMap) {
       if (name.includes(src.key.toLowerCase())) {
         prefixes.push(src.prefix);
@@ -391,21 +392,21 @@ function operator(proxies) {
     }
     const sourcePrefix = prefixes.join('');
 
-    // 国家匹配：先尝试精确匹配（词边界），再模糊匹配（包含关键词）
+    // 国家匹配：自定义边界匹配，防止词边界对emoji失效
     const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
     let matched = null;
 
-    // 先精确匹配
     for (const key of countryKeys) {
-      const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // 转义正则特殊字符
-      const regex = new RegExp(`\\b${safeKey}\\b`, 'i');
+      const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      // 前后非字母数字或开头结尾
+      const regex = new RegExp(`(^|[^a-z0-9])${safeKey}($|[^a-z0-9])`, 'i');
       if (regex.test(name)) {
         matched = countryMap.get(key);
         break;
       }
     }
 
-    // 如果没匹配上，再模糊匹配（只匹配长度≥2避免误匹配）
+    // 模糊匹配（长度≥2）
     if (!matched) {
       for (const key of countryKeys) {
         if (key.length >= 2 && name.includes(key)) {
@@ -423,13 +424,11 @@ function operator(proxies) {
       countStr = matched.count.toString().padStart(autofill, '0');
     }
 
-    // 多标签匹配，避免重复
-    let tags = [];
+    // 多标签匹配，全部小写匹配，避免重复
+    const tags = [];
     for (const { key, value } of others) {
-      if (name.includes(key)) {
-        if (!tags.includes(value)) {
-          tags.push(value);
-        }
+      if (name.includes(key) && !tags.includes(value)) {
+        tags.push(value);
       }
     }
 
@@ -440,16 +439,16 @@ function operator(proxies) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // 速率匹配（例如 "| 3.42Mb"）
+    // 速率匹配（如 "| 3.42Mb"）
     let speedStr = '';
     const speedMatch = originalName.match(/\|\s*\d+(\.\d+)?\s*(Mb|Mbps)/i);
     if (speedMatch) {
       speedStr = speedMatch[0].trim();
     }
 
-    // 构建最终名称，顺序优化
-    const composed = [flag, cname]; // 国家emoji和名称必有
-    if (tags.length) composed.push(...tags); // 附加标签
+    // 构建最终名称
+    const composed = [flag, cname];
+    if (tags.length) composed.push(...tags);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
     if (airport) composed.push(`[${airport}]`);
