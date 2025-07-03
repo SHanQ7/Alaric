@@ -448,8 +448,8 @@ function operator(proxies) {
     }
 
     // 构建最终名称，顺序优化
-    const composed = [flag, cname];
-    if (tags.length) composed.push(...tags);
+    const composed = [flag, cname]; // 国家emoji和名称必有
+    if (tags.length) composed.push(...tags); // 附加标签
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
     if (airport) composed.push(`[${airport}]`);
