@@ -291,37 +291,28 @@ const defaultOthers = [
 function buildCountryMap(outputKey) {
   const map = new Map();
   for (const country of countryList) {
-    // 几个关键字段都加入映射（转小写）
+    const entry = {
+      name: country[outputKey],
+      emoji: country.emoji,
+      count: 0,
+      alias: country.alias || [],
+    };
+
+    // 添加所有可识别字段（统一指向 entry）
     const keys = [
       country.zh,
       country.enShort,
+      country.enShort3,
       country.enFull,
-      ...(country.alias || [])
-    ].filter(Boolean);
+      ...(entry.alias || []),
+    ];
 
     for (const key of keys) {
-      map.set(key.toLowerCase(), {
-        name: country[outputKey],
-        emoji: country.emoji,
-        count: 0,
-        isAlias: (country.alias || []).includes(key)
-      });
+      if (key) map.set(key.toLowerCase(), entry);
     }
   }
   return map;
 }
-
-// 解析用户自定义映射
-let others = [];
-try {
-  const userOthers = JSON.parse($arguments.others || '{}');
-  for (const [key, value] of Object.entries(userOthers)) {
-    others.push({ key, value });
-  }
-} catch (e) {
-  others = [];
-}
-others = others.concat(defaultOthers);
 
 // 简繁转换函数
 function charPYStr() {
@@ -330,12 +321,9 @@ function charPYStr() {
 function ftPYStr() {
   return '錒皚藹礙愛噯嬡璦曖靄諳銨鵪骯襖奧媼驁鰲壩罷鈀擺敗唄頒辦絆鈑幫綁鎊謗剝飽寶報鮑鴇齙輩貝鋇狽備憊鵯賁錛繃筆畢斃幣閉蓽嗶潷鉍篳蹕邊編貶變辯辮芐緶籩標驃颮飆鏢鑣鰾鱉別癟瀕濱賓擯儐繽檳殯臏鑌髕鬢餅稟撥缽鉑駁餑鈸鵓補鈽財參蠶殘慚慘燦驂黲蒼艙倉滄廁側冊測惻層詫鍤儕釵攙摻蟬饞讒纏鏟產闡顫囅諂讖蕆懺嬋驏覘禪鐔場嘗長償腸廠暢倀萇悵閶鯧鈔車徹硨塵陳襯傖諶櫬磣齔撐稱懲誠騁棖檉鋮鐺癡遲馳恥齒熾飭鴟沖衝蟲寵銃疇躊籌綢儔幬讎櫥廚鋤雛礎儲觸處芻絀躕傳釧瘡闖創愴錘綞純鶉綽輟齪辭詞賜鶿聰蔥囪從叢蓯驄樅湊輳躥竄攛錯銼鹺達噠韃帶貸駘紿擔單鄲撣膽憚誕彈殫賧癉簞當擋黨蕩檔讜碭襠搗島禱導盜燾燈鄧鐙敵滌遞締糴詆諦綈覿鏑顛點墊電巔鈿癲釣調銚鯛諜疊鰈釘頂錠訂鋌丟銩東動棟凍崠鶇竇犢獨讀賭鍍瀆櫝牘篤黷鍛斷緞籪兌隊對懟鐓噸頓鈍燉躉奪墮鐸鵝額訛惡餓諤堊閼軛鋨鍔鶚顎顓鱷誒兒爾餌貳邇鉺鴯鮞發罰閥琺礬釩煩販飯訪紡鈁魴飛誹廢費緋鐨鯡紛墳奮憤糞僨豐楓鋒風瘋馮縫諷鳳灃膚輻撫輔賦復負訃婦縛鳧駙紱紼賻麩鮒鰒釓該鈣蓋賅桿趕稈贛尷搟紺岡剛鋼綱崗戇鎬睪誥縞鋯擱鴿閣鉻個紇鎘潁給亙賡綆鯁龔宮鞏貢鉤溝茍構購夠詬緱覯蠱顧詁轂鈷錮鴣鵠鶻剮掛鴰摑關觀館慣貫詿摜鸛鰥廣獷規歸龜閨軌詭貴劊匭劌媯檜鮭鱖輥滾袞緄鯀鍋國過堝咼幗槨蟈鉿駭韓漢闞絎頡號灝顥閡鶴賀訶闔蠣橫轟鴻紅黌訌葒閎鱟壺護滬戶滸鶘嘩華畫劃話驊樺鏵懷壞歡環還緩換喚瘓煥渙奐繯鍰鯇黃謊鰉揮輝毀賄穢會燴匯諱誨繪詼薈噦澮繢琿暉葷渾諢餛閽獲貨禍鈥鑊擊機積饑跡譏雞績緝極輯級擠幾薊劑濟計記際繼紀訐詰薺嘰嚌驥璣覬齏磯羈蠆躋霽鱭鯽夾莢頰賈鉀價駕郟浹鋏鎵蟯殲監堅箋間艱緘繭檢堿鹼揀撿簡儉減薦檻鑒踐賤見鍵艦劍餞漸濺澗諫縑戔戩瞼鶼筧鰹韉將漿蔣槳獎講醬絳韁膠澆驕嬌攪鉸矯僥腳餃繳絞轎較撟嶠鷦鮫階節潔結誡屆癤頜鮚緊錦僅謹進晉燼盡勁荊莖巹藎饉縉贐覲鯨驚經頸靜鏡徑痙競凈剄涇逕弳脛靚糾廄舊鬮鳩鷲駒舉據鋸懼劇詎屨櫸颶鉅鋦窶齟鵑絹錈鐫雋覺決絕譎玨鈞軍駿皸開凱剴塏愾愷鎧鍇龕閌鈧銬顆殼課騍緙軻鈳錁頷墾懇齦鏗摳庫褲嚳塊儈鄶噲膾寬獪髖礦曠況誆誑鄺壙纊貺虧巋窺饋潰匱蕢憒聵簣閫錕鯤擴闊蠐蠟臘萊來賴崍徠淶瀨賚睞錸癩籟藍欄攔籃闌蘭瀾讕攬覽懶纜爛濫嵐欖斕鑭襤瑯閬鋃撈勞澇嘮嶗銠鐒癆樂鰳鐳壘類淚誄縲籬貍離鯉禮麗厲勵礫歷瀝隸儷酈壢藶蒞蘺嚦邐驪縭櫪櫟轢礪鋰鸝癘糲躒靂鱺鱧倆聯蓮連鐮憐漣簾斂臉鏈戀煉練蘞奩瀲璉殮褳襝鰱糧涼兩輛諒魎療遼鐐繚釕鷯獵臨鄰鱗凜賃藺廩檁轔躪齡鈴靈嶺領綾欞蟶鯪餾劉瀏騮綹鎦鷚龍聾嚨籠壟攏隴蘢瀧瓏櫳朧礱樓婁摟簍僂蔞嘍嶁鏤瘺耬螻髏蘆盧顱廬爐擄鹵虜魯賂祿錄陸壚擼嚕閭瀘淥櫨櫓轤輅轆氌臚鸕鷺艫鱸巒攣孿灤亂臠孌欒鸞鑾掄輪倫侖淪綸論圇蘿羅邏鑼籮騾駱絡犖玀濼欏腡鏍驢呂鋁侶屢縷慮濾綠櫚褸鋝嘸媽瑪碼螞馬罵嗎嘜嬤榪買麥賣邁脈勱瞞饅蠻滿謾縵鏝顙鰻貓錨鉚貿麼沒鎂門悶們捫燜懣鍆錳夢瞇謎彌覓冪羋謐獼禰綿緬澠靦黽廟緲繆滅憫閩閔緡鳴銘謬謨驀饃歿鏌謀畝鉬吶鈉納難撓腦惱鬧鐃訥餒內擬膩鈮鯢攆輦鯰釀鳥蔦裊聶嚙鑷鎳隉蘗囁顢躡檸獰寧擰濘苧嚀聹鈕紐膿濃農儂噥駑釹諾儺瘧歐鷗毆嘔漚謳慪甌盤蹣龐拋皰賠轡噴鵬紕羆鈹騙諞駢飄縹頻貧嬪蘋憑評潑頗釙撲鋪樸譜鏷鐠棲臍齊騎豈啟氣棄訖蘄騏綺榿磧頎頏鰭牽釬鉛遷簽謙錢鉗潛淺譴塹僉蕁慳騫繾槧鈐槍嗆墻薔強搶嬙檣戧熗錆鏘鏹羥蹌鍬橋喬僑翹竅誚譙蕎繰磽蹺竊愜鍥篋欽親寢鋟輕氫傾頃請慶撳鯖瓊窮煢蛺巰賕蟣鰍趨區軀驅齲詘嶇闃覷鴝顴權勸詮綣輇銓卻鵲確闋闕愨讓饒擾繞蕘嬈橈熱韌認紉飪軔榮絨嶸蠑縟銣顰軟銳蜆閏潤灑薩颯鰓賽傘毿糝喪騷掃繅澀嗇銫穡殺剎紗鎩鯊篩曬釃刪閃陜贍繕訕姍騸釤鱔墑傷賞坰殤觴燒紹賒攝懾設厙灄畬紳審嬸腎滲詵諗瀋聲繩勝師獅濕詩時蝕實識駛勢適釋飾視試謚塒蒔弒軾貰鈰鰣壽獸綬樞輸書贖屬術樹豎數攄紓帥閂雙誰稅順說碩爍鑠絲飼廝駟緦鍶鷥聳慫頌訟誦擻藪餿颼鎪蘇訴肅謖穌雖隨綏歲誶孫損筍蓀猻縮瑣鎖嗩脧獺撻闥鉈鰨臺態鈦鮐攤貪癱灘壇譚談嘆曇鉭錟頇湯燙儻餳鐋鏜濤絳討韜鋱騰謄銻題體屜緹鵜闐條糶齠鰷貼鐵廳聽烴銅統慟頭鈄禿圖釷團摶頹蛻飩脫鴕馱駝橢籜鼉襪媧膃彎灣頑萬紈綰網輞韋違圍為濰維葦偉偽緯謂衛諉幃闈溈潿瑋韙煒鮪溫聞紋穩問閿甕撾蝸渦窩臥萵齷嗚鎢烏誣無蕪吳塢霧務誤鄔廡憮嫵騖鵡鶩錫犧襲習銑戲細餼鬩璽覡蝦轄峽俠狹廈嚇硤鮮纖賢銜閑顯險現獻縣餡羨憲線莧薟蘚峴獫嫻鷴癇蠔秈躚廂鑲鄉詳響項薌餉驤緗饗蕭囂銷曉嘯嘵瀟驍綃梟簫協挾攜脅諧寫瀉謝褻擷紲纈鋅釁興陘滎兇洶銹繡饈鵂虛噓須許敘緒續詡頊軒懸選癬絢諼鉉鏇學謔澩鱈勛詢尋馴訓訊遜塤潯鱘壓鴉鴨啞亞訝埡婭椏氬閹煙鹽嚴巖顏閻艷厭硯彥諺驗厴贗儼兗讞懨閆釅魘饜鼴鴦楊揚瘍陽癢養樣煬瑤搖堯遙窯謠藥軺鷂鰩爺頁業葉靨謁鄴曄燁醫銥頤遺儀蟻藝億憶義詣議誼譯異繹詒囈嶧飴懌驛縊軼貽釔鎰鐿瘞艤蔭陰銀飲隱銦癮櫻嬰鷹應纓瑩螢營熒蠅贏穎塋鶯縈鎣攖嚶瀅瀠瓔鸚癭頦罌喲擁傭癰踴詠鏞優憂郵鈾猶誘蕕銪魷輿魚漁娛與嶼語獄譽預馭傴俁諛諭蕷崳飫閾嫗紆覦歟鈺鵒鷸齬鴛淵轅園員圓緣遠櫞鳶黿約躍鑰粵悅閱鉞鄖勻隕運蘊醞暈韻鄆蕓惲慍紜韞殞氳雜災載攢暫贊瓚趲鏨贓臟駔鑿棗責擇則澤賾嘖幘簀賊譖贈綜繒軋鍘閘柵詐齋債氈盞斬輾嶄棧戰綻譫張漲帳賬脹趙詔釗蟄轍鍺這謫輒鷓貞針偵診鎮陣湞縝楨軫賑禎鴆掙睜猙爭幀癥鄭證諍崢鉦錚箏織職執紙摯擲幟質滯騭櫛梔軹輊贄鷙螄縶躓躑觶鐘終種腫眾鍾謅軸皺晝驟紂縐豬諸誅燭矚囑貯鑄駐佇櫧銖專磚轉賺囀饌顳樁莊裝妝壯狀錐贅墜綴騅縋諄準著濁諑鐲茲資漬諮緇輜貲眥錙齜鯔蹤總縱傯鄒諏騶鯫詛組鏃鉆纘躦鱒翺並蔔沈醜澱叠鬥範幹臯矽櫃後夥稭傑訣誇裏淩麽黴撚淒扡聖屍擡塗窪餵汙鍁鹹蠍彜湧遊籲禦願嶽雲竈紮劄築於誌註雕訁譾郤猛氹阪壟堖垵墊檾蕒葤蓧蒓菇槁摣咤唚哢噝噅撅劈謔襆嶴脊仿僥獁麅餘餷饊饢楞怵懍爿漵灩混濫瀦淡寧糸絝緔瑉梘棬案橰櫫軲軤賫膁腖飈糊煆溜湣渺碸滾瞘鈈鉕鋣銱鋥鋶鐦鐧鍩鍀鍃錇鎄鎇鎿鐝鑥鑹鑔穭鶓鶥鸌癧屙瘂臒襇繈耮顬蟎麯鮁鮃鮎鯗鯝鯴鱝鯿鰠鰵鱅鞽韝齇';
 }
-function simplify(text) {
-  let result = '';
   for (let i = 0; i < text.length; i++) {
-    const ch = text[i];
-    const index = ftPYStr().indexOf(ch);
-    result += index !== -1 ? charPYStr().charAt(index) : ch;
+    const index = ft.indexOf(text[i]);
+    result += index !== -1 ? jt[index] : text[i];
   }
   return result;
 }
@@ -345,18 +333,26 @@ function buildName(parts) {
 }
 
 function operator(proxies) {
-  const outputKey = $arguments.output || 'zh';           // 输出字段（如 zh）
-  const autofill = parseInt($arguments.autofill) || 2;   // 编号补零宽度
-  const del1 = !!$arguments.del1;                        // 是否去掉编号为1的节点
-  const airport = $arguments.airport || '';              // 机场后缀
+  const outputKey = $arguments.output || 'zh';
+  const autofill = parseInt($arguments.autofill) || 2;
+  const del1 = !!$arguments.del1;
+  const airport = $arguments.airport || '';
 
-  const countryMap = buildCountryMap(outputKey);         // 构建国家映射表（支持别名）
+  const countryMap = buildCountryMap(outputKey);
+
+  // 解析标签映射
+  let others = [];
+  try {
+    const userOthers = JSON.parse($arguments.others || '{}');
+    others = Object.entries(userOthers).map(([key, value]) => ({ key, value }));
+  } catch (e) {}
+  others = others.concat(defaultOthers);
 
   proxies.forEach(res => {
-    const name = simplify(res.name.toLowerCase());       // 原始名称小写 & 简体转换
-
-    // === 来源前缀标记（如 QZ, BGP） ===
+    const name = simplify(res.name.toLowerCase());
     let sourcePrefix = '';
+    let flag = '', cname = '', countStr = '', tag = '', rateStr = '';
+
     for (const src of sourceMap) {
       if (name.includes(src.key)) {
         sourcePrefix += src.prefix;
@@ -370,45 +366,35 @@ function operator(proxies) {
       }
     }
 
-    // === 国家匹配与编号 ===
-    let flag = '', cname = '', countStr = '';
-    let matchedVal = null;
+    // 国家匹配：精确优先，再模糊兜底
+    const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
+    let matched = null;
 
-    if (countryMap.has(name)) {
-      matchedVal = countryMap.get(name);
-    } else {
-      const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
+    for (const key of countryKeys) {
+      const regex = new RegExp(`\\b${key}\\b`, 'i');
+      if (regex.test(name)) {
+        matched = countryMap.get(key);
+        break;
+      }
+    }
 
-      // 优先：精确正则匹配 \bword\b
+    if (!matched) {
       for (const key of countryKeys) {
-        const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`\\b${safeKey}\\b`, 'i');
-        if (regex.test(name)) {
-          matchedVal = countryMap.get(key);
+        if (name.includes(key)) {
+          matched = countryMap.get(key);
           break;
         }
       }
-
-      // 其次：模糊包含匹配
-      if (!matchedVal) {
-        for (const key of countryKeys) {
-          if (name.includes(key)) {
-            matchedVal = countryMap.get(key);
-            break;
-          }
-        }
-      }
     }
 
-    if (matchedVal) {
-      matchedVal.count += 1;
-      flag = matchedVal.emoji;
-      cname = matchedVal.name;
-      countStr = matchedVal.count.toString().padStart(autofill, '0');
+    if (matched) {
+      matched.count++;
+      flag = matched.emoji;
+      cname = matched.name;
+      countStr = matched.count.toString().padStart(autofill, '0');
     }
 
-    // === 标签识别 ===
-    let tag = '';
+    // 标签匹配
     for (const { key, value } of others) {
       if (name.includes(key)) {
         tag = value;
@@ -416,24 +402,20 @@ function operator(proxies) {
       }
     }
 
-    // === 倍率提取 ===
-    let rateStr = '';
+    // 倍率匹配
     const rateMatch = name.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
     if (rateMatch) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // === 构建最终名称 ===
+    // 构建新名称
     const composed = [flag, cname];
     if (tag) composed.push(tag);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
     if (airport) composed.push(`[${airport}]`);
 
-    res.name = buildName(composed);
-
-    // 移除原始倍率标签
-    res.name = res.name.replace(/\[倍率:\d+(?:\.\d+)?\]/, '');
+    res.name = buildName(composed).replace(/\[倍率:\d+(?:\.\d+)?\]/, '');
   });
 
   if (del1) {
