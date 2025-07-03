@@ -308,7 +308,9 @@ function buildCountryMap(outputKey) {
     ];
 
     for (const key of keys) {
-      if (key) map.set(key.toLowerCase(), entry);
+      if (key && key.length >= 3) {
+        map.set(key.toLowerCase(), entry);
+      }
     }
   }
   return map;
@@ -335,6 +337,19 @@ function buildName(parts) {
   return parts.filter(Boolean).join(' ');
 }
 
+// 剔除计数为1的国家节点
+function stripOnes(proxies, countryMap) {
+  return proxies.filter(proxy => {
+    const nameLower = proxy.name.toLowerCase();
+    for (const [key, val] of countryMap.entries()) {
+      if (nameLower.includes(key) && val.count > 1) {
+        return true;
+      }
+    }
+    return false;
+  });
+}
+
 function operator(proxies) {
   const outputKey = $arguments.output || 'zh';
   const autofill = parseInt($arguments.autofill) || 2;
@@ -343,53 +358,53 @@ function operator(proxies) {
 
   const countryMap = buildCountryMap(outputKey);
 
-  // 解析标签映射
+  // 标签映射，全部小写 key
   let others = [];
   try {
     const userOthers = JSON.parse($arguments.others || '{}');
-    others = Object.entries(userOthers).map(([key, value]) => ({ key, value }));
+    others = Object.entries(userOthers).map(([key, value]) => ({ key: key.toLowerCase(), value }));
   } catch (e) {}
-  others = others.concat(defaultOthers);
+  others = others.concat(defaultOthers.map(({ key, value }) => ({ key: key.toLowerCase(), value })));
+
+  // 重置国家计数，防止多次调用累加
+  for (const val of countryMap.values()) {
+    val.count = 0;
+  }
 
   proxies.forEach(res => {
-    const name = simplify(res.name.toLowerCase());
-    let sourcePrefix = '';
-    let flag = '', cname = '', countStr = '', tag = '', rateStr = '';
+    const originalName = res.name;
+    const name = simplify(originalName.toLowerCase());
 
+    // 来源前缀和ISP后缀组合
+    let prefixes = [];
     for (const src of sourceMap) {
-      if (name.includes(src.key)) {
-        sourcePrefix += src.prefix;
+      if (name.includes(src.key.toLowerCase())) {
+        prefixes.push(src.prefix);
         break;
       }
     }
     for (const isp of ispMap) {
-      if (name.includes(isp.key)) {
-        sourcePrefix += isp.suffix;
+      if (name.includes(isp.key.toLowerCase())) {
+        prefixes.push(isp.suffix);
         break;
       }
     }
+    const sourcePrefix = prefixes.join('');
 
-    // 国家匹配：精确优先，再模糊兜底
+    // 国家匹配 — 找到最后出现且最长的关键词
     const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
     let matched = null;
-
+    let matchedIndex = -1;
     for (const key of countryKeys) {
-      const regex = new RegExp(`\\b${key}\\b`, 'i');
-      if (regex.test(name)) {
-        matched = countryMap.get(key);
-        break;
+      const lowerKey = key.toLowerCase();
+      const idx = name.lastIndexOf(lowerKey);
+      if (idx > matchedIndex && lowerKey.length >= 2) {
+        matched = countryMap.get(lowerKey);
+        matchedIndex = idx;
       }
     }
 
-    if (!matched) {
-      for (const key of countryKeys) {
-        if (name.includes(key)) {
-          matched = countryMap.get(key);
-          break;
-        }
-      }
-    }
-
+    let flag = '', cname = '', countStr = '';
     if (matched) {
       matched.count++;
       flag = matched.emoji;
@@ -397,28 +412,39 @@ function operator(proxies) {
       countStr = matched.count.toString().padStart(autofill, '0');
     }
 
-    // 标签匹配
+    // 多标签匹配，避免重复
+    let tags = [];
     for (const { key, value } of others) {
       if (name.includes(key)) {
-        tag = value;
-        break;
+        if (!tags.includes(value)) {
+          tags.push(value);
+        }
       }
     }
 
     // 倍率匹配
-    const rateMatch = name.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
+    let rateStr = '';
+    const rateMatch = originalName.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
     if (rateMatch) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // 构建新名称
+    // 速率匹配（例如 "| 3.42Mb"）
+    let speedStr = '';
+    const speedMatch = originalName.match(/\|\s*\d+(\.\d+)?\s*(Mb|Mbps)/i);
+    if (speedMatch) {
+      speedStr = speedMatch[0].trim();
+    }
+
+    // 构建最终名称，顺序优化
     const composed = [flag, cname];
-    if (tag) composed.push(tag);
+    if (tags.length) composed.push(...tags);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
     if (airport) composed.push(`[${airport}]`);
+    if (speedStr) composed.push(speedStr);
 
-    res.name = buildName(composed).replace(/\[倍率:\d+(?:\.\d+)?\]/, '');
+    res.name = buildName(composed);
   });
 
   if (del1) {
