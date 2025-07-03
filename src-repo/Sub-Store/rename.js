@@ -327,6 +327,7 @@ function simplify(text) {
     const ch = text[i];
     const index = ftPYStr().indexOf(ch);
     result += index !== -1 ? charPYStr().charAt(index) : ch;
+  }
   return result;
 }
 
