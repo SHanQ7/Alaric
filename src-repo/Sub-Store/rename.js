@@ -235,7 +235,7 @@ const countryList = [
   { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Ukraine", emoji: "🇺🇦" },
   { enShort: "UM", enShort3: "UMI", zh: "美国本土外小岛屿", enFull: "United States Minor Outlying Islands", emoji: "🇺🇲" },
   { enShort: "UY", enShort3: "URY", zh: "乌拉圭", enFull: "Uruguay", emoji: "🇺🇾" },
-  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸" },
+  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸", alisa: ['United States'] },
   { enShort: "UZ", enShort3: "UZB", zh: "乌兹别克斯坦", enFull: "Uzbekistan", emoji: "🇺🇿" },
   { enShort: "VA", enShort3: "VAT", zh: "梵蒂冈", enFull: "Holy See (Vatican City State)", emoji: "🇻🇦" },
   { enShort: "VC", enShort3: "VCT", zh: "圣文森特和格林纳丁斯", enFull: "Saint Vincent and the Grenadines", emoji: "🇻🇨" },
@@ -328,6 +328,7 @@ const ispMap = [
 const defaultOthers = [
   { key: '[Premium]', value: '[Premium]' },
   { key: '专线', value: 'Spec' },
+  { key: '专用', value: 'Spec' },
   { key: '核心', value: 'Core' },
   { key: '边缘', value: 'Edge' },
   { key: '高级', value: 'Pro' },
@@ -335,6 +336,8 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
+  { key: 'Relay', value: 'Relay' },
+  { key: 'IPLC', value: 'IPLC' },
   { key: 'LB', value: 'LB' }
 ];
 
