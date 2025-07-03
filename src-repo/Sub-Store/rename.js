@@ -405,10 +405,10 @@ function operator(proxies) {
       }
     }
 
-    // 如果没匹配上，再模糊匹配（只匹配长度≥3避免误匹配）
+    // 如果没匹配上，再模糊匹配（只匹配长度≥2避免误匹配）
     if (!matched) {
       for (const key of countryKeys) {
-        if (key.length >= 3 && name.includes(key)) {
+        if (key.length >= 2 && name.includes(key)) {
           matched = countryMap.get(key);
           break;
         }
