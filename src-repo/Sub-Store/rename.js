@@ -266,13 +266,15 @@ const ispMap = [
   { key: "电信", suffix: "CT" },
   { key: "联通", suffix: "CU" },
   { key: "移动", suffix: "CM" },
-  { key: "教育网", suffix: "EDU" },
-  { key: "铁通", suffix: "TT" }
+  { key: "铁通", suffix: "TT" },
+  { key: "教育网", suffix: "EDU" }
 ];
 
 // 默认关键词映射表
 const defaultOthers = [
   { key: '[Premium]', value: '[Premium]' },
+  { key: 'Relay', value: 'Relay' },
+  { key: 'IPLC', value: 'IPLC' },
   { key: '专线', value: 'Spec' },
   { key: '专用', value: 'Spec' },
   { key: '核心', value: 'Core' },
@@ -282,8 +284,7 @@ const defaultOthers = [
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
   { key: '家宽', value: 'Fam' },
-  { key: 'Relay', value: 'Relay' },
-  { key: 'IPLC', value: 'IPLC' },
+  { key: 'ISP', value: 'ISP' },
   { key: 'LB', value: 'LB' }
 ];
 
@@ -409,7 +410,7 @@ function operator(proxies) {
   // 如果没匹配上，再模糊匹配（只匹配长度≥2避免误匹配）
   if (!matched) {
     for (const key of countryKeys) {
-      if (key.length >= 2 && name.includes(key)) {
+      if (key.length >= 3 && name.includes(key)) {
         matched = countryMap.get(key);
         break;
       }
