@@ -394,58 +394,57 @@ function operator(proxies) {
     }
     const sourcePrefix = prefixes.join('');
 
-    // 国家匹配：自定义边界匹配，防止词边界对emoji失效
-    const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
+    // === 优先 Emoji 识别国家 ===
     let matched = null;
-
-    for (const key of countryKeys) {
-      const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      // 前后非字母数字或开头结尾
-      const regex = new RegExp(`(^|[^a-z0-9])${safeKey}($|[^a-z0-9])`, 'i');
-      if (regex.test(name)) {
-        matched = countryMap.get(key);
-        break;
-      }
-    }
-
-  // 如果没匹配上，再模糊匹配（只匹配长度≥2避免误匹配）
-  if (!matched) {
-    for (const key of countryKeys) {
-      if (key.length >= 3 && name.includes(key)) {
-        matched = countryMap.get(key);
-        break;
-      }
-    }
-  }
-
-  // 如果仍未匹配，尝试通过 emoji 反查（优先最后一个 emoji）
-  if (!matched) {
     const emojis = originalName.match(/[\u{1F1E6}-\u{1F1FF}]{2}/gu) || [];
-    const excludeEmoji = ['🇨🇳', '🇭🇰', '🇲🇴']; // 可选：排除中转源 emoji
-    let fallbackEmoji = null;
+    const excludeEmoji = ['🇨🇳'];
 
-    for (let i = emojis.length - 1; i >= 0; i--) {
-      if (!excludeEmoji.includes(emojis[i])) {
-        fallbackEmoji = emojis[i];
-        break;
-      }
-    }
-
-    if (!fallbackEmoji && emojis.length > 0) {
-      // 所有 emoji 都是中转源时，仍保底选最后一个
-      fallbackEmoji = emojis[emojis.length - 1];
-    }
-
-    if (fallbackEmoji) {
+    for (const emoji of emojis) {
+      if (excludeEmoji.includes(emoji)) continue;
       for (const val of countryMap.values()) {
-        if (val.emoji === fallbackEmoji) {
+        if (val.emoji === emoji) {
           matched = val;
           break;
         }
       }
+      if (matched) break;
     }
-  }
 
+    // 如果 emoji 没匹配，再关键词匹配（优先正则精确匹配）
+    if (!matched) {
+      const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
+      for (const key of countryKeys) {
+        const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const regex = new RegExp(`(^|[^a-z0-9])${safeKey}($|[^a-z0-9])`, 'i');
+        if (regex.test(name)) {
+          matched = countryMap.get(key);
+          break;
+        }
+      }
+
+      // 最后尝试模糊匹配（≥3字符）
+      if (!matched) {
+        for (const key of countryKeys) {
+          if (key.length >= 3 && name.includes(key)) {
+            matched = countryMap.get(key);
+            break;
+          }
+        }
+      }
+
+      // 最后尝试 emoji fallback（即使是 🇨🇳 也保底）
+      if (!matched && emojis.length > 0) {
+        const fallback = emojis[emojis.length - 1];
+        for (const val of countryMap.values()) {
+          if (val.emoji === fallback) {
+            matched = val;
+            break;
+          }
+        }
+      }
+    }
+
+    // 国家标识拼接
     let flag = '', cname = '', countStr = '';
     if (matched) {
       matched.count++;
@@ -454,10 +453,12 @@ function operator(proxies) {
       countStr = matched.count.toString().padStart(autofill, '0');
     }
 
-    // 多标签匹配，全部小写匹配，避免重复
+    // 标签识别（正则防止误命中）
     const tags = [];
     for (const { key, value } of others) {
-      if (name.includes(key) && !tags.includes(value)) {
+      const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`(^|[^a-z0-9])${safeKey}($|[^a-z0-9])`, 'i');
+      if (regex.test(name) && !tags.includes(value)) {
         tags.push(value);
       }
     }
@@ -469,24 +470,17 @@ function operator(proxies) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // 速率匹配（如 "| 3.42Mb"）
-    let speedStr = '';
-    const speedMatch = originalName.match(/\|\s*\d+(\.\d+)?\s*(Mb|Mbps)/i);
-    if (speedMatch) {
-      speedStr = speedMatch[0].trim();
-    }
-
     // 构建最终名称
     const composed = [flag, cname];
     if (tags.length) composed.push(...tags);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
     if (airport) composed.push(`[${airport}]`);
-    if (speedStr) composed.push(speedStr);
 
     res.name = buildName(composed);
   });
 
+  // 删除只出现1次的国家节点
   if (del1) {
     proxies = stripOnes(proxies, countryMap);
   }
