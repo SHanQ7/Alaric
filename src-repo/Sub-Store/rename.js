@@ -47,7 +47,7 @@ const countryList = [
   { enShort: "CK", enShort3: "COK", zh: "库克群岛", enFull: "Cook Islands", emoji: "🇨🇰" },
   { enShort: "CL", enShort3: "CHL", zh: "智利", enFull: "Chile", emoji: "🇨🇱" },
   { enShort: "CM", enShort3: "CMR", zh: "喀麦隆", enFull: "Cameroon", emoji: "🇨🇲" },
-  { enShort: "CN", enShort3: "CHN", zh: "中国", enFull: "China", emoji: "🇨🇳", alias: ["Beijing", "安徽", "浙江", "广东", "上海",] },
+  { enShort: "CN", enShort3: "CHN", zh: "中国", enFull: "China", emoji: "🇨🇳", alias: ["Beijing", "山东", "安徽", "浙江", "广东", "上海", "联通", "电信", "移动"] },
   { enShort: "CO", enShort3: "COL", zh: "哥伦比亚", enFull: "Colombia", emoji: "🇨🇴" },
   { enShort: "CR", enShort3: "CRI", zh: "哥斯达黎加", enFull: "Costa Rica", emoji: "🇨🇷" },
   { enShort: "CU", enShort3: "CUB", zh: "古巴", enFull: "Cuba", emoji: "🇨🇺" },
