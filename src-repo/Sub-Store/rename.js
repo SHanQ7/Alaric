@@ -414,8 +414,12 @@ function operator(proxies) {
     if (!matched) {
       const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
       for (const key of countryKeys) {
+
+        if (key.length < 2) continue; // 防止误判如 "us" 命中 "sushi"
+
         const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`(^|[^a-z0-9])${safeKey}($|[^a-z0-9])`, 'i');
+        const regex = new RegExp(`(^|[^\\u4e00-\\u9fa5a-z0-9])${safeKey}([^\\u4e00-\\u9fa5a-z0-9]|$)`, 'i');
+
         if (regex.test(name)) {
           matched = countryMap.get(key);
           break;
