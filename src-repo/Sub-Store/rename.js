@@ -182,7 +182,7 @@ const countryList = [
   { enShort: "RE", enShort3: "REU", zh: "留尼旺", enFull: "Réunion", emoji: "🇷🇪" },
   { enShort: "RO", enShort3: "ROU", zh: "罗马尼亚", enFull: "Romania", emoji: "🇷🇴", alias: ["Bucharest"] },
   { enShort: "RS", enShort3: "SRB", zh: "塞尔维亚", enFull: "Serbia", emoji: "🇷🇸", alias: ["Belgrade"] },
-  { enShort: "RU", enShort3: "RUS", zh: "俄罗斯", enFull: "Russian Federation", emoji: "🇷🇺", alias: ['Russia', "Moscow"] },
+  { enShort: "RU", enShort3: "RUS", zh: "俄罗斯", enFull: "Russian Federation", emoji: "🇷🇺", alias: ['Russia', "Moscow", "俄国"] },
   { enShort: "RW", enShort3: "RWA", zh: "卢旺达", enFull: "Rwanda", emoji: "🇷🇼" },
   { enShort: "SA", enShort3: "SAU", zh: "沙特阿拉伯", enFull: "Saudi Arabia", emoji: "🇸🇦" },
   { enShort: "SB", enShort3: "SLB", zh: "所罗门群岛", enFull: "Solomon Islands", emoji: "🇸🇧" },
