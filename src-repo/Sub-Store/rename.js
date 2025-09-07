@@ -189,7 +189,7 @@ const countryList = [
   { enShort: "SC", enShort3: "SYC", zh: "塞舌尔", enFull: "Seychelles", emoji: "🇸🇨" },
   { enShort: "SD", enShort3: "SDN", zh: "苏丹", enFull: "Sudan", emoji: "🇸🇩" },
   { enShort: "SE", enShort3: "SWE", zh: "瑞典", enFull: "Sweden", emoji: "🇸🇪", alias: ["Stockholm"] },
-  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬", alias: ['广新', '深新'] },
+  { enShort: "SG", enShort3: "SGP", zh: "新加坡", enFull: "Singapore", emoji: "🇸🇬", alias: ['广新', '深新', "上海移动转新加坡", "上海联通转新加坡", "上海电信转新加坡", "安徽移动转新加坡", "安徽联通转新加坡", "安徽电信转新加坡", "广东移动转新加坡", "广东联通转新加坡", "广东电信转新加坡", "广州移动转新加坡", "广州联通转新加坡", "广州电信转新加坡", "江苏移动转新加坡", "江苏联通转新加坡", "江苏电信转新加坡", "湖北移动转新加坡", "湖北联通转新加坡", "湖北电信转新加坡"] },
   { enShort: "SH", enShort3: "SHN", zh: "圣赫勒拿、阿森松和特里斯坦达库尼亚", enFull: "Saint Helena, Ascension and Tristan da Cunha", emoji: "🇸🇭" },
   { enShort: "SI", enShort3: "SVN", zh: "斯洛文尼亚", enFull: "Slovenia", emoji: "🇸🇮", alias: ["Ljubljana"] },
   { enShort: "SJ", enShort3: "SJM", zh: "斯瓦尔巴和扬马延", enFull: "Svalbard and Jan Mayen", emoji: "🇸🇯" },
