@@ -117,7 +117,7 @@ const countryList = [
   { enShort: "KH", enShort3: "KHM", zh: "柬埔寨", enFull: "Cambodia", emoji: "🇰🇭" },
   { enShort: "KI", enShort3: "KIR", zh: "基里巴斯", enFull: "Kiribati", emoji: "🇰🇮" },
   { enShort: "KN", enShort3: "KNA", zh: "圣基茨和尼维斯", enFull: "Saint Kitts and Nevis", emoji: "🇰🇳" },
-  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Korea", emoji: "🇰🇷", alias: ["South Korea", "Busan", "Incheon", "上海移动转韩国", "上海联通转韩国", "上海电信转韩国", "安徽移动转韩国", "安徽联通转韩国", "安徽电信转韩国", "广东移动转韩国", "广东联通转韩国", "广东电信转韩国", "广州移动转韩国", "广州联通转韩国", "广州电信转韩国", "江苏移动转韩国", "江苏联通转韩国", "江苏电信转韩国", "湖北移动转韩国", "湖北联通转韩国", "湖北电信转韩国"] },
+  { enShort: "KR", enShort3: "KOR", zh: "韩国", enFull: "Korea", emoji: "🇰🇷", alias: ["South Korea", "Busan", "Incheon", "公益韩国", "上海移动转韩国", "上海联通转韩国", "上海电信转韩国", "安徽移动转韩国", "安徽联通转韩国", "安徽电信转韩国", "广东移动转韩国", "广东联通转韩国", "广东电信转韩国", "广州移动转韩国", "广州联通转韩国", "广州电信转韩国", "江苏移动转韩国", "江苏联通转韩国", "江苏电信转韩国", "湖北移动转韩国", "湖北联通转韩国", "湖北电信转韩国"] },
   { enShort: "KM", enShort3: "COM", zh: "科摩罗", enFull: "Comoros", emoji: "🇰🇲" },
   { enShort: "KW", enShort3: "KWT", zh: "科威特", enFull: "Kuwait", emoji: "🇰🇼" },
   { enShort: "KY", enShort3: "CYM", zh: "开曼群岛", enFull: "Cayman Islands", emoji: "🇰🇾" },
