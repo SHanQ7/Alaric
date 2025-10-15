@@ -225,7 +225,7 @@ const countryList = [
   { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Ukraine", emoji: "🇺🇦", alias: ["Kyiv"] },
   { enShort: "UM", enShort3: "UMI", zh: "美国本土外小岛屿", enFull: "United States Minor Outlying Islands", emoji: "🇺🇲" },
   { enShort: "UN", enShort3: "UNI", zh: "联合国", enFull: "United Nations", emoji: "🇺🇳" },
-  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸", alias: ["United States", "New York", "NewYork", "SJC", "上海移动转美国", "上海联通转美国", "上海电信转美国", "安徽移动转美国", "安徽联通转美国", "安徽电信转美国", "广东移动转美国", "广东联通转美国", "广东电信转美国", "广州移动转美国", "广州联通转美国", "广州电信转美国", "江苏移动转美国", "江苏联通转美国", "江苏电信转美国", "湖北移动转美国", "湖北联通转美国", "湖北电信转美国"] },
+  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸", alias: ["United States", "New York", "NewYork", "SJC", "LAX", "上海移动转美国", "上海联通转美国", "上海电信转美国", "安徽移动转美国", "安徽联通转美国", "安徽电信转美国", "广东移动转美国", "广东联通转美国", "广东电信转美国", "广州移动转美国", "广州联通转美国", "广州电信转美国", "江苏移动转美国", "江苏联通转美国", "江苏电信转美国", "湖北移动转美国", "湖北联通转美国", "湖北电信转美国"] },
   { enShort: "UY", enShort3: "URY", zh: "乌拉圭", enFull: "Uruguay", emoji: "🇺🇾" },
   { enShort: "UZ", enShort3: "UZB", zh: "乌兹别克斯坦", enFull: "Uzbekistan", emoji: "🇺🇿" },
   { enShort: "VA", enShort3: "VAT", zh: "梵蒂冈", enFull: "Holy See (Vatican City State)", emoji: "🇻🇦" },
