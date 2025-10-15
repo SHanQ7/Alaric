@@ -296,7 +296,7 @@ const defaultOthers = [
   { key: 'Datacamp', value: 'Datacamp' },
   { key: 'DigitalOcean', value: 'DigitalOcean' },
   { key: 'DMIT', value: 'DMIT' },
-  { key: 'Dromastics', value: 'Dromastics' },
+  { key: 'Dromatics', value: 'Dromatics' },
   { key: 'FASTNET', value: 'FASTNET' },
   { key: 'FranTech', value: 'FranTech' },
   { key: 'GREEN', value: 'GREEN' },
