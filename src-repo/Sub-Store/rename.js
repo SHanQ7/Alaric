@@ -268,6 +268,10 @@ const ispMap = [
   { key: "联通", suffix: "CU" },
   { key: "移动", suffix: "CM" },
   { key: "铁通", suffix: "TT" },
+  { key: 'CT', value: '电信' },
+  { key: 'CM', value: '移动' },
+  { key: 'CU', value: '联通' },
+  { key: 'LB', value: 'LB' },
   { key: "教育网", suffix: "EDU" }
 ];
 
