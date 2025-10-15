@@ -268,10 +268,6 @@ const ispMap = [
   { key: "联通", suffix: "CU" },
   { key: "移动", suffix: "CM" },
   { key: "铁通", suffix: "TT" },
-  { key: "CT", value: "电信" },
-  { key: "CM", value: "移动" },
-  { key: "CU", value: "联通" },
-  { key: "LB", value: "LB" },
   { key: "教育网", suffix: "EDU" }
 ];
 
@@ -291,7 +287,37 @@ const defaultOthers = [
   { key: '家宽', value: 'Fam' },
   { key: 'ISP', value: 'ISP' },
   { key: 'LB', value: 'LB' },
-  { key: 'Sharon', value: 'Sharon' }
+  { key: 'Akamai', value: 'Akamai' },
+  { key: 'Alibaba', value: 'Alibaba' },
+  { key: 'BAGE', value: 'BAGE' },
+  { key: 'ByteVirt', value: 'ByteVirt' },
+  { key: 'Cloudflare', value: 'Cloudflare' },
+  { key: 'Cogent', value: 'Cogent' },
+  { key: 'Datacamp', value: 'Datacamp' },
+  { key: 'DigitalOcean', value: 'DigitalOcean' },
+  { key: 'DMIT', value: 'DMIT' },
+  { key: 'Dromastics', value: 'Dromastics' },
+  { key: 'FASTNET', value: 'FASTNET' },
+  { key: 'FranTech', value: 'FranTech' },
+  { key: 'GREEN', value: 'GREEN' },
+  { key: 'HostHatch', value: 'HostHatch' },
+  { key: 'HostPapa', value: 'HostPapa' },
+  { key: 'HUAWEI', value: 'HUAWEI' },
+  { key: 'interserve', value: 'interserve' },
+  { key: 'IT7', value: 'IT7' },
+  { key: 'Kirino', value: 'Kirino' },
+  { key: 'Krystal', value: 'Krystal' },
+  { key: 'LEASEWEB', value: 'LEASEWEB' },
+  { key: 'MULTACOM', value: 'MULTACOM' },
+  { key: 'NetLab', value: 'NetLab' },
+  { key: 'OLink', value: 'OLink' },
+  { key: 'Oracle', value: 'Oracle' },
+  { key: 'OVH', value: 'OVH' },
+  { key: 'Sharon', value: 'Sharon' },
+  { key: 'Tencent', value: 'Tencent' },
+  { key: 'VMISS', value: 'VMISS' },
+  { key: 'xTom', value: 'xTom' },
+  { key: 'Zenlayer', value: 'Zenlayer' }
 ];
 
 // 动态构建国家映射 Map（多键映射）
