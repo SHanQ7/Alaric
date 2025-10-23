@@ -1,1 +1,49 @@
+#!name = 拼多多净化页面布局
+#!author = 怎么肥事 walala
+#!update = 2025-09-13
+#!版本号：7.55.0
 
+//pdd
+host, sdk.1rtb.net, reject
+host, titan.pinduoduo.com, reject
+ip-cidr, 183.194.214.21/32, reject
+ip-cidr, 49.235.102.190/32, reject
+ip-cidr, 81.69.116.33/32, reject
+ip-cidr, 183.194.214.20/32, reject
+ip-cidr, 117.185.244.145/32, reject
+ip-cidr, 101.35.204.35/32, reject
+ip-cidr, 114.110.97.97/32, reject
+ip-cidr, 81.69.104.17/32, reject
+ip-cidr, 117.185.242.187/32, reject
+ip-cidr, 117.185.242.18/32, reject
+ip-cidr, 183.194.214.14/32, reject
+ip-cidr, 114.110.96.1/32, reject
+ip-cidr, 36.152.46.15/32, reject
+ip-cidr, 114.110.97.30/32, reject
+ip-cidr, 81.69.130.131/32, reject
+ip-cidr, 114.110.96.26/32, reject
+ip-cidr, 101.35.212.35/32, reject
+
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_express_group url reject-dict
+^https:\/\/api\.pinduoduo\.com\/search_hotquery url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/zaire_biz\/chat\/resource\/get_list_data url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/new_chat_group url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/brand-olay\/goods_detail\/bybt_guide url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/reviews\/require\/append url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/my_order_group url reject-dict
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/likes url reject-dict
+^https:\/\/api\.pinduoduo\.com\/search url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/api\/philo\/personal\/hub url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/api\/oak\/integration\/render url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
+
+
+
+
+
+hostname = api.pinduoduo.com
