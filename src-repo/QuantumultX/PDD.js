@@ -4,7 +4,7 @@
 #!版本号：7.55.0
 
 ^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub url jsonjq-response-body 'del(.result.icon_set, .result.search_bar_hot_query, .result.dy_module.irregular_banner_dy, .result.dy_module.recommend_fresh_info) | if .result.bottom_tabs then .result.bottom_tabs |= map(select(.link == "index.html" or .link == "chat_list.html" or .link == "personal.html")) else . end'
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub url json-response-body 'del(.result.icon_set, .result.search_bar_hot_query, .result.dy_module.irregular_banner_dy, .result.dy_module.recommend_fresh_info) | if .result.bottom_tabs then .result.bottom_tabs |= map(select(.link == "index.html" or .link == "chat_list.html" or .link == "personal.html")) else . end'
 ^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element url reject-dict
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab url reject-dict
