@@ -45,23 +45,30 @@ DOMAIN, th-b.pinduoduo.com, REJECT
 DOMAIN, th.pinduoduo.com, REJECT
 DOMAIN, titan.pinduoduo.com, REJECT
 DOMAIN, xg.pinduoduo.com, REJECT
-  
-^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_express_group url reject-dict
-^https:\/\/api\.pinduoduo\.com\/search_hotquery url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/zaire_biz\/chat\/resource\/get_list_data url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/new_chat_group url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/brand-olay\/goods_detail\/bybt_guide url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/engels\/reviews\/require\/append url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/my_order_group url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/likes url reject-dict
-^https:\/\/api\.pinduoduo\.com\/search url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
-^https:\/\/api\.pinduoduo\.com\/api\/philo\/personal\/hub url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
-^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
-^https:\/\/api\.pinduoduo\.com\/api\/oak\/integration\/render url script-response-body https://raw.githubusercontent.com/ZenmoFeiShi/Qx/main/Pinduoduo.js
+
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/wait\/receive\/review url reject
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab url reject
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element url reject
+^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_express_group url reject
+^https:\/\/api\.pinduoduo\.com\/search_hotquery url reject
+^https:\/\/api\.pinduoduo\.com\/api\/zaire_biz\/chat\/resource\/get_list_data url reject
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/new_chat_group url reject
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up url reject
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal url reject
+^https:\/\/api\.pinduoduo\.com\/api\/brand-olay\/goods_detail\/bybt_guide url reject
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/reviews\/require\/append url reject
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/my_order_group url reject
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/likes url reject
+^https:\/\/api\.pinduoduo\.com\/api\/phantom\/gbdbpdv\/extra url reject
+^https:\/\/api\.pinduoduo\.com\/api\/manufacturer\/cross\/shortcut\/list url reject
+^https:\/\/api\.pinduoduo\.com\/api\/dunkirk\/liveactivity\/push\/create\/url\/report url reject
+^https:\/\/api\.pinduoduo\.com\/api\/growth\/nagato\/app\/index\/gather url reject
+
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub url script-response-body https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/search url script-response-body Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/api\/philo\/personal\/hub url script-response-body https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/api\/oak\/integration\/render url script-response-body https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/Pinduoduo.js
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_detail_group url script-response-body https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/Pinduoduo.js
 
 hostname = api.pinduoduo.com
