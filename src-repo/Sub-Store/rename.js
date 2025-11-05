@@ -370,19 +370,6 @@ function buildName(parts) {
   return parts.filter(Boolean).join(' ');
 }
 
-// 剔除计数为1的国家节点
-function stripOnes(proxies, countryMap) {
-  return proxies.filter(proxy => {
-    const nameLower = proxy.name.toLowerCase();
-    for (const [key, val] of countryMap.entries()) {
-      if (nameLower.includes(key) && val.count > 1) {
-        return true;
-      }
-    }
-    return false;
-  });
-}
-
 function operator(proxies) {
   const outputKey = $arguments.output || 'zh';
   const autofill = parseInt($arguments.autofill) || 2;
@@ -514,11 +501,6 @@ function operator(proxies) {
 
     res.name = buildName(composed);
   });
-
-  // 删除只出现1次的国家节点
-  if (del1) {
-    proxies = stripOnes(proxies, countryMap);
-  }
 
   return proxies;
 }
