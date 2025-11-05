@@ -487,17 +487,25 @@ function operator(proxies) {
 
     // 倍率匹配
     let rateStr = '';
-    const rateMatch = originalName.match(/\[倍率:(\d+(?:\.\d+)?)\]/);
+    const rateRegex = /(?:倍率|rate)[:：]?\s*(\d+(?:\.\d+)?)(?:x|倍)?/i;
     if (rateMatch) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
+    // 网速匹配（例如 5.4MB/S 或 200KB/S）
+    let speedStr = '';
+    const speedMatch = originalName.match(/(\d+(?:\.\d+)?\s?(?:KB|MB|GB)\/S)/i);
+    if (speedMatch) {
+      speedStr = speedMatch[1].toUpperCase(); // 保留原值并统一大写
+    }
+    
     // 构建最终名称
     const composed = [flag, cname];
     if (tags.length) composed.push(...tags);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
     if (airport) composed.push(` - ${airport}`);
+    if (speedStr) composed.push(speedStr);
 
     res.name = buildName(composed);
   });
