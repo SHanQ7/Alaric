@@ -494,7 +494,7 @@ function operator(proxies) {
     let speedStr = '';
     const speedMatch = originalName.match(/(\d+(?:\.\d+)?\s?(?:KB|MB|GB)\/S)/i);
     if (speedMatch) {
-      speedStr = `-${speedMatch[1].toUpperCase()}`;
+      speedStr = ` - ${speedMatch[1].toUpperCase()}`;
     }
 
     // === 构建最终名称 ===
