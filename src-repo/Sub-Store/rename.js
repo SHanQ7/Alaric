@@ -373,7 +373,6 @@ function buildName(parts) {
 function operator(proxies) {
   const outputKey = $arguments.output || 'zh';
   const autofill = parseInt($arguments.autofill) || 2;
-  const del1 = !!$arguments.del1;
   const airport = $arguments.airport || '';
 
   const countryMap = buildCountryMap(outputKey);
@@ -384,7 +383,7 @@ function operator(proxies) {
     const userOthers = JSON.parse($arguments.others || '{}');
     others = Object.entries(userOthers).map(([key, value]) => ({ key: key.toLowerCase(), value }));
   } catch (e) {}
-  // 默认标签，key小写化
+  // 默认标签
   others = others.concat(defaultOthers.map(({ key, value }) => ({ key: key.toLowerCase(), value })));
 
   // 重置国家计数
@@ -396,7 +395,7 @@ function operator(proxies) {
     const originalName = res.name;
     const name = simplify(originalName.toLowerCase());
 
-    // 来源前缀和ISP后缀组合
+    // 来源前缀 + ISP后缀
     const prefixes = [];
     for (const src of sourceMap) {
       if (name.includes(src.key.toLowerCase())) {
@@ -412,11 +411,12 @@ function operator(proxies) {
     }
     const sourcePrefix = prefixes.join('');
 
-    // === 优先 Emoji 识别国家 ===
+    // === 国家识别 ===
     let matched = null;
     const emojis = originalName.match(/[\u{1F1E6}-\u{1F1FF}]{2}/gu) || [];
     const excludeEmoji = ['🇨🇳'];
 
+    // 优先Emoji匹配
     for (const emoji of emojis) {
       if (excludeEmoji.includes(emoji)) continue;
       for (const val of countryMap.values()) {
@@ -428,23 +428,20 @@ function operator(proxies) {
       if (matched) break;
     }
 
-    // 如果 emoji 没匹配，再关键词匹配（优先正则精确匹配）
+    // 若无emoji，关键词匹配
     if (!matched) {
       const countryKeys = Array.from(countryMap.keys()).sort((a, b) => b.length - a.length);
       for (const key of countryKeys) {
-
-        if (key.length < 2) continue; // 防止误判如 "us" 命中 "sushi"
-
+        if (key.length < 2) continue;
         const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const regex = new RegExp(`(^|[^\\u4e00-\\u9fa5a-z0-9])${safeKey}`, 'i');
-
         if (regex.test(name)) {
           matched = countryMap.get(key);
           break;
         }
       }
 
-      // 最后尝试模糊匹配（≥3字符）
+      // 模糊匹配
       if (!matched) {
         for (const key of countryKeys) {
           if (key.length >= 3 && name.includes(key)) {
@@ -454,7 +451,7 @@ function operator(proxies) {
         }
       }
 
-      // 最后尝试 emoji fallback（即使是 🇨🇳 也保底）
+      // 最后fallback emoji
       if (!matched && emojis.length > 0) {
         const fallback = emojis[emojis.length - 1];
         for (const val of countryMap.values()) {
@@ -466,7 +463,7 @@ function operator(proxies) {
       }
     }
 
-    // 国家标识拼接
+    // === 国家标识 ===
     let flag = '', cname = '', countStr = '';
     if (matched) {
       matched.count++;
@@ -475,7 +472,7 @@ function operator(proxies) {
       countStr = matched.count.toString().padStart(autofill, '0');
     }
 
-    // 标签识别（正则防止误命中）
+    // === 标签识别 ===
     const tags = [];
     for (const { key, value } of others) {
       const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
@@ -485,26 +482,27 @@ function operator(proxies) {
       }
     }
 
-    // 倍率匹配
+    // === 倍率匹配（增强版）===
     let rateStr = '';
     const rateRegex = /(?:倍率|rate)[:：]?\s*(\d+(?:\.\d+)?)(?:x|倍)?/i;
+    const rateMatch = originalName.match(rateRegex);
     if (rateMatch) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // 网速匹配（例如 5.4MB/S 或 200KB/S）
+    // === 网速匹配（如 5.4MB/S 或 200KB/S）===
     let speedStr = '';
     const speedMatch = originalName.match(/(\d+(?:\.\d+)?\s?(?:KB|MB|GB)\/S)/i);
     if (speedMatch) {
-      speedStr = speedMatch[1].toUpperCase(); // 保留原值并统一大写
+      speedStr = speedMatch[1].toUpperCase();
     }
-    
-    // 构建最终名称
+
+    // === 构建最终名称 ===
     const composed = [flag, cname];
     if (tags.length) composed.push(...tags);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
-    if (airport) composed.push(` - ${airport}`);
+    if (airport) composed.push(`- ${airport}`);
     if (speedStr) composed.push(speedStr);
 
     res.name = buildName(composed);
