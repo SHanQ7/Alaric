@@ -482,7 +482,7 @@ function operator(proxies) {
       }
     }
 
-    // === 倍率匹配（增强版）===
+    // === 倍率匹配 ===
     let rateStr = '';
     const rateRegex = /(?:倍率|rate)[:：]?\s*(\d+(?:\.\d+)?)(?:x|倍)?/i;
     const rateMatch = originalName.match(rateRegex);
@@ -490,11 +490,11 @@ function operator(proxies) {
       rateStr = `-${rateMatch[1]}x`;
     }
 
-    // === 网速匹配（如 5.4MB/S 或 200KB/S）===
+    // === 网速匹配 ===
     let speedStr = '';
     const speedMatch = originalName.match(/(\d+(?:\.\d+)?\s?(?:KB|MB|GB)\/S)/i);
     if (speedMatch) {
-      speedStr = speedMatch[1].toUpperCase();
+      speedStr = `-${speedMatch[1].toUpperCase()}`;
     }
 
     // === 构建最终名称 ===
