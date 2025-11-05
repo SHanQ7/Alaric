@@ -510,7 +510,7 @@ function operator(proxies) {
     if (tags.length) composed.push(...tags);
     composed.push(countStr);
     if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
-    if (airport) composed.push(`[${airport}]`);
+    if (airport) composed.push(` - ${airport}`);
 
     res.name = buildName(composed);
   });
