@@ -1,7 +1,7 @@
 // 国家映射结构，支持 emoji 和中文名
 const countryList = [
   { enShort: "AD", enShort3: "AND", zh: "安道尔", enFull: "Andorra", emoji: "🇦🇩" },
-  { enShort: "AE", enShort3: "ARE", zh: "阿联酋", enFull: "United Arab Emirates", emoji: "🇦🇪", alias: ["阿拉伯联合酋长国"] },
+  { enShort: "AE", enShort3: "ARE", zh: "阿联酋", enFull: "United Arab Emirates", emoji: "🇦🇪", alias: ["阿拉伯联合酋长国", "迪拜"] },
   { enShort: "AF", enShort3: "AFG", zh: "阿富汗", enFull: "Afghanistan", emoji: "🇦🇫" },
   { enShort: "AG", enShort3: "ATG", zh: "安提瓜和巴布达", enFull: "Antigua and Barbuda", emoji: "🇦🇬" },
   { enShort: "AI", enShort3: "AIA", zh: "安圭拉", enFull: "Anguilla", emoji: "🇦🇮" },
