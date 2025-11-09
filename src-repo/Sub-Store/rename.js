@@ -174,6 +174,7 @@ const countryList = [
   { enShort: "PL", enShort3: "POL", zh: "波兰", enFull: "Poland", emoji: "🇵🇱", alias: ["Warsaw"] },
   { enShort: "PM", enShort3: "SPM", zh: "圣皮埃尔和密克隆", enFull: "Saint Pierre and Miquelon", emoji: "🇵🇲" },
   { enShort: "PN", enShort3: "PCN", zh: "皮特凯恩", enFull: "Pitcairn", emoji: "🇵🇳" },
+  { enShort: "PT", enShort3: "PRT", zh: "葡萄牙", enFull: "Portugal", emoji: "🇵🇹" },
   { enShort: "PR", enShort3: "PRI", zh: "波多黎各", enFull: "Puerto Rico", emoji: "🇵🇷" },
   { enShort: "PS", enShort3: "PSE", zh: "巴勒斯坦", enFull: "Palestine, State of", emoji: "🇵🇸" },
   { enShort: "PW", enShort3: "PLW", zh: "帕劳", enFull: "Palau", emoji: "🇵🇼" },
