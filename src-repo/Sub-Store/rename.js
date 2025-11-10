@@ -28,7 +28,7 @@ const countryList = [
   { enShort: "BL", enShort3: "BLM", zh: "圣巴泰勒米", enFull: "Saint Barthélemy", emoji: "🇧🇱" },
   { enShort: "BM", enShort3: "BMU", zh: "百慕大", enFull: "Bermuda", emoji: "🇧🇲" },
   { enShort: "BN", enShort3: "BRN", zh: "文莱达鲁萨兰国", enFull: "Brunei Darussalam", emoji: "🇧🇳" },
-  { enShort: "BO", enShort3: "BOL", zh: "玻利维亚（多民族国）", enFull: "Bolivia, Plurinational State of", emoji: "🇧🇴" },
+  { enShort: "BO", enShort3: "BOL", zh: "玻利维亚", enFull: "Bolivia, Plurinational State of", emoji: "🇧🇴" },
   { enShort: "BQ", enShort3: "BES", zh: "博内尔、圣尤斯特歇斯和萨巴", enFull: "Bonaire, Sint Eustatius and Saba", emoji: "🇧🇶" },
   { enShort: "BR", enShort3: "BRA", zh: "巴西", enFull: "Brazil", emoji: "🇧🇷", alias: ["São Paulo"] },
   { enShort: "BS", enShort3: "BHS", zh: "巴哈马", enFull: "Bahamas", emoji: "🇧🇸" },
@@ -123,7 +123,7 @@ const countryList = [
   { enShort: "KW", enShort3: "KWT", zh: "科威特", enFull: "Kuwait", emoji: "🇰🇼" },
   { enShort: "KY", enShort3: "CYM", zh: "开曼群岛", enFull: "Cayman Islands", emoji: "🇰🇾" },
   { enShort: "KZ", enShort3: "KAZ", zh: "哈萨克斯坦", enFull: "Kazakhstan", emoji: "🇰🇿", alias: ["Almaty"] },
-  { enShort: "LA", enShort3: "LAO", zh: "老挝人民民主共和国", enFull: "Lao People's Democratic Republic", emoji: "🇱🇦" },
+  { enShort: "LA", enShort3: "LAO", zh: "老挝", enFull: "Lao People's Democratic Republic", emoji: "🇱🇦" },
   { enShort: "LB", enShort3: "LBN", zh: "黎巴嫩", enFull: "Lebanon", emoji: "🇱🇧" },
   { enShort: "LC", enShort3: "LCA", zh: "圣卢西亚", enFull: "Saint Lucia", emoji: "🇱🇨" },
   { enShort: "LI", enShort3: "LIE", zh: "列支敦士登", enFull: "Liechtenstein", emoji: "🇱🇮" },
@@ -135,7 +135,7 @@ const countryList = [
   { enShort: "LV", enShort3: "LVA", zh: "拉脱维亚", enFull: "Latvia", emoji: "🇱🇻" },
   { enShort: "MA", enShort3: "MAR", zh: "摩洛哥", enFull: "Morocco", emoji: "🇲🇦" },
   { enShort: "MC", enShort3: "MCO", zh: "摩纳哥", enFull: "Monaco", emoji: "🇲🇨" },
-  { enShort: "MD", enShort3: "MDA", zh: "摩尔多瓦共和国", enFull: "Moldova, Republic of", emoji: "🇲🇩" },
+  { enShort: "MD", enShort3: "MDA", zh: "摩尔多瓦", enFull: "Moldova, Republic of", emoji: "🇲🇩" },
   { enShort: "MG", enShort3: "MDG", zh: "马达加斯加", enFull: "Madagascar", emoji: "🇲🇬" },
   { enShort: "MH", enShort3: "MHL", zh: "马绍尔群岛", enFull: "Marshall Islands", emoji: "🇲🇭" },
   { enShort: "MK", enShort3: "MKD", zh: "北马其顿", enFull: "North Macedonia", emoji: "🇲🇰" },
@@ -247,22 +247,7 @@ const countryList = [
 
 // 来源识别映射（用于构建机场前缀）
 const sourceMap = [
-  { key: "上海", prefix: "SH" },
-  { key: "广州", prefix: "GZ" },
-  { key: "广东", prefix: "GD" },
-  { key: "深圳", prefix: "SZ" },
-  { key: "北京", prefix: "BJ" },
-  { key: "杭州", prefix: "HZ" },
-  { key: "南京", prefix: "NJ" },
-  { key: "成都", prefix: "CD" },
-  { key: "重庆", prefix: "CQ" },
-  { key: "西安", prefix: "XA" },
-  { key: "长沙", prefix: "CS" },
-  { key: "武汉", prefix: "WH" },
-  { key: "湖北", prefix: "HB" },
-  { key: "安徽", prefix: "AH" },
-  { key: "江苏", prefix: "JS" },
-  { key: "郑州", prefix: "ZZ" }
+
 ];
 
 const ispMap = [
@@ -286,9 +271,8 @@ const defaultOthers = [
   { key: '标准', value: 'Std' },
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
-  { key: '家宽', value: 'Fam' },
+  { key: '家宽', value: 'ISP' },
   { key: 'ISP', value: 'ISP' },
-  { key: 'LB', value: 'LB' },
   { key: 'Akamai', value: 'Akamai' },
   { key: 'Alibaba', value: 'Alibaba' },
   { key: 'BAGE', value: 'BAGE' },
