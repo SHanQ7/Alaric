@@ -420,8 +420,19 @@ function operator(proxies) {
       for (const key of countryKeys) {
         if (key.length < 2) continue;
         const safeKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        const regex = new RegExp(`(^|[^\\u4e00-\\u9fa5a-z0-9])${safeKey}`, 'i');
-        if (regex.test(name)) {
+        const keyLower = key.toLowerCase();
+        if (keyLower.length <= 2) {
+          // tokenized 由 simplified.replace(/[^a-z0-9]+/g,' ') 生成
+          if (tokens.includes(keyLower) || rawTokens.includes(keyLower)) {
+            matched = countryMap.get(key);
+            break;
+          } else {
+            continue;
+          }
+        }
+
+        const boundaryRegex = new RegExp(`(^|[^a-z0-9])${escapeRegex(keyLower)}([^a-z0-9]|$)`, 'i');
+        if (boundaryRegex.test(simplified) || boundaryRegex.test(originalName.toLowerCase())) {
           matched = countryMap.get(key);
           break;
         }
