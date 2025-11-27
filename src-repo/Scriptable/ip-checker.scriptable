@@ -1,0 +1,192 @@
+// 小组件名称: IP风险检测 - 边距最窄版
+// 作者: Gemini (边距优化)
+// -------------------------------------------------------------
+
+// --- 配置变量 (颜色和样式 - 沿用之前的压缩设置) ---
+const BACKGROUND_COLOR = new Color("#151515"); 
+const LABEL_BG_COLOR = new Color("#303030");  
+const VALUE_BG_COLOR = new Color("#252525");  
+const TEXT_COLOR = Color.white();
+const LABEL_WIDTH = 70; 
+const ROW_HEIGHT = 25; 
+const FONT_SIZE = 10;  
+const ROW_SPACING = 3; // ***修改点 1: 减小行间距***
+const CORNER_RADIUS = 6;
+
+
+// --- 风险颜色和类型映射 (保持不变) ---
+function getRiskColor(riskLevel) {
+    const colorMap = {
+        '极度危险': 'rgb(220, 38, 38)', '高风险': 'rgb(239, 68, 68)',      
+        '轻微风险': 'rgb(249, 115, 22)', '纯净': 'rgb(22, 163, 74)',        
+        '极度纯净': 'rgb(34, 197, 94)', '未知': 'rgb(100, 100, 100)'      
+    };
+    return new Color(colorMap[riskLevel] || colorMap['未知']);
+}
+
+function getIpTypeInfo(type) {
+    if (!type) return { text: '未知', color: TEXT_COLOR };
+    const typeMap = {
+        'isp': { text: '住宅', color: new Color("#36893d") }, 
+        'hosting': { text: '机房', color: TEXT_COLOR }, 
+        'business': { text: '商用', color: new Color("#eab308") }, 
+        'cellular': { text: '移动', color: new Color("#3b82f6") } 
+    };
+    
+    const info = typeMap[type.toLowerCase()];
+    if (!info) return { text: type.charAt(0).toUpperCase() + type.slice(1), color: TEXT_COLOR };
+    return info;
+}
+
+
+// --- 风险计算逻辑 (保持不变) ---
+function calculateAbuseScore(data) {
+    const companyScoreStr = data.company?.abuser_score?.match(/([0-9.]+)/)?.[1];
+    const asnScoreStr = data.asn?.abuser_score?.match(/([0-9.]+)/)?.[1];
+    
+    let company = parseFloat(companyScoreStr) || 0;
+    let asn = parseFloat(asnScoreStr) || 0;
+
+    let baseScore = ((company + asn) / 2) * 5;
+
+    let riskAddition = 0;
+    if (data.is_bogon === true) {
+        riskAddition += 100; 
+    }
+    
+    const otherRiskFlags = [
+        data.is_crawler, data.is_proxy, data.is_vpn, data.is_tor, data.is_abuser
+    ];
+    
+    const otherRiskCount = otherRiskFlags.filter(flag => flag === true).length;
+    riskAddition += otherRiskCount * 15;
+
+    let finalScore = baseScore * 100 + riskAddition;
+    finalScore = Math.min(finalScore, 100); 
+    
+    if (baseScore === 0 && riskAddition === 0 && finalScore === 0) return null;
+
+    return finalScore;
+}
+
+function getRiskLevelText(percentage) {
+    if (percentage === null || percentage === undefined) return '未知';
+    if (percentage >= 20) return '高风险';
+    if (percentage >= 5) return '轻微风险';
+    if (percentage >= 0.25) return '纯净';
+    return '极度纯净'; 
+}
+
+
+// --- API 获取函数 (保持不变) ---
+async function fetchChineseGeoInfo() {
+  try {
+    const url = "http://ip-api.com/json/?lang=zh-CN"; 
+    return await new Request(url).loadJSON(); 
+  } catch (error) {
+    return null;
+  }
+}
+
+async function fetchIPDetails(ip) {
+  try {
+    const url = `https://api.ipapi.is/?q=${ip}`; 
+    return await new Request(url).loadJSON();
+  } catch (error) {
+    return null;
+  }
+}
+
+
+// --- 辅助函数：创建数据行 (标签 + 数值) ---
+function createDataRow(stack, labelText, valueText, valueColor = TEXT_COLOR, valueFont = FONT_SIZE) {
+  const rowStack = stack.addStack();
+  rowStack.layoutHorizontally();
+  rowStack.centerAlignContent();
+  rowStack.spacing = 3; // ***修改点 2: 减小水平间距***
+
+  // --- 左侧标签框 ---
+  const labelStack = rowStack.addStack();
+  labelStack.backgroundColor = LABEL_BG_COLOR;
+  labelStack.size = new Size(LABEL_WIDTH, ROW_HEIGHT);
+  labelStack.cornerRadius = CORNER_RADIUS;
+  labelStack.centerAlignContent();
+
+  const label = labelStack.addText(labelText);
+  label.font = Font.systemFont(FONT_SIZE); 
+  label.textColor = TEXT_COLOR;
+  label.centerAlignText();
+
+  // --- 右侧数值框 ---
+  const valueStack = rowStack.addStack();
+  valueStack.backgroundColor = VALUE_BG_COLOR;
+  valueStack.size = new Size(-1, ROW_HEIGHT); 
+  valueStack.cornerRadius = CORNER_RADIUS;
+  valueStack.setPadding(0, 5, 0, 5); // ***修改点 3: 减小数值框内部填充***
+  valueStack.centerAlignContent();
+  
+  // 渲染数值
+  const value = valueStack.addText(valueText);
+  value.font = Font.systemFont(valueFont);
+  value.textColor = valueColor;
+  value.leftAlignText();
+}
+
+// --- 主要函数：创建小组件 ---
+
+async function createWidget() {
+  const widget = new ListWidget();
+  widget.backgroundColor = BACKGROUND_COLOR;
+  // ***修改点 4: 减小整体边距 (上/下/左/右)***
+  widget.setPadding(3, 5, 3, 5); 
+  
+  const mainStack = widget.addStack();
+  mainStack.layoutVertically();
+  mainStack.spacing = ROW_SPACING; // 使用修改后的行间距
+
+  const geoInfo = await fetchChineseGeoInfo();
+  if (!geoInfo || !geoInfo.query) {
+    mainStack.addText("网络错误。");
+    return widget;
+  }
+  
+  const ip = geoInfo.query;
+  const detailInfo = await fetchIPDetails(ip);
+  if (!detailInfo || detailInfo.error) {
+      mainStack.addText(`无法获取详细信息。`);
+      return widget;
+  }
+
+  // --- 数据准备 ---
+  const locationText = `${geoInfo.country || "N/A"}, ${geoInfo.city || "N/A"}`.trim();
+  const ispText = geoInfo.isp || "N/A";
+  const asnText = detailInfo.asn?.descr || detailInfo.asn?.org || "N/A";
+  const ipTypeRaw = detailInfo.company?.type || 'isp';
+  
+  const ipTypeInfo = getIpTypeInfo(ipTypeRaw);
+  const mergedValue = `${ispText} - ${asnText.substring(0, 15)}... - ${ipTypeInfo.text}`;
+  const mergedColor = ipTypeInfo.color;
+
+  const riskScore = calculateAbuseScore(detailInfo);
+  const riskLevelText = getRiskLevelText(riskScore);
+  const riskColor = getRiskColor(riskLevelText);
+  const riskValueText = riskScore !== null ? `${riskScore.toFixed(2)}% (${riskLevelText})` : "N/A";
+
+
+  // --- 绘制四行数据 ---
+  createDataRow(mainStack, "IP 地址", ip);
+  createDataRow(mainStack, "Location", locationText);
+  createDataRow(mainStack, "ISP/类型", mergedValue, mergedColor);
+  createDataRow(mainStack, "风险值", riskValueText, riskColor);
+  
+  return widget;
+}
+
+// 运行小组件
+const widget = await createWidget();
+if (config.runsInWidget) {
+  Script.setWidget(widget);
+} else {
+  widget.presentMedium(); 
+}
+Script.complete();
