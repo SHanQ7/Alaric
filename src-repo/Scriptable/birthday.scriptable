@@ -1,0 +1,95 @@
+// --- 配置区域 ---
+const FAMILY_MEMBERS = [
+  { name: "妈妈", lunarMonth: 2, lunarDay: 12 }, // 农历二月十二
+  { name: "爸爸", lunarMonth: 5, lunarDay: 18 }, // 农历五月十八
+  { name: "奶奶", lunarMonth: 10, lunarDay: 1 }, // 农历十月初一
+];
+
+// 颜色主题
+const TITLE_COLOR = Color.white();
+const DAYS_COLOR = new Color("#ffcc00");
+const BG_COLOR = new Color("#1c1c1e");
+
+// --- 核心逻辑 ---
+
+// 获取农历对应的公历日期（精简版转换逻辑）
+async function getNextLunarBirthday(lunarMonth, lunarDay) {
+  let now = new Date();
+  let currentYear = now.getFullYear();
+  
+  // 使用内置 API 获取当年的公历日期
+  async function lunarToSolar(year, month, day) {
+    let url = `https://www.iamwawa.cn/home/nongli/ajax?type=lunar&year=${year}&month=${month}&day=${day}`;
+    let req = new Request(url);
+    let res = await req.loadJSON();
+    // 接口返回格式：res.data.solar (YYYY-MM-DD)
+    return new Date(res.data.solar);
+  }
+
+  // 获取今年的农历转公历
+  let solarDate = await lunarToSolar(currentYear, lunarMonth, lunarDay);
+  
+  // 如果今年生日已过，计算明年的
+  if (now > solarDate) {
+    solarDate = await lunarToSolar(currentYear + 1, lunarMonth, lunarDay);
+  }
+  
+  return solarDate;
+}
+
+// 构建组件
+async function createWidget() {
+  let widget = new ListWidget();
+  widget.backgroundColor = BG_COLOR;
+  widget.setPadding(15, 15, 15, 15);
+
+  let header = widget.addText("🏮 农历生日倒计时");
+  header.textColor = Color.gray();
+  header.font = Font.systemFont(11);
+  widget.addSpacing(10);
+
+  // 循环计算所有家人
+  let results = [];
+  for (let person of FAMILY_MEMBERS) {
+    let solarBirthday = await getNextLunarBirthday(person.lunarMonth, person.lunarDay);
+    let diff = solarBirthday.getTime() - new Date().getTime();
+    let days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    results.push({ name: person.name, days: days });
+  }
+
+  // 排序
+  results.sort((a, b) => a.days - b.days);
+
+  // 渲染 UI
+  for (let item of results) {
+    let row = widget.addStack();
+    row.centerAlignContent();
+    
+    let nameTxt = row.addText(item.name);
+    nameTxt.textColor = TITLE_COLOR;
+    nameTxt.font = Font.boldSystemFont(15);
+    
+    row.addSpacer();
+    
+    let numTxt = row.addText(item.days.toString());
+    numTxt.textColor = DAYS_COLOR;
+    numTxt.font = Font.boldSystemFont(18);
+    
+    let unitTxt = row.addText(" 天");
+    unitTxt.textColor = Color.gray();
+    unitTxt.font = Font.systemFont(12);
+    
+    widget.addSpacing(8);
+  }
+
+  return widget;
+}
+
+// --- 运行 ---
+let widget = await createWidget();
+if (config.runsInWidget) {
+  Script.setWidget(widget);
+} else {
+  widget.presentSmall();
+}
+Script.complete();
