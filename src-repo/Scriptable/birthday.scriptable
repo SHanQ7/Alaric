@@ -5,81 +5,60 @@ const FAMILY_MEMBERS = [
   { name: "奶奶 👵", lunarMonth: 10, lunarDay: 1 },
 ];
 
-const TITLE_COLOR = Color.white();
-const DAYS_COLOR = new Color("#ffcc00");
-const BG_COLOR = new Color("#1c1c1e");
+// --- 颜色配置 ---
+const THEME = {
+  bg: new Color("#1c1c1e"),
+  title: Color.white(),
+  days: new Color("#ffcc00"),
+  urgent: Color.red(),
+  unit: Color.gray()
+};
 
-// --- 核心逻辑 ---
-
-// 农历转公历函数
-async function getSolarBirthday(lunarMonth, lunarDay) {
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  
-  // 尝试获取今年的公历日期
-  let solarDate = await fetchSolarDate(currentYear, lunarMonth, lunarDay);
-  
-  // 如果今年生日已过，则计算明年的
-  if (solarDate < now) {
-    solarDate = await fetchSolarDate(currentYear + 1, lunarMonth, lunarDay);
-  }
-  return solarDate;
-}
-
-// 具体的 API 请求封装
-async function fetchSolarDate(year, month, day) {
-  try {
-    const url = `https://www.iamwawa.cn/home/nongli/ajax?type=lunar&year=${year}&month=${month}&day=${day}`;
-    const req = new Request(url);
-    const res = await req.loadJSON();
-    if (res && res.data && res.data.solar) {
-      // res.data.solar 格式为 "2024-03-21"
-      return new Date(res.data.solar.replace(/-/g, "/"));
-    }
-  } catch (e) {
-    console.error("API请求失败: " + e);
-  }
-  return new Date(); // 失败回退
-}
-
-// 主渲染函数
-async function run() {
+async function main() {
   let widget = new ListWidget();
-  widget.backgroundColor = BG_COLOR;
+  widget.backgroundColor = THEME.bg;
   widget.setPadding(15, 15, 15, 15);
 
+  // 标题
   let header = widget.addText("🏮 农历生日倒计时");
   header.textColor = Color.gray();
   header.font = Font.systemFont(11);
   widget.addSpacing(10);
 
   let results = [];
+
+  // 核心循环：处理农历转公历
   for (let person of FAMILY_MEMBERS) {
-    let solarDate = await getSolarBirthday(person.lunarMonth, person.lunarDay);
-    let diff = solarDate.getTime() - new Date().getTime();
-    let days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-    results.push({ name: person.name, days: days });
+    try {
+      let solarDate = await getNextSolarBirthday(person.lunarMonth, person.lunarDay);
+      let diff = solarDate.getTime() - new Date().getTime();
+      let days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+      results.push({ name: person.name, days: days });
+    } catch (e) {
+      console.log(`获取 ${person.name} 数据失败`);
+    }
   }
 
-  // 排序：天数少的在前
+  // 排序
   results.sort((a, b) => a.days - b.days);
 
+  // 构建 UI
   for (let item of results) {
     let row = widget.addStack();
     row.centerAlignContent();
     
     let nameTxt = row.addText(item.name);
-    nameTxt.textColor = TITLE_COLOR;
+    nameTxt.textColor = THEME.title;
     nameTxt.font = Font.boldSystemFont(15);
     
     row.addSpacer();
     
     let numTxt = row.addText(item.days.toString());
-    numTxt.textColor = (item.days <= 7) ? Color.red() : DAYS_COLOR; // 7天内变红
+    numTxt.textColor = item.days <= 7 ? THEME.urgent : THEME.days;
     numTxt.font = Font.boldSystemFont(18);
     
     let unitTxt = row.addText(" 天");
-    unitTxt.textColor = Color.gray();
+    unitTxt.textColor = THEME.unit;
     unitTxt.font = Font.systemFont(12);
     
     widget.addSpacing(8);
@@ -90,8 +69,30 @@ async function run() {
   } else {
     widget.presentSmall();
   }
-  Script.complete();
 }
 
-// 启动脚本
-await run();
+// 农历转公历的具体逻辑
+async function getNextSolarBirthday(month, day) {
+  const now = new Date();
+  const year = now.getFullYear();
+  
+  // 检查今年的生日
+  let solar = await fetchApi(year, month, day);
+  // 如果今年已过，取明年
+  if (solar < now) {
+    solar = await fetchApi(year + 1, month, day);
+  }
+  return solar;
+}
+
+async function fetchApi(y, m, d) {
+  const url = `https://www.iamwawa.cn/home/nongli/ajax?type=lunar&year=${y}&month=${m}&day=${d}`;
+  let req = new Request(url);
+  let res = await req.loadJSON();
+  // 格式化日期：将 "-" 替换为 "/" 以保证 iOS 兼容性
+  return new Date(res.data.solar.replace(/-/g, "/"));
+}
+
+// 启动执行
+await main();
+Script.complete();
