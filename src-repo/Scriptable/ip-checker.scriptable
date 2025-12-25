@@ -1,99 +1,131 @@
-// IPPure 当前网络环境检查脚本
+// IPPure 风险监测 (极简圆环版)
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
     try {
         let req = new Request(url);
-        req.timeoutInterval = 10;
-        req.headers = {
-            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 16_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.0 Mobile/15E148 Safari/604.1"
-        };
+        req.timeoutInterval = 8;
         let data = await req.loadJSON();
         return data;
-    } catch (e) {
-        return null;
-    }
+    } catch (e) { return null; }
 }
 
-// 主逻辑
 const data = await fetchData();
 let widget = await createWidget(data);
 
 if (!config.runsInWidget) {
-    await widget.presentMedium(); // 预览中号组件
+    await widget.presentMedium();
 }
-
 Script.setWidget(widget);
 Script.complete();
 
 async function createWidget(data) {
     let w = new ListWidget();
-    // 设置渐变背景，更现代感
-    let gradient = new LinearGradient();
-    gradient.colors = [new Color("#1a1a1a"), new Color("#2c3e50")];
-    gradient.locations = [0, 1];
-    w.backgroundGradient = gradient;
+    w.setPadding(12, 16, 12, 16);
+    
+    // 背景：全黑更显高级
+    w.backgroundColor = new Color("#000000");
 
     if (!data) {
-        let errorTxt = w.addText("⚠️ 无法获取数据，请检查网络");
-        errorTxt.textColor = Color.white();
-        errorTxt.centerAlignText();
+        let msg = w.addText("⚠️ 数据获取失败");
+        msg.textColor = Color.white();
+        msg.centerAlignText();
         return w;
     }
 
-    // 头部：标题与国旗
-    let headerStack = w.addStack();
-    headerStack.centerAlignContent();
-    let flag = getFlagEmoji(data.countryCode);
-    let title = headerStack.addText(`${flag} IPPure 节点详情`);
-    title.font = Font.boldSystemFont(16);
-    title.textColor = Color.white();
-    
-    w.addSpacer(10);
+    const score = data.fraudScore || 0;
+    const risk = getRiskLevel(score);
+    const flag = getFlagEmoji(data.countryCode);
 
-    // 信息展示函数
-    const addRow = (label, value, valueColor) => {
-        let rowStack = w.addStack();
-        let labelText = rowStack.addText(label + ": ");
-        labelText.font = Font.systemFont(13);
-        labelText.textColor = new Color("#cccccc");
+    // 主布局
+    let mainStack = w.addStack();
+    mainStack.centerAlignContent();
+
+    // --- 左侧信息列 ---
+    let leftStack = mainStack.addStack();
+    leftStack.layoutVertically();
+    
+    const addInfo = (label, value) => {
+        let s = leftStack.addStack();
+        let lText = s.addText(label + "  ");
+        lText.font = Font.systemFont(12);
+        lText.textColor = new Color("#888888");
         
-        let valueText = rowStack.addText(value);
-        valueText.font = Font.mediumSystemFont(13);
-        valueText.textColor = valueColor || Color.white();
-        w.addSpacer(4);
+        let vText = s.addText(value);
+        vText.font = Font.mediumSystemFont(12);
+        vText.textColor = Color.white();
+        vText.lineLimit = 1;
+        vText.minimumScaleFactor = 0.8;
+        leftStack.addSpacer(5);
     };
 
-    const risk = getRiskLevel(data.fraudScore || 0);
-
-    // 填充数据
-    addRow("IP 地址", data.ip || "N/A");
-    addRow("运营商", data.asOrganization || "N/A");
-    addRow("地理位置", `${data.region || ''} - ${data.city || ''}`);
-    addRow("网络类型", data.isResidential ? "🏠 住宅网络" : "🏢 数据中心");
-    addRow("欺诈分", `${data.fraudScore || 0} 分`, risk.color);
-    addRow("风险等级", risk.text, risk.color);
-
-    w.addSpacer();
+    addInfo("节点", `${flag} ${data.countryCode || 'Unknown'}`);
+    addInfo("地址", data.ip || "N/A");
+    addInfo("宽带", data.asOrganization || "N/A");
+    addInfo("类型", data.isResidential ? "住宅网络" : "数据中心");
     
-    // 底部更新时间
-    let footer = w.addText(`更新于 ${new Date().toLocaleTimeString()}`);
-    footer.font = Font.systemFont(10);
-    footer.textColor = new Color("#888888");
-    footer.rightAlignText();
+    leftStack.addSpacer(6);
+    let time = leftStack.addText(`Last update: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
+    time.font = Font.systemFont(9);
+    time.textColor = new Color("#444444");
+
+    mainStack.addSpacer(); // 撑开左右
+
+    // --- 右侧圆环列 ---
+    let rightStack = mainStack.addStack();
+    rightStack.layoutVertically();
+    rightStack.centerAlignContent();
+
+    // 绘图区域
+    let canvas = new DrawContext();
+    const size = 200;
+    canvas.size = new Size(size, size);
+    canvas.opaque = false;
+    canvas.respectScreenScale = true;
+
+    // 1. 绘制底环
+    canvas.setLineWidth(16);
+    canvas.setStrokeColor(new Color("#222222"));
+    canvas.strokeEllipse(new Rect(10, 10, size-20, size-20));
+
+    // 2. 绘制进度环 (点状模拟)
+    canvas.setStrokeColor(risk.color);
+    const deg = (score / 100) * 360;
+    for (let i = 0; i <= deg; i += 3) {
+        let x = size/2 + (size/2-10) * Math.cos((i-90) * Math.PI/180);
+        let y = size/2 + (size/2-10) * Math.sin((i-90) * Math.PI/180);
+        canvas.fillEllipse(new Rect(x-8, y-8, 16, 16));
+    }
+
+    // 3. 在圆环中心绘制分数
+    canvas.setTextColor(Color.white());
+    canvas.setFont(Font.boldSystemFont(48));
+    const scoreStr = `${score}`;
+    // 简单的居中算法
+    const rect = new Rect(0, size/2 - 30, size, 60);
+    canvas.drawTextInRect(scoreStr, rect);
+
+    let ringImage = rightStack.addImage(canvas.getImage());
+    ringImage.imageSize = new Size(90, 90);
+    
+    rightStack.addSpacer(6);
+    let riskLabel = rightStack.addText(risk.text);
+    riskLabel.font = Font.boldSystemFont(13);
+    riskLabel.textColor = risk.color;
+    riskLabel.centerAlignText();
 
     return w;
 }
 
 function getRiskLevel(score) {
-    if (score <= 25) return { text: "低风险 (安全)", color: new Color("#28a745") };
-    if (score <= 50) return { text: "中风险 (预警)", color: new Color("#ffc107") };
-    if (score <= 75) return { text: "高风险 (危险)", color: new Color("#ff8c00") };
-    return { text: "极高风险 (高危)", color: new Color("#dc3545") };
+    if (score <= 25) return { text: "安全", color: new Color("#34c759") };
+    if (score <= 50) return { text: "中等", color: new Color("#ffcc00") };
+    if (score <= 75) return { text: "危险", color: new Color("#ff9500") };
+    return { text: "极高风险", color: new Color("#ff3b30") };
 }
 
 function getFlagEmoji(countryCode) {
-    if (!countryCode) return "🌐";
+    if (!countryCode) return "🏳️";
     return countryCode.toUpperCase().replace(/./g, char => 
         String.fromCodePoint(127397 + char.charCodeAt())
     );
