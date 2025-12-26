@@ -1,4 +1,4 @@
-// IPPure 风险监测 - 卡片标签美化版
+// IPPure 风险监测 - 正方形边框标签版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
@@ -22,17 +22,17 @@ async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(10, 16, 10, 16);
 
-  // 动态颜色配置
+  // --- 颜色定义 ---
   const bgColor = Color.dynamic(new Color("#FFFFFF"), new Color("#1C1C1E"));
   const mainTextColor = Color.dynamic(new Color("#000000"), new Color("#FFFFFF"));
-  // 标签框的背景色：白天浅紫/灰，夜间深紫/灰
-  const tagBgColor = Color.dynamic(new Color("#F2F2F7"), new Color("#2C2C2E"));
-  const tagTextColor = Color.dynamic(new Color("#5856D6"), new Color("#9897EF")); // 紫色系，呼应您的图片
+  // 边框颜色（您图片中的紫色）
+  const squareColor = new Color("#8165AC");
+  const ringBgColor = Color.dynamic(new Color("#E5E5EA"), new Color("#2C2C2E"));
 
   w.backgroundColor = bgColor;
 
   if (!data) {
-    let msg = w.addText("⚠️ 数据连接失败");
+    let msg = w.addText("⚠️ 连接失败");
     msg.textColor = mainTextColor;
     msg.centerAlignText();
     return w;
@@ -49,42 +49,48 @@ async function createWidget(data) {
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
   
-  // 核心：创建像图片一样的卡片标签样式
-  const addInfo = (label, value) => {
+  // 核心：正方形边框标签函数
+  const addBoxInfo = (shortLabel, fullValue) => {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
     
-    // 标签容器（框框）
-    let labelBox = rowStack.addStack();
-    labelBox.backgroundColor = tagBgColor;
-    labelBox.cornerRadius = 4; // 圆角
-    labelBox.setPadding(2, 4, 2, 4); // 框内边距
+    // 创建正方形容器
+    const boxSize = new Size(22, 22); // 针对 iPhone 13 优化的大小
+    let boxStack = rowStack.addStack();
+    boxStack.size = boxSize;
+    boxStack.cornerRadius = 6;
+    boxStack.borderWidth = 2; // 边框粗细
+    boxStack.borderColor = squareColor;
+    boxStack.centerAlignContent();
     
-    let lText = labelBox.addText(label);
+    // 方框内的文字（取标签首字或缩写）
+    let lText = boxStack.addText(shortLabel);
     lText.font = Font.boldSystemFont(10);
-    lText.textColor = tagTextColor;
+    lText.textColor = squareColor;
     
-    rowStack.addSpacer(6); // 框与文字的间距
+    rowStack.addSpacer(10); // 方框与后面文字的间距
     
-    let vText = rowStack.addText(value);
-    vText.font = Font.mediumSystemFont(11);
+    // 右侧数值
+    let vText = rowStack.addText(fullValue);
+    vText.font = Font.mediumSystemFont(12);
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
     vText.minimumScaleFactor = 0.8;
     
-    leftStack.addSpacer(5);
+    leftStack.addSpacer(6); // 行间距
   };
 
-  addInfo("出口位置", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
-  addInfo("IP地址", data.ip || "N/A");
-  addInfo("运营商", data.asOrganization || "N/A");
-  addInfo("ASN编号", data.asn ? `AS${data.asn}` : "N/A");
-  addInfo("网络类型", data.isResidential ? "住宅网络" : "数据中心");
+  // 填入数据：第一个参数为方框内显示的简称
+  addBoxInfo("位", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
+  addBoxInfo("地", data.ip || "N/A");
+  addBoxInfo("商", data.asOrganization || "N/A");
+  addBoxInfo("编", data.asn ? `AS${data.asn}` : "N/A");
+  addBoxInfo("类", data.isResidential ? "住宅" : "机房");
   
   leftStack.addSpacer(2);
   let time = leftStack.addText(`Updated: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
   time.font = Font.systemFont(8);
-  time.textColor = Color.dynamic(new Color("#CCCCCC"), new Color("#444444"));
+  time.textColor = new Color("#8E8E93");
 
   mainStack.addSpacer();
 
@@ -95,19 +101,19 @@ async function createWidget(data) {
   ringStack.centerAlignContent();
 
   let canvas = new DrawContext();
-  const size = 200;
-  canvas.size = new Size(size, size);
+  const canvasSize = 200;
+  canvas.size = new Size(canvasSize, canvasSize);
   canvas.opaque = false;
   
   canvas.setLineWidth(16);
-  canvas.setStrokeColor(Color.dynamic(new Color("#E5E5EA"), new Color("#2C2C2E")));
-  canvas.strokeEllipse(new Rect(10, 10, size-20, size-20));
+  canvas.setStrokeColor(ringBgColor);
+  canvas.strokeEllipse(new Rect(10, 10, canvasSize-20, canvasSize-20));
   
   canvas.setStrokeColor(risk.color);
   const deg = (score / 100) * 360;
   for (let i = 0; i <= deg; i += 2.5) {
-    let x = size/2 + (size/2-10) * Math.cos((i-90) * Math.PI/180);
-    let y = size/2 + (size/2-10) * Math.sin((i-90) * Math.PI/180);
+    let x = canvasSize/2 + (canvasSize/2-10) * Math.cos((i-90) * Math.PI/180);
+    let y = canvasSize/2 + (canvasSize/2-10) * Math.sin((i-90) * Math.PI/180);
     canvas.fillEllipse(new Rect(x-9, y-9, 18, 18));
   }
   
