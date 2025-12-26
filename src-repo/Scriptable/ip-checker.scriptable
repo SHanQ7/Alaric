@@ -97,8 +97,8 @@ async function createWidget(data) {
   // 按照你的要求更新：IP位置, IP地址, ISP, ASN, IP类型
   addNeonInfo("IP位置", `${flag} ${data.countryCode || 'UN'} · ${data.city || '未知'}`);
   addNeonInfo("IP地址", data.ip || "N/A");
-  addNeonInfo("ISP服", data.asOrganization || "N/A");
-  addNeonInfo("ASN编", data.asn ? `AS${data.asn}` : "N/A");
+  addNeonInfo("ISP", data.asOrganization || "N/A");
+  addNeonInfo("ASN", data.asn ? `AS${data.asn}` : "N/A");
   addNeonInfo("IP类型", data.isResidential ? "住宅网络" : "数据中心");
   
   leftStack.addSpacer(2);
