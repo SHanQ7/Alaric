@@ -1,4 +1,4 @@
-// IPPure 风险监测 - 玻璃拟态美化版
+// IPPure 风险监测 - 终极紫色霓虹版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
@@ -22,30 +22,27 @@ async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(8, 12, 8, 12);
 
-  // --- 高级色彩定义 ---
+  // --- 颜色定义 ---
   const isDark = Device.isUsingDarkAppearance();
-  const bgColor = Color.dynamic(new Color("#FFFFFF"), new Color("#0A0A0C"));
+  const purpleNeon = new Color("#8165AC"); // 核心紫色
+  const purpleGlow = new Color("#8165AC", 0.3); // 发光层
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
-  const squareColor = new Color("#8165AC"); // 专属紫
-  const subBgColor = Color.dynamic(new Color("#F2F2F7"), new Color("#1C1C1E"));
   
-  // 背景渐变
-  let startColor = isDark ? new Color("#161618") : new Color("#FFFFFF");
-  let endColor = isDark ? new Color("#0A0A0C") : new Color("#F9F9FB");
+  // 深邃背景渐变
   let gradient = new LinearGradient();
-  gradient.colors = [startColor, endColor];
-  gradient.locations = [0, 1];
+  gradient.colors = isDark ? 
+    [new Color("#0D0D0F"), new Color("#050505")] : 
+    [new Color("#F5F5F7"), new Color("#FFFFFF")];
   w.backgroundGradient = gradient;
 
   if (!data) {
-    let msg = w.addText("⚠️ 连接中...");
-    msg.textColor = mainTextColor;
+    let msg = w.addText("⚠️ 正在扫描网络...");
+    msg.textColor = purpleNeon;
     msg.centerAlignText();
     return w;
   }
 
   const score = data.fraudScore || 0;
-  const risk = getRiskLevel(score);
   const flag = getFlagEmoji(data.countryCode);
 
   let mainStack = w.addStack();
@@ -55,67 +52,67 @@ async function createWidget(data) {
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
   
-  const addStyledInfo = (shortLabel, fullValue) => {
+  const addNeonInfo = (label, value) => {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
     
-    // 1. 左侧标签方框 (带背景填充)
+    // 1. 左侧紫色方框标签
     let labelStack = rowStack.addStack();
-    labelStack.size = new Size(26, 22); 
+    labelStack.size = new Size(42, 22); // 宽度增加以容纳汉字
     labelStack.centerAlignContent();
 
     let boxStack = labelStack.addStack();
-    boxStack.size = new Size(18, 18); 
-    boxStack.cornerRadius = 5;
+    boxStack.size = new Size(38, 18); 
+    boxStack.cornerRadius = 4;
     boxStack.borderWidth = 1.5; 
-    boxStack.borderColor = squareColor;
-    boxStack.backgroundColor = new Color(squareColor.hex, 0.1); // 10% 透明填充
+    boxStack.borderColor = purpleNeon;
+    boxStack.backgroundColor = new Color(purpleNeon.hex, 0.1);
     boxStack.centerAlignContent();
     
-    let lText = boxStack.addText(shortLabel);
+    let lText = boxStack.addText(label);
     lText.font = Font.boldSystemFont(9);
-    lText.textColor = squareColor;
+    lText.textColor = purpleNeon;
     
-    rowStack.addSpacer(4); 
+    rowStack.addSpacer(6); 
 
-    // 2. 右侧信息椭圆容器 (宽度优化为 135)
+    // 2. 右侧紫色椭圆数值容器
     let infoValueStack = rowStack.addStack();
-    infoValueStack.size = new Size(135, 20); 
+    infoValueStack.size = new Size(120, 20); 
     infoValueStack.cornerRadius = 10; 
     infoValueStack.borderWidth = 2; 
-    infoValueStack.borderColor = squareColor;
-    infoValueStack.backgroundColor = Color.dynamic(new Color("#FFFFFF", 0.5), new Color("#FFFFFF", 0.05));
+    infoValueStack.borderColor = purpleNeon;
+    infoValueStack.backgroundColor = Color.dynamic(new Color("#8165AC", 0.05), new Color("#FFFFFF", 0.05));
     infoValueStack.setPadding(0, 8, 0, 8);
     infoValueStack.centerAlignContent();
 
-    let vText = infoValueStack.addText(fullValue);
+    let vText = infoValueStack.addText(value);
     vText.font = Font.boldSystemFont(10);
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
-    vText.minimumScaleFactor = 0.7;
+    vText.minimumScaleFactor = 0.6;
     
     leftStack.addSpacer(3); 
   };
 
-  // 按照你的要求更新标签内容
-  addStyledInfo("位", `${flag} ${data.countryCode || 'UN'} · ${data.city || 'Unknown'}`);
-  addStyledInfo("址", data.ip || "N/A");
-  addStyledInfo("服", data.asOrganization || "N/A");
-  addStyledInfo("编", data.asn ? `AS${data.asn}` : "N/A");
-  addStyledInfo("型", data.isResidential ? "住宅网络" : "机房网络");
+  // 按照你的要求更新：IP位置, IP地址, ISP, ASN, IP类型
+  addNeonInfo("IP位置", `${flag} ${data.countryCode || 'UN'} · ${data.city || '未知'}`);
+  addNeonInfo("IP地址", data.ip || "N/A");
+  addNeonInfo("ISP服", data.asOrganization || "N/A");
+  addNeonInfo("ASN编", data.asn ? `AS${data.asn}` : "N/A");
+  addNeonInfo("IP类型", data.isResidential ? "住宅网络" : "数据中心");
   
   leftStack.addSpacer(2);
-  let time = leftStack.addText(`Last Scan: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
-  time.font = Font.mediumSystemFont(8);
-  time.textColor = squareColor;
-  time.textOpacity = 0.5;
+  let time = leftStack.addText(`SECURITY SCAN: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
+  time.font = Font.systemFont(8);
+  time.textColor = purpleNeon;
+  time.textOpacity = 0.6;
 
   mainStack.addSpacer();
 
-  // --- 右侧圆环栏 (增加阴影与发光感) ---
+  // --- 右侧圆环栏 (紫色霓虹质感) ---
   let rightStack = mainStack.addStack();
   let ringStack = rightStack.addStack();
-  ringStack.size = new Size(92, 92);
+  ringStack.size = new Size(95, 95);
   ringStack.centerAlignContent();
 
   let canvas = new DrawContext();
@@ -123,18 +120,26 @@ async function createWidget(data) {
   canvas.size = new Size(cSize, cSize);
   canvas.opaque = false;
   
-  // 绘制底部发光环
-  canvas.setLineWidth(12);
-  canvas.setStrokeColor(new Color(risk.color.hex, 0.2));
+  // 1. 底层霓虹晕光
+  canvas.setLineWidth(14);
+  canvas.setStrokeColor(purpleGlow);
   canvas.strokeEllipse(new Rect(10, 10, cSize-20, cSize-20));
   
-  // 绘制主进度点 (带发光)
-  canvas.setStrokeColor(risk.color);
+  // 2. 绘制紫色霓虹进度 (多点堆叠模拟发光)
   const deg = (score / 100) * 360;
-  for (let i = 0; i <= deg; i += 2.5) {
+  for (let i = 0; i <= deg; i += 2) {
+    // 渐变感：从深紫到亮紫
+    let opacity = 0.5 + (i / 720);
+    canvas.setStrokeColor(new Color(purpleNeon.hex, opacity));
+    
     let x = cSize/2 + (cSize/2-10) * Math.cos((i-90) * Math.PI/180);
     let y = cSize/2 + (cSize/2-10) * Math.sin((i-90) * Math.PI/180);
+    
+    // 绘制主光点
     canvas.fillEllipse(new Rect(x-8, y-8, 16, 16));
+    // 绘制核心亮白点，模拟灯管中心
+    canvas.setFillColor(new Color("#FFFFFF", 0.4));
+    canvas.fillEllipse(new Rect(x-3, y-3, 6, 6));
   }
   
   ringStack.backgroundImage = canvas.getImage();
@@ -143,23 +148,16 @@ async function createWidget(data) {
   centerColumn.layoutVertically();
   
   let scoreText = centerColumn.addText(`${score}`);
-  scoreText.font = Font.boldSystemFont(26);
+  scoreText.font = Font.boldSystemFont(28);
   scoreText.textColor = mainTextColor;
   scoreText.centerAlignText();
   
-  let riskText = centerColumn.addText(risk.text);
+  let riskText = centerColumn.addText("RISK");
   riskText.font = Font.boldSystemFont(10);
-  riskText.textColor = risk.color;
+  riskText.textColor = purpleNeon;
   riskText.centerAlignText();
 
   return w;
-}
-
-function getRiskLevel(score) {
-  if (score <= 25) return { text: "SAFE", color: new Color("#34C759") };
-  if (score <= 50) return { text: "WARN", color: new Color("#FFCC00") };
-  if (score <= 75) return { text: "RISK", color: new Color("#FF9500") };
-  return { text: "DANGER", color: new Color("#FF3B30") };
 }
 
 function getFlagEmoji(countryCode) {
