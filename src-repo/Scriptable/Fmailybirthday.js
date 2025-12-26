@@ -1,6 +1,3 @@
-// Variables used by Scriptable.
-// icon-color: gold; icon-glyph: cake;
-
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
