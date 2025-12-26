@@ -5,7 +5,7 @@ const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
 const VERSION = "1.5.0";
-const GITHUB_URL = "https://raw.githubusercontent.com/你的用户名/你的仓库名/main/BirthdayWidget.js";
+const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 自动配色系统】=================
 const isNight = Device.isUsingDarkAppearance();
