@@ -1,3 +1,6 @@
+// Variables used by Scriptable.
+// icon-color: gold; icon-glyph: cake;
+
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
@@ -33,10 +36,11 @@ async function createWidget() {
     // --- A. 仪表盘绘制 ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 115); // 稍微增加画布总高度
+    canvas.respectScreenScale = true;
     canvas.opaque = false;
     
     const avatarY = 0;   
-    const arcCenterY = 72; // 圆心下移，增加与头像的间隔
+    const arcCenterY = 77; // 圆心下移，增加与头像的间隔
     const radius = 33;     
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
 
@@ -66,8 +70,8 @@ async function createWidget() {
     
     // 4. 圆弧下方：标准日期格式 YYYY年-MM-dd
     const df = new DateFormatter();
-    df.dateFormat = "yyyy年-MM-dd";
-    canvas.setFont(Font.boldSystemFont(9));
+    df.dateFormat = "yyyy-MM-dd";
+    canvas.setFont(Font.boldSystemFont(13));
     canvas.setTextColor(textColor);
     canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 12, 100, 15));
 
@@ -75,15 +79,15 @@ async function createWidget() {
     img.imageSize = new Size(75, 86); 
 
     // 5. 压缩间距：添加一个负向间距或极小间距
-    col.addSpacer(-2);
+    col.addSpacer(-3);
 
     // --- B. 详细信息行 (柔和发光效果) ---
     const details = [
       { icon: info.shengXiaoIco, text: info.shengXiao },
       { icon: info.zodiacIco, text: info.zodiac },
-      { icon: "☯️", text: info.bazi },
-      { icon: "🎋", text: info.dayWuXing + "命" },
-      { icon: "🧭", text: info.caiShen }
+      { icon: "", text: info.bazi },
+      { icon: "", text: info.dayWuXing + "命" },
+      { icon: "", text: info.caiShen }
     ];
 
     details.forEach(item => {
