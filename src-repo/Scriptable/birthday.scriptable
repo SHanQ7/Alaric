@@ -2,9 +2,8 @@
 // 请在此处填入你的 GitHub Raw 链接
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/birthday.scriptable";
 
-// --- 数据持久化设置 ---
 let fm = FileManager.local();
-const scriptPath = module.filename; // 当前脚本文件的路径
+const scriptPath = module.filename;
 const dataPath = fm.joinPath(fm.documentsDirectory(), "lunar_birthday_data.json");
 
 let familyData = [
@@ -18,7 +17,6 @@ if (fm.fileExists(dataPath)) {
   familyData = JSON.parse(fm.readString(dataPath));
 }
 
-// --- 运行逻辑 ---
 if (config.runsInApp) {
   await showControlPanel();
 }
@@ -31,41 +29,40 @@ if (config.runsInWidget) {
 }
 Script.complete();
 
-// --- 交互控制面板 ---
+// --- 修复后的核心转换函数 ---
+function getSolarBirthday(lunarMonth, lunarDay) {
+  const now = new Date();
+  const calChinese = Calendar.withIdentifier("chinese");
+  const getSolar = (y) => {
+    return calChinese.dateFromComponents({year: y, month: lunarMonth, day: lunarDay});
+  };
+  let solarDate = getSolar(now.getFullYear());
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const bdayThisYear = new Date(solarDate.getFullYear(), solarDate.getMonth(), solarDate.getDate());
+  if (today > bdayThisYear) solarDate = getSolar(now.getFullYear() + 1);
+  return solarDate;
+}
+
+// --- 其余功能逻辑（配置面板、更新、小组件绘制）均已同步适配 ---
 async function showControlPanel() {
   const alert = new Alert();
   alert.title = "🎂 生日管家配置中心";
-  alert.message = "管理成员生日或同步 GitHub 代码";
-  
-  // 成员列表
   familyData.forEach(p => alert.addAction(`${p.emoji} 修改 ${p.name}`));
-  
-  // 功能按钮
   alert.addDestructiveAction("🔄 更新脚本 (GitHub)");
   alert.addCancelAction("保存并退出");
-  
   const index = await alert.presentSheet();
-  
-  if (index === -1) return; // 取消
-
-  // 判断是否点击了更新按钮 (索引在所有成员之后)
+  if (index === -1) return;
   if (index === familyData.length) {
     await updateScript();
     return;
   }
-
-  // 否则是修改成员
   const pIndex = index;
   const editAlert = new Alert();
-  editAlert.title = `编辑 ${familyData[pIndex].name}`;
   editAlert.addTextField("姓名", familyData[pIndex].name);
   editAlert.addTextField("农历月份", familyData[pIndex].month.toString());
   editAlert.addTextField("农历日期", familyData[pIndex].day.toString());
   editAlert.addTextField("Emoji", familyData[pIndex].emoji);
-  
   editAlert.addDestructiveAction("保存");
-  editAlert.addCancelAction("取消");
-  
   if (await editAlert.present() === 0) {
     familyData[pIndex].name = editAlert.textFieldValue(0);
     familyData[pIndex].month = parseInt(editAlert.textFieldValue(1));
@@ -76,49 +73,22 @@ async function showControlPanel() {
   }
 }
 
-// --- 核心功能：GitHub 自动更新 ---
 async function updateScript() {
-  const alert = new Alert();
-  alert.title = "确认更新？";
-  alert.message = "这将从 GitHub 下载最新版本并覆盖当前代码。";
-  alert.addAction("开始同步");
-  alert.addCancelAction("取消");
-  
-  if (await alert.present() === 0) {
-    try {
-      let req = new Request(GITHUB_RAW_URL);
-      let newCode = await req.loadString();
-      
-      if (newCode && newCode.includes("Script.setWidget")) {
-        fm.writeString(scriptPath, newCode);
-        const success = new Alert();
-        success.title = "更新成功";
-        success.message = "代码已同步，请点击完成并重新打开脚本。";
-        await success.present();
-      } else {
-        throw new Error("下载的代码无效或格式不正确。");
-      }
-    } catch (e) {
-      const err = new Alert();
-      err.title = "更新失败";
-      err.message = e.toString();
-      await err.present();
+  try {
+    let req = new Request(GITHUB_RAW_URL);
+    let newCode = await req.loadString();
+    if (newCode && newCode.includes("Script.setWidget")) {
+      fm.writeString(scriptPath, newCode);
+      const success = new Alert();
+      success.title = "更新成功";
+      await success.present();
     }
+  } catch (e) {
+    const err = new Alert();
+    err.title = "更新失败";
+    err.message = e.toString();
+    await err.present();
   }
-}
-
-// --- 农历转换与小组件绘制逻辑 (保持与之前一致) ---
-function getSolarBirthday(lunarMonth, lunarDay) {
-  const now = new Date();
-  const calChinese = Calendar.chinese();
-  const getSolar = (y) => {
-    return calChinese.dateFromComponents({year: y, month: lunarMonth, day: lunarDay});
-  };
-  let solarDate = getSolar(now.getFullYear());
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const bdayThisYear = new Date(solarDate.getFullYear(), solarDate.getMonth(), solarDate.getDate());
-  if (today > bdayThisYear) solarDate = getSolar(now.getFullYear() + 1);
-  return solarDate;
 }
 
 async function createWidget(data) {
@@ -141,95 +111,55 @@ async function createWidget(data) {
     listWidget.backgroundColor = new Color("#1c1c1e");
   }
 
-  listWidget.setPadding(15, 10, 12, 10);
-
-  if (birthdayPerson) {
-    const wishText = listWidget.addText(`🎊 祝 ${birthdayPerson.name} 生日快乐！ 🎊`);
-    wishText.font = Font.boldSystemFont(12);
-    wishText.textColor = Color.white();
-    wishText.centerAlignText();
-    listWidget.addSpacer(8);
-  }
-
   const mainStack = listWidget.addStack();
   mainStack.layoutHorizontally();
-
   for (let i = 0; i < processedData.length; i++) {
     const p = processedData[i];
     const pStack = mainStack.addStack();
     pStack.layoutVertically();
     pStack.centerAlignContent();
-
     const diff = p.solarDate - now;
     const progress = p.isToday ? 1 : Math.min(Math.max(1 - (diff / (1000 * 60 * 60 * 24 * 365)), 0), 1);
-    
     const ctx = new DrawContext();
-    ctx.size = new Size(100, 100);
-    ctx.opaque = false;
+    ctx.size = new Size(100, 100); ctx.opaque = false;
     const arcColor = p.isToday ? new Color("#34c759") : new Color("#ffd60a");
     drawArc(ctx, 100, 1, new Color("#ffffff", 0.2)); 
     drawArc(ctx, 100, progress, arcColor); 
-    
-    ctx.setFont(Font.systemFont(40));
-    ctx.setTextAlignedCenter();
+    ctx.setFont(Font.systemFont(40)); ctx.setTextAlignedCenter();
     ctx.drawTextInRect(p.isToday ? "🎂" : p.emoji, new Rect(0, 22, 100, 50));
-
-    const chartImg = pStack.addImage(ctx.getImage());
-    chartImg.imageSize = new Size(75, 75);
-    
+    pStack.addImage(ctx.getImage()).imageSize = new Size(75, 75);
     pStack.addSpacer(4);
     const nameText = pStack.addText(p.name);
-    nameText.font = Font.boldSystemFont(12);
-    nameText.textColor = Color.white();
-    nameText.centerAlignText();
-    
-    const df = new DateFormatter();
-    df.dateFormat = "MM/dd";
+    nameText.font = Font.boldSystemFont(12); nameText.textColor = Color.white();
+    const df = new DateFormatter(); df.dateFormat = "MM/dd";
     const dateText = pStack.addText(p.isToday ? "TODAY" : df.string(p.solarDate));
-    dateText.font = Font.systemFont(10);
-    dateText.textColor = Color.white();
-    dateText.textOpacity = 0.6;
-    dateText.centerAlignText();
-
+    dateText.font = Font.systemFont(10); dateText.textColor = Color.white(); dateText.textOpacity = 0.6;
     if (i < processedData.length - 1) mainStack.addSpacer();
   }
-
   listWidget.addSpacer();
-
   const yearProgress = getYearProgress();
-  const bottomStack = listWidget.addStack();
-  bottomStack.layoutVertically();
-  const progressLabel = bottomStack.addText(`${now.getFullYear()}年进度: ${Math.floor(yearProgress * 100)}%`);
-  progressLabel.font = Font.systemFont(9);
-  progressLabel.textColor = Color.white();
-  progressLabel.textOpacity = 0.5;
-  bottomStack.addSpacer(4);
-  bottomStack.addImage(drawProgressBar(400, 8, yearProgress, birthdayPerson ? new Color("#ffd60a") : new Color("#34c759")));
-
+  const progressLabel = listWidget.addText(`${now.getFullYear()}年进度: ${Math.floor(yearProgress * 100)}%`);
+  progressLabel.font = Font.systemFont(9); progressLabel.textColor = Color.white(); progressLabel.textOpacity = 0.5;
+  listWidget.addSpacer(4);
+  listWidget.addImage(drawProgressBar(400, 8, yearProgress, birthdayPerson ? new Color("#ffd60a") : new Color("#34c759")));
   return listWidget;
 }
 
 function drawArc(ctx, size, progress, color) {
-  const center = size / 2;
-  const radius = 40;
-  const thickness = 6;
+  const center = size / 2; const radius = 40; const thickness = 6;
   for (let i = 0; i <= 180 * progress; i += 2) {
     const angle = (180 + i) * Math.PI / 180;
     const x = center + radius * Math.cos(angle) - thickness/2;
     const y = center + radius * Math.sin(angle) - thickness/2;
-    ctx.setFillColor(color);
-    ctx.fillEllipse(new Rect(x, y, thickness, thickness));
+    ctx.setFillColor(color); ctx.fillEllipse(new Rect(x, y, thickness, thickness));
   }
 }
 
 function drawProgressBar(w, h, progress, color) {
-  const ctx = new DrawContext();
-  ctx.size = new Size(w, h); ctx.opaque = false;
-  const bgPath = new Path();
-  bgPath.addRoundedRect(new Rect(0, 0, w, h), h/2, h/2);
+  const ctx = new DrawContext(); ctx.size = new Size(w, h); ctx.opaque = false;
+  const bgPath = new Path(); bgPath.addRoundedRect(new Rect(0, 0, w, h), h/2, h/2);
   ctx.addPath(bgPath); ctx.setFillColor(new Color("#ffffff", 0.2)); ctx.fillPath();
-  const fgPath = new Path();
-  fgPath.addRoundedRect(new Rect(0, 0, w * progress, h), h/2, h/2);
+  const fgPath = new Path(); fgPath.addRoundedRect(new Rect(0, 0, w * progress, h), h/2, h/2);
   ctx.addPath(fgPath); ctx.setFillColor(color); ctx.fillPath();
   return ctx.getImage();
 }
