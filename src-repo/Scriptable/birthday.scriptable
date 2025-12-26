@@ -10,35 +10,33 @@ let familyData = [
   { name: "爸爸", month: 3, day: 15, emoji: "👨" },
   { name: "妈妈", month: 6, day: 20, emoji: "👩" },
   { name: "妹妹", month: 9, day: 5,  emoji: "👧" },
-  { name: "我",   month: 11, day: 8,  emoji: "👦" } // 已改为 11月8日测试
+  { name: "我",   month: 11, day: 8,  emoji: "👦" }
 ];
 
 if (fm.fileExists(dataPath)) {
   familyData = JSON.parse(fm.readString(dataPath));
 }
 
-// --- 运行逻辑 ---
 if (config.runsInApp) await showControlPanel();
 
 const widget = await createWidget();
 if (config.runsInWidget) { Script.setWidget(widget); } else { widget.presentMedium(); }
 Script.complete();
 
-// --- 绘制小组件 ---
 async function createWidget() {
   const listWidget = new ListWidget();
   const now = new Date();
-  
-  // 检查生日状态
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
   let bDayPerson = null;
   const processed = familyData.map(p => {
     const solar = getNextSolarFromLunar(p.month, p.day);
-    const isToday = (now.getMonth() === solar.getMonth() && now.getDate() === solar.getDate());
+    const isToday = (today.getTime() === new Date(solar.getFullYear(), solar.getMonth(), solar.getDate()).getTime());
     if (isToday) bDayPerson = p;
     return { ...p, solar, isToday };
   });
 
-  // 背景色切换
+  // 背景
   if (bDayPerson) {
     let grad = new LinearGradient();
     grad.colors = [new Color("#e52d27"), new Color("#b31217")];
@@ -47,130 +45,123 @@ async function createWidget() {
     listWidget.backgroundColor = new Color("#1c1c1e");
   }
 
-  listWidget.setPadding(12, 10, 10, 10);
+  listWidget.setPadding(10, 10, 10, 10);
 
-  // --- 上部：四人排布 ---
+  // --- 核心：横向布局 ---
   const mainStack = listWidget.addStack();
   mainStack.layoutHorizontally();
+  mainStack.centerAlignContent(); // 确保全员垂直居中
 
   processed.forEach((p, i) => {
-    const personStack = mainStack.addStack();
-    personStack.layoutVertically();
-    personStack.centerAlignContent();
-    
-    // 1. 头像 Emoji
-    const emojiText = personStack.addText(p.emoji);
-    emojiText.font = Font.systemFont(26);
-    emojiText.centerAlignText();
-    
-    personStack.addSpacer(2);
+    // 每一个人的垂直容器
+    const vStack = mainStack.addStack();
+    vStack.layoutVertically();
+    vStack.centerAlignContent(); // 容器内所有元素居中对齐
 
-    // 2. 进度圆环
+    // 1. Emoji (对准圆环顶部)
+    const emojiStack = vStack.addStack();
+    emojiStack.addSpacer();
+    const emojiText = emojiStack.addText(p.emoji);
+    emojiText.font = Font.systemFont(22);
+    emojiStack.addSpacer();
+    
+    vStack.addSpacer(2);
+
+    // 2. 圆环 (居中)
+    const ringStack = vStack.addStack();
+    ringStack.addSpacer();
     const diff = p.solar - now;
     const progress = p.isToday ? 1 : Math.max(0, 1 - (diff / (365 * 86400000)));
     const ctx = new DrawContext();
     ctx.size = new Size(100, 100); ctx.opaque = false;
-    drawArc(ctx, 100, 1, new Color("#ffffff", 0.1)); 
+    drawArc(ctx, 100, 1, new Color("#ffffff", 0.15)); 
     drawArc(ctx, 100, progress, p.isToday ? Color.green() : new Color("#ffd60a"));
-    
-    const ringImg = personStack.addImage(ctx.getImage());
-    ringImg.imageSize = new Size(68, 68);
-    ringImg.centerAlignImage();
+    const ringImg = ringStack.addImage(ctx.getImage());
+    ringImg.imageSize = new Size(60, 60);
+    ringStack.addSpacer();
 
-    personStack.addSpacer(4);
+    vStack.addSpacer(4);
 
-    // 3. 生日日期 (YYYY-MM-DD)
+    // 3. 日期 (YYYY-MM-DD)
+    const dateStack = vStack.addStack();
+    dateStack.addSpacer();
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
-    const dateText = personStack.addText(p.isToday ? "HAPPY B-DAY" : df.string(p.solar));
+    const dateText = dateStack.addText(p.isToday ? "TODAY" : df.string(p.solar));
     dateText.font = Font.boldSystemFont(8);
     dateText.textColor = Color.white();
-    dateText.textOpacity = p.isToday ? 1 : 0.7;
-    dateText.centerAlignText();
+    dateText.textOpacity = 0.8;
+    dateStack.addSpacer();
 
     if (i < processed.length - 1) mainStack.addSpacer();
   });
 
   listWidget.addSpacer();
 
-  // --- 底部：年度进度条 + 剩余天数 ---
-  const yearProgress = getYearProgress();
+  // --- 底部：年度进度条 ---
+  const yp = getYearProgress();
   const nextYear = new Date(now.getFullYear() + 1, 0, 1);
-  const daysLeft = Math.ceil((nextYear - now) / (1000 * 60 * 60 * 24));
+  const daysLeft = Math.ceil((nextYear - now) / 86400000);
 
   const bottomStack = listWidget.addStack();
   bottomStack.layoutVertically();
   
-  // 文字行：左侧是百分比，右侧是剩余天数
   const labelStack = bottomStack.addStack();
-  labelStack.layoutHorizontally();
-  
-  const progressText = labelStack.addText(`${now.getFullYear()}年进度: ${Math.floor(yearProgress * 100)}%`);
-  progressText.font = Font.systemFont(10);
+  const progressText = labelStack.addText(`${now.getFullYear()}年进度: ${Math.floor(yp * 100)}%`);
+  progressText.font = Font.systemFont(9);
   progressText.textColor = Color.white();
-  progressText.textOpacity = 0.6;
-  
+  progressText.textOpacity = 0.5;
   labelStack.addSpacer();
-  
-  const leftText = labelStack.addText(`距离明年还剩 ${daysLeft} 天`);
-  leftText.font = Font.systemFont(10);
+  const leftText = labelStack.addText(`剩 ${daysLeft} 天`);
+  leftText.font = Font.systemFont(9);
   leftText.textColor = Color.white();
-  leftText.textOpacity = 0.6;
+  leftText.textOpacity = 0.5;
   
-  bottomStack.addSpacer(5);
+  bottomStack.addSpacer(3);
 
-  // 长进度条
-  const barW = 310;
+  const barW = 300; 
   const barCtx = new DrawContext();
-  barCtx.size = new Size(barW, 8);
+  barCtx.size = new Size(barW, 6);
   barCtx.opaque = false;
-  
-  const bgP = new Path();
-  bgP.addRoundedRect(new Rect(0, 0, barW, 8), 4, 4);
-  barCtx.addPath(bgP);
-  barCtx.setFillColor(new Color("#ffffff", 0.15));
-  barCtx.fillPath();
-
-  const fgP = new Path();
-  fgP.addRoundedRect(new Rect(0, 0, barW * yearProgress, 8), 4, 4);
-  barCtx.addPath(fgP);
-  barCtx.setFillColor(bDayPerson ? new Color("#ffd60a") : new Color("#34c759"));
-  barCtx.fillPath();
-
+  const bgP = new Path(); bgP.addRoundedRect(new Rect(0, 0, barW, 6), 3, 3);
+  barCtx.addPath(bgP); barCtx.setFillColor(new Color("#ffffff", 0.1)); barCtx.fillPath();
+  const fgP = new Path(); fgP.addRoundedRect(new Rect(0, 0, barW * yp, 6), 3, 3);
+  barCtx.addPath(fgP); barCtx.setFillColor(bDayPerson ? Color.yellow() : Color.green()); barCtx.fillPath();
   bottomStack.addImage(barCtx.getImage());
 
   return listWidget;
 }
 
-// --- 农历算法 (同上，保持精准) ---
+// --- 农历搜索核心逻辑 (修正跨年逻辑) ---
 function getNextSolarFromLunar(lMonth, lDay) {
   const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const lunarYearArr = [0x0b557, 0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5b0, 0x14573, 0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, 0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, 0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b6a0, 0x195a6, 0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570, 0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0, 0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, 0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930, 0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530, 0x05aa0, 0x076a3, 0x096d0, 0x04afb, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0, 0x14b63, 0x09370, 0x049f8, 0x04970, 0x064b0, 0x168a6, 0x0ea50, 0x06b20, 0x1a6c4, 0x0aae0, 0x0a2e0, 0x0d2e3, 0x0c960, 0x0d557, 0x0d4a0, 0x0da50, 0x05d55, 0x056a0, 0x0a6d0, 0x055d4, 0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0, 0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160, 0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f252, 0x0d520];
-  const getSolar = (y, m, d) => (Date.UTC(y, m-1, d) - Date.UTC(1949, 0, 29)) / 86400000 + 1;
-  const search = (y) => {
-    let start = new Date(y, 0, 1);
-    for (let i=0; i<385; i++) {
-      let d = new Date(start.getTime() + i*86400000);
-      let daySpan = getSolar(d.getFullYear(), d.getMonth()+1, d.getDate());
-      let ly, lm, ld, span = daySpan;
-      for (let j=0; j<lunarYearArr.length; j++) {
-        let yDays = 0; let lyData = lunarYearArr[j];
-        for (let k=0x8000; k>0x8; k>>=1) yDays += (lyData & k) ? 30 : 29;
-        if (lyData & 0xf) yDays += (lyData & 0xf0000) ? 30 : 29;
-        if (span <= yDays) { ly = 1949+j; break; } span -= yDays;
-      }
-      let lyData = lunarYearArr[ly-1949]; let ms = [];
-      for (let k=0x8000; k>0x8; k>>=1) ms.push((lyData & k) ? 30 : 29);
-      if (lyData & 0xf) ms.splice(lyData & 0xf, 0, (lyData & 0xf0000) ? 30 : 29);
-      for (let k=0; k<ms.length; k++) {
-        if (span <= ms[k]) { lm = k+1; ld = Math.floor(span); break; } span -= ms[k];
-      }
-      if (lm === lMonth && ld === lDay) return d;
+  const getS = (y, m, d) => (Date.UTC(y, m-1, d) - Date.UTC(1949, 0, 29)) / 86400000 + 1;
+  const check = (d) => {
+    let daySpan = getS(d.getFullYear(), d.getMonth()+1, d.getDate());
+    let ly, lm, ld, span = daySpan;
+    for (let j=0; j<lunarYearArr.length; j++) {
+      let yDays = 0; let lyData = lunarYearArr[j];
+      for (let k=0x8000; k>0x8; k>>=1) yDays += (lyData & k) ? 30 : 29;
+      if (lyData & 0xf) yDays += (lyData & 0xf0000) ? 30 : 29;
+      if (span <= yDays) { ly = 1949+j; break; } span -= yDays;
     }
+    let lyData = lunarYearArr[ly-1949]; let ms = [];
+    for (let k=0x8000; k>0x8; k>>=1) ms.push((lyData & k) ? 30 : 29);
+    if (lyData & 0xf) ms.splice(lyData & 0xf, 0, (lyData & 0xf0000) ? 30 : 29);
+    for (let k=0; k<ms.length; k++) {
+      if (span <= ms[k]) { lm = k+1; ld = Math.floor(span); break; } span -= ms[k];
+    }
+    return { m: lm, d: ld };
   };
-  let res = search(now.getFullYear());
-  if (!res || res < new Date(now.getFullYear(), now.getMonth(), now.getDate())) res = search(now.getFullYear()+1);
-  return res;
+  
+  // 从今年开始往后找 400 天
+  for (let i=0; i<400; i++) {
+    let testD = new Date(today.getTime() + i*86400000);
+    let l = check(testD);
+    if (l.m === lMonth && l.d === lDay) return testD;
+  }
 }
 
 function drawArc(ctx, size, progress, color) {
