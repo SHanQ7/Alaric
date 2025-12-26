@@ -1,6 +1,11 @@
+// --- 配置区域 ---
+// 请在此处填入你的 GitHub Raw 链接
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/你的用户名/仓库名/分支/文件名.js";
+
 // --- 数据持久化设置 ---
 let fm = FileManager.local();
-const path = fm.joinPath(fm.documentsDirectory(), "lunar_birthday_data.json");
+const scriptPath = module.filename; // 当前脚本文件的路径
+const dataPath = fm.joinPath(fm.documentsDirectory(), "lunar_birthday_data.json");
 
 let familyData = [
   { name: "爸爸", month: 3, day: 15, emoji: "👨" },
@@ -9,10 +14,11 @@ let familyData = [
   { name: "我",   month: 11, day: 7,  emoji: "👦" }
 ];
 
-if (fm.fileExists(path)) {
-  familyData = JSON.parse(fm.readString(path));
+if (fm.fileExists(dataPath)) {
+  familyData = JSON.parse(fm.readString(dataPath));
 }
 
+// --- 运行逻辑 ---
 if (config.runsInApp) {
   await showControlPanel();
 }
@@ -25,38 +31,99 @@ if (config.runsInWidget) {
 }
 Script.complete();
 
-// --- 修复后的农历转换函数 ---
+// --- 交互控制面板 ---
+async function showControlPanel() {
+  const alert = new Alert();
+  alert.title = "🎂 生日管家配置中心";
+  alert.message = "管理成员生日或同步 GitHub 代码";
+  
+  // 成员列表
+  familyData.forEach(p => alert.addAction(`${p.emoji} 修改 ${p.name}`));
+  
+  // 功能按钮
+  alert.addDestructiveAction("🔄 更新脚本 (GitHub)");
+  alert.addCancelAction("保存并退出");
+  
+  const index = await alert.presentSheet();
+  
+  if (index === -1) return; // 取消
+
+  // 判断是否点击了更新按钮 (索引在所有成员之后)
+  if (index === familyData.length) {
+    await updateScript();
+    return;
+  }
+
+  // 否则是修改成员
+  const pIndex = index;
+  const editAlert = new Alert();
+  editAlert.title = `编辑 ${familyData[pIndex].name}`;
+  editAlert.addTextField("姓名", familyData[pIndex].name);
+  editAlert.addTextField("农历月份", familyData[pIndex].month.toString());
+  editAlert.addTextField("农历日期", familyData[pIndex].day.toString());
+  editAlert.addTextField("Emoji", familyData[pIndex].emoji);
+  
+  editAlert.addDestructiveAction("保存");
+  editAlert.addCancelAction("取消");
+  
+  if (await editAlert.present() === 0) {
+    familyData[pIndex].name = editAlert.textFieldValue(0);
+    familyData[pIndex].month = parseInt(editAlert.textFieldValue(1));
+    familyData[pIndex].day = parseInt(editAlert.textFieldValue(2));
+    familyData[pIndex].emoji = editAlert.textFieldValue(3);
+    fm.writeString(dataPath, JSON.stringify(familyData));
+    await showControlPanel();
+  }
+}
+
+// --- 核心功能：GitHub 自动更新 ---
+async function updateScript() {
+  const alert = new Alert();
+  alert.title = "确认更新？";
+  alert.message = "这将从 GitHub 下载最新版本并覆盖当前代码。";
+  alert.addAction("开始同步");
+  alert.addCancelAction("取消");
+  
+  if (await alert.present() === 0) {
+    try {
+      let req = new Request(GITHUB_RAW_URL);
+      let newCode = await req.loadString();
+      
+      if (newCode && newCode.includes("Script.setWidget")) {
+        fm.writeString(scriptPath, newCode);
+        const success = new Alert();
+        success.title = "更新成功";
+        success.message = "代码已同步，请点击完成并重新打开脚本。";
+        await success.present();
+      } else {
+        throw new Error("下载的代码无效或格式不正确。");
+      }
+    } catch (e) {
+      const err = new Alert();
+      err.title = "更新失败";
+      err.message = e.toString();
+      await err.present();
+    }
+  }
+}
+
+// --- 农历转换与小组件绘制逻辑 (保持与之前一致) ---
 function getSolarBirthday(lunarMonth, lunarDay) {
   const now = new Date();
   const calChinese = Calendar.chinese();
-  
   const getSolar = (y) => {
-    // 修复点：直接使用对象赋值给 components
-    let components = {
-      year: y,
-      month: lunarMonth,
-      day: lunarDay
-    };
-    return calChinese.dateFromComponents(components);
+    return calChinese.dateFromComponents({year: y, month: lunarMonth, day: lunarDay});
   };
-
   let solarDate = getSolar(now.getFullYear());
-  
-  // 归零小时分钟，只对比日期
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   const bdayThisYear = new Date(solarDate.getFullYear(), solarDate.getMonth(), solarDate.getDate());
-  
-  if (today > bdayThisYear) {
-    solarDate = getSolar(now.getFullYear() + 1);
-  }
+  if (today > bdayThisYear) solarDate = getSolar(now.getFullYear() + 1);
   return solarDate;
 }
 
-// --- 其余绘制逻辑保持不变 ---
 async function createWidget(data) {
   const listWidget = new ListWidget();
   const now = new Date();
-  
   let birthdayPerson = null;
   const processedData = data.map(p => {
     const solar = getSolarBirthday(p.month, p.day);
@@ -99,7 +166,6 @@ async function createWidget(data) {
     const ctx = new DrawContext();
     ctx.size = new Size(100, 100);
     ctx.opaque = false;
-    
     const arcColor = p.isToday ? new Color("#34c759") : new Color("#ffd60a");
     drawArc(ctx, 100, 1, new Color("#ffffff", 0.2)); 
     drawArc(ctx, 100, progress, arcColor); 
@@ -133,7 +199,7 @@ async function createWidget(data) {
   const yearProgress = getYearProgress();
   const bottomStack = listWidget.addStack();
   bottomStack.layoutVertically();
-  const progressLabel = bottomStack.addText(`${now.getFullYear()}进度: ${Math.floor(yearProgress * 100)}%`);
+  const progressLabel = bottomStack.addText(`${now.getFullYear()}年进度: ${Math.floor(yearProgress * 100)}%`);
   progressLabel.font = Font.systemFont(9);
   progressLabel.textColor = Color.white();
   progressLabel.textOpacity = 0.5;
@@ -143,7 +209,6 @@ async function createWidget(data) {
   return listWidget;
 }
 
-// 辅助函数 (drawArc, drawProgressBar, showControlPanel, getYearProgress 保持逻辑一致)
 function drawArc(ctx, size, progress, color) {
   const center = size / 2;
   const radius = 40;
@@ -167,29 +232,6 @@ function drawProgressBar(w, h, progress, color) {
   fgPath.addRoundedRect(new Rect(0, 0, w * progress, h), h/2, h/2);
   ctx.addPath(fgPath); ctx.setFillColor(color); ctx.fillPath();
   return ctx.getImage();
-}
-
-async function showControlPanel() {
-  const alert = new Alert();
-  alert.title = "🎂 农历生日配置";
-  familyData.forEach(p => alert.addAction(`${p.emoji} ${p.name}`));
-  alert.addCancelAction("保存");
-  const index = await alert.presentSheet();
-  if (index === -1) return;
-  const editAlert = new Alert();
-  editAlert.addTextField("姓名", familyData[index].name);
-  editAlert.addTextField("农历月", familyData[index].month.toString());
-  editAlert.addTextField("农历日", familyData[index].day.toString());
-  editAlert.addTextField("Emoji", familyData[index].emoji);
-  editAlert.addDestructiveAction("确定");
-  if (await editAlert.present() === 0) {
-    familyData[index].name = editAlert.textFieldValue(0);
-    familyData[index].month = parseInt(editAlert.textFieldValue(1));
-    familyData[index].day = parseInt(editAlert.textFieldValue(2));
-    familyData[index].emoji = editAlert.textFieldValue(3);
-    fm.writeString(path, JSON.stringify(familyData));
-    await showControlPanel();
-  }
 }
 
 function getYearProgress() {
