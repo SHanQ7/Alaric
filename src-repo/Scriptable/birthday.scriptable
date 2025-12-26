@@ -1,7 +1,7 @@
 // Variables used by Scriptable.
 // icon-color: red; icon-glyph: cake;
 
-// 1. 导入您的农历模块
+// 1. 导入您的农历模块 (确保文件名叫 lunar.module)
 const lunar = importModule('lunar.module');
 
 const fm = FileManager.local();
@@ -45,19 +45,26 @@ function getNextSolarDate(targetMonth, targetDay) {
   return s;
 }
 
+// 修复后的日期解析函数，增加健壮性
 function lunarDayToNum(dStr) {
+  if (!dStr || typeof dStr !== 'string' || dStr.length < 2) return 1;
   const dict = {"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9};
+  
+  // 特殊情况直接返回
   if (dStr === "初十") return 10;
   if (dStr === "二十") return 20;
   if (dStr === "三十") return 30;
+  
   let b = 0;
   if (dStr[0] === "十") b = 10;
   else if (dStr[0] === "廿") b = 20;
   else if (dStr[0] === "卅") b = 30;
+  else if (dStr[0] === "初") b = 0;
+  
   return b + (dict[dStr[1]] || 0);
 }
 
-// --- UI 绘制 (iPhone 13 专刷) ---
+// --- UI 绘制 (iPhone 13 物理隔离布局) ---
 async function createWidget() {
   const w = new ListWidget();
   const now = new Date(); now.setHours(0,0,0,0);
@@ -78,14 +85,14 @@ async function createWidget() {
     const col = mainS.addStack();
     col.layoutVertically();
     
-    // 头像层
+    // 1. 头像层
     const eS = col.addStack(); eS.addSpacer();
     const tE = eS.addText(p.e); tE.font = Font.systemFont(44);
     eS.addSpacer();
     
-    col.addSpacer(10); // 物理隔离带
+    col.addSpacer(10); // 物理隔离空隙
 
-    // 绘图层
+    // 2. 绘图层 (圆弧 + 日期)
     const cv = new DrawContext();
     cv.size = new Size(200, 200); cv.opaque = false;
     const center = {x: 100, y: 90}, radius = 78, thick = 12;
@@ -103,7 +110,7 @@ async function createWidget() {
       cv.fillEllipse(new Rect(center.x+radius*Math.cos(r)-thick/2, center.y+radius*Math.sin(r)-thick/2, thick, thick));
     }
 
-    // 日期层 (Heavy 加粗)
+    // 3. 日期文字层 (Heavy 超粗体)
     const df = new DateFormatter(); df.dateFormat = "MM-dd";
     cv.setFont(Font.heavySystemFont(32)); cv.setTextColor(Color.white());
     cv.setTextAlignedCenter();
@@ -139,24 +146,33 @@ async function showControlPanel() {
     const p = familyData[i];
     const edit = new Alert();
     edit.title = `修改 ${p.name} 的生日`;
-    edit.message = "格式：1980年5月初一";
-    edit.addTextField("例如：1980年5月初一", "");
+    edit.message = "请输入农历格式，如：\n1980年5月初一";
+    edit.addTextField("1980年5月初一", "");
     edit.addAction("确定"); edit.addCancelAction("取消");
     
     if (await edit.present() === 0) {
       const val = edit.textFieldValue(0);
+      if (!val) return;
       const m = val.match(/(\d{4})年(\d{1,2})月(.+)/);
       if (m) {
-        familyData[i].m = parseInt(m[2]);
-        familyData[i].d = lunarDayToNum(m[3]);
+        const monthNum = parseInt(m[2]);
+        const dayNum = lunarDayToNum(m[3]);
+        
+        familyData[i].m = monthNum;
+        familyData[i].d = dayNum;
+        
         fm.writeString(dataPath, JSON.stringify(familyData));
         const ok = new Alert(); ok.title = "保存成功"; await ok.present();
       } else {
-        const err = new Alert(); err.title = "格式错误"; await err.present();
+        const err = new Alert(); err.title = "输入格式错误"; err.message = "请按照：1980年5月初一 格式输入"; await err.present();
       }
     }
-  } else if (i === familyData.length) { (await createWidget()).presentMedium(); }
-  else if (i === familyData.length + 1) { /* 更新逻辑 */ }
+  } else if (i === familyData.length) { 
+    const w = await createWidget();
+    w.presentMedium(); 
+  } else if (i === familyData.length + 1) {
+    // 这里放你自己的 GitHub 更新逻辑或留空
+  }
 }
 
 if(!config.runsInApp) {
