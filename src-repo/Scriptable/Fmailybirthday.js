@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.5.0";
+const VERSION = "1.5.1";
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 自动配色系统】=================
@@ -51,7 +51,7 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent();
 
-    // --- A. 仪表盘绘制 (头像 + 半圆弧 + 天数) ---
+    // --- A. 仪表盘绘制 ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 90);
     canvas.opaque = false;
@@ -59,17 +59,17 @@ async function createWidget() {
     const radius = 38;
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
 
-    // 头像渲染
     canvas.setFont(Font.systemFont(24));
     canvas.drawTextInRect(p.emoji || "👤", new Rect(38, 0, 30, 30));
 
-    // 绘制颗粒感半圆弧
+    // 底弧
     canvas.setStrokeColor(new Color("#888888", 0.15));
     canvas.setLineWidth(3);
     for (let a = 180; a <= 360; a += 8) {
       const rad = a * Math.PI / 180;
       canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
     }
+    // 进度弧
     const progress = Math.max(0.05, 1 - info.diff / 365);
     for (let a = 180; a <= 180 + (180 * progress); a += 5) {
       const rad = a * Math.PI / 180;
@@ -77,7 +77,6 @@ async function createWidget() {
       canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
     }
 
-    // 中间剩余天数
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.setTextAlignedCenter();
@@ -87,8 +86,6 @@ async function createWidget() {
     img.imageSize = new Size(75, 68);
 
     col.addSpacer(2);
-    
-    // --- B. 姓名显示 ---
     const nameT = col.addText(p.name);
     nameT.font = Font.boldSystemFont(11);
     nameT.textColor = textColor;
@@ -107,7 +104,6 @@ async function createWidget() {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
-      // 竖直发光椭圆绘制
       const pillCanvas = new DrawContext();
       pillCanvas.size = new Size(8, 20);
       pillCanvas.opaque = false;
@@ -120,13 +116,11 @@ async function createWidget() {
       
       const pillImg = lineStack.addImage(pillCanvas.getImage());
       pillImg.imageSize = new Size(5, 13);
-      
       lineStack.addSpacer(3);
       
       const t = lineStack.addText(`${item.icon} ${item.text}`);
       t.font = Font.systemFont(9);
       t.textColor = subTextColor;
-      
       col.addSpacer(2);
     });
 
@@ -134,62 +128,34 @@ async function createWidget() {
   });
 
   w.addSpacer();
-  
-  // --- D. 年度进度条渲染 ---
   renderYearBar(w, today);
-  
   return w;
 }
 
-// =================【4. 辅助绘图与计算函数】=================
-function renderYearBar(w, now) {
-  const startYear = new Date(now.getFullYear(), 0, 1);
-  const endYear = new Date(now.getFullYear(), 11, 31);
-  const yearPercent = (now - startYear) / (endYear - startYear);
+// =================【4. 辅助功能函数】=================
 
-  const barCanvas = new DrawContext();
-  barCanvas.size = new Size(300, 20);
-  barCanvas.opaque = false;
-  
-  const barWidth = 300 * yearPercent;
-  barCanvas.setFillColor(new Color("#888888", 0.15));
-  barCanvas.fillRoundedRect(new Rect(0, 8, 300, 4), 2, 2);
-  
-  barCanvas.setFillColor(new Color("#f2c94c", 0.25));
-  barCanvas.fillRoundedRect(new Rect(0, 6, barWidth, 8), 4, 4);
-  
-  for(let x=0; x < barWidth; x += 5) {
-    const s = 2 + Math.random() * 2;
-    barCanvas.setFillColor(new Color("#f2c94c", 0.9));
-    barCanvas.fillEllipse(new Rect(x, 8 + (4-s)/2, s, s));
-  }
-
-  const footerStack = w.addStack();
-  footerStack.layoutVertically();
-  const barImg = footerStack.addImage(barCanvas.getImage());
-  barImg.imageSize = new Size(300, 15);
-
-  const label = footerStack.addText(`${now.getFullYear()} YEAR PROGRESS ${Math.floor(yearPercent * 100)}%`);
-  label.font = Font.boldSystemFont(8);
-  label.textColor = subTextColor;
-  label.centerAlignText();
+// 手动星座判定逻辑
+function getZodiac(month, day) {
+  const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
+  const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"];
+  return signs[day < dates[month - 1] ? month - 1 : month];
 }
 
 function calculateBday(p, today) {
-  // 1. 根据农历生日锁定公历目标
   let l = Lunar.fromYmd(today.getFullYear(), p.month, p.day);
   let s = l.getSolar();
   let bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
-
   if (bDay < today) {
     l = Lunar.fromYmd(today.getFullYear() + 1, p.month, p.day);
     s = l.getSolar();
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
 
-  // 2. 提取出生当天的严谨信息
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
-  const originS = originL.getSolar();
+  const originS = originL.getSolar(); // 获取出生年公历
+  
+  // 使用刚才定义的 getZodiac 替换掉 originS.getZodiac()
+  const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
   
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
@@ -199,44 +165,48 @@ function calculateBday(p, today) {
     diff: Math.ceil((bDay - today) / 86400000),
     shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(),
     shengXiaoIco: sxMap[originL.getYearShengXiao()] || "🐾",
-    zodiac: originS.getZodiac() + "座",
-    zodiacIco: zdMap[originS.getZodiac()] || "✨",
+    zodiac: zodiacName + "座",
+    zodiacIco: zdMap[zodiacName] || "✨",
     caiShen: originL.getDayPositionCaiDesc() + "财"
   };
 }
 
-// =================【5. 控制面板与更新】=================
-async function updateScript() {
-  const a = new Alert();
-  a.title = "🔄 检查更新";
-  a.message = "正在连接 GitHub...";
-  a.addAction("开始");
-  a.addCancelAction("取消");
-  if (await a.present() === 0) {
-    try {
-      const req = new Request(GITHUB_URL);
-      const code = await req.loadString();
-      if (code.includes("VERSION")) {
-        fm.writeString(module.filename, code);
-        const s = new Alert(); s.title = "✅ 更新成功"; await s.present();
-      }
-    } catch (e) {
-      const f = new Alert(); f.title = "❌ 连接失败"; await f.present();
-    }
+function renderYearBar(w, now) {
+  const startYear = new Date(now.getFullYear(), 0, 1);
+  const endYear = new Date(now.getFullYear(), 11, 31);
+  const yearPercent = (now - startYear) / (endYear - startYear);
+  const barCanvas = new DrawContext();
+  barCanvas.size = new Size(300, 20);
+  barCanvas.opaque = false;
+  const barWidth = 300 * yearPercent;
+  barCanvas.setFillColor(new Color("#888888", 0.15));
+  barCanvas.fillRoundedRect(new Rect(0, 8, 300, 4), 2, 2);
+  barCanvas.setFillColor(new Color("#f2c94c", 0.25));
+  barCanvas.fillRoundedRect(new Rect(0, 6, barWidth, 8), 4, 4);
+  for(let x=0; x < barWidth; x += 5) {
+    const s = 2 + Math.random() * 2;
+    barCanvas.setFillColor(new Color("#f2c94c", 0.9));
+    barCanvas.fillEllipse(new Rect(x, 8 + (4-s)/2, s, s));
   }
+  const footerStack = w.addStack();
+  footerStack.layoutVertically();
+  const barImg = footerStack.addImage(barCanvas.getImage());
+  barImg.imageSize = new Size(300, 15);
+  const label = footerStack.addText(`${now.getFullYear()} YEAR PROGRESS ${Math.floor(yearPercent * 100)}%`);
+  label.font = Font.boldSystemFont(8);
+  label.textColor = subTextColor;
+  label.centerAlignText();
 }
 
+// =================【5. 面板逻辑】=================
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
   alert.title = "🎂 生日管家 Pro " + VERSION;
-  alert.message = "管理家人信息并预览组件效果";
-  
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
   alert.addAction("🚀 检查更新");
   alert.addCancelAction("退出");
-  
   const res = await alert.present();
   if (res === 0) {
     const list = new Alert();
@@ -251,7 +221,6 @@ async function renderSettings() {
     }
   }
   if (res === 1) { (await createWidget()).presentMedium(); }
-  if (res === 2) { await updateScript(); }
 }
 
 async function editMember(dataList, index) {
@@ -281,6 +250,5 @@ async function editMember(dataList, index) {
   await renderSettings();
 }
 
-// 启动逻辑
 if (config.runsInApp) { await renderSettings(); } 
 else { Script.setWidget(await createWidget()); Script.complete(); }
