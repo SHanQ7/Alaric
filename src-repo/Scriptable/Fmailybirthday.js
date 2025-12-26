@@ -4,15 +4,21 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.2.1";
+const VERSION = "1.5.0";
+const GITHUB_URL = "https://raw.githubusercontent.com/你的用户名/你的仓库名/main/BirthdayWidget.js";
 
-// =================【数据持久化逻辑】=================
+// =================【1. 自动配色系统】=================
+const isNight = Device.isUsingDarkAppearance();
+const bgColor = isNight ? new Color("#1c1c1e") : new Color("#f9f9fb"); 
+const textColor = isNight ? Color.white() : Color.black();
+const subTextColor = isNight ? new Color("#ffffff", 0.7) : new Color("#333333", 0.8);
+
+// =================【2. 数据管理逻辑】=================
 function getDB() {
   if (!fm.fileExists(dbPath)) {
-    // 首次运行如果没有数据，自动创建示例，防止报错白屏
     const defaultData = [
-      { name: "爸爸", year: 1963, month: 6, day: 7, emoji: "👨" },
-      { name: "妈妈", year: 1965, month: 8, day: 12, emoji: "👩" },
+      { name: "爸爸", year: 1973, month: 11, day: 8, emoji: "👨" },
+      { name: "妈妈", year: 1975, month: 5, day: 20, emoji: "👩" },
       { name: "妹妹", year: 2000, month: 3, day: 15, emoji: "👧" },
       { name: "我", year: 1995, month: 11, day: 26, emoji: "👦" }
     ];
@@ -26,75 +32,12 @@ function saveDB(data) {
   fm.writeString(dbPath, JSON.stringify(data));
 }
 
-// =================【控制面板逻辑】=================
-async function renderSettings() {
-  const currentDB = getDB(); // 确保这里获取了 db
-  const alert = new Alert();
-  alert.title = "🎂 生日管家 Pro";
-  alert.message = `版本: ${VERSION}\n请点击下方按钮管理成员或预览。`;
-  
-  alert.addAction("➕ 添加新成员");
-  if (currentDB.length > 0) alert.addAction("📝 管理成员");
-  alert.addAction("🖼 预览组件");
-  alert.addCancelAction("退出");
-
-  const menuIdx = await alert.present();
-  
-  if (menuIdx === 0) {
-    await editMember(currentDB, -1);
-  } else if (menuIdx === 1 && currentDB.length > 0) {
-    const list = new Alert();
-    list.title = "选择成员";
-    currentDB.forEach(p => list.addAction(p.name));
-    list.addCancelAction("返回");
-    const idx = await list.present();
-    if (idx !== -1) await editMember(currentDB, idx);
-  } else if (menuIdx === 2 || (menuIdx === 1 && currentDB.length === 0)) {
-    const w = await createWidget();
-    await w.presentMedium();
-  }
-}
-
-async function editMember(dataList, index) {
-  const isNew = index === -1;
-  const item = isNew ? { name: "", year: 1990, month: 1, day: 1, emoji: "👤" } : dataList[index];
-  
-  const a = new Alert();
-  a.title = isNew ? "添加成员" : `修改 ${item.name}`;
-  a.addTextField("姓名", item.name);
-  a.addTextField("出生年", String(item.year));
-  a.addTextField("农历月", String(item.month));
-  a.addTextField("农历日", String(item.day));
-  a.addTextField("表情 (Emoji)", item.emoji || "👤");
-  
-  a.addAction("保存");
-  if (!isNew) a.addDestructiveAction("删除");
-  a.addCancelAction("取消");
-  
-  const res = await a.present();
-  if (res === 0) {
-    const newObj = {
-      name: a.textFieldValue(0),
-      year: parseInt(a.textFieldValue(1)),
-      month: parseInt(a.textFieldValue(2)),
-      day: parseInt(a.textFieldValue(3)),
-      emoji: a.textFieldValue(4)
-    };
-    if (isNew) dataList.push(newObj); else dataList[index] = newObj;
-    saveDB(dataList);
-  } else if (res === 1 && !isNew) {
-    dataList.splice(index, 1);
-    saveDB(dataList);
-  }
-  await renderSettings();
-}
-
-// =================【小组件渲染逻辑】=================
+// =================【3. 核心渲染函数】=================
 async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
-  w.backgroundColor = new Color("#1c1c1e");
-  w.setPadding(12, 10, 10, 10);
+  w.backgroundColor = bgColor;
+  w.setPadding(15, 12, 12, 12);
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
@@ -102,102 +45,138 @@ async function createWidget() {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  // 只展示前 4 个人
   currentData.slice(0, 4).forEach((p, i) => {
     const info = calculateBday(p, today);
     const col = mainStack.addStack();
     col.layoutVertically();
     col.centerAlignContent();
 
-    // 1. 头像
-    const t_emoji = col.addText(p.emoji || "👤");
-    t_emoji.font = Font.systemFont(25);
-    t_emoji.centerAlignText();
-
-    col.addSpacer(2);
-
-    // 2. 半圆弧画布
+    // --- A. 仪表盘绘制 (头像 + 半圆弧 + 天数) ---
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 60);
+    canvas.size = new Size(100, 90);
     canvas.opaque = false;
-    const center = { x: 50, y: 55 };
-    const radius = 40;
-    
-    // 底弧
-    canvas.setStrokeColor(new Color("#ffffff", 0.1));
-    canvas.setLineWidth(4);
+    const center = { x: 50, y: 58 };
+    const radius = 38;
+    const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
+
+    // 头像渲染
+    canvas.setFont(Font.systemFont(24));
+    canvas.drawTextInRect(p.emoji || "👤", new Rect(38, 0, 30, 30));
+
+    // 绘制颗粒感半圆弧
+    canvas.setStrokeColor(new Color("#888888", 0.15));
+    canvas.setLineWidth(3);
     for (let a = 180; a <= 360; a += 8) {
       const rad = a * Math.PI / 180;
-      canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 2, center.y + radius * Math.sin(rad) - 2, 4, 4));
+      canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
     }
-
-    // 进度弧
     const progress = Math.max(0.05, 1 - info.diff / 365);
-    const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
     for (let a = 180; a <= 180 + (180 * progress); a += 5) {
       const rad = a * Math.PI / 180;
       canvas.setFillColor(accentColor);
-      canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 2, center.y + radius * Math.sin(rad) - 2, 4, 4));
+      canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
     }
 
-    // 圆心日期
-    const df = new DateFormatter();
-    df.dateFormat = "MM-dd";
-    canvas.setFont(Font.boldSystemFont(13));
-    canvas.setTextColor(Color.white());
+    // 中间剩余天数
+    canvas.setFont(Font.heavySystemFont(18));
+    canvas.setTextColor(accentColor);
     canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, 40, 100, 20));
+    canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, 45, 100, 22));
 
     const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(70, 42);
+    img.imageSize = new Size(75, 68);
 
-    // 3. 底部信息
-    col.addSpacer(4);
-    const detailT = col.addText(`${info.shengXiao} ${info.zodiac}`);
-    detailT.font = Font.systemFont(8);
-    detailT.textColor = new Color("#ffffff", 0.6);
-    detailT.centerAlignText();
+    col.addSpacer(2);
     
-    const godT = col.addText(info.caiShen);
-    godT.font = Font.systemFont(7);
-    godT.textColor = new Color("#f2c94c", 0.5);
-    godT.centerAlignText();
+    // --- B. 姓名显示 ---
+    const nameT = col.addText(p.name);
+    nameT.font = Font.boldSystemFont(11);
+    nameT.textColor = textColor;
+    nameT.centerAlignText();
+    
+    col.addSpacer(6);
 
-    const diffT = col.addText(info.diff === 0 ? "🎂今天" : `${info.diff}天`);
-    diffT.font = Font.boldSystemFont(10);
-    diffT.textColor = accentColor;
-    diffT.centerAlignText();
+    // --- C. 详细信息行：发光椭圆 + 图标 + 文字 ---
+    const details = [
+      { icon: info.shengXiaoIco, text: info.shengXiao },
+      { icon: info.zodiacIco, text: info.zodiac },
+      { icon: "🧭", text: info.caiShen }
+    ];
+
+    details.forEach(item => {
+      const lineStack = col.addStack();
+      lineStack.centerAlignContent();
+      
+      // 竖直发光椭圆绘制
+      const pillCanvas = new DrawContext();
+      pillCanvas.size = new Size(8, 20);
+      pillCanvas.opaque = false;
+      pillCanvas.setFillColor(new Color(accentColor.hex, 0.3));
+      pillCanvas.fillRoundedRect(new Rect(2, 2, 3, 16), 1.5, 1.5);
+      pillCanvas.setFillColor(accentColor);
+      pillCanvas.fillEllipse(new Rect(2.5, 4, 2, 2));
+      pillCanvas.fillEllipse(new Rect(2.5, 9, 2, 2));
+      pillCanvas.fillEllipse(new Rect(2.5, 14, 2, 2));
+      
+      const pillImg = lineStack.addImage(pillCanvas.getImage());
+      pillImg.imageSize = new Size(5, 13);
+      
+      lineStack.addSpacer(3);
+      
+      const t = lineStack.addText(`${item.icon} ${item.text}`);
+      t.font = Font.systemFont(9);
+      t.textColor = subTextColor;
+      
+      col.addSpacer(2);
+    });
 
     if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
   });
 
   w.addSpacer();
+  
+  // --- D. 年度进度条渲染 ---
+  renderYearBar(w, today);
+  
+  return w;
+}
 
-  // 4. 年度进度条
+// =================【4. 辅助绘图与计算函数】=================
+function renderYearBar(w, now) {
   const startYear = new Date(now.getFullYear(), 0, 1);
   const endYear = new Date(now.getFullYear(), 11, 31);
   const yearPercent = (now - startYear) / (endYear - startYear);
 
-  const barBg = w.addStack();
-  barBg.backgroundColor = new Color("#ffffff", 0.1);
-  barBg.cornerRadius = 2;
-  barBg.size = new Size(0, 4);
+  const barCanvas = new DrawContext();
+  barCanvas.size = new Size(300, 20);
+  barCanvas.opaque = false;
   
-  const barFill = barBg.addStack();
-  barFill.size = new Size(300 * yearPercent, 4);
-  barFill.backgroundColor = new Color("#f2c94c", 0.8);
-  barFill.cornerRadius = 2;
+  const barWidth = 300 * yearPercent;
+  barCanvas.setFillColor(new Color("#888888", 0.15));
+  barCanvas.fillRoundedRect(new Rect(0, 8, 300, 4), 2, 2);
+  
+  barCanvas.setFillColor(new Color("#f2c94c", 0.25));
+  barCanvas.fillRoundedRect(new Rect(0, 6, barWidth, 8), 4, 4);
+  
+  for(let x=0; x < barWidth; x += 5) {
+    const s = 2 + Math.random() * 2;
+    barCanvas.setFillColor(new Color("#f2c94c", 0.9));
+    barCanvas.fillEllipse(new Rect(x, 8 + (4-s)/2, s, s));
+  }
 
-  w.addSpacer(2);
-  const yearLabel = w.addText(`${now.getFullYear()} 年度进度 ${Math.floor(yearPercent * 100)}%`);
-  yearLabel.font = Font.systemFont(8);
-  yearLabel.textColor = new Color("#ffffff", 0.3);
-  yearLabel.centerAlignText();
+  const footerStack = w.addStack();
+  footerStack.layoutVertically();
+  const barImg = footerStack.addImage(barCanvas.getImage());
+  barImg.imageSize = new Size(300, 15);
 
-  return w;
+  const label = footerStack.addText(`${now.getFullYear()} YEAR PROGRESS ${Math.floor(yearPercent * 100)}%`);
+  label.font = Font.boldSystemFont(8);
+  label.textColor = subTextColor;
+  label.centerAlignText();
 }
 
 function calculateBday(p, today) {
+  // 1. 根据农历生日锁定公历目标
   let l = Lunar.fromYmd(today.getFullYear(), p.month, p.day);
   let s = l.getSolar();
   let bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
@@ -208,21 +187,100 @@ function calculateBday(p, today) {
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
 
+  // 2. 提取出生当天的严谨信息
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
+  const originS = originL.getSolar();
+  
+  const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
+  const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
+
   return {
     solarDate: bDay,
     diff: Math.ceil((bDay - today) / 86400000),
     shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(),
-    zodiac: originL.getSolar().toFullString().split(' ').pop(),
-    caiShen: originL.getDayPositionCaiDesc() + "财位"
+    shengXiaoIco: sxMap[originL.getYearShengXiao()] || "🐾",
+    zodiac: originS.getZodiac() + "座",
+    zodiacIco: zdMap[originS.getZodiac()] || "✨",
+    caiShen: originL.getDayPositionCaiDesc() + "财"
   };
 }
 
-// 启动
-if (config.runsInApp) {
-  await renderSettings();
-} else {
-  const w = await createWidget();
-  Script.setWidget(w);
-  Script.complete();
+// =================【5. 控制面板与更新】=================
+async function updateScript() {
+  const a = new Alert();
+  a.title = "🔄 检查更新";
+  a.message = "正在连接 GitHub...";
+  a.addAction("开始");
+  a.addCancelAction("取消");
+  if (await a.present() === 0) {
+    try {
+      const req = new Request(GITHUB_URL);
+      const code = await req.loadString();
+      if (code.includes("VERSION")) {
+        fm.writeString(module.filename, code);
+        const s = new Alert(); s.title = "✅ 更新成功"; await s.present();
+      }
+    } catch (e) {
+      const f = new Alert(); f.title = "❌ 连接失败"; await f.present();
+    }
+  }
 }
+
+async function renderSettings() {
+  const currentDB = getDB();
+  const alert = new Alert();
+  alert.title = "🎂 生日管家 Pro " + VERSION;
+  alert.message = "管理家人信息并预览组件效果";
+  
+  alert.addAction("➕ 管理成员");
+  alert.addAction("🖼 预览组件");
+  alert.addAction("🚀 检查更新");
+  alert.addCancelAction("退出");
+  
+  const res = await alert.present();
+  if (res === 0) {
+    const list = new Alert();
+    list.title = "管理成员";
+    currentDB.forEach(p => list.addAction(p.name));
+    list.addAction("➕ 新增成员");
+    list.addCancelAction("取消");
+    const idx = await list.present();
+    if (idx !== -1) {
+      if (idx === currentDB.length) await editMember(currentDB, -1);
+      else await editMember(currentDB, idx);
+    }
+  }
+  if (res === 1) { (await createWidget()).presentMedium(); }
+  if (res === 2) { await updateScript(); }
+}
+
+async function editMember(dataList, index) {
+  const isNew = index === -1;
+  const item = isNew ? { name: "", year: 1990, month: 1, day: 1, emoji: "👤" } : dataList[index];
+  const a = new Alert();
+  a.title = isNew ? "新增" : "修改";
+  a.addTextField("姓名", item.name);
+  a.addTextField("出生年", String(item.year));
+  a.addTextField("农历月", String(item.month));
+  a.addTextField("农历日", String(item.day));
+  a.addTextField("头像Emoji", item.emoji);
+  a.addAction("保存");
+  if (!isNew) a.addDestructiveAction("删除");
+  a.addCancelAction("取消");
+  if (await a.present() === 0) {
+    const newObj = {
+      name: a.textFieldValue(0), year: parseInt(a.textFieldValue(1)),
+      month: parseInt(a.textFieldValue(2)), day: parseInt(a.textFieldValue(3)),
+      emoji: a.textFieldValue(4)
+    };
+    if (isNew) dataList.push(newObj); else dataList[index] = newObj;
+    saveDB(dataList);
+  } else if (!isNew) {
+    dataList.splice(index, 1); saveDB(dataList);
+  }
+  await renderSettings();
+}
+
+// 启动逻辑
+if (config.runsInApp) { await renderSettings(); } 
+else { Script.setWidget(await createWidget()); Script.complete(); }
