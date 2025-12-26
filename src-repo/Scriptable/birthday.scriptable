@@ -1,6 +1,6 @@
 // --- 配置区域 ---
 // 请在此处填入你的 GitHub Raw 链接
-const GITHUB_RAW_URL = "https://raw.githubusercontent.com/你的用户名/仓库名/分支/文件名.js";
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/birthday.scriptable";
 
 // --- 数据持久化设置 ---
 let fm = FileManager.local();
