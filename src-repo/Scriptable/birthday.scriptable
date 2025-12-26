@@ -206,4 +206,212 @@ if (config.runsInApp) {
   const widget = await w.render();
   Script.setWidget(widget);
 }
+Script.complete();// Variables used by Scriptable.
+// These must be at the very top of the file. Do not edit.
+// icon-color: teal; icon-glyph: cake;
+
+// 1. 导入依赖
+const DmYY = importModule('DmYY');
+const Lunar = importModule('lunar'); // 假设你的文件名是 lunar.js 或 lunar.module.js
+
+class FamilyBirthday extends DmYY {
+  constructor(arg) {
+    // 默认配置项：仅保留头像和农历日期
+    const defaultSettings = {
+      family: [
+        { name: "爸爸", month: 3, day: 15, emoji: "👨" },
+        { name: "妈妈", month: 6, day: 20, emoji: "👩" },
+        { name: "妹妹", month: 9, day: 5,  emoji: "👧" },
+        { name: "我",   month: 11, day: 8,  emoji: "👦" }
+      ]
+    };
+    super(arg, defaultSettings);
+  }
+
+  // --- 配置菜单：点击脚本弹出 ---
+  async showMyMenu() {
+    const actions = [];
+    this.settings.family.forEach((person, index) => {
+      actions.push({
+        title: `${person.emoji} 修改 ${person.name} 的生日`,
+        onClick: async () => { await this.editPerson(index); }
+      });
+    });
+    
+    await this.registerAction('🎂 生日设置', actions);
+    return await this.renderAction();
+  }
+
+  // 简化版编辑界面
+  async editPerson(index) {
+    const p = this.settings.family[index];
+    const a = new Alert();
+    a.title = `设置 ${p.name} 的信息`;
+    a.addTextField("头像 Emoji", p.emoji);
+    a.addTextField("农历月份 (数字)", p.month.toString());
+    a.addTextField("农历日期 (数字)", p.day.toString());
+    a.addAction("确认保存");
+    a.addCancelAction("取消");
+    
+    if (await a.present() === 0) {
+      this.settings.family[index].emoji = a.textFieldValue(0);
+      this.settings.family[index].month = parseInt(a.textFieldValue(1));
+      this.settings.family[index].day = parseInt(a.textFieldValue(2));
+      this.saveSettings();
+    }
+  }
+
+  // --- 核心渲染逻辑 ---
+  async render() {
+    const listWidget = new ListWidget();
+    const now = new Date();
+    const currentYear = now.getFullYear();
+
+    // 1. 处理数据并计算公历日期
+    let bDayPerson = null;
+    const processed = this.settings.family.map(p => {
+      // 使用 lunar 模块计算公历
+      let solar = this.getSolarFromLunar(currentYear, p.month, p.day);
+      // 如果今年已经过了，算明年的
+      if (now.getTime() > solar.getTime() + 86400000) {
+        solar = this.getSolarFromLunar(currentYear + 1, p.month, p.day);
+      }
+      
+      const isToday = now.toDateString() === solar.toDateString();
+      if (isToday) bDayPerson = p;
+      return { ...p, solar, isToday };
+    });
+
+    // 2. 视觉背景
+    if (bDayPerson) {
+      listWidget.backgroundGradient = this.getGradient("#e52d27", "#b31217");
+    } else {
+      listWidget.backgroundColor = new Color("#1c1c1e");
+    }
+    listWidget.setPadding(12, 12, 12, 12);
+
+    // 3. 绘制四人组布局
+    const hStack = listWidget.addStack();
+    hStack.layoutHorizontally();
+    hStack.bottomAlignContent();
+
+    processed.forEach((p, i) => {
+      const vStack = hStack.addStack();
+      vStack.layoutVertically();
+      vStack.centerAlignContent();
+
+      // 在一个画布上绘制 Emoji 和圆环，解决对齐问题
+      const canvas = new DrawContext();
+      canvas.size = new Size(120, 120);
+      canvas.opaque = false;
+
+      // 绘制 Emoji
+      canvas.setFont(Font.systemFont(34));
+      canvas.setTextAlignedCenter();
+      canvas.drawTextInRect(p.emoji, new Rect(0, 0, 120, 45));
+
+      // 绘制圆环
+      const diff = p.solar - now;
+      const progress = p.isToday ? 1 : Math.max(0.1, 1 - (diff / (365 * 86400000)));
+      this.drawArc(canvas, progress, p.isToday);
+
+      const img = vStack.addImage(canvas.getImage());
+      img.imageSize = new Size(70, 70);
+
+      vStack.addSpacer(2);
+
+      // 绘制日期文字
+      const df = new DateFormatter();
+      df.dateFormat = "yyyy-MM-dd";
+      const dateText = vStack.addText(p.isToday ? "HAPPY" : df.string(p.solar));
+      dateText.font = Font.boldSystemFont(9);
+      dateText.textColor = Color.white();
+      dateText.centerAlignText();
+
+      if (i < processed.length - 1) hStack.addSpacer();
+    });
+
+    // 4. 底部年度进度条
+    listWidget.addSpacer();
+    this.renderYearBar(listWidget, bDayPerson);
+
+    return listWidget;
+  }
+
+  // 利用 lunar 模块进行转换
+  getSolarFromLunar(y, m, d) {
+    // 适配 lunar.js 的典型调用方式：lunar.toSolar(年, 月, 日)
+    // 注意：如果是闰月，模块通常有特殊参数，此处按普通农历处理
+    const solardate = Lunar.toSolar(y, m, d);
+    return new Date(solardate.year, solardate.month - 1, solardate.day);
+  }
+
+  // 绘图辅助：圆环
+  drawArc(ctx, progress, isToday) {
+    const center = { x: 60, y: 85 };
+    const radius = 35;
+    const thick = 6;
+    // 背景环
+    ctx.setFillColor(new Color("#ffffff", 0.1));
+    for (let a=0; a<360; a+=2) {
+      const x = center.x + radius * Math.cos(a*Math.PI/180);
+      const y = center.y + radius * Math.sin(a*Math.PI/180);
+      ctx.fillEllipse(new Rect(x-thick/2, y-thick/2, thick, thick));
+    }
+    // 进度环
+    ctx.setFillColor(isToday ? Color.green() : new Color("#ffd60a"));
+    for (let a=180; a<180 + (180*progress); a+=2) {
+      const x = center.x + radius * Math.cos(a*Math.PI/180);
+      const y = center.y + radius * Math.sin(a*Math.PI/180);
+      ctx.fillEllipse(new Rect(x-thick/2, y-thick/2, thick, thick));
+    }
+  }
+
+  // 渲染年度进度条
+  renderYearBar(widget, isBday) {
+    const now = new Date();
+    const start = new Date(now.getFullYear(), 0, 1);
+    const end = new Date(now.getFullYear() + 1, 0, 1);
+    const yp = (now - start) / (end - start);
+    const daysLeft = Math.ceil((end - now) / 86400000);
+
+    const stack = widget.addStack();
+    stack.layoutVertically();
+    
+    const label = stack.addStack();
+    const t1 = label.addText(`${now.getFullYear()} 进度 ${Math.floor(yp*100)}%`);
+    t1.font = Font.systemFont(9); t1.textColor = Color.white(); t1.textOpacity = 0.5;
+    label.addSpacer();
+    const t2 = label.addText(`剩 ${daysLeft} 天`);
+    t2.font = Font.systemFont(9); t2.textColor = Color.white(); t2.textOpacity = 0.5;
+
+    stack.addSpacer(4);
+    
+    const barW = 310;
+    const ctx = new DrawContext();
+    ctx.size = new Size(barW, 8);
+    ctx.opaque = false;
+    const bgP = new Path(); bgP.addRoundedRect(new Rect(0,0,barW,8),4,4);
+    ctx.addPath(bgP); ctx.setFillColor(new Color("#ffffff",0.15)); ctx.fillPath();
+    const fgP = new Path(); fgP.addRoundedRect(new Rect(0,0,barW*yp,8),4,4);
+    ctx.addPath(fgP); ctx.setFillColor(isBday ? Color.yellow() : Color.green()); ctx.fillPath();
+    stack.addImage(ctx.getImage());
+  }
+
+  getGradient(c1, c2) {
+    let g = new LinearGradient();
+    g.colors = [new Color(c1), new Color(c2)];
+    g.locations = [0, 1];
+    return g;
+  }
+}
+
+// 启动
+const w = new FamilyBirthday(args.widgetParameter);
+if (config.runsInApp) {
+  await w.showMyMenu();
+} else {
+  const widget = await w.render();
+  Script.setWidget(widget);
+}
 Script.complete();
