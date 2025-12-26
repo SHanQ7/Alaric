@@ -4,9 +4,8 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.7.6";
+const VERSION = "1.8.0";
 
-// ⚠️ 请确认你的 GitHub 链接
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 配色与环境】=================
@@ -15,7 +14,124 @@ const bgColor = isNight ? new Color("#1c1c1e") : new Color("#f9f9fb");
 const textColor = isNight ? Color.white() : Color.black();
 const subTextColor = isNight ? new Color("#ffffff", 0.7) : new Color("#333333", 0.8);
 
-// =================【2. 数据管理】=================
+// =================【2. 核心渲染】=================
+async function createWidget() {
+  const currentData = getDB();
+  const w = new ListWidget();
+  w.backgroundColor = bgColor;
+  w.setPadding(10, 12, 10, 12); 
+
+  const mainStack = w.addStack();
+  mainStack.centerAlignContent();
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  currentData.slice(0, 4).forEach((p, i) => {
+    const info = calculateBday(p, today);
+    const col = mainStack.addStack();
+    col.layoutVertically();
+    col.centerAlignContent(); 
+
+    // --- A. 仪表盘绘制 ---
+    const canvas = new DrawContext();
+    canvas.size = new Size(100, 115); // 稍微增加画布总高度
+    canvas.opaque = false;
+    
+    const avatarY = 0;   
+    const arcCenterY = 72; // 圆心下移，增加与头像的间隔
+    const radius = 33;     
+    const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
+
+    // 1. 绘制头像 (通过 avatarY 控制与圆弧的间隔)
+    canvas.setFont(Font.systemFont(28));
+    canvas.setTextAlignedCenter();
+    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
+
+    // 2. 绘制半圆弧 (使用点状线条增加呼吸感)
+    canvas.setStrokeColor(new Color("#888888", 0.15));
+    canvas.setLineWidth(3);
+    for (let a = 180; a <= 360; a += 6) {
+      const rad = a * Math.PI / 180;
+      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
+    }
+    const progress = Math.max(0.05, 1 - info.diff / 365);
+    for (let a = 180; a <= 180 + (180 * progress); a += 4) {
+      const rad = a * Math.PI / 180;
+      canvas.setFillColor(accentColor);
+      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
+    }
+
+    // 3. 圆弧内：天数
+    canvas.setFont(Font.heavySystemFont(18));
+    canvas.setTextColor(accentColor);
+    canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
+    
+    // 4. 圆弧下方：标准日期格式 YYYY年-MM-dd
+    const df = new DateFormatter();
+    df.dateFormat = "yyyy年-MM-dd";
+    canvas.setFont(Font.boldSystemFont(9));
+    canvas.setTextColor(textColor);
+    canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 12, 100, 15));
+
+    const img = col.addImage(canvas.getImage());
+    img.imageSize = new Size(75, 86); 
+
+    // 5. 压缩间距：添加一个负向间距或极小间距
+    col.addSpacer(-2);
+
+    // --- B. 详细信息行 (柔和发光效果) ---
+    const details = [
+      { icon: info.shengXiaoIco, text: info.shengXiao },
+      { icon: info.zodiacIco, text: info.zodiac },
+      { icon: "☯️", text: info.bazi },
+      { icon: "🎋", text: info.dayWuXing + "命" },
+      { icon: "🧭", text: info.caiShen }
+    ];
+
+    details.forEach(item => {
+      const lineStack = col.addStack();
+      lineStack.centerAlignContent();
+      
+      // 绘制“柔和发光”胶囊
+      const glowCanvas = new DrawContext();
+      glowCanvas.size = new Size(12, 20);
+      glowCanvas.opaque = false;
+      
+      // 核心光晕叠加
+      const glowRect = new Rect(4, 4, 3, 12);
+      const glowPath = new Path();
+      glowPath.addRoundedRect(glowRect, 1.5, 1.5);
+      
+      // 外层大面积弱光
+      glowCanvas.setFillColor(new Color(accentColor.hex, 0.15));
+      glowCanvas.fillEllipse(new Rect(2, 2, 7, 16));
+      
+      // 内层核心光束
+      glowCanvas.addPath(glowPath);
+      glowCanvas.setFillColor(accentColor);
+      glowCanvas.fillPath();
+      
+      const glowImg = lineStack.addImage(glowCanvas.getImage());
+      glowImg.imageSize = new Size(6, 10);
+      
+      lineStack.addSpacer(4);
+      
+      const t = lineStack.addText(`${item.icon} ${item.text}`);
+      t.font = Font.systemFont(8);
+      t.textColor = subTextColor;
+      
+      col.addSpacer(1); // 行与行之间保持极小紧凑感
+    });
+
+    if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
+  });
+  
+  return w;
+}
+
+// =================【3. 辅助逻辑】=================
+
 function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
@@ -33,109 +149,6 @@ function getDB() {
 function saveDB(data) {
   fm.writeString(dbPath, JSON.stringify(data));
 }
-
-// =================【3. 核心渲染】=================
-async function createWidget() {
-  const currentData = getDB();
-  const w = new ListWidget();
-  w.backgroundColor = bgColor;
-  w.setPadding(12, 12, 12, 12); 
-
-  const mainStack = w.addStack();
-  mainStack.centerAlignContent();
-
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
-  currentData.slice(0, 4).forEach((p, i) => {
-    const info = calculateBday(p, today);
-    const col = mainStack.addStack();
-    col.layoutVertically();
-    col.centerAlignContent(); 
-
-    // --- A. 仪表盘 (头像+圆弧+天数+日期) ---
-    const canvas = new DrawContext();
-    canvas.size = new Size(100, 110); 
-    canvas.opaque = false;
-    
-    const avatarY = 0;   
-    const arcCenterY = 60; 
-    const radius = 33;     
-    const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
-
-    canvas.setFont(Font.systemFont(28));
-    canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
-
-    canvas.setStrokeColor(new Color("#888888", 0.15));
-    canvas.setLineWidth(3);
-    for (let a = 180; a <= 360; a += 6) {
-      const rad = a * Math.PI / 180;
-      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
-    }
-    const progress = Math.max(0.05, 1 - info.diff / 365);
-    for (let a = 180; a <= 180 + (180 * progress); a += 4) {
-      const rad = a * Math.PI / 180;
-      canvas.setFillColor(accentColor);
-      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
-    }
-
-    canvas.setFont(Font.heavySystemFont(18));
-    canvas.setTextColor(accentColor);
-    canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
-    
-    const df = new DateFormatter();
-    df.dateFormat = "MM-dd";
-    canvas.setFont(Font.systemFont(10));
-    canvas.setTextColor(textColor);
-    canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 10, 100, 15));
-
-    const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(75, 82); 
-
-    // --- B. 详细信息行 ---
-    const details = [
-      { icon: info.shengXiaoIco, text: info.shengXiao },
-      { icon: info.zodiacIco, text: info.zodiac },
-      { icon: "☯️", text: info.bazi },
-      { icon: "🎋", text: info.dayWuXing + "命" },
-      { icon: "🧭", text: info.caiShen }
-    ];
-
-    details.forEach(item => {
-      const lineStack = col.addStack();
-      lineStack.centerAlignContent();
-      
-      const pillCanvas = new DrawContext();
-      pillCanvas.size = new Size(8, 16); 
-      pillCanvas.opaque = false;
-      const pillPath = new Path();
-      pillPath.addRoundedRect(new Rect(2, 2, 3, 12), 1.5, 1.5);
-      pillCanvas.addPath(pillPath);
-      pillCanvas.setFillColor(new Color(accentColor.hex, 0.3));
-      pillCanvas.fillPath();
-      
-      pillCanvas.setFillColor(accentColor);
-      pillCanvas.fillEllipse(new Rect(2.5, 4, 2, 2));
-      pillCanvas.fillEllipse(new Rect(2.5, 8, 2, 2));
-      pillCanvas.fillEllipse(new Rect(2.5, 12, 2, 2));
-      
-      const pillImg = lineStack.addImage(pillCanvas.getImage());
-      pillImg.imageSize = new Size(5, 10);
-      lineStack.addSpacer(3);
-      
-      const t = lineStack.addText(`${item.icon} ${item.text}`);
-      t.font = Font.systemFont(8);
-      t.textColor = subTextColor;
-    });
-
-    if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
-  });
-  
-  return w;
-}
-
-// =================【4. 辅助逻辑】=================
 
 function getZodiac(month, day) {
   const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
@@ -157,12 +170,8 @@ function calculateBday(p, today) {
   const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
   
-  // --- 修复点：正确获取八字及五行 ---
   const baZi = originL.getEightChar(); 
   const baZiStr = `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`; 
-  
-  // 获取日柱的五行（从日干支获取）
-  // baZi.getDayWuXing() 返回的是日干支的五行
   const dayWuXing = baZi.getDayWuXing(); 
 
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
@@ -181,7 +190,7 @@ function calculateBday(p, today) {
   };
 }
 
-// =================【5. 更新与面板】=================
+// =================【4. 更新与设置面板】=================
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
@@ -195,11 +204,9 @@ async function updateScript() {
       if (code.includes("VERSION")) {
         fm.writeString(module.filename, code);
         const s = new Alert(); s.title = "✅ 更新成功"; s.message = "请重新运行脚本。"; await s.present();
-      } else {
-        throw new Error("Invalid Code");
       }
     } catch (e) {
-      const f = new Alert(); f.title = "❌ 更新失败"; f.message = "请检查网络或 URL 配置"; await f.present();
+      const f = new Alert(); f.title = "❌ 更新失败"; f.message = "请检查网络"; await f.present();
     }
   }
 }
