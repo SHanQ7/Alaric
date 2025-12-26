@@ -1,4 +1,4 @@
-// --- 配置区域 ---
+// --- 配置区域 ---// --- 配置区域 ---
 const GITHUB_RAW_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/birthday.scriptable";
 
 // --- 数据持久化 ---
@@ -17,7 +17,6 @@ if (fm.fileExists(dataPath)) {
   familyData = JSON.parse(fm.readString(dataPath));
 }
 
-// 主入口
 if (config.runsInApp) {
   await showControlPanel();
 } else {
@@ -33,14 +32,12 @@ async function createWidget() {
 
   let bDayPerson = null;
   const processed = familyData.map(p => {
-    // 调用修复后的年份逻辑
     const solar = getCorrectSolar(p.month, p.day);
     const isToday = (today.toDateString() === solar.toDateString());
     if (isToday) bDayPerson = p;
     return { ...p, solar, isToday };
   });
 
-  // 背景
   if (bDayPerson) {
     let grad = new LinearGradient();
     grad.colors = [new Color("#e52d27"), new Color("#b31217")];
@@ -49,9 +46,8 @@ async function createWidget() {
     listWidget.backgroundColor = new Color("#1c1c1e");
   }
 
-  listWidget.setPadding(10, 10, 5, 10);
+  listWidget.setPadding(10, 5, 5, 5);
 
-  // --- 上半部分：人员展示 ---
   const mainHStack = listWidget.addStack();
   mainHStack.layoutHorizontally();
   mainHStack.centerAlignContent();
@@ -61,178 +57,237 @@ async function createWidget() {
     vStack.layoutVertically();
     
     const canvas = new DrawContext();
-    const canvasW = 140; 
-    const canvasH = 140; // 增加高度以便拉开间距
+    const canvasW = 240; 
+    const canvasH = 220; 
     canvas.size = new Size(canvasW, canvasH);
     canvas.opaque = false;
 
-    // 1. 绘制 Emoji (上移)
-    canvas.setFont(Font.systemFont(28));
+    // 1. 头像 (置顶)
+    canvas.setFont(Font.systemFont(60));
     canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(p.emoji, new Rect(0, 0, canvasW, 40));
+    canvas.drawTextInRect(p.emoji, new Rect(0, 0, canvasW, 70));
 
-    // 2. 绘制开口朝下的弧线 (中心下移，避免重叠)
-    const center = { x: canvasW / 2, y: 75 }; 
-    const radius = 45;
-    const thick = 6;
+    // 2. 开口朝下圆弧 (位于头像下方 15px)
+    const center = { x: canvasW / 2, y: 125 }; 
+    const radius = 70; 
+    const thick = 10;  
     const diff = p.solar - now;
-    const progress = p.isToday ? 1 : Math.max(0.05, 1 - (diff / (365 * 86400000)));
+    const progress = p.isToday ? 1 : Math.max(0.1, 1 - (diff / (365 * 86400000)));
 
-    // 底色
-    canvas.setFillColor(new Color("#ffffff", 0.15));
-    for (let a = 185; a <= 355; a += 3) {
+    canvas.setFillColor(new Color("#ffffff", 0.2));
+    for (let a = 190; a <= 350; a += 4) {
       const rad = a * Math.PI / 180;
       const x = center.x + radius * Math.cos(rad);
       const y = center.y + radius * Math.sin(rad);
       canvas.fillEllipse(new Rect(x - thick/2, y - thick/2, thick, thick));
     }
 
-    // 进度
     canvas.setFillColor(p.isToday ? Color.green() : new Color("#ffd60a"));
-    const endAngle = 185 + (170 * progress);
-    for (let a = 185; a <= endAngle; a += 3) {
+    const endAngle = 190 + (160 * progress);
+    for (let a = 190; a <= endAngle; a += 3) {
       const rad = a * Math.PI / 180;
       const x = center.x + radius * Math.cos(rad);
       const y = center.y + radius * Math.sin(rad);
       canvas.fillEllipse(new Rect(x - thick/2, y - thick/2, thick, thick));
     }
 
-    // 3. 绘制日期 (精准定位在开口中心)
+    // 3. 日期 (粗体，置于弧线开口处)
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
-    const dateStr = p.isToday ? "HAPPY B-DAY" : df.string(p.solar);
-    canvas.setFont(Font.boldSystemFont(11));
+    const dateStr = p.isToday ? "BIRTHDAY" : df.string(p.solar);
+    
+    canvas.setFont(Font.heavySystemFont(22)); 
     canvas.setTextColor(Color.white());
-    canvas.drawTextInRect(dateStr, new Rect(0, 85, canvasW, 25));
+    canvas.drawTextInRect(dateStr, new Rect(0, 140, canvasW, 50));
 
     const personImg = vStack.addImage(canvas.getImage());
-    personImg.imageSize = new Size(75, 75);
+    personImg.imageSize = new Size(88, 80);
 
     if (i < processed.length - 1) mainHStack.addSpacer();
   });
 
-  // 【核心修改】压缩上半部分与进度条的间距
-  listWidget.addSpacer(-15); 
+  listWidget.addSpacer(-5);
 
-  // --- 底部年度进度条 ---
   const yp = getYearProgress();
   const bottomStack = listWidget.addStack();
   bottomStack.layoutVertically();
-  bottomStack.setPadding(0, 5, 5, 5); 
+  bottomStack.setPadding(0, 15, 12, 15); 
   
   const labelStack = bottomStack.addStack();
-  const progressText = labelStack.addText(`${now.getFullYear()} 进度 ${Math.floor(yp * 100)}%`);
-  progressText.font = Font.systemFont(10);
+  const progressText = labelStack.addText(`2025 进度: ${Math.floor(yp * 100)}%`);
+  progressText.font = Font.boldSystemFont(13);
   progressText.textColor = Color.white();
-  progressText.textOpacity = 0.5;
+  progressText.textOpacity = 0.7;
   labelStack.addSpacer();
   
-  bottomStack.addSpacer(5);
+  bottomStack.addSpacer(6);
 
-  const barW = 310; 
+  const barW = 330; 
   const barCtx = new DrawContext();
-  barCtx.size = new Size(barW, 8);
+  barCtx.size = new Size(barW, 12);
   barCtx.opaque = false;
-  const bgP = new Path(); bgP.addRoundedRect(new Rect(0, 0, barW, 8), 4, 4);
-  barCtx.addPath(bgP); barCtx.setFillColor(new Color("#ffffff", 0.1)); barCtx.fillPath();
-  const fgP = new Path(); fgP.addRoundedRect(new Rect(0, 0, barW * yp, 8), 4, 4);
+  const bgP = new Path(); bgP.addRoundedRect(new Rect(0, 0, barW, 12), 6, 6);
+  barCtx.addPath(bgP); barCtx.setFillColor(new Color("#ffffff", 0.15)); barCtx.fillPath();
+  const fgP = new Path(); fgP.addRoundedRect(new Rect(0, 0, barW * yp, 12), 6, 6);
   barCtx.addPath(fgP); barCtx.setFillColor(bDayPerson ? Color.yellow() : Color.green()); barCtx.fillPath();
   bottomStack.addImage(barCtx.getImage());
 
   return listWidget;
 }
 
-// 彻底修复日期逻辑
 function getCorrectSolar(lMonth, lDay) {
   const now = new Date();
-  // 清除时分秒，只保留日期用于比较
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  
-  // 第一步：计算 2025 年对应的公历日期
   let solar2025 = lunarToSolar(2025, lMonth, lDay);
-  
-  // 第二步：判断 2025 年的这个日子是否已经过去了
-  // 如果 2025 年的生日还没到，或者就是今天，就返回 2025 年
-  if (solar2025.getTime() >= today.getTime()) {
-      return solar2025;
-  }
-  
-  // 第三步：如果 2025 已经过去了，返回 2026
+  if (solar2025.getTime() >= today.getTime()) return solar2025;
   return lunarToSolar(2026, lMonth, lDay);
 }
 
-// 农历计算函数 (修正了返回值的稳定性)
 function lunarToSolar(ly, lm, ld) {
-  const lunarYearArr = [0x0b557, 0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5b0, 0x14573, 0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, 0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, 0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b6a0, 0x195a6, 0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570, 0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0, 0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, 0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930, 0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530, 0x05aa0, 0x076a3, 0x096d0, 0x04afb, 0x04ad0, 0x0a4d0, 118966, 0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0, 0x14b63, 0x09370, 0x049f8, 0x04970, 0x064b0, 0x168a6, 0x0ea50, 0x06b20, 0x1a6c4, 0x0aae0, 0x0a2e0, 0x0d2e3, 0x0c960, 0x0d557, 0x0d4a0, 0x0da50, 0x05d55, 0x056a0, 0x0a6d0, 0x055d4, 0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0, 0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160, 0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f252, 0x0d520];
-  const getS = (y, m, d) => (Date.UTC(y, m-1, d) - Date.UTC(1949, 0, 29)) / 86400000 + 1;
-  const start = new Date(ly, 0, 1);
-  for (let i=0; i<400; i++) {
-    let d = new Date(start.getTime() + i*86400000);
-    let span = getS(d.getFullYear(), d.getMonth()+1, d.getDate());
-    let y, m, day;
-    for (let j=0; j<lunarYearArr.length; j++) {
-      let yDays = 0; let lyData = lunarYearArr[j];
-      for (let k=0x8000; k>0x8; k>>=1) yDays += (lyData & k) ? 30 : 29;
-      if (lyData & 0xf) yDays += (lyData & 0xf0000) ? 30 : 29;
-      if (span <= yDays) { y = 1949+j; break; } span -= yDays;
-    }
-    let lyData = lunarYearArr[y-1949]; let ms = [];
-    for (let k=0x8000; k>0x8; k>>=1) ms.push((lyData & k) ? 30 : 29);
-    if (lyData & 0xf) ms.splice(lyData & 0xf, 0, (lyData & 0xf0000) ? 30 : 29);
-    for (let k=0; k<ms.length; k++) {
-      if (span <= ms[k]) { m = k+1; day = Math.floor(span); break; } span -= ms[k];
-    }
-    if (m === lm && day === ld) return d;
-  }
+  const lunarYearArr = [0x0b557, 0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5b0, 0x14573, 0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, 0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, 0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b6a0, 0x195a6, 0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570, 0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0, 0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, 0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930, 0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530, 0x05aa0, 0x076a3, 0x096d0, 0x04afb, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0, 0x14b63, 0x09370, 0x049f8, 0x04970, 0x064b0, 0x168a6, 0x0ea50, 0x06b20, 0x1a6c4, 0x0aae0, 0x0a2e0, 0x0d2e3, 0x0c960, 0x0d557, 0x0d4a0, 0x0da50, 0x05d55, 0x056a0, 0x0a6d0, 0x055d4, 0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0, 0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160, 0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/birthday.scriptable";
+
+// --- 数据持久化 ---
+let fm = FileManager.local();
+const scriptPath = module.filename;
+const dataPath = fm.joinPath(fm.documentsDirectory(), "lunar_birthday_data.json");
+
+let familyData = [
+  { name: "爸爸", month: 3, day: 15, emoji: "👨" },
+  { name: "妈妈", month: 6, day: 20, emoji: "👩" },
+  { name: "妹妹", month: 9, day: 5,  emoji: "👧" },
+  { name: "我",   month: 11, day: 8,  emoji: "👦" }
+];
+
+if (fm.fileExists(dataPath)) {
+  familyData = JSON.parse(fm.readString(dataPath));
 }
 
-function getYearProgress() {
+if (config.runsInApp) {
+  await showControlPanel();
+} else {
+  const widget = await createWidget();
+  Script.setWidget(widget);
+  Script.complete();
+}
+
+async function createWidget() {
+  const listWidget = new ListWidget();
   const now = new Date();
-  const start = new Date(now.getFullYear(), 0, 1);
-  const end = new Date(now.getFullYear() + 1, 0, 1);
-  return (now - start) / (end - start);
-}
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-// 控制面板：预览功能
-async function showControlPanel() {
-  const a = new Alert(); a.title = "🎂 生日配置";
-  familyData.forEach(p => a.addAction(`${p.emoji} ${p.name}`));
-  a.addAction("👀 预览组件");
-  a.addDestructiveAction("🔄 GitHub 更新");
-  const i = await a.presentSheet();
-  
-  if (i === familyData.length) { 
-    const w = await createWidget();
-    return await w.presentMedium();
+  let bDayPerson = null;
+  const processed = familyData.map(p => {
+    const solar = getCorrectSolar(p.month, p.day);
+    const isToday = (today.toDateString() === solar.toDateString());
+    if (isToday) bDayPerson = p;
+    return { ...p, solar, isToday };
+  });
+
+  if (bDayPerson) {
+    let grad = new LinearGradient();
+    grad.colors = [new Color("#e52d27"), new Color("#b31217")];
+    listWidget.backgroundGradient = grad;
+  } else {
+    listWidget.backgroundColor = new Color("#1c1c1e");
   }
-  if (i === familyData.length + 1) return await updateScript();
-  if (i === -1) return;
 
-  const ea = new Alert();
-  ea.addTextField("姓名", familyData[i].name);
-  ea.addTextField("农历月", familyData[i].month.toString());
-  ea.addTextField("农历日", familyData[i].day.toString());
-  ea.addTextField("Emoji", familyData[i].emoji);
-  ea.addAction("保存修改");
-  if (await ea.present() === 0) {
-    familyData[i].name = ea.textFieldValue(0);
-    familyData[i].month = parseInt(ea.textFieldValue(1));
-    familyData[i].day = parseInt(ea.textFieldValue(2));
-    familyData[i].emoji = ea.textFieldValue(3);
-    fm.writeString(dataPath, JSON.stringify(familyData));
-    await showControlPanel();
-  }
-}
+  listWidget.setPadding(10, 5, 5, 5);
 
-async function updateScript() {
-  try {
-    let r = new Request(GITHUB_RAW_URL);
-    let c = await r.loadString();
-    if (c.includes("Script.setWidget")) {
-      fm.writeString(scriptPath, c);
-      const s = new Alert(); s.title = "更新成功"; await s.present();
+  const mainHStack = listWidget.addStack();
+  mainHStack.layoutHorizontally();
+  mainHStack.centerAlignContent();
+
+  processed.forEach((p, i) => {
+    const vStack = mainHStack.addStack();
+    vStack.layoutVertically();
+    
+    const canvas = new DrawContext();
+    const canvasW = 240; 
+    const canvasH = 220; 
+    canvas.size = new Size(canvasW, canvasH);
+    canvas.opaque = false;
+
+    // 1. 头像 (置顶)
+    canvas.setFont(Font.systemFont(60));
+    canvas.setTextAlignedCenter();
+    canvas.drawTextInRect(p.emoji, new Rect(0, 0, canvasW, 70));
+
+    // 2. 开口朝下圆弧 (位于头像下方 15px)
+    const center = { x: canvasW / 2, y: 125 }; 
+    const radius = 70; 
+    const thick = 10;  
+    const diff = p.solar - now;
+    const progress = p.isToday ? 1 : Math.max(0.1, 1 - (diff / (365 * 86400000)));
+
+    canvas.setFillColor(new Color("#ffffff", 0.2));
+    for (let a = 190; a <= 350; a += 4) {
+      const rad = a * Math.PI / 180;
+      const x = center.x + radius * Math.cos(rad);
+      const y = center.y + radius * Math.sin(rad);
+      canvas.fillEllipse(new Rect(x - thick/2, y - thick/2, thick, thick));
     }
-  } catch(e) {
-    const er = new Alert(); er.title = "更新失败"; await er.present();
-  }
+
+    canvas.setFillColor(p.isToday ? Color.green() : new Color("#ffd60a"));
+    const endAngle = 190 + (160 * progress);
+    for (let a = 190; a <= endAngle; a += 3) {
+      const rad = a * Math.PI / 180;
+      const x = center.x + radius * Math.cos(rad);
+      const y = center.y + radius * Math.sin(rad);
+      canvas.fillEllipse(new Rect(x - thick/2, y - thick/2, thick, thick));
+    }
+
+    // 3. 日期 (粗体，置于弧线开口处)
+    const df = new DateFormatter();
+    df.dateFormat = "yyyy-MM-dd";
+    const dateStr = p.isToday ? "BIRTHDAY" : df.string(p.solar);
+    
+    canvas.setFont(Font.heavySystemFont(22)); 
+    canvas.setTextColor(Color.white());
+    canvas.drawTextInRect(dateStr, new Rect(0, 140, canvasW, 50));
+
+    const personImg = vStack.addImage(canvas.getImage());
+    personImg.imageSize = new Size(88, 80);
+
+    if (i < processed.length - 1) mainHStack.addSpacer();
+  });
+
+  listWidget.addSpacer(-5);
+
+  const yp = getYearProgress();
+  const bottomStack = listWidget.addStack();
+  bottomStack.layoutVertically();
+  bottomStack.setPadding(0, 15, 12, 15); 
+  
+  const labelStack = bottomStack.addStack();
+  const progressText = labelStack.addText(`2025 进度: ${Math.floor(yp * 100)}%`);
+  progressText.font = Font.boldSystemFont(13);
+  progressText.textColor = Color.white();
+  progressText.textOpacity = 0.7;
+  labelStack.addSpacer();
+  
+  bottomStack.addSpacer(6);
+
+  const barW = 330; 
+  const barCtx = new DrawContext();
+  barCtx.size = new Size(barW, 12);
+  barCtx.opaque = false;
+  const bgP = new Path(); bgP.addRoundedRect(new Rect(0, 0, barW, 12), 6, 6);
+  barCtx.addPath(bgP); barCtx.setFillColor(new Color("#ffffff", 0.15)); barCtx.fillPath();
+  const fgP = new Path(); fgP.addRoundedRect(new Rect(0, 0, barW * yp, 12), 6, 6);
+  barCtx.addPath(fgP); barCtx.setFillColor(bDayPerson ? Color.yellow() : Color.green()); barCtx.fillPath();
+  bottomStack.addImage(barCtx.getImage());
+
+  return listWidget;
 }
+
+function getCorrectSolar(lMonth, lDay) {
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  let solar2025 = lunarToSolar(2025, lMonth, lDay);
+  if (solar2025.getTime() >= today.getTime()) return solar2025;
+  return lunarToSolar(2026, lMonth, lDay);
+}
+
+function lunarToSolar(ly, lm, ld) {
+  const lunarYearArr = [0x0b557, 0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5b0, 0x14573, 0x052b0, 0x0a9a8, 0x0e950, 0x06aa0, 0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570, 0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0, 0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4, 0x0d250, 0x0d558, 0x0b540, 0x0b6a0, 0x195a6, 0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a, 0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570, 0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50, 0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0, 0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552, 0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5, 0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9, 0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930, 0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60, 0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530, 0x05aa0, 0x076a3, 0x096d0, 0x04afb, 0x04ad0, 0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45, 0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577, 0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0, 0x14b63, 0x09370, 0x049f8, 0x04970, 0x064b0, 0x168a6, 0x0ea50, 0x06b20, 0x1a6c4, 0x0aae0, 0x0a2e0, 0x0d2e3, 0x0c960, 0x0d557, 0x0d4a0, 0x0da50, 0x05d55, 0x056a0, 0x0a6d0, 0x055d4, 0x052d0, 0x0a9b8, 0x0a950, 0x0b4a0, 0x0b6a6, 0x0ad50, 0x055a0, 0x0aba4, 0x0a5b0, 0x052b0, 0x0b273, 0x06930, 0x07337, 0x06aa0, 0x0ad50, 0x14b55, 0x04b60, 0x0a570, 0x054e4, 0x0d160, 0x0e968, 0x0d520, 0x0daa0, 0x16aa6, 0x056d0, 0x04ae0, 0x0a9d4, 0x0a2d0, 0x0d150, 0x0f
