@@ -4,8 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.5.1";
-const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
+const VERSION = "1.5.2";
 
 // =================【1. 自动配色系统】=================
 const isNight = Device.isUsingDarkAppearance();
@@ -62,14 +61,13 @@ async function createWidget() {
     canvas.setFont(Font.systemFont(24));
     canvas.drawTextInRect(p.emoji || "👤", new Rect(38, 0, 30, 30));
 
-    // 底弧
+    // 绘制半圆弧轨道
     canvas.setStrokeColor(new Color("#888888", 0.15));
     canvas.setLineWidth(3);
     for (let a = 180; a <= 360; a += 8) {
       const rad = a * Math.PI / 180;
       canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
     }
-    // 进度弧
     const progress = Math.max(0.05, 1 - info.diff / 365);
     for (let a = 180; a <= 180 + (180 * progress); a += 5) {
       const rad = a * Math.PI / 180;
@@ -107,8 +105,15 @@ async function createWidget() {
       const pillCanvas = new DrawContext();
       pillCanvas.size = new Size(8, 20);
       pillCanvas.opaque = false;
+      
+      // --- 修复点：使用路径绘制圆角矩形，解决 fillRoundedRect 报错 ---
+      const pillPath = new Path();
+      pillPath.addRoundedRect(new Rect(2, 2, 3, 16), 1.5, 1.5);
+      pillCanvas.addPath(pillPath);
       pillCanvas.setFillColor(new Color(accentColor.hex, 0.3));
-      pillCanvas.fillRoundedRect(new Rect(2, 2, 3, 16), 1.5, 1.5);
+      pillCanvas.fillPath();
+      
+      // 核心颗粒感点
       pillCanvas.setFillColor(accentColor);
       pillCanvas.fillEllipse(new Rect(2.5, 4, 2, 2));
       pillCanvas.fillEllipse(new Rect(2.5, 9, 2, 2));
@@ -134,7 +139,6 @@ async function createWidget() {
 
 // =================【4. 辅助功能函数】=================
 
-// 手动星座判定逻辑
 function getZodiac(month, day) {
   const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
   const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"];
@@ -150,13 +154,9 @@ function calculateBday(p, today) {
     s = l.getSolar();
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
-
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
-  const originS = originL.getSolar(); // 获取出生年公历
-  
-  // 使用刚才定义的 getZodiac 替换掉 originS.getZodiac()
+  const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
-  
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
 
@@ -179,10 +179,21 @@ function renderYearBar(w, now) {
   barCanvas.size = new Size(300, 20);
   barCanvas.opaque = false;
   const barWidth = 300 * yearPercent;
+  
+  // 底部轨道
+  const trackPath = new Path();
+  trackPath.addRoundedRect(new Rect(0, 8, 300, 4), 2, 2);
+  barCanvas.addPath(trackPath);
   barCanvas.setFillColor(new Color("#888888", 0.15));
-  barCanvas.fillRoundedRect(new Rect(0, 8, 300, 4), 2, 2);
+  barCanvas.fillPath();
+
+  // 发光层
+  const glowPath = new Path();
+  glowPath.addRoundedRect(new Rect(0, 6, barWidth, 8), 4, 4);
+  barCanvas.addPath(glowPath);
   barCanvas.setFillColor(new Color("#f2c94c", 0.25));
-  barCanvas.fillRoundedRect(new Rect(0, 6, barWidth, 8), 4, 4);
+  barCanvas.fillPath();
+
   for(let x=0; x < barWidth; x += 5) {
     const s = 2 + Math.random() * 2;
     barCanvas.setFillColor(new Color("#f2c94c", 0.9));
@@ -205,7 +216,6 @@ async function renderSettings() {
   alert.title = "🎂 生日管家 Pro " + VERSION;
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
-  alert.addAction("🚀 检查更新");
   alert.addCancelAction("退出");
   const res = await alert.present();
   if (res === 0) {
