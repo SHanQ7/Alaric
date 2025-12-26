@@ -4,10 +4,10 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.6.1";
+const VERSION = "1.7.5";
 
-// ⚠️ 请将此处替换为你自己的 GitHub Raw 链接
-const GITHUB_URL = "https://raw.githubusercontent.com/你的用户名/仓库名/main/BirthdayWidget.js";
+// ⚠️ 请确认你的 GitHub 链接
+const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 配色与环境】=================
 const isNight = Device.isUsingDarkAppearance();
@@ -39,8 +39,7 @@ async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   w.backgroundColor = bgColor;
-  // 极度压缩垂直边距，防止溢出
-  w.setPadding(10, 12, 8, 12); 
+  w.setPadding(12, 12, 12, 12); 
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
@@ -54,31 +53,26 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- A. 仪表盘绘制 (头像+圆弧+天数+日期) ---
+    // --- A. 仪表盘 (头像+圆弧+天数+日期) ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 110); 
     canvas.opaque = false;
     
-    // 坐标定义
-    const avatarY = 0;   // 头像在最顶端
-    const arcCenterY = 60; // 圆心位置
-    const radius = 33;     // 半径
+    const avatarY = 0;   
+    const arcCenterY = 60; 
+    const radius = 33;     
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
 
-    // 1. 绘制头像
     canvas.setFont(Font.systemFont(28));
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
 
-    // 2. 绘制半圆弧
     canvas.setStrokeColor(new Color("#888888", 0.15));
     canvas.setLineWidth(3);
-    // 底弧
     for (let a = 180; a <= 360; a += 6) {
       const rad = a * Math.PI / 180;
       canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
     }
-    // 进度弧
     const progress = Math.max(0.05, 1 - info.diff / 365);
     for (let a = 180; a <= 180 + (180 * progress); a += 4) {
       const rad = a * Math.PI / 180;
@@ -86,12 +80,10 @@ async function createWidget() {
       canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
     }
 
-    // 3. 圆弧内：剩余天数
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
     
-    // 4. 圆弧下方：公历日期 (MM-dd)
     const df = new DateFormatter();
     df.dateFormat = "MM-dd";
     canvas.setFont(Font.systemFont(10));
@@ -101,22 +93,22 @@ async function createWidget() {
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(75, 82); 
 
-    // --- B. 详细信息行 (发光胶囊+居中) ---
+    // --- B. 详细信息行 (生肖、星座、八字、五行、财位) ---
     const details = [
-      { icon: info.shengXiaoIco, text: info.shengXiao },
-      { icon: info.zodiacIco, text: info.zodiac },
-      { icon: "🧭", text: info.caiShen }
+      { icon: info.shengXiaoIco, text: info.shengXiao },           // 1. 生肖
+      { icon: info.zodiacIco, text: info.zodiac },                 // 2. 星座
+      { icon: "☯️", text: info.bazi },                            // 3. 八字 (前六字)
+      { icon: "🎋", text: info.dayWuXing + "命" },                 // 4. 出生日五行
+      { icon: "🧭", text: info.caiShen }                           // 5. 财位
     ];
 
     details.forEach(item => {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
-      // 绘制微型发光胶囊
       const pillCanvas = new DrawContext();
       pillCanvas.size = new Size(8, 16); 
       pillCanvas.opaque = false;
-      
       const pillPath = new Path();
       pillPath.addRoundedRect(new Rect(2, 2, 3, 12), 1.5, 1.5);
       pillCanvas.addPath(pillPath);
@@ -130,7 +122,6 @@ async function createWidget() {
       
       const pillImg = lineStack.addImage(pillCanvas.getImage());
       pillImg.imageSize = new Size(5, 10);
-      
       lineStack.addSpacer(3);
       
       const t = lineStack.addText(`${item.icon} ${item.text}`);
@@ -140,11 +131,6 @@ async function createWidget() {
 
     if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
   });
-
-  w.addSpacer(); 
-  
-  // --- C. 年度进度条 (底部防溢出) ---
-  renderYearBar(w, today);
   
   return w;
 }
@@ -166,9 +152,20 @@ function calculateBday(p, today) {
     s = l.getSolar();
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
+  
+  // 出生原始信息
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
   const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
+  
+  // 获取八字
+  const baZi = originL.getEightChar(); // [年干支, 月干支, 日干支, 时干支]
+  // 仅显示前六字（年月日干支），因为时辰通常不准或不写
+  const baZiStr = `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`; 
+  
+  // 获取日柱五行
+  const dayWuXing = originL.getDayWuXing();
+
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
 
@@ -179,47 +176,10 @@ function calculateBday(p, today) {
     shengXiaoIco: sxMap[originL.getYearShengXiao()] || "🐾",
     zodiac: zodiacName + "座",
     zodiacIco: zdMap[zodiacName] || "✨",
-    caiShen: originL.getDayPositionCaiDesc() + "财"
+    caiShen: originL.getDayPositionCaiDesc() + "财",
+    bazi: baZiStr,          // 例如：癸丑甲子丁酉
+    dayWuXing: dayWuXing    // 例如：火
   };
-}
-
-function renderYearBar(w, now) {
-  const startYear = new Date(now.getFullYear(), 0, 1);
-  const endYear = new Date(now.getFullYear(), 11, 31);
-  const yearPercent = (now - startYear) / (endYear - startYear);
-  
-  const barCanvas = new DrawContext();
-  barCanvas.size = new Size(300, 16); 
-  barCanvas.opaque = false;
-  const barWidth = 300 * yearPercent;
-  
-  const track = new Path();
-  track.addRoundedRect(new Rect(0, 6, 300, 4), 2, 2);
-  barCanvas.addPath(track);
-  barCanvas.setFillColor(new Color("#888888", 0.15));
-  barCanvas.fillPath();
-
-  const glow = new Path();
-  glow.addRoundedRect(new Rect(0, 4, barWidth, 8), 4, 4);
-  barCanvas.addPath(glow);
-  barCanvas.setFillColor(new Color("#f2c94c", 0.25));
-  barCanvas.fillPath();
-
-  for(let x=0; x < barWidth; x += 5) {
-    const s = 1.5 + Math.random() * 2;
-    barCanvas.setFillColor(new Color("#f2c94c", 0.9));
-    barCanvas.fillEllipse(new Rect(x, 6 + (4-s)/2, s, s));
-  }
-
-  const footerStack = w.addStack();
-  footerStack.layoutVertically();
-  const barImg = footerStack.addImage(barCanvas.getImage());
-  barImg.imageSize = new Size(300, 12); 
-
-  const label = footerStack.addText(`${now.getFullYear()} PROGRESS ${Math.floor(yearPercent * 100)}%`);
-  label.font = Font.boldSystemFont(7);
-  label.textColor = subTextColor;
-  label.centerAlignText();
 }
 
 // =================【5. 更新与面板】=================
@@ -249,12 +209,10 @@ async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
   alert.title = "🎂 生日管家 Pro " + VERSION;
-  
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
-  alert.addAction("🚀 检查更新"); // <--- 这里加回来了！
+  alert.addAction("🚀 检查更新");
   alert.addCancelAction("退出");
-  
   const res = await alert.present();
   if (res === 0) {
     const list = new Alert();
