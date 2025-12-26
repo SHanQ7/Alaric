@@ -1,12 +1,11 @@
-// IPPure 风险监测 (极简圆环版)
+// IPPure 风险监测 - 极简中心数字版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
     try {
         let req = new Request(url);
         req.timeoutInterval = 8;
-        let data = await req.loadJSON();
-        return data;
+        return await req.loadJSON();
     } catch (e) { return null; }
 }
 
@@ -21,13 +20,11 @@ Script.complete();
 
 async function createWidget(data) {
     let w = new ListWidget();
-    w.setPadding(12, 16, 12, 16);
-    
-    // 背景：全黑更显高级
+    w.setPadding(0, 16, 0, 16); // 减小垂直边距
     w.backgroundColor = new Color("#000000");
 
     if (!data) {
-        let msg = w.addText("⚠️ 数据获取失败");
+        let msg = w.addText("⚠️ 数据连接失败");
         msg.textColor = Color.white();
         msg.centerAlignText();
         return w;
@@ -41,16 +38,15 @@ async function createWidget(data) {
     let mainStack = w.addStack();
     mainStack.centerAlignContent();
 
-    // --- 左侧信息列 ---
+    // --- 左侧信息栏 ---
     let leftStack = mainStack.addStack();
     leftStack.layoutVertically();
     
     const addInfo = (label, value) => {
         let s = leftStack.addStack();
-        let lText = s.addText(label + "  ");
+        let lText = s.addText(label + ": ");
         lText.font = Font.systemFont(12);
         lText.textColor = new Color("#888888");
-        
         let vText = s.addText(value);
         vText.font = Font.mediumSystemFont(12);
         vText.textColor = Color.white();
@@ -59,73 +55,72 @@ async function createWidget(data) {
         leftStack.addSpacer(5);
     };
 
-    addInfo("节点", `${flag} ${data.countryCode || 'Unknown'}`);
+    addInfo("节点", `${flag} ${data.countryCode || 'UN'}`);
     addInfo("地址", data.ip || "N/A");
     addInfo("宽带", data.asOrganization || "N/A");
     addInfo("类型", data.isResidential ? "住宅网络" : "数据中心");
     
-    leftStack.addSpacer(6);
-    let time = leftStack.addText(`Last update: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
+    leftStack.addSpacer(4);
+    let time = leftStack.addText(`更新于 ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
     time.font = Font.systemFont(9);
     time.textColor = new Color("#444444");
 
-    mainStack.addSpacer(); // 撑开左右
+    mainStack.addSpacer();
 
-    // --- 右侧圆环列 ---
+    // --- 右侧圆环栏 (使用叠加布局实现数字居中) ---
     let rightStack = mainStack.addStack();
-    rightStack.layoutVertically();
-    rightStack.centerAlignContent();
+    // 使用绘图层作为背景
+    let ringStack = rightStack.addStack();
+    ringStack.size = new Size(100, 100);
+    ringStack.centerAlignContent();
 
-    // 绘图区域
+    // 绘制圆环
     let canvas = new DrawContext();
     const size = 200;
     canvas.size = new Size(size, size);
     canvas.opaque = false;
-    canvas.respectScreenScale = true;
-
-    // 1. 绘制底环
     canvas.setLineWidth(16);
+    // 底色环
     canvas.setStrokeColor(new Color("#222222"));
     canvas.strokeEllipse(new Rect(10, 10, size-20, size-20));
-
-    // 2. 绘制进度环 (点状模拟)
+    // 进度环
     canvas.setStrokeColor(risk.color);
     const deg = (score / 100) * 360;
-    for (let i = 0; i <= deg; i += 3) {
+    for (let i = 0; i <= deg; i += 2.5) {
         let x = size/2 + (size/2-10) * Math.cos((i-90) * Math.PI/180);
         let y = size/2 + (size/2-10) * Math.sin((i-90) * Math.PI/180);
-        canvas.fillEllipse(new Rect(x-8, y-8, 16, 16));
+        canvas.fillEllipse(new Rect(x-9, y-9, 18, 18));
     }
-
-    // 3. 在圆环中心绘制分数
-    canvas.setTextColor(Color.white());
-    canvas.setFont(Font.boldSystemFont(48));
-    const scoreStr = `${score}`;
-    // 简单的居中算法
-    const rect = new Rect(0, size/2 - 30, size, 60);
-    canvas.drawTextInRect(scoreStr, rect);
-
-    let ringImage = rightStack.addImage(canvas.getImage());
-    ringImage.imageSize = new Size(90, 90);
     
-    rightStack.addSpacer(6);
-    let riskLabel = rightStack.addText(risk.text);
-    riskLabel.font = Font.boldSystemFont(13);
-    riskLabel.textColor = risk.color;
-    riskLabel.centerAlignText();
+    // 将圆环设为背景图，并叠加文字
+    ringStack.backgroundImage = canvas.getImage();
+    
+    let centerColumn = ringStack.addStack();
+    centerColumn.layoutVertically();
+    
+    let scoreText = centerColumn.addText(`${score}`);
+    scoreText.font = Font.boldSystemFont(26);
+    scoreText.textColor = Color.white();
+    scoreText.centerAlignText();
+    
+    let riskText = centerColumn.addText(risk.text);
+    riskText.font = Font.boldSystemFont(11);
+    riskText.textColor = risk.color;
+    riskText.centerAlignText();
 
     return w;
 }
 
 function getRiskLevel(score) {
-    if (score <= 25) return { text: "安全", color: new Color("#34c759") };
-    if (score <= 50) return { text: "中等", color: new Color("#ffcc00") };
-    if (score <= 75) return { text: "危险", color: new Color("#ff9500") };
-    return { text: "极高风险", color: new Color("#ff3b30") };
+    // 调整颜色：使用更鲜艳的 iOS 系统色
+    if (score <= 25) return { text: "安全", color: new Color("#34C759") };
+    if (score <= 50) return { text: "中等", color: new Color("#FFCC00") };
+    if (score <= 75) return { text: "高危", color: new Color("#FF9500") };
+    return { text: "极高", color: new Color("#FF3B30") };
 }
 
 function getFlagEmoji(countryCode) {
-    if (!countryCode) return "🏳️";
+    if (!countryCode) return "🌐";
     return countryCode.toUpperCase().replace(/./g, char => 
         String.fromCodePoint(127397 + char.charCodeAt())
     );
