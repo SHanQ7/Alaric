@@ -1,4 +1,4 @@
-// IPPure 风险监测 - iPhone 13 定制美化版
+// IPPure 风险监测 - 卡片标签美化版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
@@ -22,11 +22,12 @@ async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(10, 16, 10, 16);
 
-  // --- 动态外观配置 ---
+  // 动态颜色配置
   const bgColor = Color.dynamic(new Color("#FFFFFF"), new Color("#1C1C1E"));
   const mainTextColor = Color.dynamic(new Color("#000000"), new Color("#FFFFFF"));
-  const subTextColor = Color.dynamic(new Color("#8E8E93"), new Color("#8E8E93")); // 类似图片的灰色
-  const ringBgColor = Color.dynamic(new Color("#E5E5EA"), new Color("#2C2C2E"));
+  // 标签框的背景色：白天浅紫/灰，夜间深紫/灰
+  const tagBgColor = Color.dynamic(new Color("#F2F2F7"), new Color("#2C2C2E"));
+  const tagTextColor = Color.dynamic(new Color("#5856D6"), new Color("#9897EF")); // 紫色系，呼应您的图片
 
   w.backgroundColor = bgColor;
 
@@ -48,33 +49,42 @@ async function createWidget(data) {
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
   
-  // 统一样式函数
+  // 核心：创建像图片一样的卡片标签样式
   const addInfo = (label, value) => {
-    let s = leftStack.addStack();
-    s.centerAlignContent();
-    let lText = s.addText(label + " ");
-    lText.font = Font.systemFont(11); // 较小的标签字体
-    lText.textColor = subTextColor;
+    let rowStack = leftStack.addStack();
+    rowStack.centerAlignContent();
     
-    let vText = s.addText(value);
-    vText.font = Font.mediumSystemFont(11); // 加粗的数值字体
+    // 标签容器（框框）
+    let labelBox = rowStack.addStack();
+    labelBox.backgroundColor = tagBgColor;
+    labelBox.cornerRadius = 4; // 圆角
+    labelBox.setPadding(2, 4, 2, 4); // 框内边距
+    
+    let lText = labelBox.addText(label);
+    lText.font = Font.boldSystemFont(10);
+    lText.textColor = tagTextColor;
+    
+    rowStack.addSpacer(6); // 框与文字的间距
+    
+    let vText = rowStack.addText(value);
+    vText.font = Font.mediumSystemFont(11);
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
     vText.minimumScaleFactor = 0.8;
-    leftStack.addSpacer(4);
+    
+    leftStack.addSpacer(5);
   };
 
-  addInfo("出口位置", `${flag} ${data.countryCode || 'UN'} · ${data.city || 'Unknown'}`);
+  addInfo("出口位置", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
   addInfo("IP地址", data.ip || "N/A");
   addInfo("运营商", data.asOrganization || "N/A");
   addInfo("ASN编号", data.asn ? `AS${data.asn}` : "N/A");
   addInfo("网络类型", data.isResidential ? "住宅网络" : "数据中心");
   
-  leftStack.addSpacer(4);
+  leftStack.addSpacer(2);
   let time = leftStack.addText(`Updated: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
   time.font = Font.systemFont(8);
-  time.textColor = subTextColor;
-  time.textOpacity = 0.6;
+  time.textColor = Color.dynamic(new Color("#CCCCCC"), new Color("#444444"));
 
   mainStack.addSpacer();
 
@@ -89,12 +99,10 @@ async function createWidget(data) {
   canvas.size = new Size(size, size);
   canvas.opaque = false;
   
-  // 1. 底色环
   canvas.setLineWidth(16);
-  canvas.setStrokeColor(ringBgColor);
+  canvas.setStrokeColor(Color.dynamic(new Color("#E5E5EA"), new Color("#2C2C2E")));
   canvas.strokeEllipse(new Rect(10, 10, size-20, size-20));
   
-  // 2. 风险进度点
   canvas.setStrokeColor(risk.color);
   const deg = (score / 100) * 360;
   for (let i = 0; i <= deg; i += 2.5) {
