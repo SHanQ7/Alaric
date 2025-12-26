@@ -1,4 +1,4 @@
-// IPPure 风险监测 - 正方形边框标签版
+// IPPure 风险监测 - 加粗对齐定制版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
@@ -25,8 +25,7 @@ async function createWidget(data) {
   // --- 颜色定义 ---
   const bgColor = Color.dynamic(new Color("#FFFFFF"), new Color("#1C1C1E"));
   const mainTextColor = Color.dynamic(new Color("#000000"), new Color("#FFFFFF"));
-  // 边框颜色（您图片中的紫色）
-  const squareColor = new Color("#8165AC");
+  const squareColor = new Color("#8165AC"); // 紫色边框
   const ringBgColor = Color.dynamic(new Color("#E5E5EA"), new Color("#2C2C2E"));
 
   w.backgroundColor = bgColor;
@@ -49,45 +48,50 @@ async function createWidget(data) {
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
   
-  // 核心：正方形边框标签函数
-  const addBoxInfo = (shortLabel, fullValue) => {
+  /**
+   * 核心：对齐且加粗布局函数
+   */
+  const addAlignedInfo = (shortLabel, fullValue) => {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
     
-    // 创建正方形容器
-    const boxSize = new Size(22, 22); // 针对 iPhone 13 优化的大小
-    let boxStack = rowStack.addStack();
-    boxStack.size = boxSize;
+    // 1. 标签方框容器 (固定宽度实现垂直对齐)
+    let labelStack = rowStack.addStack();
+    labelStack.size = new Size(32, 26); 
+    labelStack.centerAlignContent();
+
+    let boxStack = labelStack.addStack();
+    boxStack.size = new Size(22, 22); 
     boxStack.cornerRadius = 6;
-    boxStack.borderWidth = 2; // 边框粗细
+    boxStack.borderWidth = 2;
     boxStack.borderColor = squareColor;
     boxStack.centerAlignContent();
     
-    // 方框内的文字（取标签首字或缩写）
     let lText = boxStack.addText(shortLabel);
     lText.font = Font.boldSystemFont(10);
     lText.textColor = squareColor;
     
-    rowStack.addSpacer(10); // 方框与后面文字的间距
-    
-    // 右侧数值
-    let vText = rowStack.addText(fullValue);
-    vText.font = Font.mediumSystemFont(12);
+    rowStack.addSpacer(8); 
+
+    // 2. 信息内容容器 (字体已加粗)
+    let valueStack = rowStack.addStack();
+    let vText = valueStack.addText(fullValue);
+    vText.font = Font.boldSystemFont(12); // 使用加粗字体并略微调大字号
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
-    vText.minimumScaleFactor = 0.8;
+    vText.minimumScaleFactor = 0.7; // 增加缩放容忍度，防止过粗导致溢出
     
-    leftStack.addSpacer(6); // 行间距
+    leftStack.addSpacer(5); 
   };
 
-  // 填入数据：第一个参数为方框内显示的简称
-  addBoxInfo("位", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
-  addBoxInfo("地", data.ip || "N/A");
-  addBoxInfo("商", data.asOrganization || "N/A");
-  addBoxInfo("编", data.asn ? `AS${data.asn}` : "N/A");
-  addBoxInfo("类", data.isResidential ? "住宅" : "机房");
+  // 填入数据
+  addAlignedInfo("位", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
+  addAlignedInfo("地", data.ip || "N/A");
+  addAlignedInfo("商", data.asOrganization || "N/A");
+  addAlignedInfo("编", data.asn ? `AS${data.asn}` : "N/A");
+  addAlignedInfo("类", data.isResidential ? "住宅网络" : "机房网络");
   
-  leftStack.addSpacer(2);
+  leftStack.addSpacer(4);
   let time = leftStack.addText(`Updated: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
   time.font = Font.systemFont(8);
   time.textColor = new Color("#8E8E93");
@@ -123,7 +127,7 @@ async function createWidget(data) {
   centerColumn.layoutVertically();
   
   let scoreText = centerColumn.addText(`${score}`);
-  scoreText.font = Font.boldSystemFont(28);
+  scoreText.font = Font.boldSystemFont(26);
   scoreText.textColor = mainTextColor;
   scoreText.centerAlignText();
   
