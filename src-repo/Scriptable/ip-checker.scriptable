@@ -1,4 +1,4 @@
-// IPPure 风险监测 - 加粗对齐定制版
+// IPPure 风险监测 - 扁长椭圆边框版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
@@ -25,7 +25,7 @@ async function createWidget(data) {
   // --- 颜色定义 ---
   const bgColor = Color.dynamic(new Color("#FFFFFF"), new Color("#1C1C1E"));
   const mainTextColor = Color.dynamic(new Color("#000000"), new Color("#FFFFFF"));
-  const squareColor = new Color("#8165AC"); // 紫色边框
+  const squareColor = new Color("#8165AC"); // 您的专属紫色
   const ringBgColor = Color.dynamic(new Color("#E5E5EA"), new Color("#2C2C2E"));
 
   w.backgroundColor = bgColor;
@@ -44,26 +44,26 @@ async function createWidget(data) {
   let mainStack = w.addStack();
   mainStack.centerAlignContent();
 
-  // --- 左侧信息栏 ---
+  // --- 左侧信息总栏 ---
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
   
   /**
-   * 核心：对齐且加粗布局函数
+   * 核心：扁长椭圆容器对齐函数
    */
-  const addAlignedInfo = (shortLabel, fullValue) => {
+  const addOvalContainerInfo = (shortLabel, fullValue) => {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
     
-    // 1. 标签方框容器 (固定宽度实现垂直对齐)
+    // 1. 左侧标签方框 (保持正方形)
     let labelStack = rowStack.addStack();
-    labelStack.size = new Size(32, 26); 
+    labelStack.size = new Size(30, 26); 
     labelStack.centerAlignContent();
 
     let boxStack = labelStack.addStack();
     boxStack.size = new Size(22, 22); 
     boxStack.cornerRadius = 6;
-    boxStack.borderWidth = 2;
+    boxStack.borderWidth = 2; // 标签边框稍细以作区分
     boxStack.borderColor = squareColor;
     boxStack.centerAlignContent();
     
@@ -71,27 +71,35 @@ async function createWidget(data) {
     lText.font = Font.boldSystemFont(10);
     lText.textColor = squareColor;
     
-    rowStack.addSpacer(8); 
+    rowStack.addSpacer(6); 
 
-    // 2. 信息内容容器 (字体已加粗)
-    let valueStack = rowStack.addStack();
-    let vText = valueStack.addText(fullValue);
-    vText.font = Font.boldSystemFont(12); // 使用加粗字体并略微调大字号
+    // 2. 右侧信息数值 Stack (扁长椭圆边框容器)
+    let infoValueStack = rowStack.addStack();
+    // 设置扁长尺寸：宽135，高24
+    infoValueStack.size = new Size(135, 24); 
+    infoValueStack.cornerRadius = 12; // 高度的一半即为圆角椭圆
+    infoValueStack.borderWidth = 3;   // 您要求的粗边框 (4可能会太占位，这里设为3-4)
+    infoValueStack.borderColor = squareColor;
+    infoValueStack.setPadding(0, 8, 0, 8); // 文字距离椭圆两端的间距
+    infoValueStack.centerAlignContent();
+
+    let vText = infoValueStack.addText(fullValue);
+    vText.font = Font.boldSystemFont(11);
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
-    vText.minimumScaleFactor = 0.7; // 增加缩放容忍度，防止过粗导致溢出
+    vText.minimumScaleFactor = 0.6; // 允许更大幅度的缩放以适应边框内的空间
     
-    leftStack.addSpacer(5); 
+    leftStack.addSpacer(6); 
   };
 
   // 填入数据
-  addAlignedInfo("位", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
-  addAlignedInfo("地", data.ip || "N/A");
-  addAlignedInfo("商", data.asOrganization || "N/A");
-  addAlignedInfo("编", data.asn ? `AS${data.asn}` : "N/A");
-  addAlignedInfo("类", data.isResidential ? "住宅网络" : "机房网络");
+  addOvalContainerInfo("位", `${flag} ${data.countryCode || 'UN'} · ${data.city || ''}`);
+  addOvalContainerInfo("地", data.ip || "N/A");
+  addOvalContainerInfo("商", data.asOrganization || "N/A");
+  addOvalContainerInfo("编", data.asn ? `AS${data.asn}` : "N/A");
+  addOvalContainerInfo("类", data.isResidential ? "住宅网络" : "机房网络");
   
-  leftStack.addSpacer(4);
+  leftStack.addSpacer(2);
   let time = leftStack.addText(`Updated: ${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`);
   time.font = Font.systemFont(8);
   time.textColor = new Color("#8E8E93");
