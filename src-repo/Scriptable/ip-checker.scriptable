@@ -1,4 +1,4 @@
-// IPPure 风险监测 - 终极紫色霓虹版
+// IPPure 风险监测 - 霓虹质感增强版
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
@@ -22,21 +22,12 @@ async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(8, 12, 8, 12);
 
-  // --- 颜色定义 ---
-  const isDark = Device.isUsingDarkAppearance();
-  const purpleNeon = new Color("#8165AC"); // 核心紫色
-  const purpleGlow = new Color("#8165AC", 0.3); // 发光层
+  const purpleNeon = new Color("#8165AC"); 
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
-  
-  // 深邃背景渐变
-  let gradient = new LinearGradient();
-  gradient.colors = isDark ? 
-    [new Color("#0D0D0F"), new Color("#050505")] : 
-    [new Color("#F5F5F7"), new Color("#FFFFFF")];
-  w.backgroundGradient = gradient;
+  w.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#0A0A0C"));
 
   if (!data) {
-    let msg = w.addText("⚠️ 正在扫描网络...");
+    let msg = w.addText("⚠️ 连接中...");
     msg.textColor = purpleNeon;
     msg.centerAlignText();
     return w;
@@ -48,7 +39,7 @@ async function createWidget(data) {
   let mainStack = w.addStack();
   mainStack.centerAlignContent();
 
-  // --- 左侧信息总栏 ---
+  // --- 左侧信息栏 ---
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
   
@@ -56,45 +47,37 @@ async function createWidget(data) {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
     
-    // 1. 左侧紫色方框标签
     let labelStack = rowStack.addStack();
-    labelStack.size = new Size(42, 22); // 宽度增加以容纳汉字
+    labelStack.size = new Size(38, 22); 
     labelStack.centerAlignContent();
-
     let boxStack = labelStack.addStack();
-    boxStack.size = new Size(38, 18); 
+    boxStack.size = new Size(36, 18); 
     boxStack.cornerRadius = 4;
     boxStack.borderWidth = 1.5; 
     boxStack.borderColor = purpleNeon;
-    boxStack.backgroundColor = null;
     boxStack.centerAlignContent();
-    
     let lText = boxStack.addText(label);
-    lText.font = Font.boldSystemFont(9);
+    lText.font = Font.boldSystemFont(8.5);
     lText.textColor = purpleNeon;
     
-    rowStack.addSpacer(6); 
+    rowStack.addSpacer(4); 
 
-    // 2. 右侧紫色椭圆数值容器
     let infoValueStack = rowStack.addStack();
     infoValueStack.size = new Size(170, 20); 
     infoValueStack.cornerRadius = 10; 
     infoValueStack.borderWidth = 2; 
     infoValueStack.borderColor = purpleNeon;
-    infoValueStack.backgroundColor = null,
     infoValueStack.setPadding(0, 8, 0, 8);
     infoValueStack.centerAlignContent();
-
     let vText = infoValueStack.addText(value);
     vText.font = Font.boldSystemFont(10);
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
-    vText.minimumScaleFactor = 0.6;
+    vText.minimumScaleFactor = 0.5;
     
     leftStack.addSpacer(3); 
   };
 
-  // 按照你的要求更新：IP位置, IP地址, ISP, ASN, IP类型
   addNeonInfo("IP位置", `${flag} ${data.countryCode || 'UN'} · ${data.city || '未知'}`);
   addNeonInfo("IP地址", data.ip || "N/A");
   addNeonInfo("ISP", data.asOrganization || "N/A");
@@ -109,7 +92,7 @@ async function createWidget(data) {
 
   mainStack.addSpacer();
 
-  // --- 右侧圆环栏 (紫色霓虹质感) ---
+  // --- 右侧圆环栏 (优化霓虹绘制) ---
   let rightStack = mainStack.addStack();
   let ringStack = rightStack.addStack();
   ringStack.size = new Size(95, 95);
@@ -120,25 +103,28 @@ async function createWidget(data) {
   canvas.size = new Size(cSize, cSize);
   canvas.opaque = false;
   
-  // 1. 底层霓虹晕光
-  canvas.setLineWidth(14);
-  canvas.setStrokeColor(purpleGlow);
-  canvas.strokeEllipse(new Rect(10, 10, cSize-20, cSize-20));
-  
-  // 2. 绘制紫色霓虹进度 (多点堆叠模拟发光)
   const deg = (score / 100) * 360;
-  for (let i = 0; i <= deg; i += 2) {
-    // 渐变感：从深紫到亮紫
-    let opacity = 0.5 + (i / 720);
-    canvas.setStrokeColor(new Color(purpleNeon.hex, opacity));
-    
+
+  // 1. 绘制底色光影环 (Blur Effect)
+  canvas.setLineWidth(12);
+  canvas.setStrokeColor(new Color("#8165AC", 0.15));
+  canvas.strokeEllipse(new Rect(10, 10, cSize-20, cSize-20));
+
+  // 2. 绘制霓虹进度
+  for (let i = 0; i <= deg; i += 1.5) { // 减小步进值让灯管更连贯
     let x = cSize/2 + (cSize/2-10) * Math.cos((i-90) * Math.PI/180);
     let y = cSize/2 + (cSize/2-10) * Math.sin((i-90) * Math.PI/180);
     
-    // 绘制主光点
-    canvas.fillEllipse(new Rect(x-8, y-8, 16, 16));
-    // 绘制核心亮白点，模拟灯管中心
-    canvas.setFillColor(new Color("#FFFFFF", 0.4));
+    // 霓虹光晕层
+    canvas.setFillColor(new Color("#8165AC", 0.3));
+    canvas.fillEllipse(new Rect(x-10, y-10, 20, 20));
+    
+    // 紫色主灯管层
+    canvas.setFillColor(purpleNeon);
+    canvas.fillEllipse(new Rect(x-7, y-7, 14, 14));
+    
+    // 核心亮白层 (画龙点睛的灯丝效果)
+    canvas.setFillColor(new Color("#FFFFFF", 0.7));
     canvas.fillEllipse(new Rect(x-3, y-3, 6, 6));
   }
   
