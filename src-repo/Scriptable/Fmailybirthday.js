@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.7.5";
+const VERSION = "1.7.6";
 
 // ⚠️ 请确认你的 GitHub 链接
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
@@ -93,13 +93,13 @@ async function createWidget() {
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(75, 82); 
 
-    // --- B. 详细信息行 (生肖、星座、八字、五行、财位) ---
+    // --- B. 详细信息行 ---
     const details = [
-      { icon: info.shengXiaoIco, text: info.shengXiao },           // 1. 生肖
-      { icon: info.zodiacIco, text: info.zodiac },                 // 2. 星座
-      { icon: "☯️", text: info.bazi },                            // 3. 八字 (前六字)
-      { icon: "🎋", text: info.dayWuXing + "命" },                 // 4. 出生日五行
-      { icon: "🧭", text: info.caiShen }                           // 5. 财位
+      { icon: info.shengXiaoIco, text: info.shengXiao },
+      { icon: info.zodiacIco, text: info.zodiac },
+      { icon: "☯️", text: info.bazi },
+      { icon: "🎋", text: info.dayWuXing + "命" },
+      { icon: "🧭", text: info.caiShen }
     ];
 
     details.forEach(item => {
@@ -153,18 +153,17 @@ function calculateBday(p, today) {
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
   
-  // 出生原始信息
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
   const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
   
-  // 获取八字
-  const baZi = originL.getEightChar(); // [年干支, 月干支, 日干支, 时干支]
-  // 仅显示前六字（年月日干支），因为时辰通常不准或不写
+  // --- 修复点：正确获取八字及五行 ---
+  const baZi = originL.getEightChar(); 
   const baZiStr = `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`; 
   
-  // 获取日柱五行
-  const dayWuXing = originL.getDayWuXing();
+  // 获取日柱的五行（从日干支获取）
+  // baZi.getDayWuXing() 返回的是日干支的五行
+  const dayWuXing = baZi.getDayWuXing(); 
 
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
@@ -177,8 +176,8 @@ function calculateBday(p, today) {
     zodiac: zodiacName + "座",
     zodiacIco: zdMap[zodiacName] || "✨",
     caiShen: originL.getDayPositionCaiDesc() + "财",
-    bazi: baZiStr,          // 例如：癸丑甲子丁酉
-    dayWuXing: dayWuXing    // 例如：火
+    bazi: baZiStr,
+    dayWuXing: dayWuXing
   };
 }
 
