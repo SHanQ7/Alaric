@@ -4,15 +4,18 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.5.2";
+const VERSION = "1.6.1";
 
-// =================【1. 自动配色系统】=================
+// ⚠️ 请将此处替换为你自己的 GitHub Raw 链接
+const GITHUB_URL = "https://raw.githubusercontent.com/你的用户名/仓库名/main/BirthdayWidget.js";
+
+// =================【1. 配色与环境】=================
 const isNight = Device.isUsingDarkAppearance();
 const bgColor = isNight ? new Color("#1c1c1e") : new Color("#f9f9fb"); 
 const textColor = isNight ? Color.white() : Color.black();
 const subTextColor = isNight ? new Color("#ffffff", 0.7) : new Color("#333333", 0.8);
 
-// =================【2. 数据管理逻辑】=================
+// =================【2. 数据管理】=================
 function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
@@ -31,12 +34,13 @@ function saveDB(data) {
   fm.writeString(dbPath, JSON.stringify(data));
 }
 
-// =================【3. 核心渲染函数】=================
+// =================【3. 核心渲染】=================
 async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   w.backgroundColor = bgColor;
-  w.setPadding(15, 12, 12, 12);
+  // 极度压缩垂直边距，防止溢出
+  w.setPadding(10, 12, 8, 12); 
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
@@ -48,50 +52,56 @@ async function createWidget() {
     const info = calculateBday(p, today);
     const col = mainStack.addStack();
     col.layoutVertically();
-    col.centerAlignContent();
+    col.centerAlignContent(); 
 
-    // --- A. 仪表盘绘制 ---
+    // --- A. 仪表盘绘制 (头像+圆弧+天数+日期) ---
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 90);
+    canvas.size = new Size(100, 110); 
     canvas.opaque = false;
-    const center = { x: 50, y: 58 };
-    const radius = 38;
+    
+    // 坐标定义
+    const avatarY = 0;   // 头像在最顶端
+    const arcCenterY = 60; // 圆心位置
+    const radius = 33;     // 半径
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
 
-    canvas.setFont(Font.systemFont(24));
-    canvas.drawTextInRect(p.emoji || "👤", new Rect(38, 0, 30, 30));
+    // 1. 绘制头像
+    canvas.setFont(Font.systemFont(28));
+    canvas.setTextAlignedCenter();
+    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
 
-    // 绘制半圆弧轨道
+    // 2. 绘制半圆弧
     canvas.setStrokeColor(new Color("#888888", 0.15));
     canvas.setLineWidth(3);
-    for (let a = 180; a <= 360; a += 8) {
+    // 底弧
+    for (let a = 180; a <= 360; a += 6) {
       const rad = a * Math.PI / 180;
-      canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
+      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
     }
+    // 进度弧
     const progress = Math.max(0.05, 1 - info.diff / 365);
-    for (let a = 180; a <= 180 + (180 * progress); a += 5) {
+    for (let a = 180; a <= 180 + (180 * progress); a += 4) {
       const rad = a * Math.PI / 180;
       canvas.setFillColor(accentColor);
-      canvas.fillEllipse(new Rect(center.x + radius * Math.cos(rad) - 1.5, center.y + radius * Math.sin(rad) - 1.5, 3, 3));
+      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
     }
 
+    // 3. 圆弧内：剩余天数
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
-    canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, 45, 100, 22));
+    canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
+    
+    // 4. 圆弧下方：公历日期 (MM-dd)
+    const df = new DateFormatter();
+    df.dateFormat = "MM-dd";
+    canvas.setFont(Font.systemFont(10));
+    canvas.setTextColor(textColor);
+    canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 10, 100, 15));
 
     const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(75, 68);
+    img.imageSize = new Size(75, 82); 
 
-    col.addSpacer(2);
-    const nameT = col.addText(p.name);
-    nameT.font = Font.boldSystemFont(11);
-    nameT.textColor = textColor;
-    nameT.centerAlignText();
-    
-    col.addSpacer(6);
-
-    // --- C. 详细信息行：发光椭圆 + 图标 + 文字 ---
+    // --- B. 详细信息行 (发光胶囊+居中) ---
     const details = [
       { icon: info.shengXiaoIco, text: info.shengXiao },
       { icon: info.zodiacIco, text: info.zodiac },
@@ -102,42 +112,44 @@ async function createWidget() {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
+      // 绘制微型发光胶囊
       const pillCanvas = new DrawContext();
-      pillCanvas.size = new Size(8, 20);
+      pillCanvas.size = new Size(8, 16); 
       pillCanvas.opaque = false;
       
-      // --- 修复点：使用路径绘制圆角矩形，解决 fillRoundedRect 报错 ---
       const pillPath = new Path();
-      pillPath.addRoundedRect(new Rect(2, 2, 3, 16), 1.5, 1.5);
+      pillPath.addRoundedRect(new Rect(2, 2, 3, 12), 1.5, 1.5);
       pillCanvas.addPath(pillPath);
       pillCanvas.setFillColor(new Color(accentColor.hex, 0.3));
       pillCanvas.fillPath();
       
-      // 核心颗粒感点
       pillCanvas.setFillColor(accentColor);
       pillCanvas.fillEllipse(new Rect(2.5, 4, 2, 2));
-      pillCanvas.fillEllipse(new Rect(2.5, 9, 2, 2));
-      pillCanvas.fillEllipse(new Rect(2.5, 14, 2, 2));
+      pillCanvas.fillEllipse(new Rect(2.5, 8, 2, 2));
+      pillCanvas.fillEllipse(new Rect(2.5, 12, 2, 2));
       
       const pillImg = lineStack.addImage(pillCanvas.getImage());
-      pillImg.imageSize = new Size(5, 13);
+      pillImg.imageSize = new Size(5, 10);
+      
       lineStack.addSpacer(3);
       
       const t = lineStack.addText(`${item.icon} ${item.text}`);
-      t.font = Font.systemFont(9);
+      t.font = Font.systemFont(8);
       t.textColor = subTextColor;
-      col.addSpacer(2);
     });
 
     if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
   });
 
-  w.addSpacer();
+  w.addSpacer(); 
+  
+  // --- C. 年度进度条 (底部防溢出) ---
   renderYearBar(w, today);
+  
   return w;
 }
 
-// =================【4. 辅助功能函数】=================
+// =================【4. 辅助逻辑】=================
 
 function getZodiac(month, day) {
   const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
@@ -175,48 +187,74 @@ function renderYearBar(w, now) {
   const startYear = new Date(now.getFullYear(), 0, 1);
   const endYear = new Date(now.getFullYear(), 11, 31);
   const yearPercent = (now - startYear) / (endYear - startYear);
+  
   const barCanvas = new DrawContext();
-  barCanvas.size = new Size(300, 20);
+  barCanvas.size = new Size(300, 16); 
   barCanvas.opaque = false;
   const barWidth = 300 * yearPercent;
   
-  // 底部轨道
-  const trackPath = new Path();
-  trackPath.addRoundedRect(new Rect(0, 8, 300, 4), 2, 2);
-  barCanvas.addPath(trackPath);
+  const track = new Path();
+  track.addRoundedRect(new Rect(0, 6, 300, 4), 2, 2);
+  barCanvas.addPath(track);
   barCanvas.setFillColor(new Color("#888888", 0.15));
   barCanvas.fillPath();
 
-  // 发光层
-  const glowPath = new Path();
-  glowPath.addRoundedRect(new Rect(0, 6, barWidth, 8), 4, 4);
-  barCanvas.addPath(glowPath);
+  const glow = new Path();
+  glow.addRoundedRect(new Rect(0, 4, barWidth, 8), 4, 4);
+  barCanvas.addPath(glow);
   barCanvas.setFillColor(new Color("#f2c94c", 0.25));
   barCanvas.fillPath();
 
   for(let x=0; x < barWidth; x += 5) {
-    const s = 2 + Math.random() * 2;
+    const s = 1.5 + Math.random() * 2;
     barCanvas.setFillColor(new Color("#f2c94c", 0.9));
-    barCanvas.fillEllipse(new Rect(x, 8 + (4-s)/2, s, s));
+    barCanvas.fillEllipse(new Rect(x, 6 + (4-s)/2, s, s));
   }
+
   const footerStack = w.addStack();
   footerStack.layoutVertically();
   const barImg = footerStack.addImage(barCanvas.getImage());
-  barImg.imageSize = new Size(300, 15);
-  const label = footerStack.addText(`${now.getFullYear()} YEAR PROGRESS ${Math.floor(yearPercent * 100)}%`);
-  label.font = Font.boldSystemFont(8);
+  barImg.imageSize = new Size(300, 12); 
+
+  const label = footerStack.addText(`${now.getFullYear()} PROGRESS ${Math.floor(yearPercent * 100)}%`);
+  label.font = Font.boldSystemFont(7);
   label.textColor = subTextColor;
   label.centerAlignText();
 }
 
-// =================【5. 面板逻辑】=================
+// =================【5. 更新与面板】=================
+async function updateScript() {
+  const a = new Alert();
+  a.title = "🔄 检查更新";
+  a.message = "将从 GitHub 获取最新代码...";
+  a.addAction("下载并覆盖");
+  a.addCancelAction("取消");
+  if (await a.present() === 0) {
+    try {
+      const req = new Request(GITHUB_URL);
+      const code = await req.loadString();
+      if (code.includes("VERSION")) {
+        fm.writeString(module.filename, code);
+        const s = new Alert(); s.title = "✅ 更新成功"; s.message = "请重新运行脚本。"; await s.present();
+      } else {
+        throw new Error("Invalid Code");
+      }
+    } catch (e) {
+      const f = new Alert(); f.title = "❌ 更新失败"; f.message = "请检查网络或 URL 配置"; await f.present();
+    }
+  }
+}
+
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
   alert.title = "🎂 生日管家 Pro " + VERSION;
+  
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
+  alert.addAction("🚀 检查更新"); // <--- 这里加回来了！
   alert.addCancelAction("退出");
+  
   const res = await alert.present();
   if (res === 0) {
     const list = new Alert();
@@ -231,6 +269,7 @@ async function renderSettings() {
     }
   }
   if (res === 1) { (await createWidget()).presentMedium(); }
+  if (res === 2) { await updateScript(); }
 }
 
 async function editMember(dataList, index) {
