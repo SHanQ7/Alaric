@@ -3,7 +3,7 @@
 
 // ================= 配置区 =================
 const VERSION = "1.1.0"; // 当前本地版本
-const GITHUB_URL = "https://raw.githubusercontent.com/你的用户名/你的仓库名/main/BirthdayWidget.js"; 
+const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js"; 
 // ==========================================
 
 const { Solar, Lunar } = importModule("lunar.module");
