@@ -51,11 +51,11 @@ async function createWidget() {
     canvas.size = new Size(100, 115); 
     canvas.respectScreenScale = true;
     canvas.opaque = false;
-    const arcCenterY = 75; 
-    const radius = 34;      
+    const arcCenterY = 75;
+    const radius = 34;
 
     let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (info.diff <= 30 ? Color.orange() : new Color("#f2c94c")));
-    const ringColor = accentColor; 
+    const ringColor = accentColor;
 
     canvas.setFont(Font.systemFont(isBday ? 34 : 26));
     canvas.setTextAlignedCenter();
@@ -82,7 +82,7 @@ async function createWidget() {
 
     const detailList = [
       { text: `${info.shengXiao}·${info.zodiac}`, size: 10, isSX: true },
-      { text: info.naYin, size: 9.5 },
+      { text: info.naYin, size: 9.2 },
       { text: info.bazi, size: 8.5 },
       { text: "宜 " + info.personalAdvice, size: 10, isMain: true },
       { text: "财位 " + info.personalCai, size: 9.5 }
@@ -145,12 +145,24 @@ function calculateBday(p, today, todayLunar) {
   const df = new DateFormatter();
   df.dateFormat = "yyyy-MM-dd";
 
+  // 纳音解析字典
+  const naYinDict = {
+    "涧下水":"清静深邃", "天河水":"慷慨博爱", "长流水":"源远流长", "大溪水":"奔流豪迈", "大海水":"包容深沉", "泉中水":"细腻无私",
+    "霹雳火":"刚烈果决", "天上火":"温暖显赫", "炉中火":"热情进取", "山下火":"稳健慎行", "佛灯火":"宁静致远", "山头火":"热烈奔放",
+    "桑松木":"刚柔并济", "杨柳木":"随和坚定", "大林木":"仁慈宽厚", "松柏木":"坚毅抗压", "平地木":"谦逊才华", "石榴木":"倔强坚韧",
+    "海中金":"深藏不露", "沙中金":"高洁独立", "金箔金":"精致优雅", "剑锋金":"锐意进取", "钗钏金":"温婉唯美", "白蜡金":"纯真灵动",
+    "壁上土":"踏实稳重", "路旁土":"宽厚奉献", "城头土":"威严大气", "大驿土":"豁达博学", "屋上土":"成熟尽责", "沙中土":"自由随性"
+  };
+  
+  const rawNaYin = baZi.getYearNaYin();
+  const naYinDesc = naYinDict[rawNaYin] || "顺其自然";
+
   return {
     age: bDate.getFullYear() - p.year, 
     solarDateStr: df.string(bDate),
     diff: Math.ceil((bDate - today) / 86400000),
     shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(),
-    naYin: baZi.getYearNaYin() + "命",
+    naYin: rawNaYin + "·" + naYinDesc, // 这里直接补充了说明
     fullDayGan: dayGan + baZi.getDayWuXing() + "命",
     zodiac: getZodiac(originL.getSolar().getMonth(), originL.getSolar().getDay()),
     personalAdvice: getPersonalAdvice(dayGan, todayLunar.getDayGan()), 
