@@ -1,4 +1,4 @@
-// IPPure 风险监测 - 霓虹质感增强版
+// IPPure 风险监测
 const url = "https://my.ippure.com/v1/info";
 
 async function fetchData() {
