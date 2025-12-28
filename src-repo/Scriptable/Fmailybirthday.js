@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.8.7"; // 最终兼容版：高密度点阵模拟实线
+const VERSION = "1.8.8";
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -48,11 +48,11 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 2. 绘制半圆弧 (高密度点阵模拟平滑曲线)
+    // 2. 绘制平滑半圆弧 (高密度点阵模拟，避开所有 addArc API)
     const progress = Math.max(0.01, 1 - info.diff / 365);
     
-    // 绘制背景底色弧 (180度到360度)
-    // 步进 0.5 度，确保点与点之间高度重合，消除颗粒感
+    // --- 绘制背景底色弧 (180度到360度) ---
+    // 采用 0.5 步进，确保点与点之间有 80% 以上的重叠区域，视觉上就是平滑实线
     for (let deg = 180; deg <= 360; deg += 0.5) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
@@ -61,14 +61,14 @@ async function createWidget() {
       canvas.fillEllipse(new Rect(x - 1.5, y - 1.5, 3, 3));
     }
 
-    // 绘制进度彩色弧
+    // --- 绘制进度彩色弧 ---
     const endDeg = 180 + (180 * progress);
     for (let deg = 180; deg <= endDeg; deg += 0.5) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
       canvas.setFillColor(accentColor);
-      // 稍微加大进度条圆点直径，覆盖底色并更显眼
+      // 进度条稍微加粗（直径4），边缘会自动呈现圆角效果
       canvas.fillEllipse(new Rect(x - 2, y - 2, 4, 4));
     }
 
@@ -105,6 +105,7 @@ async function createWidget() {
       glowCanvas.size = new Size(12, 20);
       glowCanvas.opaque = false;
       const glowRect = new Rect(4, 4, 3, 12);
+      // 注意：这里保留了 glowPath，如果依然报错，我们下次连这里也用 fillEllipse 替换
       const glowPath = new Path();
       glowPath.addRoundedRect(glowRect, 1.5, 1.5);
       glowCanvas.setFillColor(new Color(accentColor.hex, 0.15));
