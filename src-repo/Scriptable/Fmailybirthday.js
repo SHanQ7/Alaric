@@ -10,25 +10,17 @@ async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   
-  // 动态颜色定义
+  // 动态颜色适配
   const dynamicBg = Color.dynamic(new Color("#f9f9fb"), new Color("#1c1c1e"));
   const dynamicText = Color.dynamic(Color.black(), Color.white());
   const dynamicSubText = Color.dynamic(new Color("#333333", 0.8), new Color("#ffffff", 0.7));
   
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const birthdaysToday = currentData.some(p => calculateBday(p, today).diff === 0);
 
-  if (birthdaysToday) {
-    let gradient = new LinearGradient();
-    gradient.colors = [new Color("#4527a0"), dynamicBg]; 
-    gradient.locations = [0, 1];
-    w.backgroundGradient = gradient;
-  } else {
-    w.backgroundColor = dynamicBg;
-  }
-
+  w.backgroundColor = dynamicBg;
   w.setPadding(10, 5, 10, 5); 
+
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
 
@@ -40,102 +32,93 @@ async function createWidget() {
     col.centerAlignContent(); 
 
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 115); 
+    canvas.size = new Size(100, 125); 
     canvas.respectScreenScale = true;
     canvas.opaque = false;
     
-    const arcCenterY = 75; 
+    const arcCenterY = 70; 
     const radius = 34;      
-    const accentColor = isBday ? Color.cyan() : (info.diff <= 30 ? Color.orange() : new Color("#f2c94c"));
 
-    // 1. 头像
+    // 颜色阶梯逻辑
+    let accentColor = new Color("#f2c94c"); 
+    if (isBday) { accentColor = Color.cyan(); } 
+    else if (info.diff <= 7) { accentColor = new Color("#ff4d94"); } 
+    else if (info.diff <= 30) { accentColor = Color.orange(); }
+
+    // 1. 头像绘制
     canvas.setFont(Font.systemFont(isBday ? 32 : 26));
     canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 2, 100, 35));
+    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 35));
 
-    // 2. 进度计算
-    const progress = Math.max(0.01, 1 - info.diff / 365);
+    // 2. 霓虹进度绘制 (呼吸灯圆环)
+    const progress = isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365);
     const endDeg = 180 + (180 * progress);
 
-    // --- A1. 绘制底座槽位 ---
     for (let deg = 180; deg <= 360; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
-      canvas.setFillColor(new Color("#000000", 0.1)); 
+      canvas.setFillColor(new Color("#000000", 0.08)); 
       canvas.fillEllipse(new Rect(x - 3, y - 3, 6, 6)); 
-      const slotColor = Color.dynamic(new Color("#cccccc", 0.4), new Color("#888888", 0.25));
-      canvas.setFillColor(slotColor); 
+      canvas.setFillColor(Color.dynamic(new Color("#cccccc", 0.4), new Color("#888888", 0.25))); 
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
     }
 
-    // --- A2. 绘制填充式霓虹进度 (收敛优化版) ---
     for (let deg = 180; deg <= endDeg; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
-      
-      // 收敛光晕 (直径8, 透明度0.3)
       canvas.setFillColor(new Color(accentColor.hex, 0.3)); 
       canvas.fillEllipse(new Rect(x - 4, y - 4, 8, 8)); 
-      
-      // 主灯管 (直径5)
       canvas.setFillColor(accentColor);
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5)); 
-      
-      // 核心高亮
-      canvas.setFillColor(new Color("#FFFFFF", 0.85));
+      canvas.setFillColor(new Color("#FFFFFF", 0.9));
       canvas.fillEllipse(new Rect(x - 1, y - 1, 2, 2)); 
     }
 
-    // 3. 圆弧内信息
+    // 3. 倒计时 & 日期 & 年龄
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcCenterY - 14, 100, 22));
     
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
-    canvas.setFont(Font.boldSystemFont(10));
+    canvas.setFont(Font.boldSystemFont(9));
     canvas.setTextColor(isBday ? Color.white() : dynamicText);
-    canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 12, 100, 12));
+    canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 11, 100, 11));
+
+    canvas.setFont(Font.systemFont(8));
+    canvas.setTextColor(isBday ? Color.white() : dynamicSubText);
+    canvas.drawTextInRect(`${info.age}周岁 (虚${info.lunarAge})`, new Rect(0, arcCenterY + 22, 100, 10));
 
     const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(76, 87.4); 
-    col.addSpacer(0); 
+    img.imageSize = new Size(76, 95); 
+    col.addSpacer(2); 
 
-    // --- B. 详细信息行 (含财神方位 & 八字优化) ---
+    // 4. 详细信息带图标
     const details = [
-      { text: info.shengXiao },
-      { text: info.zodiac },
-      { text: info.bazi, isBazi: true }, 
-      { text: info.dayWuXing + "命" },
-      { text: info.caiShen }
+      { text: info.sxIco + " " + info.shengXiao },
+      { text: info.zdIco + " " + info.zodiac },
+      { text: "☯️ " + info.bazi, isBazi: true }, 
+      { text: "✨ " + info.dayWuXing + "命" },
+      { text: "💰 " + info.caiShen }
     ];
 
-    const leftPadding = 12; 
     details.forEach(item => {
       const lineStack = col.addStack();
       lineStack.layoutHorizontally();
       lineStack.centerAlignContent();
-      lineStack.addSpacer(leftPadding); 
-
+      lineStack.addSpacer(12); 
       const indicator = lineStack.addStack();
       indicator.size = new Size(2.5, 7.5);
       indicator.cornerRadius = 1.25;
-      let grad = new LinearGradient();
-      grad.colors = [accentColor, new Color(accentColor.hex, 0.3)];
-      grad.locations = [0, 1];
-      indicator.backgroundGradient = grad;
-
+      indicator.backgroundColor = accentColor;
       lineStack.addSpacer(3.5); 
-
       const t = lineStack.addText(item.text);
-      let fontSize = item.isBazi && item.text.length > 5 ? 7 : 8;
-      t.font = Font.systemFont(fontSize);
-      t.textColor = isBday ? Color.white() : dynamicSubText;
+      t.font = Font.systemFont(item.isBazi && item.text.length > 8 ? 6.5 : 8);
+      t.textColor = dynamicSubText;
       t.lineLimit = 1;
-      t.minimumScaleFactor = 0.5; 
-      
+      t.minimumScaleFactor = 0.5;
       lineStack.addSpacer(); 
       col.addSpacer(0.3); 
     });
@@ -147,23 +130,6 @@ async function createWidget() {
 }
 
 // =================【2. 辅助数据处理】=================
-function getDB() {
-  if (!fm.fileExists(dbPath)) {
-    const defaultData = [{ name: "示例", year: 1990, month: 1, day: 1, emoji: "🎂" }];
-    fm.writeString(dbPath, JSON.stringify(defaultData));
-    return defaultData;
-  }
-  return JSON.parse(fm.readString(dbPath));
-}
-
-function saveDB(data) { fm.writeString(dbPath, JSON.stringify(data)); }
-
-function getZodiac(month, day) {
-  const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
-  const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"];
-  return signs[day < dates[month - 1] ? month - 1 : month];
-}
-
 function calculateBday(p, today) {
   let l = Lunar.fromYmd(today.getFullYear(), p.month, p.day);
   let s = l.getSolar();
@@ -174,27 +140,49 @@ function calculateBday(p, today) {
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
-  const originS = originL.getSolar();
-  const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
   const baZi = originL.getEightChar(); 
+  const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
+  const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
+  const zodiac = getZodiac(originL.getSolar().getMonth(), originL.getSolar().getDay());
 
   return {
+    age: bDay.getFullYear() - p.year, 
+    lunarAge: (bDay.getFullYear() - p.year) + 1,
     solarDate: bDay,
     diff: Math.ceil((bDay - today) / 86400000),
     shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(),
-    zodiac: zodiacName + "座",
+    sxIco: sxMap[originL.getYearShengXiao()] || "🐾",
+    zodiac: zodiac + "座",
+    zdIco: zdMap[zodiac] || "✨",
     caiShen: originL.getDayPositionCaiDesc() + "财",
     bazi: baZi.getYear() + baZi.getMonth() + baZi.getDay(), 
     dayWuXing: baZi.getDayWuXing()
   };
 }
 
-// =================【3. 更新与交互】=================
+function getZodiac(month, day) {
+  const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
+  const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"];
+  return signs[day < dates[month - 1] ? month - 1 : month];
+}
+
+function getDB() {
+  if (!fm.fileExists(dbPath)) {
+    const defaultData = [{ name: "爸爸", year: 1973, month: 11, day: 8, emoji: "👨" }];
+    fm.writeString(dbPath, JSON.stringify(defaultData));
+    return defaultData;
+  }
+  return JSON.parse(fm.readString(dbPath));
+}
+
+function saveDB(data) { fm.writeString(dbPath, JSON.stringify(data)); }
+
+// =================【3. 交互与更新】=================
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
-  a.message = "将从 GitHub 获取最新版本代码并覆盖本地脚本。";
-  a.addAction("立即更新");
+  a.message = "从 GitHub 获取最新代码...";
+  a.addAction("更新并覆盖");
   a.addCancelAction("取消");
   if (await a.present() === 0) {
     try {
@@ -202,10 +190,10 @@ async function updateScript() {
       const code = await req.loadString();
       if (code.includes("VERSION")) {
         fm.writeString(module.filename, code);
-        const s = new Alert(); s.title = "✅ 更新成功"; s.message = "版本已同步，请重新运行脚本。"; await s.present();
+        const s = new Alert(); s.title = "✅ 更新成功"; await s.present();
       }
-    } catch (e) {
-      const f = new Alert(); f.title = "❌ 更新失败"; f.message = "请检查网络连接或 GitHub 链接是否有效。"; await f.present();
+    } catch(e) { 
+      const f = new Alert(); f.title = "❌ 更新失败"; await f.present();
     }
   }
 }
