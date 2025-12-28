@@ -91,7 +91,7 @@ async function createWidget() {
     canvas.drawTextInRect(`${info.age}岁 (虚${info.lunarAge})`, new Rect(0, arcCenterY + 22, 100, 10));
 
     const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(76, 83.6);
+    img.imageSize = new Size(76, 91.2);
     
     col.addSpacer(-7);
 
@@ -101,7 +101,7 @@ async function createWidget() {
       { text: info.zdIco + " " + info.zodiac },
       { text: "☯️ " + info.bazi, isBazi: true }, 
       { text: "✨ " + info.dayWuXing + "命" },
-      { text: "💰 " + info.caiShen }
+      { text: "💰今日" + info.personalCaiShen }
     ];
 
     details.forEach(item => {
@@ -134,6 +134,7 @@ async function createWidget() {
 
 // =================【2. 辅助数据处理】=================
 function calculateBday(p, today) {
+  // 1. 计算下一次生日日期
   let l = Lunar.fromYmd(today.getFullYear(), p.month, p.day);
   let s = l.getSolar();
   let bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
@@ -142,8 +143,17 @@ function calculateBday(p, today) {
     s = l.getSolar();
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
+
+  // 2. 获取成员基础命理数据
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
   const baZi = originL.getEightChar(); 
+  const dayGan = baZi.getDayGan(); // 获取该成员的日干
+
+  // 3. 获取“今日”专属财位
+  const todayLunar = Lunar.fromDate(new Date()); 
+  const personalCaiShen = todayLunar.getDayPositionCaiDesc(dayGan);
+
+  // 4. 映射配置
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
   const zodiac = getZodiac(originL.getSolar().getMonth(), originL.getSolar().getDay());
@@ -157,7 +167,7 @@ function calculateBday(p, today) {
     sxIco: sxMap[originL.getYearShengXiao()] || "🐾",
     zodiac: zodiac + "座",
     zdIco: zdMap[zodiac] || "✨",
-    caiShen: originL.getDayPositionCaiDesc() + "财",
+    personalCaiShen: personalCaiShen + "财", // 每个人都根据自己日干计算出的专属财位
     bazi: baZi.getYear() + baZi.getMonth() + baZi.getDay(), 
     dayWuXing: baZi.getDayWuXing()
   };
