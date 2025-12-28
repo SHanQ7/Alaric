@@ -4,9 +4,9 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "2.5.0";
+const VERSION = "2.5.1";
 
-// 🌟 找回你的 GitHub 更新地址
+// 🌟 GitHub 更新地址
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/test.js";
 
 // =================【1. 核心渲染】=================
@@ -48,7 +48,7 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 背景弧
+    // 背景弧 (底层)
     const bgPath = new Path();
     for (let a = Math.PI; a <= Math.PI * 2; a += 0.05) {
       const x = arcCenter.x + radius * Math.cos(a);
@@ -60,7 +60,7 @@ async function createWidget() {
     canvas.setLineWidth(6);
     canvas.strokePath();
 
-    // 进度弧
+    // 进度弧 (荧光层)
     const progress = Math.max(0.02, 1 - info.diff / 365);
     const fgPath = new Path();
     const endAngle = Math.PI + (Math.PI * progress);
@@ -70,14 +70,18 @@ async function createWidget() {
       if (a === Math.PI) fgPath.move(new Point(x, y)); else fgPath.addLine(new Point(x, y));
     }
     canvas.addPath(fgPath);
-    canvas.setShadow(accentColor, 10, new Point(0, 0)); 
+    
+    // ✨ 修正后的阴影 API: setShadow(offset, blurRadius, color)
+    canvas.setShadow(new Point(0, 0), 10, accentColor); 
     canvas.setStrokeColor(accentColor);
     canvas.setLineWidth(10); 
     canvas.setLineCapRounded(); 
     canvas.strokePath();
-    canvas.setShadow(new Color("#000000", 0), 0, new Point(0, 0));
+    
+    // 重置阴影，防止后续文字产生模糊
+    canvas.setShadow(new Point(0, 0), 0, new Color("#000000", 0));
 
-    // 文字部分
+    // 文字内容
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenter.y - 12, 100, 22));
@@ -98,7 +102,7 @@ async function createWidget() {
 
     col.addSpacer(-4);
 
-    // --- B. 详细信息行 (保留胶囊且居中对齐) ---
+    // --- B. 详细信息行 (保留胶囊并居中) ---
     const details = [
       { icon: info.shengXiaoIco, text: info.shengXiao },
       { icon: info.zodiacIco, text: info.zodiac },
@@ -111,9 +115,9 @@ async function createWidget() {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
-      lineStack.addSpacer(); // 左弹簧
+      lineStack.addSpacer(); // 左对齐补位
 
-      // 绘制胶囊
+      // 绘制发光胶囊
       const glowCanvas = new DrawContext();
       glowCanvas.size = new Size(12, 20);
       glowCanvas.opaque = false;
@@ -135,7 +139,7 @@ async function createWidget() {
       t.font = Font.systemFont(8);
       t.textColor = subTextColor;
 
-      lineStack.addSpacer(); // 右弹簧，确保中间的内容绝对居中
+      lineStack.addSpacer(); // 右对齐补位
       
       col.addSpacer(1); 
     });
@@ -197,7 +201,7 @@ function calculateBday(p, today) {
   };
 }
 
-// =================【3. 找回更新与设置面板】=================
+// =================【3. 更新与设置面板】=================
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
@@ -224,7 +228,7 @@ async function renderSettings() {
   alert.title = "🎂 生日管家 Pro " + VERSION;
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
-  alert.addAction("🚀 检查更新"); // 🌟 重新加入更新入口
+  alert.addAction("🚀 检查更新");
   alert.addCancelAction("退出");
   const res = await alert.present();
   if (res === 0) {
@@ -239,7 +243,7 @@ async function renderSettings() {
     }
   }
   if (res === 1) { (await createWidget()).presentMedium(); }
-  if (res === 2) { await updateScript(); } // 🌟 重新关联函数
+  if (res === 2) { await updateScript(); }
 }
 
 async function editMember(dataList, index) {
