@@ -1,36 +1,37 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.0.1"; 
+const VERSION = "1.0.2"; 
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
-// =================【1. 配色与环境】=================
-const isNight = Device.isUsingDarkAppearance();
-const defaultBgColor = isNight ? new Color("#1c1c1e") : new Color("#f9f9fb"); 
-const textColor = isNight ? Color.white() : Color.black();
-const subTextColor = isNight ? new Color("#ffffff", 0.7) : new Color("#333333", 0.8);
-
-// =================【2. 核心渲染】=================
+// =================【1. 核心渲染】=================
 async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
+  
+  // --- 动态颜色定义 (自动适配白天/夜间) ---
+  const dynamicBg = Color.dynamic(new Color("#f9f9fb"), new Color("#1c1c1e"));
+  const dynamicText = Color.dynamic(Color.black(), Color.white());
+  const dynamicSubText = Color.dynamic(new Color("#333333", 0.8), new Color("#ffffff", 0.7));
   
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
   
   const birthdaysToday = currentData.some(p => calculateBday(p, today).diff === 0);
 
+  // 生日当天背景特效
   if (birthdaysToday) {
     let gradient = new LinearGradient();
-    gradient.colors = [new Color("#4527a0"), new Color("#1c1c1e")]; 
+    // 夜间偏深紫，白天偏淡紫
+    gradient.colors = [new Color("#4527a0"), Color.dynamic(new Color("#f9f9fb"), new Color("#1c1c1e"))]; 
     gradient.locations = [0, 1];
     w.backgroundGradient = gradient;
   } else {
-    w.backgroundColor = defaultBgColor;
+    w.backgroundColor = dynamicBg;
   }
 
-  w.setPadding(10, 5, 10, 5); // 略微减小左右边距，给文字更多空间
+  w.setPadding(10, 5, 10, 5); 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
 
@@ -59,26 +60,34 @@ async function createWidget() {
     const progress = Math.max(0.01, 1 - info.diff / 365);
     const endDeg = 180 + (180 * progress);
 
-    // --- A1. 绘制底座槽位 (粗细一致: 直径5) ---
+    // --- A1. 绘制底座槽位 ---
     for (let deg = 180; deg <= 360; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
       canvas.setFillColor(new Color("#000000", 0.1)); 
       canvas.fillEllipse(new Rect(x - 3, y - 3, 6, 6)); 
-      canvas.setFillColor(new Color("#888888", 0.25)); 
+      // 槽位颜色也要动态适配
+      const slotColor = Color.dynamic(new Color("#cccccc", 0.4), new Color("#888888", 0.25));
+      canvas.setFillColor(slotColor); 
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
     }
 
-    // --- A2. 绘制填充式霓虹进度 (粗细一致: 直径5) ---
+    // --- A2. 绘制填充式霓虹进度 (调优溢出感) ---
     for (let deg = 180; deg <= endDeg; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
-      canvas.setFillColor(new Color(accentColor.hex, 0.45)); 
-      canvas.fillEllipse(new Rect(x - 6, y - 6, 12, 12)); 
+      
+      // 1. 收敛后的光晕：直径由 12 减小到 8，透明度由 0.45 减至 0.3
+      canvas.setFillColor(new Color(accentColor.hex, 0.3)); 
+      canvas.fillEllipse(new Rect(x - 4, y - 4, 8, 8)); 
+      
+      // 2. 主灯管：保持直径 5，与槽位完全平齐
       canvas.setFillColor(accentColor);
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5)); 
+      
+      // 3. 核心灯丝：保持直径 2
       canvas.setFillColor(new Color("#FFFFFF", 0.85));
       canvas.fillEllipse(new Rect(x - 1, y - 1, 2, 2)); 
     }
@@ -91,23 +100,24 @@ async function createWidget() {
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
     canvas.setFont(Font.boldSystemFont(10));
-    canvas.setTextColor(isBday ? Color.white() : textColor);
+    // 日期文本适配
+    canvas.setTextColor(isBday ? Color.white() : dynamicText);
     canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 12, 100, 12));
 
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(76, 87.4); 
     col.addSpacer(0); 
 
-    // --- B. 详细信息行 (优化八字显示) ---
+    // --- B. 详细信息行 ---
     const details = [
       { text: info.shengXiao },
       { text: info.zodiac },
-      { text: info.bazi, isBazi: true }, // 标记八字行
+      { text: info.bazi, isBazi: true }, 
       { text: info.dayWuXing + "命" },
       { text: info.caiShen }
     ];
 
-    const leftPadding = 12; // 稍微调小缩进，释放右侧空间
+    const leftPadding = 12; 
 
     details.forEach(item => {
       const lineStack = col.addStack();
@@ -115,7 +125,6 @@ async function createWidget() {
       lineStack.centerAlignContent();
       lineStack.addSpacer(leftPadding); 
 
-      // 胶囊
       const indicator = lineStack.addStack();
       indicator.size = new Size(2.5, 7);
       indicator.cornerRadius = 1.2;
@@ -126,14 +135,13 @@ async function createWidget() {
 
       lineStack.addSpacer(3); 
 
-      // 文本渲染逻辑
       const t = lineStack.addText(item.text);
-      // 如果是八字且字符较长，则减小字号
       let fontSize = item.isBazi && item.text.length > 5 ? 7 : 8;
       t.font = Font.systemFont(fontSize);
-      t.textColor = isBday ? Color.white() : subTextColor;
+      // 详情文本适配
+      t.textColor = isBday ? Color.white() : dynamicSubText;
       t.lineLimit = 1;
-      t.minimumScaleFactor = 0.5; // 允许自动缩小以适应宽度
+      t.minimumScaleFactor = 0.5; 
       
       lineStack.addSpacer(); 
       col.addSpacer(0.3); 
@@ -145,7 +153,9 @@ async function createWidget() {
   return w;
 }
 
-// =================【3. 辅助逻辑】=================
+// =================【2. 辅助逻辑】=================
+// (以下部分 calculateBday, getDB 等保持不变，由于字符限制略过，请沿用上一版本)
+
 function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
@@ -202,33 +212,12 @@ function calculateBday(p, today) {
   };
 }
 
-async function updateScript() {
-  const a = new Alert();
-  a.title = "🔄 检查更新";
-  a.message = "将从 GitHub 获取最新代码...";
-  a.addAction("下载并覆盖");
-  a.addCancelAction("取消");
-  if (await a.present() === 0) {
-    try {
-      const req = new Request(GITHUB_URL);
-      const code = await req.loadString();
-      if (code.includes("VERSION")) {
-        fm.writeString(module.filename, code);
-        const s = new Alert(); s.title = "✅ 更新成功"; s.message = "请重新运行脚本。"; await s.present();
-      }
-    } catch (e) {
-      const f = new Alert(); f.title = "❌ 更新失败"; f.message = "请检查网络"; await f.present();
-    }
-  }
-}
-
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
   alert.title = "🎂 生日管家 Pro " + VERSION;
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
-  alert.addAction("🚀 检查更新"); 
   alert.addCancelAction("退出");
   const res = await alert.present();
   if (res === 0) {
@@ -244,7 +233,6 @@ async function renderSettings() {
     }
   }
   if (res === 1) { (await createWidget()).presentMedium(); }
-  if (res === 2) { await updateScript(); }
 }
 
 async function editMember(dataList, index) {
