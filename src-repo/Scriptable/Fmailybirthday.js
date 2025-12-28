@@ -10,7 +10,6 @@ async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   
-  // 动态颜色适配
   const dynamicBg = Color.dynamic(new Color("#f9f9fb"), new Color("#1c1c1e"));
   const dynamicText = Color.dynamic(Color.black(), Color.white());
   const dynamicSubText = Color.dynamic(new Color("#333333", 0.8), new Color("#ffffff", 0.7));
@@ -19,7 +18,7 @@ async function createWidget() {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   w.backgroundColor = dynamicBg;
-  w.setPadding(10, 5, 10, 5); 
+  w.setPadding(8, 5, 5, 5);
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
@@ -32,25 +31,25 @@ async function createWidget() {
     col.centerAlignContent(); 
 
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 125); 
+    canvas.size = new Size(100, 110);
     canvas.respectScreenScale = true;
     canvas.opaque = false;
     
-    const arcCenterY = 70; 
+    const arcCenterY = 65;
     const radius = 34;      
 
-    // 颜色阶梯逻辑
+    // 颜色阶梯
     let accentColor = new Color("#f2c94c"); 
     if (isBday) { accentColor = Color.cyan(); } 
     else if (info.diff <= 7) { accentColor = new Color("#ff4d94"); } 
     else if (info.diff <= 30) { accentColor = Color.orange(); }
 
-    // 1. 头像绘制
+    // 1. 头像
     canvas.setFont(Font.systemFont(isBday ? 32 : 26));
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 35));
 
-    // 2. 霓虹进度绘制 (呼吸灯圆环)
+    // 2. 霓虹圆弧
     const progress = isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365);
     const endDeg = 180 + (180 * progress);
 
@@ -89,13 +88,14 @@ async function createWidget() {
 
     canvas.setFont(Font.systemFont(8));
     canvas.setTextColor(isBday ? Color.white() : dynamicSubText);
-    canvas.drawTextInRect(`${info.age}周岁 (虚${info.lunarAge})`, new Rect(0, arcCenterY + 22, 100, 10));
+    canvas.drawTextInRect(`${info.age}岁 (虚${info.lunarAge})`, new Rect(0, arcCenterY + 22, 100, 10));
 
     const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(76, 95); 
-    col.addSpacer(2); 
+    img.imageSize = new Size(76, 83.6);
+    
+    col.addSpacer(-5);
 
-    // 4. 详细信息带图标
+    // 4. 详细信息行 (压缩行高)
     const details = [
       { text: info.sxIco + " " + info.shengXiao },
       { text: info.zdIco + " " + info.zodiac },
@@ -109,18 +109,21 @@ async function createWidget() {
       lineStack.layoutHorizontally();
       lineStack.centerAlignContent();
       lineStack.addSpacer(12); 
+      
       const indicator = lineStack.addStack();
-      indicator.size = new Size(2.5, 7.5);
-      indicator.cornerRadius = 1.25;
+      indicator.size = new Size(2, 6.5);
+      indicator.cornerRadius = 1;
       indicator.backgroundColor = accentColor;
-      lineStack.addSpacer(3.5); 
+      
+      lineStack.addSpacer(3); 
+      
       const t = lineStack.addText(item.text);
-      t.font = Font.systemFont(item.isBazi && item.text.length > 8 ? 6.5 : 8);
+      t.font = Font.systemFont(item.isBazi && item.text.length > 8 ? 6.5 : 7.5);
       t.textColor = dynamicSubText;
       t.lineLimit = 1;
       t.minimumScaleFactor = 0.5;
+      
       lineStack.addSpacer(); 
-      col.addSpacer(0.3); 
     });
 
     if (i < currentData.length - 1 && i < 3) mainStack.addSpacer();
@@ -168,7 +171,7 @@ function getZodiac(month, day) {
 
 function getDB() {
   if (!fm.fileExists(dbPath)) {
-    const defaultData = [{ name: "爸爸", year: 1973, month: 11, day: 8, emoji: "👨" }];
+    const defaultData = [{ name: "示例", year: 1990, month: 1, day: 1, emoji: "🎂" }];
     fm.writeString(dbPath, JSON.stringify(defaultData));
     return defaultData;
   }
@@ -181,8 +184,8 @@ function saveDB(data) { fm.writeString(dbPath, JSON.stringify(data)); }
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
-  a.message = "从 GitHub 获取最新代码...";
-  a.addAction("更新并覆盖");
+  a.message = "将从 GitHub 获取最新代码并覆盖本地。";
+  a.addAction("立即更新");
   a.addCancelAction("取消");
   if (await a.present() === 0) {
     try {
