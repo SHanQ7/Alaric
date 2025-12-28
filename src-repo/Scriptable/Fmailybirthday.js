@@ -162,8 +162,8 @@ function calculateBday(p, today, todayLunar) {
     solarDateStr: df.string(bDate),
     diff: Math.ceil((bDate - today) / 86400000),
     shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(),
-    naYin: rawNaYin + "·" + naYinDesc, // 这里直接补充了说明
-    fullDayGan: dayGan + baZi.getDayWuXing() + "命",
+    naYin: rawNaYin + "·" + naYinDesc,
+    fullDayGan: dayGan + baZi.getDayWuXing() + "·命",
     zodiac: getZodiac(originL.getSolar().getMonth(), originL.getSolar().getDay()),
     personalAdvice: getPersonalAdvice(dayGan, todayLunar.getDayGan()), 
     personalCai: getPersonalDailyCai(dayGan),
