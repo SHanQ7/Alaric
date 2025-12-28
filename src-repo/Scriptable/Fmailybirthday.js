@@ -50,18 +50,49 @@ async function createWidget() {
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
 
     // 2. 绘制半圆弧 (使用点状线条增加呼吸感)
+// --- A. 仪表盘绘制 ---
+    const canvas = new DrawContext();
+    canvas.size = new Size(100, 115); 
+    canvas.respectScreenScale = true;
+    canvas.opaque = false;
+    
+    const avatarY = 0;   
+    const arcCenterY = 77; 
+    const radius = 33;      
+    const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
+
+    // 1. 绘制头像
+    canvas.setFont(Font.systemFont(28));
+    canvas.setTextAlignedCenter();
+    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
+
+    // 2. 绘制平滑半圆弧 (替换了原有的 for 循环颗粒逻辑)
+    const startAngle = Math.PI; // 180度位置
+    const endAngle = 2 * Math.PI; // 360度位置
+    const progress = Math.max(0.05, 1 - info.diff / 365);
+    const progressAngle = startAngle + (Math.PI * progress);
+
+    // 设置线条为圆角末端
+    canvas.setLineCapRound();
+
+    // 绘制背景底色圆弧 (浅灰色)
+    const bgPath = new Path();
+    bgPath.addArc(new Point(50, arcCenterY), radius, startAngle, endAngle);
+    canvas.addPath(bgPath);
     canvas.setStrokeColor(new Color("#888888", 0.15));
     canvas.setLineWidth(3);
-    for (let a = 180; a <= 360; a += 6) {
-      const rad = a * Math.PI / 180;
-      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
-    }
-    const progress = Math.max(0.05, 1 - info.diff / 365);
-    for (let a = 180; a <= 180 + (180 * progress); a += 4) {
-      const rad = a * Math.PI / 180;
-      canvas.setFillColor(accentColor);
-      canvas.fillEllipse(new Rect(50 + radius * Math.cos(rad) - 1.5, arcCenterY + radius * Math.sin(rad) - 1.5, 3, 3));
-    }
+    canvas.strokePath();
+
+    // 绘制进度圆弧 (彩色)
+    const fgPath = new Path();
+    fgPath.addArc(new Point(50, arcCenterY), radius, startAngle, progressAngle);
+    canvas.addPath(fgPath);
+    canvas.setStrokeColor(accentColor);
+    canvas.setLineWidth(4); // 进度条略粗，更有层次感
+    canvas.strokePath();
+
+    // 3. 圆弧内：天数
+    // ... 后续代码保持不变
 
     // 3. 圆弧内：天数
     canvas.setFont(Font.heavySystemFont(18));
