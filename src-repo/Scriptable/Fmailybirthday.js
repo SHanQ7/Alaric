@@ -5,7 +5,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.1.6"; 
+const VERSION = "1.0.0"; 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 核心渲染】=================
@@ -55,7 +55,6 @@ async function createWidget() {
     const arcCenterY = 75; 
     const radius = 34;      
 
-    // 【修正】圆弧颜色仅由生日远近决定，不受岁破干扰
     let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (info.diff <= 30 ? Color.orange() : new Color("#f2c94c")));
     const ringColor = accentColor; 
 
@@ -102,7 +101,6 @@ async function createWidget() {
       capsule.centerAlignContent();
       
       let bg;
-      // 【逻辑】仅在生肖栏且岁破时局部变红
       if (item.isSX && isChong) {
         bg = Color.dynamic(new Color("#ff4d4d", 0.4), new Color("#ff4d4d", 0.6));
       } else {
