@@ -1,7 +1,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.0.0"; 
+const VERSION = "1.0.1"; 
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -30,7 +30,7 @@ async function createWidget() {
     w.backgroundColor = defaultBgColor;
   }
 
-  w.setPadding(10, 10, 10, 10); 
+  w.setPadding(10, 5, 10, 5); // 略微减小左右边距，给文字更多空间
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
 
@@ -41,7 +41,6 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- 优化：压缩高度解决靠下问题 ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 115); 
     canvas.respectScreenScale = true;
@@ -50,15 +49,6 @@ async function createWidget() {
     const arcCenterY = 75; 
     const radius = 34;      
     const accentColor = isBday ? Color.cyan() : (info.diff <= 30 ? Color.orange() : new Color("#f2c94c"));
-
-    if (isBday) {
-      for (let n = 0; n < 20; n++) {
-        const px = Math.random() * 100;
-        const py = Math.random() * 115;
-        canvas.setFillColor(new Color("#ffffff", Math.random() * 0.5));
-        canvas.fillEllipse(new Rect(px, py, 1.5, 1.5));
-      }
-    }
 
     // 1. 头像
     canvas.setFont(Font.systemFont(isBday ? 32 : 26));
@@ -69,7 +59,7 @@ async function createWidget() {
     const progress = Math.max(0.01, 1 - info.diff / 365);
     const endDeg = 180 + (180 * progress);
 
-    // --- A1. 绘制底座槽位 (填充感强化) ---
+    // --- A1. 绘制底座槽位 (粗细一致: 直径5) ---
     for (let deg = 180; deg <= 360; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
@@ -80,7 +70,7 @@ async function createWidget() {
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
     }
 
-    // --- A2. 绘制填充式霓虹进度 ---
+    // --- A2. 绘制填充式霓虹进度 (粗细一致: 直径5) ---
     for (let deg = 180; deg <= endDeg; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
@@ -88,17 +78,16 @@ async function createWidget() {
       canvas.setFillColor(new Color(accentColor.hex, 0.45)); 
       canvas.fillEllipse(new Rect(x - 6, y - 6, 12, 12)); 
       canvas.setFillColor(accentColor);
-      canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5)); // 直径5，平齐填充
-      canvas.setFillColor(new Color("#FFFFFF", 0.8));
-      canvas.fillEllipse(new Rect(x - 1.25, y - 1.25, 2.5, 2.5)); // 略微加粗灯丝
+      canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5)); 
+      canvas.setFillColor(new Color("#FFFFFF", 0.85));
+      canvas.fillEllipse(new Rect(x - 1, y - 1, 2, 2)); 
     }
 
-    // 3. 圆弧内：天数
+    // 3. 圆弧内容
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcCenterY - 14, 100, 22));
     
-    // 4. 标准日期格式
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
     canvas.setFont(Font.boldSystemFont(10));
@@ -107,18 +96,18 @@ async function createWidget() {
 
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(76, 87.4); 
-    col.addSpacer(0); // 移除空隙，让文字上浮
+    col.addSpacer(0); 
 
-    // --- B. 详细信息行 (已找回财神方位) ---
+    // --- B. 详细信息行 (优化八字显示) ---
     const details = [
       { text: info.shengXiao },
       { text: info.zodiac },
-      { text: info.bazi },
+      { text: info.bazi, isBazi: true }, // 标记八字行
       { text: info.dayWuXing + "命" },
-      { text: info.caiShen } // 找回财神方位
+      { text: info.caiShen }
     ];
 
-    const leftPadding = 16; 
+    const leftPadding = 12; // 稍微调小缩进，释放右侧空间
 
     details.forEach(item => {
       const lineStack = col.addStack();
@@ -126,23 +115,28 @@ async function createWidget() {
       lineStack.centerAlignContent();
       lineStack.addSpacer(leftPadding); 
 
+      // 胶囊
       const indicator = lineStack.addStack();
-      indicator.size = new Size(3, 8); // 略微缩小胶囊使行高更紧凑
-      indicator.cornerRadius = 1.5;
+      indicator.size = new Size(2.5, 7);
+      indicator.cornerRadius = 1.2;
       let grad = new LinearGradient();
-      grad.colors = [accentColor, new Color(accentColor.hex, 0.4)];
+      grad.colors = [accentColor, new Color(accentColor.hex, 0.3)];
       grad.locations = [0, 1];
       indicator.backgroundGradient = grad;
 
-      lineStack.addSpacer(4); 
+      lineStack.addSpacer(3); 
 
+      // 文本渲染逻辑
       const t = lineStack.addText(item.text);
-      t.font = Font.systemFont(8); // 缩小字号增加精致感
+      // 如果是八字且字符较长，则减小字号
+      let fontSize = item.isBazi && item.text.length > 5 ? 7 : 8;
+      t.font = Font.systemFont(fontSize);
       t.textColor = isBday ? Color.white() : subTextColor;
       t.lineLimit = 1;
+      t.minimumScaleFactor = 0.5; // 允许自动缩小以适应宽度
       
       lineStack.addSpacer(); 
-      col.addSpacer(0.3); // 极小行距
+      col.addSpacer(0.3); 
     });
 
     if (i < currentData.length - 1 && i < 3) mainStack.addSpacer();
@@ -151,7 +145,7 @@ async function createWidget() {
   return w;
 }
 
-// =================【3. 辅助逻辑保持不变】=================
+// =================【3. 辅助逻辑】=================
 function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
@@ -202,7 +196,7 @@ function calculateBday(p, today) {
     shengXiaoIco: sxMap[originL.getYearShengXiao()] || "🐾",
     zodiac: zodiacName + "座",
     zodiacIco: zdMap[zodiacName] || "✨",
-    caiShen: originL.getDayPositionCaiDesc() + "财", // 确保返回该字段
+    caiShen: originL.getDayPositionCaiDesc() + "财",
     bazi: baZi.getYear() + baZi.getMonth() + baZi.getDay(), 
     dayWuXing: dayWuXing
   };
