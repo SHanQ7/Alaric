@@ -163,7 +163,7 @@ function calculateBday(p, today, todayLunar) {
     diff: Math.ceil((bDate - today) / 86400000),
     shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(),
     naYin: rawNaYin + "·" + naYinDesc,
-    fullDayGan: dayGan + baZi.getDayWuXing() + "·命",
+    fullDayGan: dayGan + baZi.getDayWuXing() + "命",
     zodiac: getZodiac(originL.getSolar().getMonth(), originL.getSolar().getDay()),
     personalAdvice: getPersonalAdvice(dayGan, todayLunar.getDayGan()), 
     personalCai: getPersonalDailyCai(dayGan),
