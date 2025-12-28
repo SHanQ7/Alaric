@@ -70,28 +70,38 @@ async function createWidget() {
     const progress = Math.max(0.01, 1 - info.diff / 365);
     const endDeg = 180 + (180 * progress);
 
-    // --- A1. 绘制厚实底座路径 (增强嵌入感) ---
+    // --- A1. 绘制底座槽位 ---
     for (let deg = 180; deg <= 360; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
-      canvas.setFillColor(new Color("#000000", 0.15)); 
-      canvas.fillEllipse(new Rect(x - 3.2, y - 3.2, 6.4, 6.4)); 
-      canvas.setFillColor(new Color("#888888", 0.3)); 
+      
+      // 槽位外沿微阴影
+      canvas.setFillColor(new Color("#000000", 0.1)); 
+      canvas.fillEllipse(new Rect(x - 3, y - 3, 6, 6)); 
+      
+      // 槽位主体 (直径 5)
+      canvas.setFillColor(new Color("#888888", 0.25)); 
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
     }
 
-    // --- A2. 绘制加强发光霓虹进度 ---
+    // --- A2. 绘制填充式霓虹进度 (直径 5) ---
     for (let deg = 180; deg <= endDeg; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
+      
+      // 强力光晕
       canvas.setFillColor(new Color(accentColor.hex, 0.45)); 
       canvas.fillEllipse(new Rect(x - 6, y - 6, 12, 12)); 
+      
+      // 主灯管 (直径 5，完全填充槽位)
       canvas.setFillColor(accentColor);
       canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
-      canvas.setFillColor(Color.white());
-      canvas.fillEllipse(new Rect(x - 1, y - 1, 2, 2));
+      
+      // 核心高亮灯丝 (直径 2.5，增加饱满度)
+      canvas.setFillColor(new Color("#FFFFFF", 0.8));
+      canvas.fillEllipse(new Rect(x - 1.25, y - 1.25, 2.5, 2.5));
     }
 
     // 3. 圆弧内：天数
