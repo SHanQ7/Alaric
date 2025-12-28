@@ -5,12 +5,12 @@ const VERSION = "1.0.0";
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
-// =================【1. 核心渲染逻辑】=================
+// =================【1. 核心渲染】=================
 async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   
-  // --- 自适应配色方案 ---
+  // 自适应白天/夜晚配色
   const dynamicBg = Color.dynamic(new Color("#f9f9fb"), new Color("#1c1c1e"));
   const dynamicText = Color.dynamic(Color.black(), Color.white());
   const dynamicSubText = Color.dynamic(new Color("#333333", 0.8), new Color("#ffffff", 0.7));
@@ -39,20 +39,17 @@ async function createWidget() {
     const arcCenterY = 78; 
     const radius = 34;      
 
-    let accentColor = new Color("#f2c94c"); 
-    if (isBday) { accentColor = Color.cyan(); } 
-    else if (info.diff <= 7) { accentColor = new Color("#ff4d94"); } 
-    else if (info.diff <= 30) { accentColor = Color.orange(); }
+    // 颜色阶梯
+    let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (info.diff <= 30 ? Color.orange() : new Color("#f2c94c")));
 
-    // 1. 头像 (下移避开顶端)
+    // 1. 头像
     canvas.setFont(Font.systemFont(isBday ? 32 : 26));
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 5, 100, 35));
 
-    // 2. 霓虹圆弧
+    // 2. 圆弧进度
     const progress = isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365);
-    const endDeg = 180 + (180 * progress);
-    drawNeonArc(canvas, arcCenterY, radius, accentColor, endDeg);
+    drawNeonArc(canvas, arcCenterY, radius, accentColor, 180 + (180 * progress));
 
     // 3. 内部文字
     canvas.setFont(Font.heavySystemFont(18));
@@ -72,15 +69,14 @@ async function createWidget() {
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(76, 91.2); 
     
-    col.addSpacer(-12); 
+    col.addSpacer(-12); // 解决间距过宽，上提详细信息
 
-    // 4. 详细信息行 (今日专属财位)
     const details = [
       { text: info.sxIco + " " + info.shengXiao },
       { text: info.zdIco + " " + info.zodiac },
       { text: "☯️ " + info.bazi, isBazi: true }, 
       { text: "✨ " + info.dayWuXing + "命" },
-      { text: "💰专属" + info.personalCaiShen } 
+      { text: "💰专属" + info.personalCai } // 恢复为专属财位
     ];
 
     details.forEach(item => {
@@ -90,11 +86,13 @@ async function createWidget() {
       lineStack.addSpacer(12); 
       const indicator = lineStack.addStack();
       indicator.size = new Size(2, 6.5);
+      indicator.cornerRadius = 1;
       indicator.backgroundColor = accentColor;
       lineStack.addSpacer(3); 
       const t = lineStack.addText(item.text);
       t.font = Font.systemFont(item.isBazi && item.text.length > 8 ? 6.5 : 7.5);
       t.textColor = dynamicSubText;
+      t.lineLimit = 1;
       lineStack.addSpacer(); 
     });
 
@@ -104,7 +102,7 @@ async function createWidget() {
   return w;
 }
 
-// =================【2. 辅助数据处理】=================
+// =================【2. 辅助逻辑】=================
 function calculateBday(p, today) {
   let l = Lunar.fromYmd(today.getFullYear(), p.month, p.day);
   let s = l.getSolar();
@@ -119,9 +117,9 @@ function calculateBday(p, today) {
   const baZi = originL.getEightChar();
   const dayGan = baZi.getDayGan(); 
 
-  // --- 修复后的专属财位逻辑 ---
+  // 获取今日个人专属财位
   const todayLunar = Lunar.fromDate(new Date()); 
-  const personalCaiShen = LunarUtil.getDayPositionCaiDesc(dayGan, todayLunar.getDayGan());
+  const personalCai = todayLunar.getDayPositionCaiDesc(dayGan);
 
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
@@ -136,7 +134,7 @@ function calculateBday(p, today) {
     sxIco: sxMap[originL.getYearShengXiao()] || "🐾",
     zodiac: zodiac + "座",
     zdIco: zdMap[zodiac] || "✨",
-    personalCaiShen: personalCaiShen + "财", 
+    personalCai: personalCai + "财", 
     bazi: baZi.getYear() + baZi.getMonth() + baZi.getDay(), 
     dayWuXing: baZi.getDayWuXing()
   };
@@ -165,7 +163,6 @@ function drawNeonArc(canvas, arcCenterY, radius, accentColor, endDeg) {
   }
 }
 
-// =================【3. 功能函数】=================
 function getZodiac(month, day) {
   const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
   const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"];
@@ -184,22 +181,14 @@ function getDB() {
 function saveDB(data) { fm.writeString(dbPath, JSON.stringify(data)); }
 
 async function updateScript() {
-  const a = new Alert();
-  a.title = "🔄 检查更新";
-  a.message = "将从 GitHub 获取最新代码。";
-  a.addAction("立即更新");
-  a.addCancelAction("取消");
+  const a = new Alert(); a.title = "🔄 检查更新"; a.message = "将同步 GitHub 最新代码"; a.addAction("确认更新"); a.addCancelAction("取消");
   if (await a.present() === 0) {
     try {
       const req = new Request(GITHUB_URL);
       const code = await req.loadString();
-      if (code.includes("VERSION")) {
-        fm.writeString(module.filename, code);
-        const s = new Alert(); s.title = "✅ 更新成功"; await s.present();
-      }
-    } catch(e) { 
-      const f = new Alert(); f.title = "❌ 更新失败"; await f.present();
-    }
+      fm.writeString(module.filename, code);
+      const s = new Alert(); s.title = "✅ 更新成功"; await s.present();
+    } catch(e) { }
   }
 }
 
