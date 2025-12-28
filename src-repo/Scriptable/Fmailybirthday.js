@@ -41,7 +41,6 @@ async function createWidget() {
   displayData.forEach((p, i) => {
     const info = calculateBday(p, today, todayLunar);
     const isBday = info.diff === 0;
-    // 判定生肖岁破冲突
     const isChong = checkChong(info.shengXiao.slice(-1), todayLunar.getDayShengXiao());
     
     const col = mainStack.addStack();
@@ -68,13 +67,13 @@ async function createWidget() {
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(ringColor);
     canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcCenterY - 14, 100, 22));
-    
+
     canvas.setFont(Font.heavySystemFont(9.5));
-    canvas.setTextColor(Color.dynamic(new Color("#000000"), new Color("#ffffff")));
+    canvas.setTextColor(Color.dynamic(Color.black(), Color.white()));
     canvas.drawTextInRect(info.solarDateStr, new Rect(0, arcCenterY + 11, 100, 12));
-    
+
     canvas.setFont(Font.boldSystemFont(8.5));
-    canvas.setTextColor(Color.dynamic(new Color("#222222"), new Color("#eeeeee")));
+    canvas.setTextColor(Color.dynamic(new Color("#111111"), new Color("#eeeeee")));
     canvas.drawTextInRect(`${info.age}岁·${info.fullDayGan}`, new Rect(0, arcCenterY + 23, 100, 11));
 
     const img = col.addImage(canvas.getImage());
@@ -258,7 +257,7 @@ async function updateScript() {
     const code = await new Request(GITHUB_URL).loadString();
     if (code.includes("const VERSION")) { 
       fm.writeString(module.filename, code); 
-      new Alert().title="天机已更新"; await renderSettings();
+      new Alert().title="已保存"; await renderSettings();
     }
   } catch(e) {}
 }
@@ -270,7 +269,7 @@ async function editMember(dataList, index) {
   a.addTextField("名讳", item.name); a.addTextField("诞生年", String(item.year));
   a.addTextField("斋月", String(item.month)); a.addTextField("斋日", String(item.day));
   a.addTextField("法相", item.emoji);
-  a.addAction("正式结缘"); if (!isNew) a.addDestructiveAction("了断尘缘"); a.addCancelAction("作罢");
+  a.addAction("保存"); if (!isNew) a.addDestructiveAction("删除"); a.addCancelAction("取消");
   const res = await a.present();
   if (res === 0) {
     const newObj = { name: a.textFieldValue(0), year: parseInt(a.textFieldValue(1)), month: parseInt(a.textFieldValue(2)), day: parseInt(a.textFieldValue(3)), emoji: a.textFieldValue(4) };
