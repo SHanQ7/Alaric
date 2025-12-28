@@ -189,7 +189,7 @@ function calculateBday(p, today) {
   };
 }
 
-// =================【3. 更新与交互 (GITHUB 功能回归)】=================
+// =================【3. 更新与交互】=================
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
