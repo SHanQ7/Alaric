@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.8.6"; // 极致兼容版
+const VERSION = "1.8.7"; // 最终兼容版：高密度点阵模拟实线
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -48,40 +48,36 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 2. 绘制平滑半圆弧 (使用最底层的 addArc 接口)
-    const startAngle = Math.PI; 
-    const progress = Math.max(0.02, 1 - info.diff / 365);
-    const progressAngle = startAngle + (Math.PI * progress);
+    // 2. 绘制半圆弧 (高密度点阵模拟平滑曲线)
+    const progress = Math.max(0.01, 1 - info.diff / 365);
+    
+    // 绘制背景底色弧 (180度到360度)
+    // 步进 0.5 度，确保点与点之间高度重合，消除颗粒感
+    for (let deg = 180; deg <= 360; deg += 0.5) {
+      const rad = deg * Math.PI / 180;
+      const x = 50 + radius * Math.cos(rad);
+      const y = arcCenterY + radius * Math.sin(rad);
+      canvas.setFillColor(new Color("#888888", 0.15));
+      canvas.fillEllipse(new Rect(x - 1.5, y - 1.5, 3, 3));
+    }
 
-    // --- 绘制背景底弧 (180度到360度) ---
-    canvas.setStrokeColor(new Color("#888888", 0.15));
-    canvas.setLineWidth(3);
-    // 直接在 canvas 上绘制圆弧
-    canvas.addArc(new Point(50, arcCenterY), radius, Math.PI, 2 * Math.PI, false);
-    canvas.strokePath();
-
-    // --- 绘制进度弧线 ---
-    canvas.setStrokeColor(accentColor);
-    canvas.setLineWidth(4); 
-    canvas.addArc(new Point(50, arcCenterY), radius, startAngle, progressAngle, false);
-    canvas.strokePath();
-
-    // --- 手动补齐圆角 (增加端点视觉圆润度) ---
-    canvas.setFillColor(accentColor);
-    const dotR = 2; 
-    // 起点圆点
-    canvas.fillEllipse(new Rect(50 - radius - dotR, arcCenterY - dotR, dotR * 2, dotR * 2));
-    // 终点圆点
-    const endX = 50 + radius * Math.cos(progressAngle);
-    const endY = arcCenterY + radius * Math.sin(progressAngle);
-    canvas.fillEllipse(new Rect(endX - dotR, endY - dotR, dotR * 2, dotR * 2));
+    // 绘制进度彩色弧
+    const endDeg = 180 + (180 * progress);
+    for (let deg = 180; deg <= endDeg; deg += 0.5) {
+      const rad = deg * Math.PI / 180;
+      const x = 50 + radius * Math.cos(rad);
+      const y = arcCenterY + radius * Math.sin(rad);
+      canvas.setFillColor(accentColor);
+      // 稍微加大进度条圆点直径，覆盖底色并更显眼
+      canvas.fillEllipse(new Rect(x - 2, y - 2, 4, 4));
+    }
 
     // 3. 圆弧内：天数
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
     
-    // 4. 圆弧下方：日期格式
+    // 4. 圆弧下方：日期
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
     canvas.setFont(Font.boldSystemFont(13));
