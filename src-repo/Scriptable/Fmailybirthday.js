@@ -1,4 +1,4 @@
-const { Solar, Lunar } = importModule("lunar.module");
+const { Solar, Lunar, LunarUtil } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
 const VERSION = "1.0.0"; 
@@ -10,6 +10,7 @@ async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   
+  // --- 自适应配色方案 ---
   const dynamicBg = Color.dynamic(new Color("#f9f9fb"), new Color("#1c1c1e"));
   const dynamicText = Color.dynamic(Color.black(), Color.white());
   const dynamicSubText = Color.dynamic(new Color("#333333", 0.8), new Color("#ffffff", 0.7));
@@ -18,7 +19,7 @@ async function createWidget() {
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
   w.backgroundColor = dynamicBg;
-  w.setPadding(10, 5, 5, 5); // 增加顶部内边距，减少底部挤压
+  w.setPadding(10, 5, 5, 5); 
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
@@ -30,32 +31,30 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- 核心坐标微调 ---
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 120); // 压缩画布总高度
+    canvas.size = new Size(100, 120); 
     canvas.respectScreenScale = true;
     canvas.opaque = false;
     
-    const arcCenterY = 78; // 圆心下移，给头像留出空间
+    const arcCenterY = 78; 
     const radius = 34;      
 
-    // 颜色阶梯
     let accentColor = new Color("#f2c94c"); 
     if (isBday) { accentColor = Color.cyan(); } 
     else if (info.diff <= 7) { accentColor = new Color("#ff4d94"); } 
     else if (info.diff <= 30) { accentColor = Color.orange(); }
 
-    // 1. 头像 (下移5像素防止顶边)
+    // 1. 头像 (下移避开顶端)
     canvas.setFont(Font.systemFont(isBday ? 32 : 26));
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 5, 100, 35));
 
-    // 2. 霓虹进度条绘制
+    // 2. 霓虹圆弧
     const progress = isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365);
     const endDeg = 180 + (180 * progress);
     drawNeonArc(canvas, arcCenterY, radius, accentColor, endDeg);
 
-    // 3. 内部文字 (倒计时/日期/年龄)
+    // 3. 内部文字
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcCenterY - 14, 100, 22));
@@ -73,10 +72,9 @@ async function createWidget() {
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(76, 91.2); 
     
-    // --- 重点：通过负间距上提下方文字，解决底部拥挤 ---
     col.addSpacer(-12); 
 
-    // 4. 详细信息行 (今日财位已实现个性化)
+    // 4. 详细信息行 (今日专属财位)
     const details = [
       { text: info.sxIco + " " + info.shengXiao },
       { text: info.zdIco + " " + info.zodiac },
@@ -90,21 +88,14 @@ async function createWidget() {
       lineStack.layoutHorizontally();
       lineStack.centerAlignContent();
       lineStack.addSpacer(12); 
-      
       const indicator = lineStack.addStack();
       indicator.size = new Size(2, 6.5);
-      indicator.cornerRadius = 1;
       indicator.backgroundColor = accentColor;
-      
       lineStack.addSpacer(3); 
-      
       const t = lineStack.addText(item.text);
       t.font = Font.systemFont(item.isBazi && item.text.length > 8 ? 6.5 : 7.5);
       t.textColor = dynamicSubText;
-      t.lineLimit = 1;
-      
       lineStack.addSpacer(); 
-      // 移除 col.addSpacer 解决行间距过宽
     });
 
     if (i < currentData.length - 1 && i < 3) mainStack.addSpacer();
@@ -126,11 +117,11 @@ function calculateBday(p, today) {
 
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
   const baZi = originL.getEightChar();
-  const dayGan = baZi.getDayGan(); // 获取成员日干（壬水、甲木等）
+  const dayGan = baZi.getDayGan(); 
 
-  // 获取今日个人专属财位
+  // --- 修复后的专属财位逻辑 ---
   const todayLunar = Lunar.fromDate(new Date()); 
-  const personalCaiShen = todayLunar.getChongBaZi().getDayPositionCaiDesc(dayGan);
+  const personalCaiShen = LunarUtil.getDayPositionCaiDesc(dayGan, todayLunar.getDayGan());
 
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
@@ -152,7 +143,6 @@ function calculateBday(p, today) {
 }
 
 function drawNeonArc(canvas, arcCenterY, radius, accentColor, endDeg) {
-  // 底色圆环
   for (let deg = 180; deg <= 360; deg += 0.8) {
     const rad = deg * Math.PI / 180;
     const x = 50 + radius * Math.cos(rad);
@@ -162,7 +152,6 @@ function drawNeonArc(canvas, arcCenterY, radius, accentColor, endDeg) {
     canvas.setFillColor(Color.dynamic(new Color("#cccccc", 0.4), new Color("#888888", 0.25))); 
     canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
   }
-  // 进度圆环
   for (let deg = 180; deg <= endDeg; deg += 0.8) {
     const rad = deg * Math.PI / 180;
     const x = 50 + radius * Math.cos(rad);
@@ -176,7 +165,7 @@ function drawNeonArc(canvas, arcCenterY, radius, accentColor, endDeg) {
   }
 }
 
-// =================【3. 基础工具函数】=================
+// =================【3. 功能函数】=================
 function getZodiac(month, day) {
   const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22];
   const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"];
@@ -194,12 +183,33 @@ function getDB() {
 
 function saveDB(data) { fm.writeString(dbPath, JSON.stringify(data)); }
 
+async function updateScript() {
+  const a = new Alert();
+  a.title = "🔄 检查更新";
+  a.message = "将从 GitHub 获取最新代码。";
+  a.addAction("立即更新");
+  a.addCancelAction("取消");
+  if (await a.present() === 0) {
+    try {
+      const req = new Request(GITHUB_URL);
+      const code = await req.loadString();
+      if (code.includes("VERSION")) {
+        fm.writeString(module.filename, code);
+        const s = new Alert(); s.title = "✅ 更新成功"; await s.present();
+      }
+    } catch(e) { 
+      const f = new Alert(); f.title = "❌ 更新失败"; await f.present();
+    }
+  }
+}
+
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
   alert.title = "🎂 生日管家 Pro " + VERSION;
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
+  alert.addAction("🚀 检查更新"); 
   alert.addCancelAction("退出");
   const res = await alert.present();
   if (res === 0) {
@@ -215,6 +225,7 @@ async function renderSettings() {
     }
   }
   if (res === 1) { (await createWidget()).presentMedium(); }
+  if (res === 2) { await updateScript(); }
 }
 
 async function editMember(dataList, index) {
@@ -222,13 +233,10 @@ async function editMember(dataList, index) {
   const item = isNew ? { name: "", year: 1990, month: 1, day: 1, emoji: "👤" } : dataList[index];
   const a = new Alert();
   a.title = isNew ? "新增" : "修改";
-  a.addTextField("姓名", item.name);
-  a.addTextField("出生年", String(item.year));
-  a.addTextField("农历月", String(item.month));
-  a.addTextField("农历日", String(item.day));
+  a.addTextField("姓名", item.name); a.addTextField("出生年", String(item.year));
+  a.addTextField("农历月", String(item.month)); a.addTextField("农历日", String(item.day));
   a.addTextField("头像Emoji", item.emoji);
-  a.addAction("保存");
-  if (!isNew) a.addDestructiveAction("删除");
+  a.addAction("保存"); if (!isNew) a.addDestructiveAction("删除");
   a.addCancelAction("取消");
   if (await a.present() === 0) {
     const newObj = {
@@ -238,9 +246,7 @@ async function editMember(dataList, index) {
     };
     if (isNew) dataList.push(newObj); else dataList[index] = newObj;
     saveDB(dataList);
-  } else if (!isNew) {
-    dataList.splice(index, 1); saveDB(dataList);
-  }
+  } else if (!isNew) { dataList.splice(index, 1); saveDB(dataList); }
   await renderSettings();
 }
 
