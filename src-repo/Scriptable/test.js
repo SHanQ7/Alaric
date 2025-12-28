@@ -4,10 +4,10 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "2.5.2";
+const VERSION = "2.5.3";
 
 // 🌟 GitHub 更新地址
-const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/test.js";
+const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 核心渲染】=================
 async function createWidget() {
@@ -43,11 +43,12 @@ async function createWidget() {
     const radius = 33;     
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
 
+    // 1. 绘制头像
     canvas.setFont(Font.systemFont(28));
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // --- 背景弧 ---
+    // 2. 绘制背景弧
     const bgPath = new Path();
     for (let a = Math.PI; a <= Math.PI * 2; a += 0.05) {
       const x = arcCenter.x + radius * Math.cos(a);
@@ -59,7 +60,7 @@ async function createWidget() {
     canvas.setLineWidth(6);
     canvas.strokePath();
 
-    // --- 进度荧光弧 ---
+    // 3. 绘制进度荧光弧 (加粗版)
     const progress = Math.max(0.02, 1 - info.diff / 365);
     const fgPath = new Path();
     const endAngle = Math.PI + (Math.PI * progress);
@@ -70,26 +71,23 @@ async function createWidget() {
     }
     canvas.addPath(fgPath);
     
-    // ⚡️ 安全设置阴影，增加 Try-Catch 防止部分版本报错
-    try {
-      if (typeof canvas.setShadow === "function") {
-        canvas.setShadow(new Point(0, 0), 10, accentColor);
-      }
-    } catch(e) {}
-
+    // ✨ 修正后的阴影与圆角设置
     canvas.setStrokeColor(accentColor);
     canvas.setLineWidth(10); 
-    canvas.setLineCapRounded(); 
+    canvas.lineCap = "round"; // 终极修复：端点圆润属性
+    
+    // 阴影属性设置 (标准 Scriptable 赋值)
+    canvas.shadowColor = accentColor;
+    canvas.shadowBlur = 10;
+    canvas.shadowOffset = new Point(0, 0);
+    
     canvas.strokePath();
     
-    // ⚡️ 安全重置阴影
-    try {
-      if (typeof canvas.setShadow === "function") {
-        canvas.setShadow(new Point(0, 0), 0, new Color("#000000", 0));
-      }
-    } catch(e) {}
+    // 重置阴影，防止影响后续文字
+    canvas.shadowBlur = 0;
+    canvas.shadowColor = new Color("#000000", 0);
 
-    // 文字绘制
+    // 4. 文字绘制
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenter.y - 12, 100, 22));
@@ -122,22 +120,21 @@ async function createWidget() {
     details.forEach(item => {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
-      lineStack.addSpacer(); 
+      lineStack.addSpacer(); // 左右 Spacer 强制居中
 
       const glowCanvas = new DrawContext();
       glowCanvas.size = new Size(12, 20);
       glowCanvas.opaque = false;
       glowCanvas.respectScreenScale = true;
+      
       const glowRect = new Rect(4, 4, 3, 12);
       const glowPath = new Path();
       glowPath.addRoundedRect(glowRect, 1.5, 1.5);
       
-      // 胶囊阴影安全处理
-      try {
-        if (typeof glowCanvas.setShadow === "function") {
-          glowCanvas.setShadow(new Point(0, 0), 4, accentColor);
-        }
-      } catch(e) {}
+      // 胶囊阴影
+      glowCanvas.shadowColor = accentColor;
+      glowCanvas.shadowBlur = 4;
+      glowCanvas.shadowOffset = new Point(0, 0);
 
       glowCanvas.setFillColor(new Color(accentColor.hex, 0.15));
       glowCanvas.fillEllipse(new Rect(2, 2, 7, 16));
@@ -169,7 +166,7 @@ function saveDB(data) { fm.writeString(dbPath, JSON.stringify(data)); }
 function getZodiac(month, day) { const dates = [20, 19, 21, 20, 21, 22, 23, 23, 23, 24, 22, 22]; const signs = ["摩羯", "水瓶", "双鱼", "白羊", "金牛", "双子", "巨蟹", "狮子", "处女", "天秤", "天蝎", "射手", "摩羯"]; return signs[day < dates[month - 1] ? month - 1 : month]; }
 function calculateBday(p, today) { let l = Lunar.fromYmd(today.getFullYear(), p.month, p.day); let s = l.getSolar(); let bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay()); if (bDay < today) { l = Lunar.fromYmd(today.getFullYear() + 1, p.month, p.day); s = l.getSolar(); bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay()); } const originL = Lunar.fromYmd(p.year, p.month, p.day); const originS = originL.getSolar(); const zodiacName = getZodiac(originS.getMonth(), originS.getDay()); const baZi = originL.getEightChar(); const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"}; const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"}; return { solarDate: bDay, diff: Math.ceil((bDay - today) / 86400000), shengXiao: originL.getYearInGanZhi().substring(1) + originL.getYearShengXiao(), shengXiaoIco: sxMap[originL.getYearShengXiao()] || "🐾", zodiac: zodiacName + "座", zodiacIco: zdMap[zodiacName] || "✨", caiShen: originL.getDayPositionCaiDesc() + "财", bazi: `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`, dayWuXing: baZi.getDayWuXing() }; }
 
-// =================【3. 更新与设置面板】=================
+// =================【3. 面板与更新】=================
 async function updateScript() {
   const a = new Alert(); a.title = "🔄 检查更新"; a.message = "将从 GitHub 获取最新代码..."; a.addAction("下载并覆盖"); a.addCancelAction("取消");
   if (await a.present() === 0) {
