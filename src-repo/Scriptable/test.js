@@ -7,7 +7,7 @@ const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
 const VERSION = "2.5.0";
 
 // 🌟 找回你的 GitHub 更新地址
-const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
+const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/test.js";
 
 // =================【1. 核心渲染】=================
 async function createWidget() {
