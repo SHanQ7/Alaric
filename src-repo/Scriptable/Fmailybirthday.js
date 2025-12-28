@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.1.0";
+const VERSION = "1.8.5"; // 稳定修复圆角版本
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -33,7 +33,7 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- A. 仪表盘绘制 (已修复冗余并改为平滑圆弧) ---
+    // --- A. 仪表盘绘制 ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 115); 
     canvas.respectScreenScale = true;
@@ -49,15 +49,13 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
 
-    // 2. 绘制平滑半圆弧
+    // 2. 绘制平滑半圆弧 (手动补圆逻辑，解决报错问题)
     const startAngle = Math.PI; // 180度
     const endAngle = 2 * Math.PI; // 360度
-    const progress = Math.max(0.05, 1 - info.diff / 365);
+    const progress = Math.max(0.02, 1 - info.diff / 365);
     const progressAngle = startAngle + (Math.PI * progress);
 
-    canvas.setLineCapRound(); // 使线条末端圆润
-
-    // 绘制背景灰色底弧
+    // --- 绘制背景底弧 ---
     const bgPath = new Path();
     bgPath.addArc(new Point(50, arcCenterY), radius, startAngle, endAngle);
     canvas.addPath(bgPath);
@@ -65,13 +63,23 @@ async function createWidget() {
     canvas.setLineWidth(3);
     canvas.strokePath();
 
-    // 绘制进度实色弧线
+    // --- 绘制进度弧线 ---
     const fgPath = new Path();
     fgPath.addArc(new Point(50, arcCenterY), radius, startAngle, progressAngle);
     canvas.addPath(fgPath);
     canvas.setStrokeColor(accentColor);
     canvas.setLineWidth(4); 
     canvas.strokePath();
+
+    // --- 关键：手动补齐圆角 (不使用 setLineCapRound) ---
+    canvas.setFillColor(accentColor);
+    const dotR = 2; // 进度条粗度是4，所以半径为2
+    // 起点圆点
+    canvas.fillEllipse(new Rect(50 - radius - dotR, arcCenterY - dotR, dotR * 2, dotR * 2));
+    // 终点圆点 (利用三角函数计算坐标)
+    const endX = 50 + radius * Math.cos(progressAngle);
+    const endY = arcCenterY + radius * Math.sin(progressAngle);
+    canvas.fillEllipse(new Rect(endX - dotR, endY - dotR, dotR * 2, dotR * 2));
 
     // 3. 圆弧内：天数
     canvas.setFont(Font.heavySystemFont(18));
@@ -122,7 +130,7 @@ async function createWidget() {
       const t = lineStack.addText(`${item.icon} ${item.text}`);
       t.font = Font.systemFont(8);
       t.textColor = subTextColor;
-      col.addSpacer(1);
+      col.addSpacer(1); 
     });
 
     if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
