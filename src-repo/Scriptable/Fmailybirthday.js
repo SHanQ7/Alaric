@@ -5,7 +5,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.0.0"; 
+const VERSION = "1.1.6"; 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 核心渲染】=================
@@ -41,7 +41,7 @@ async function createWidget() {
   displayData.forEach((p, i) => {
     const info = calculateBday(p, today, todayLunar);
     const isBday = info.diff === 0;
-    // 【判定】生肖岁破冲突
+    // 判定生肖岁破冲突
     const isChong = checkChong(info.shengXiao.slice(-1), todayLunar.getDayShengXiao());
     
     const col = mainStack.addStack();
@@ -55,8 +55,9 @@ async function createWidget() {
     const arcCenterY = 75; 
     const radius = 34;      
 
+    // 【修正】圆弧颜色仅由生日远近决定，不受岁破干扰
     let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (info.diff <= 30 ? Color.orange() : new Color("#f2c94c")));
-    const ringColor = accentColor;
+    const ringColor = accentColor; 
 
     canvas.setFont(Font.systemFont(isBday ? 34 : 26));
     canvas.setTextAlignedCenter();
@@ -101,6 +102,7 @@ async function createWidget() {
       capsule.centerAlignContent();
       
       let bg;
+      // 【逻辑】仅在生肖栏且岁破时局部变红
       if (item.isSX && isChong) {
         bg = Color.dynamic(new Color("#ff4d4d", 0.4), new Color("#ff4d4d", 0.6));
       } else {
@@ -207,11 +209,16 @@ function getPersonalAdvice(s, d) {
     "癸": {"甲":"伤官","乙":"食神","丙":"正财","丁":"偏财","戊":"正官","己":"七杀","庚":"正印","辛":"偏印","壬":"劫财","癸":"比肩"}
   };
   const dict = {
-    "比肩": { tag: "帮身", act: "会友" }, "劫财": { tag: "夺气", act: "守财" },
-    "食神": { tag: "福寿", act: "赏味" }, "伤官": { tag: "驰骋", act: "创意" },
-    "偏财": { tag: "机缘", act: "捕捉" }, "正财": { tag: "勤耕", act: "稳扎" },
-    "七杀": { tag: "破坚", act: "迎难" }, "正官": { tag: "显达", act: "规划" },
-    "偏印": { tag: "探幽", act: "深度" }, "正印": { tag: "润泽", act: "求教" }
+    "比肩": { tag: "同辈帮身", act: "聚会·结盟" }, 
+    "劫财": { tag: "同僚夺气", act: "低调·防损" },
+    "食神": { tag: "福禄生财", act: "聚餐·休闲" }, 
+    "伤官": { tag: "才华横溢", act: "表达·炫技" },
+    "偏财": { tag: "意外之财", act: "投资·博弈" }, 
+    "正财": { tag: "勤劳致富", act: "财务·存钱" },
+    "七杀": { tag: "威权压力", act: "突破·自律" }, 
+    "正官": { tag: "名誉地位", act: "面试·向上" },
+    "偏印": { tag: "奇思妙想", act: "灵感·独处" }, 
+    "正印": { tag: "贵人护佑", act: "学习·求教" }
   };
   try {
     const tenGod = rel[s][d];
@@ -229,7 +236,7 @@ function saveDB(d) { fm.writeString(dbPath, JSON.stringify(d)); }
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
-  alert.title = "FmaliyBirthday" + VERSION;
+  alert.title = "FmaliyBirthday " + VERSION;
   alert.addAction("成员录入"); alert.addAction("预览组件"); alert.addAction("版本更新"); alert.addCancelAction("退出设置");
   const res = await alert.present();
   if (res === 0) {
