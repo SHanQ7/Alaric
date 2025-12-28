@@ -4,8 +4,9 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "2.2.0";
+const VERSION = "2.5.0";
 
+// 🌟 找回你的 GitHub 更新地址
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
 // =================【1. 核心渲染】=================
@@ -13,7 +14,6 @@ async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   
-  // ⚡️ 修复：动态外观检测，确保随系统实时切换黑白模式
   const isNight = Device.isUsingDarkAppearance();
   const bgColor = isNight ? new Color("#1c1c1e") : new Color("#f9f9fb"); 
   const textColor = isNight ? Color.white() : Color.black();
@@ -34,9 +34,9 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- A. 仪表盘绘制 ---
+    // --- A. 仪表盘绘制 (加粗荧光弧线) ---
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 135); // 增加高度以容纳岁数
+    canvas.size = new Size(100, 135); 
     canvas.respectScreenScale = true;
     canvas.opaque = false;
     
@@ -44,63 +44,50 @@ async function createWidget() {
     const radius = 33;     
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
 
-    // 1. 绘制头像
     canvas.setFont(Font.systemFont(28));
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 2. 绘制【加粗平滑荧光】半圆弧
-    // --- 底部背景弧 ---
+    // 背景弧
     const bgPath = new Path();
-    // 使用连点法模拟平滑弧线（兼容性最强）
     for (let a = Math.PI; a <= Math.PI * 2; a += 0.05) {
       const x = arcCenter.x + radius * Math.cos(a);
       const y = arcCenter.y + radius * Math.sin(a);
-      if (a === Math.PI) bgPath.move(new Point(x, y));
-      else bgPath.addLine(new Point(x, y));
+      if (a === Math.PI) bgPath.move(new Point(x, y)); else bgPath.addLine(new Point(x, y));
     }
     canvas.addPath(bgPath);
     canvas.setStrokeColor(new Color("#888888", 0.15));
-    canvas.setLineWidth(6); // 背景弧粗细
+    canvas.setLineWidth(6);
     canvas.strokePath();
 
-    // --- 进度荧光弧 ---
+    // 进度弧
     const progress = Math.max(0.02, 1 - info.diff / 365);
     const fgPath = new Path();
-    const startAngle = Math.PI;
     const endAngle = Math.PI + (Math.PI * progress);
-    
-    for (let a = startAngle; a <= endAngle; a += 0.05) {
+    for (let a = Math.PI; a <= endAngle; a += 0.05) {
       const x = arcCenter.x + radius * Math.cos(a);
       const y = arcCenter.y + radius * Math.sin(a);
-      if (a === startAngle) fgPath.move(new Point(x, y));
-      else fgPath.addLine(new Point(x, y));
+      if (a === Math.PI) fgPath.move(new Point(x, y)); else fgPath.addLine(new Point(x, y));
     }
-    
     canvas.addPath(fgPath);
-    // ✨ 霓虹荧光关键：阴影 + 加粗线条
     canvas.setShadow(accentColor, 10, new Point(0, 0)); 
     canvas.setStrokeColor(accentColor);
-    canvas.setLineWidth(10); // 进度弧显著加粗
+    canvas.setLineWidth(10); 
     canvas.setLineCapRounded(); 
     canvas.strokePath();
-    
-    // 重置阴影防止文字模糊
     canvas.setShadow(new Color("#000000", 0), 0, new Point(0, 0));
 
-    // 3. 圆弧内：天数
+    // 文字部分
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenter.y - 12, 100, 22));
     
-    // 4. 标准日期 YYYY-MM-dd
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
     canvas.setFont(Font.boldSystemFont(11));
     canvas.setTextColor(textColor);
     canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenter.y + 15, 100, 15));
 
-    // 🌟 5. 新增：今年岁数显示
     const age = now.getFullYear() - p.year;
     canvas.setFont(Font.systemFont(9));
     canvas.setTextColor(subTextColor);
@@ -111,7 +98,7 @@ async function createWidget() {
 
     col.addSpacer(-4);
 
-    // --- B. 详细信息行 ---
+    // --- B. 详细信息行 (保留胶囊且居中对齐) ---
     const details = [
       { icon: info.shengXiaoIco, text: info.shengXiao },
       { icon: info.zodiacIco, text: info.zodiac },
@@ -124,10 +111,13 @@ async function createWidget() {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
+      lineStack.addSpacer(); // 左弹簧
+
+      // 绘制胶囊
       const glowCanvas = new DrawContext();
       glowCanvas.size = new Size(12, 20);
       glowCanvas.opaque = false;
-      
+      glowCanvas.respectScreenScale = true;
       const glowRect = new Rect(4, 4, 3, 12);
       const glowPath = new Path();
       glowPath.addRoundedRect(glowRect, 1.5, 1.5);
@@ -144,6 +134,8 @@ async function createWidget() {
       const t = lineStack.addText(`${item.icon}${item.text}`);
       t.font = Font.systemFont(8);
       t.textColor = subTextColor;
+
+      lineStack.addSpacer(); // 右弹簧，确保中间的内容绝对居中
       
       col.addSpacer(1); 
     });
@@ -155,7 +147,6 @@ async function createWidget() {
 }
 
 // =================【2. 辅助逻辑】=================
-
 function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
@@ -187,18 +178,12 @@ function calculateBday(p, today) {
     s = l.getSolar();
     bDay = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
   }
-  
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
   const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
-  
   const baZi = originL.getEightChar(); 
-  const baZiStr = `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`; 
-  const dayWuXing = baZi.getDayWuXing(); 
-
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
   const zdMap = {"白羊":"♈️","金牛":"♉️","双子":"♊️","巨蟹":"♋️","狮子":"♌️","处女":"♍️","天秤":"♎️","天蝎":"♏️","射手":"♐️","摩羯":"♑️","水瓶":"♒️","双鱼":"♓️"};
-
   return {
     solarDate: bDay,
     diff: Math.ceil((bDay - today) / 86400000),
@@ -207,18 +192,39 @@ function calculateBday(p, today) {
     zodiac: zodiacName + "座",
     zodiacIco: zdMap[zodiacName] || "✨",
     caiShen: originL.getDayPositionCaiDesc() + "财",
-    bazi: baZiStr,
-    dayWuXing: dayWuXing
+    bazi: `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`,
+    dayWuXing: baZi.getDayWuXing()
   };
 }
 
-// =================【3. 面板交互】=================
+// =================【3. 找回更新与设置面板】=================
+async function updateScript() {
+  const a = new Alert();
+  a.title = "🔄 检查更新";
+  a.message = "将从 GitHub 获取最新代码...";
+  a.addAction("下载并覆盖");
+  a.addCancelAction("取消");
+  if (await a.present() === 0) {
+    try {
+      const req = new Request(GITHUB_URL);
+      const code = await req.loadString();
+      if (code.includes("VERSION")) {
+        fm.writeString(module.filename, code);
+        const s = new Alert(); s.title = "✅ 更新成功"; s.message = "请重新运行脚本。"; await s.present();
+      }
+    } catch (e) {
+      const f = new Alert(); f.title = "❌ 更新失败"; f.message = "请检查网络"; await f.present();
+    }
+  }
+}
+
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
   alert.title = "🎂 生日管家 Pro " + VERSION;
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
+  alert.addAction("🚀 检查更新"); // 🌟 重新加入更新入口
   alert.addCancelAction("退出");
   const res = await alert.present();
   if (res === 0) {
@@ -226,7 +232,6 @@ async function renderSettings() {
     list.title = "管理成员";
     currentDB.forEach(p => list.addAction(p.name));
     list.addAction("➕ 新增成员");
-    list.addCancelAction("取消");
     const idx = await list.present();
     if (idx !== -1) {
       if (idx === currentDB.length) await editMember(currentDB, -1);
@@ -234,6 +239,7 @@ async function renderSettings() {
     }
   }
   if (res === 1) { (await createWidget()).presentMedium(); }
+  if (res === 2) { await updateScript(); } // 🌟 重新关联函数
 }
 
 async function editMember(dataList, index) {
