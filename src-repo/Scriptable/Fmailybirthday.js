@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.8.0";
+const VERSION = "1.1.0";
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -33,24 +33,7 @@ async function createWidget() {
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- A. 仪表盘绘制 ---
-    const canvas = new DrawContext();
-    canvas.size = new Size(100, 115); // 稍微增加画布总高度
-    canvas.respectScreenScale = true;
-    canvas.opaque = false;
-    
-    const avatarY = 0;   
-    const arcCenterY = 77; // 圆心下移，增加与头像的间隔
-    const radius = 33;     
-    const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
-
-    // 1. 绘制头像 (通过 avatarY 控制与圆弧的间隔)
-    canvas.setFont(Font.systemFont(28));
-    canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
-
-    // 2. 绘制半圆弧 (使用点状线条增加呼吸感)
-// --- A. 仪表盘绘制 ---
+    // --- A. 仪表盘绘制 (已修复冗余并改为平滑圆弧) ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 115); 
     canvas.respectScreenScale = true;
@@ -66,16 +49,15 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
 
-    // 2. 绘制平滑半圆弧 (替换了原有的 for 循环颗粒逻辑)
-    const startAngle = Math.PI; // 180度位置
-    const endAngle = 2 * Math.PI; // 360度位置
+    // 2. 绘制平滑半圆弧
+    const startAngle = Math.PI; // 180度
+    const endAngle = 2 * Math.PI; // 360度
     const progress = Math.max(0.05, 1 - info.diff / 365);
     const progressAngle = startAngle + (Math.PI * progress);
 
-    // 设置线条为圆角末端
-    canvas.setLineCapRound();
+    canvas.setLineCapRound(); // 使线条末端圆润
 
-    // 绘制背景底色圆弧 (浅灰色)
+    // 绘制背景灰色底弧
     const bgPath = new Path();
     bgPath.addArc(new Point(50, arcCenterY), radius, startAngle, endAngle);
     canvas.addPath(bgPath);
@@ -83,23 +65,20 @@ async function createWidget() {
     canvas.setLineWidth(3);
     canvas.strokePath();
 
-    // 绘制进度圆弧 (彩色)
+    // 绘制进度实色弧线
     const fgPath = new Path();
     fgPath.addArc(new Point(50, arcCenterY), radius, startAngle, progressAngle);
     canvas.addPath(fgPath);
     canvas.setStrokeColor(accentColor);
-    canvas.setLineWidth(4); // 进度条略粗，更有层次感
+    canvas.setLineWidth(4); 
     canvas.strokePath();
-
-    // 3. 圆弧内：天数
-    // ... 后续代码保持不变
 
     // 3. 圆弧内：天数
     canvas.setFont(Font.heavySystemFont(18));
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
     
-    // 4. 圆弧下方：标准日期格式 YYYY年-MM-dd
+    // 4. 圆弧下方：日期
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
     canvas.setFont(Font.boldSystemFont(13));
@@ -109,10 +88,9 @@ async function createWidget() {
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(75, 86); 
 
-    // 5. 压缩间距：添加一个负向间距或极小间距
     col.addSpacer(-3);
 
-    // --- B. 详细信息行 (柔和发光效果) ---
+    // --- B. 详细信息行 ---
     const details = [
       { icon: info.shengXiaoIco, text: info.shengXiao },
       { icon: info.zodiacIco, text: info.zodiac },
@@ -125,35 +103,26 @@ async function createWidget() {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
-      // 绘制“柔和发光”胶囊
       const glowCanvas = new DrawContext();
       glowCanvas.size = new Size(12, 20);
       glowCanvas.opaque = false;
-      
-      // 核心光晕叠加
       const glowRect = new Rect(4, 4, 3, 12);
       const glowPath = new Path();
       glowPath.addRoundedRect(glowRect, 1.5, 1.5);
-      
-      // 外层大面积弱光
       glowCanvas.setFillColor(new Color(accentColor.hex, 0.15));
       glowCanvas.fillEllipse(new Rect(2, 2, 7, 16));
-      
-      // 内层核心光束
       glowCanvas.addPath(glowPath);
       glowCanvas.setFillColor(accentColor);
       glowCanvas.fillPath();
       
       const glowImg = lineStack.addImage(glowCanvas.getImage());
       glowImg.imageSize = new Size(6, 10);
-      
       lineStack.addSpacer(4);
       
       const t = lineStack.addText(`${item.icon} ${item.text}`);
       t.font = Font.systemFont(8);
       t.textColor = subTextColor;
-      
-      col.addSpacer(1); // 行与行之间保持极小紧凑感
+      col.addSpacer(1);
     });
 
     if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
@@ -222,7 +191,6 @@ function calculateBday(p, today) {
   };
 }
 
-// =================【4. 更新与设置面板】=================
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
