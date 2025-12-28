@@ -4,7 +4,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.8.5"; // 稳定修复圆角版本
+const VERSION = "1.8.6"; // 极致兼容版
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -39,7 +39,6 @@ async function createWidget() {
     canvas.respectScreenScale = true;
     canvas.opaque = false;
     
-    const avatarY = 0;   
     const arcCenterY = 77; 
     const radius = 33;      
     const accentColor = info.diff <= 30 ? Color.orange() : new Color("#f2c94c");
@@ -47,36 +46,32 @@ async function createWidget() {
     // 1. 绘制头像
     canvas.setFont(Font.systemFont(28));
     canvas.setTextAlignedCenter();
-    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, avatarY, 100, 32));
+    canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 2. 绘制平滑半圆弧 (手动补圆逻辑，解决报错问题)
-    const startAngle = Math.PI; // 180度
-    const endAngle = 2 * Math.PI; // 360度
+    // 2. 绘制平滑半圆弧 (使用最底层的 addArc 接口)
+    const startAngle = Math.PI; 
     const progress = Math.max(0.02, 1 - info.diff / 365);
     const progressAngle = startAngle + (Math.PI * progress);
 
-    // --- 绘制背景底弧 ---
-    const bgPath = new Path();
-    bgPath.addArc(new Point(50, arcCenterY), radius, startAngle, endAngle);
-    canvas.addPath(bgPath);
+    // --- 绘制背景底弧 (180度到360度) ---
     canvas.setStrokeColor(new Color("#888888", 0.15));
     canvas.setLineWidth(3);
+    // 直接在 canvas 上绘制圆弧
+    canvas.addArc(new Point(50, arcCenterY), radius, Math.PI, 2 * Math.PI, false);
     canvas.strokePath();
 
     // --- 绘制进度弧线 ---
-    const fgPath = new Path();
-    fgPath.addArc(new Point(50, arcCenterY), radius, startAngle, progressAngle);
-    canvas.addPath(fgPath);
     canvas.setStrokeColor(accentColor);
     canvas.setLineWidth(4); 
+    canvas.addArc(new Point(50, arcCenterY), radius, startAngle, progressAngle, false);
     canvas.strokePath();
 
-    // --- 关键：手动补齐圆角 (不使用 setLineCapRound) ---
+    // --- 手动补齐圆角 (增加端点视觉圆润度) ---
     canvas.setFillColor(accentColor);
-    const dotR = 2; // 进度条粗度是4，所以半径为2
+    const dotR = 2; 
     // 起点圆点
     canvas.fillEllipse(new Rect(50 - radius - dotR, arcCenterY - dotR, dotR * 2, dotR * 2));
-    // 终点圆点 (利用三角函数计算坐标)
+    // 终点圆点
     const endX = 50 + radius * Math.cos(progressAngle);
     const endY = arcCenterY + radius * Math.sin(progressAngle);
     canvas.fillEllipse(new Rect(endX - dotR, endY - dotR, dotR * 2, dotR * 2));
@@ -86,7 +81,7 @@ async function createWidget() {
     canvas.setTextColor(accentColor);
     canvas.drawTextInRect(info.diff === 0 ? "🎂" : `${info.diff}`, new Rect(0, arcCenterY - 12, 100, 22));
     
-    // 4. 圆弧下方：日期
+    // 4. 圆弧下方：日期格式
     const df = new DateFormatter();
     df.dateFormat = "yyyy-MM-dd";
     canvas.setFont(Font.boldSystemFont(13));
@@ -95,7 +90,6 @@ async function createWidget() {
 
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(75, 86); 
-
     col.addSpacer(-3);
 
     // --- B. 详细信息行 ---
@@ -140,7 +134,6 @@ async function createWidget() {
 }
 
 // =================【3. 辅助逻辑】=================
-
 function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
@@ -178,7 +171,6 @@ function calculateBday(p, today) {
   const originL = Lunar.fromYmd(p.year, p.month, p.day);
   const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
-  
   const baZi = originL.getEightChar(); 
   const baZiStr = `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`; 
   const dayWuXing = baZi.getDayWuXing(); 
