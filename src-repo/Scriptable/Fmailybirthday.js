@@ -1,7 +1,7 @@
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.0.0";
+const VERSION = "1.1.0";
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -16,7 +16,7 @@ async function createWidget() {
   const currentData = getDB();
   const w = new ListWidget();
   w.backgroundColor = bgColor;
-  w.setPadding(10, 12, 10, 12); 
+  w.setPadding(12, 12, 12, 12); 
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
@@ -24,13 +24,14 @@ async function createWidget() {
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
+  // 渲染前4个成员
   currentData.slice(0, 4).forEach((p, i) => {
     const info = calculateBday(p, today);
     const col = mainStack.addStack();
     col.layoutVertically();
     col.centerAlignContent(); 
 
-    // --- A. 仪表盘绘制 ---
+    // --- A. 霓虹仪表盘绘制 ---
     const canvas = new DrawContext();
     canvas.size = new Size(100, 115); 
     canvas.respectScreenScale = true;
@@ -45,28 +46,34 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 2. 绘制平滑半圆弧
+    // 2. 绘制霓虹进度
     const progress = Math.max(0.01, 1 - info.diff / 365);
-    
-    // --- 绘制背景底色弧 (180度到360度) ---
-    // 采用 0.5 步进，确保点与点之间有 80% 以上的重叠区域，视觉上就是平滑实线
-    for (let deg = 180; deg <= 360; deg += 0.5) {
+    const endDeg = 180 + (180 * progress);
+
+    // 绘制底色弧 (细点)
+    for (let deg = 180; deg <= 360; deg += 2) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
       canvas.setFillColor(new Color("#888888", 0.15));
-      canvas.fillEllipse(new Rect(x - 1.5, y - 1.5, 3, 3));
+      canvas.fillEllipse(new Rect(x - 1, y - 1, 2, 2));
     }
 
-    // --- 绘制进度彩色弧 ---
-    const endDeg = 180 + (180 * progress);
-    for (let deg = 180; deg <= endDeg; deg += 0.5) {
+    // 绘制霓虹彩色进度 (三重叠加效果)
+    for (let deg = 180; deg <= endDeg; deg += 0.8) {
       const rad = deg * Math.PI / 180;
       const x = 50 + radius * Math.cos(rad);
       const y = arcCenterY + radius * Math.sin(rad);
+      
+      // 层级 1: 外溢光晕
+      canvas.setFillColor(new Color(accentColor.hex, 0.25));
+      canvas.fillEllipse(new Rect(x - 5, y - 5, 10, 10));
+      // 层级 2: 主灯管
       canvas.setFillColor(accentColor);
-      // 进度条稍微加粗（直径4），边缘会自动呈现圆角效果
-      canvas.fillEllipse(new Rect(x - 2, y - 2, 4, 4));
+      canvas.fillEllipse(new Rect(x - 2.5, y - 2.5, 5, 5));
+      // 层级 3: 核心亮白灯丝
+      canvas.setFillColor(new Color("#FFFFFF", 0.7));
+      canvas.fillEllipse(new Rect(x - 1, y - 1, 2, 2));
     }
 
     // 3. 圆弧内：天数
@@ -76,52 +83,35 @@ async function createWidget() {
     
     // 4. 圆弧下方：日期
     const df = new DateFormatter();
-    df.dateFormat = "yyyy-MM-dd";
-    canvas.setFont(Font.boldSystemFont(13));
+    df.dateFormat = "MM-dd"; // 简化日期显示，更整洁
+    canvas.setFont(Font.boldSystemFont(12));
     canvas.setTextColor(textColor);
     canvas.drawTextInRect(df.string(info.solarDate), new Rect(0, arcCenterY + 12, 100, 15));
 
     const img = col.addImage(canvas.getImage());
-    img.imageSize = new Size(75, 86); 
-    col.addSpacer(-3);
+    img.imageSize = new Size(72, 83); 
+    col.addSpacer(2);
 
-    // --- B. 详细信息行 ---
+    // --- B. 详细信息行 (优化间距) ---
     const details = [
       { icon: info.shengXiaoIco, text: info.shengXiao },
       { icon: info.zodiacIco, text: info.zodiac },
-      { icon: "", text: info.bazi },
-      { icon: "", text: info.dayWuXing + "命" },
-      { icon: "", text: info.caiShen }
+      { icon: "☯️", text: info.bazi },
+      { icon: "🌟", text: info.dayWuXing + "命" }
     ];
 
     details.forEach(item => {
       const lineStack = col.addStack();
       lineStack.centerAlignContent();
       
-      const glowCanvas = new DrawContext();
-      glowCanvas.size = new Size(12, 20);
-      glowCanvas.opaque = false;
-      const glowRect = new Rect(4, 4, 3, 12);
-      // 注意：这里保留了 glowPath，如果依然报错，我们下次连这里也用 fillEllipse 替换
-      const glowPath = new Path();
-      glowPath.addRoundedRect(glowRect, 1.5, 1.5);
-      glowCanvas.setFillColor(new Color(accentColor.hex, 0.15));
-      glowCanvas.fillEllipse(new Rect(2, 2, 7, 16));
-      glowCanvas.addPath(glowPath);
-      glowCanvas.setFillColor(accentColor);
-      glowCanvas.fillPath();
-      
-      const glowImg = lineStack.addImage(glowCanvas.getImage());
-      glowImg.imageSize = new Size(6, 10);
-      lineStack.addSpacer(4);
-      
       const t = lineStack.addText(`${item.icon} ${item.text}`);
-      t.font = Font.systemFont(8);
+      t.font = Font.systemFont(9);
       t.textColor = subTextColor;
+      t.lineLimit = 1;
       col.addSpacer(1); 
     });
 
-    if (i < 3 && i < currentData.length - 1) mainStack.addSpacer();
+    if (i < currentData.length - 1 && i < 3) mainStack.addSpacer();
   });
   
   return w;
@@ -132,7 +122,7 @@ function getDB() {
   if (!fm.fileExists(dbPath)) {
     const defaultData = [
       { name: "爸爸", year: 1973, month: 11, day: 8, emoji: "👨" },
-      { name: "妈妈", year: 1975, month: 5, day: 20, emoji: "👩" },
+      { icon: "妈妈", year: 1975, month: 5, day: 20, emoji: "👩" },
       { name: "妹妹", year: 2000, month: 3, day: 15, emoji: "👧" },
       { name: "我", year: 1995, month: 11, day: 26, emoji: "👦" }
     ];
@@ -166,7 +156,7 @@ function calculateBday(p, today) {
   const originS = originL.getSolar();
   const zodiacName = getZodiac(originS.getMonth(), originS.getDay());
   const baZi = originL.getEightChar(); 
-  const baZiStr = `${baZi.getYear()}${baZi.getMonth()}${baZi.getDay()}`; 
+  const baZiStr = `${baZi.getDay()}`; // 简化八字显示，只显示日柱或关键部分
   const dayWuXing = baZi.getDayWuXing(); 
 
   const sxMap = {"鼠":"🐭","牛":"🐮","虎":"🐯","兔":"🐰","龙":"🐲","蛇":"🐍","马":"🐴","羊":"🐑","猴":"🐵","鸡":"🐔","狗":"🐶","猪":"🐷"};
@@ -180,11 +170,12 @@ function calculateBday(p, today) {
     zodiac: zodiacName + "座",
     zodiacIco: zdMap[zodiacName] || "✨",
     caiShen: originL.getDayPositionCaiDesc() + "财",
-    bazi: baZiStr,
+    bazi: baZi.getYear() + baZi.getMonth() + baZi.getDay(), 
     dayWuXing: dayWuXing
   };
 }
 
+// =================【4. 交互菜单】=================
 async function updateScript() {
   const a = new Alert();
   a.title = "🔄 检查更新";
@@ -208,7 +199,7 @@ async function updateScript() {
 async function renderSettings() {
   const currentDB = getDB();
   const alert = new Alert();
-  alert.title = "🎂 生日管家 Pro " + VERSION;
+  alert.title = "🎂 生日管家 Neon " + VERSION;
   alert.addAction("➕ 管理成员");
   alert.addAction("🖼 预览组件");
   alert.addAction("🚀 检查更新");
