@@ -1,10 +1,7 @@
-// Variables used by Scriptable.
-// icon-color: gold; icon-glyph: cake;
-
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
-const VERSION = "1.8.8";
+const VERSION = "1.0.0";
 
 const GITHUB_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
 
@@ -48,7 +45,7 @@ async function createWidget() {
     canvas.setTextAlignedCenter();
     canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 0, 100, 32));
 
-    // 2. 绘制平滑半圆弧 (高密度点阵模拟，避开所有 addArc API)
+    // 2. 绘制平滑半圆弧
     const progress = Math.max(0.01, 1 - info.diff / 365);
     
     // --- 绘制背景底色弧 (180度到360度) ---
