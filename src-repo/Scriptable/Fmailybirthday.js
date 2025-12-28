@@ -31,11 +31,11 @@ async function createWidget() {
     col.centerAlignContent(); 
 
     const canvas = new DrawContext();
-    canvas.size = new Size(100, 110);
+    canvas.size = new Size(100, 130);
     canvas.respectScreenScale = true;
     canvas.opaque = false;
     
-    const arcCenterY = 65;
+    const arcCenterY = 77;
     const radius = 34;      
 
     // 颜色阶梯
@@ -93,7 +93,7 @@ async function createWidget() {
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(76, 83.6);
     
-    col.addSpacer(-5);
+    col.addSpacer(-7);
 
     // 4. 详细信息行 (压缩行高)
     const details = [
