@@ -1,7 +1,3 @@
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: orange; icon-glyph: birthday-cake;
-
 const { Solar, Lunar } = importModule("lunar.module");
 const fm = FileManager.local();
 const dbPath = fm.joinPath(fm.documentsDirectory(), "family_birthdays.json");
@@ -81,11 +77,11 @@ async function createWidget() {
     col.addSpacer(-2);
 
     const detailList = [
-      { text: `${info.shengXiao}·${info.zodiac}`, size: 10, isSX: true },
-      { text: info.naYin, size: 9.2 },
-      { text: info.bazi, size: 8.5 },
-      { text: "宜 " + info.personalAdvice, size: 10, isMain: true },
-      { text: "财位 " + info.personalCai, size: 9.5 }
+      { text: `${info.shengXiao}·${info.zodiac}`, size: 15, isSX: true },
+      { text: info.naYin, size: 15 },
+      { text: info.bazi, size: 15 },
+      { text: "宜 " + info.personalAdvice, size: 13, isMain: true },
+      { text: "财位 " + info.personalCai, size: 15 }
     ];
 
     detailList.forEach(item => {
