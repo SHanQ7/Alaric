@@ -31,6 +31,7 @@ async function createWidget() {
 
   const mainStack = w.addStack();
   mainStack.centerAlignContent();
+  mainStack.addSpacer();
 
   const displayData = currentData.slice(0, 4);
   
@@ -74,7 +75,7 @@ async function createWidget() {
 
     const img = col.addImage(canvas.getImage());
     img.imageSize = new Size(72, 82.8); 
-    col.addSpacer(-2);
+    col.addSpacer(-4);
 
     const detailList = [
       { text: `${info.shengXiao}·${info.zodiac}`, size: 15, isSX: true },
@@ -117,11 +118,12 @@ async function createWidget() {
       t.centerAlignText();
       
       capsuleWrapper.addSpacer(); 
-      col.addSpacer(3.5);
+      col.addSpacer(2);
     });
     
     if (i < displayData.length - 1) mainStack.addSpacer();
   });
+  mainStack.addSpacer(); 
   return w;
 }
 
