@@ -15,7 +15,7 @@ class Widget extends DmYY {
       this.registerAction('管理成员', async () => { await this.manageMembersMenu(); }, { name: 'person.2.fill', color: '#5BBFF6' });
       this.registerAction('视觉微调', async () => {
         return this.setAlertInput('UI坐标微调', '圆心Y,起点Y,字号,行距', {
-          arcY: '130', startY: '163', fontSize: '11', spacing: '23.5'
+          arcY: '130', startY: '163', fontSize: '12', spacing: '23.5'
         }, 'visualConfig');
       }, { name: 'paintbrush.fill', color: '#ff9500' });
       this.registerAction('检查更新', async () => { await this.checkUpdate(); }, { name: 'arrow.triangle.2.circlepath', color: '#34c759' });
@@ -23,7 +23,6 @@ class Widget extends DmYY {
     }
   }
 
-  // --- 1. GitHub  ---
   async checkUpdate() {
     const alert = new Alert();
     alert.title = "🔄 检查更新";
@@ -71,7 +70,7 @@ class Widget extends DmYY {
     return false;
   }
 
-  // --- 2. 渲染函数 ---
+  // --- 渲染函数 ---
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
     const v = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 11, spacing: 23.5 };
@@ -150,45 +149,52 @@ class Widget extends DmYY {
     return w;
   };
 
-  // --- 3. 命理逻辑 ---
+// --- 命理逻辑 ---
   calculateBday(p, today, todayLunar) {
-    const { Lunar } = importModule("lunar.module");
-    let currentLunarYear = todayLunar.getYear();
-    let l = Lunar.fromYmd(currentLunarYear, p.month, p.day);
-    let s = l.getSolar();
-    let bDate = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
+    const { Lunar, Solar } = importModule("lunar.module");
+    const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
 
-    while (bDate < today) {
+    const tempL = Lunar.fromYmd(yr, mo, dy);
+    const sDate = tempL.getSolar(); 
+    const sYear = sDate.getYear(), sMonth = sDate.getMonth(), sDay = sDate.getDay();
+
+    const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, 12, 0, 0));
+    
+    const baZi = L.getEightChar();
+    const nianZhu = baZi.getYear();
+    const yueZhu = baZi.getMonth();
+    const riZhu = baZi.getDay();
+    const riGan = riZhu.substring(0, 1);
+    const riWuXing = baZi.getDayWuXing().substring(0, 1);
+
+    let age = today.getFullYear() - yr;
+
+    let currentLunarYear = todayLunar.getYear();
+    let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
+    let nextS = nextL.getSolar();
+    let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
+
+    if (bDate < today) {
       currentLunarYear++;
-      l = Lunar.fromYmd(currentLunarYear, p.month, p.day);
-      s = l.getSolar();
-      bDate = new Date(s.getYear(), s.getMonth() - 1, s.getDay());
+      nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
+      nextS = nextL.getSolar();
+      bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
     }
 
-    const hasTime = p.hour && p.hour !== "" && p.hour !== "无";
-    const originL = hasTime 
-      ? Lunar.fromYmdHms(p.year, p.month, p.day, this.getHourNum(p.hour), 0, 0)
-      : Lunar.fromYmd(p.year, p.month, p.day);
-      
-    const baZi = originL.getEightChar();
-    const solarYear = s.getYear();
-    const solarMonth = String(s.getMonth()).padStart(2, '0');
-    const solarDay = String(s.getDay()).padStart(2, '0');
-
     return {
-      age: bDate.getFullYear() - p.year, 
-      solarDateStr: `${solarYear}年-${solarMonth}月-${solarDay}日`, 
+      age: age,
+      solarDateStr: `${nextS.getYear()}-${String(nextS.getMonth()).padStart(2,'0')}-${String(nextS.getDay()).padStart(2,'0')}`,
       diff: Math.ceil((bDate - today) / 86400000),
-      shengXiao: originL.getYearShengXiao(),
-      sxAndZodiac: `${originL.getYearInGanZhi().substring(1)}${originL.getYearShengXiao()} · ${this.getZodiac(s.getMonth(), s.getDay())}`,
-      naYin: `${baZi.getYearNaYin()}命`,
-      wuXing: baZi.getDayWuXing(),
-      fullDayGan: `${bDate.getFullYear() - p.year}岁 · ${baZi.getDay().substring(0,1)}${baZi.getDayWuXing()}命`,
-      bazi: hasTime ? `${baZi.getYear()} ${baZi.getMonth()} ${baZi.getDay()} ${baZi.getTime()}` : `${baZi.getYear()} ${baZi.getMonth()} ${baZi.getDay()}`
+      shengXiao: L.getYearShengXiao(),
+      sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sMonth, sDay)}`,
+      naYin: baZi.getYearNaYin() + "命",
+      wuXing: riWuXing,
+      fullDayGan: `${age}岁 · ${riGan}${riWuXing}命`,
+      bazi: `${nianZhu} ${yueZhu} ${riZhu}`
     };
   }
 
-  // --- 4. 工具函数 ---
+  // --- 工具函数 ---
   drawHeavyArc(canvas, x, y, r, color, progress) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
     for (let deg = 180; deg <= 360; deg += 2.5) {
