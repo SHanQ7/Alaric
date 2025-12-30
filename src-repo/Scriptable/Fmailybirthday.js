@@ -70,10 +70,18 @@ class Widget extends DmYY {
     return false;
   }
 
-  // --- 渲染函数 ---
+// --- 渲染函数  ---
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
-    const v = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 11, spacing: 23.5 };
+
+    const rawV = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 11, spacing: 23.5 };
+    const v = {
+      arcY: parseFloat(rawV.arcY) || 130,
+      startY: parseFloat(rawV.startY) || 163,
+      fontSize: parseFloat(rawV.fontSize) || 11,
+      spacing: parseFloat(rawV.spacing) || 23.5
+    };
+
     w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1A1A1C"));
     w.setPadding(12, 20, 12, 20); 
 
@@ -84,6 +92,7 @@ class Widget extends DmYY {
     const displayData = (this.settings.dataSource || []).slice(0, 4);
     
     const scale = Device.screenScale();
+    const f = scale / 2;
 
     displayData.forEach((p, i) => {
       const info = this.calculateBday(p, today, todayLunar);
@@ -113,38 +122,45 @@ class Widget extends DmYY {
       container.size = new Size(71, 145);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
       container.cornerRadius = 16;
-      const canvas = new DrawContext();
 
-      canvas.size = new Size(71 * scale, 145 * scale); 
+      const canvas = new DrawContext();
+      canvas.size = new Size(71 * scale, 145 * scale);
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
-      canvas.setMatrix([scale / 2, 0, 0, scale / 2, 0, 0]);
-      const arcY = parseFloat(v.arcY), capStartY = parseFloat(v.startY), fSize = parseFloat(v.fontSize), fGap = parseFloat(v.spacing);
+      const arcY = v.arcY * f;
+      const capStartY = v.startY * f;
+      const fSize = v.fontSize * f;
+      const fGap = v.spacing * f;
 
-      canvas.setFont(Font.systemFont(37));
+      // 绘制 Emoji
+      canvas.setFont(Font.systemFont(37 * f));
       canvas.setTextAlignedCenter();
-      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 23, 142, 45));
+      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 23 * f, 142 * f, 45 * f));
 
-      this.drawHeavyArc(canvas, 71, arcY, 46, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
+      // 绘制圆环
+      this.drawHeavyArc(canvas, 71 * f, arcY, 46 * f, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365), f);
       
-      canvas.setFont(Font.boldSystemFont(28));
+      // 绘制倒计时数字
+      canvas.setFont(Font.boldSystemFont(28 * f));
       canvas.setTextColor(accentColor);
-      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 18, 142, 40));
+      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 18 * f, 142 * f, 40 * f));
 
       const labels = [info.solarDateStr, info.bazi, info.fullDayGan, info.naYin, info.sxAndZodiac];
       let currentY = capStartY;
+      
       labels.forEach((text, idx) => {
         const isChongRow = (idx === 4 && isChong);
         canvas.setFillColor(isChongRow ? new Color("#FF4D4D") : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
         const path = new Path();
-        path.addRoundedRect(new Rect(9, currentY, 124, 19), 6, 6);
+        // 矩形坐标和圆角适配倍率
+        path.addRoundedRect(new Rect(9 * f, currentY, 124 * f, 19 * f), 6 * f, 6 * f);
         canvas.addPath(path);
         canvas.fillPath();
 
         canvas.setFont(Font.boldSystemFont(fSize));
         canvas.setTextColor(isChongRow ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
-        canvas.drawTextInRect(text, new Rect(9, currentY + 3, 124, 19));
+        canvas.drawTextInRect(text, new Rect(9 * f, currentY + 3 * f, 124 * f, 19 * f));
         currentY += fGap; 
       });
 
@@ -213,18 +229,18 @@ class Widget extends DmYY {
   }
 
   // --- 工具函数 ---
-  drawHeavyArc(canvas, x, y, r, color, progress) {
+  drawHeavyArc(canvas, x, y, r, color, progress, f) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
     for (let deg = 180; deg <= 360; deg += 2.5) {
       const rad = deg * Math.PI / 180;
       canvas.setFillColor(trackColor);
-      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 2.5, y + r * Math.sin(rad) - 2.5, 5, 5));
+      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 2.5 * f, y + r * Math.sin(rad) - 2.5 * f, 5 * f, 5 * f));
     }
     const endDeg = 180 + (180 * progress);
     canvas.setFillColor(color);
     for (let deg = 180; deg <= endDeg; deg += 1) {
       const rad = deg * Math.PI / 180;
-      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 3.5, y + r * Math.sin(rad) - 3.5, 7, 7));
+      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 3.5 * f, y + r * Math.sin(rad) - 3.5 * f, 7 * f, 7 * f));
     }
   }
 
