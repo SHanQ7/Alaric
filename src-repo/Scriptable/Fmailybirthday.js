@@ -119,7 +119,7 @@ class Widget extends DmYY {
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
-      canvas.scaleCanvas(scale / 2, scale / 2); 
+      canvas.setMatrix(new CGAffineTransform(scale / 2, 0, 0, scale / 2, 0, 0));
       const arcY = parseFloat(v.arcY), capStartY = parseFloat(v.startY), fSize = parseFloat(v.fontSize), fGap = parseFloat(v.spacing);
 
       canvas.setFont(Font.systemFont(37));
