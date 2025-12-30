@@ -149,31 +149,34 @@ class Widget extends DmYY {
     return w;
   };
 
-// --- 命理逻辑 ---
+  // --- 命理逻辑 ---
   calculateBday(p, today, todayLunar) {
-    const { Lunar, Solar } = importModule("lunar.module");
+    const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
+    let hour = 12;
+    if (p.hour && p.hour !== "无") {
+      hour = this.getHourNum(p.hour);
+    }
 
     const tempL = Lunar.fromYmd(yr, mo, dy);
     const sDate = tempL.getSolar(); 
-    const sYear = sDate.getYear(), sMonth = sDate.getMonth(), sDay = sDate.getDay();
 
-    const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, 12, 0, 0));
-    
+    const L = Lunar.fromDate(new Date(sDate.getYear(), sDate.getMonth() - 1, sDate.getDay(), hour, 0, 0));
     const baZi = L.getEightChar();
+    
     const nianZhu = baZi.getYear();
     const yueZhu = baZi.getMonth();
     const riZhu = baZi.getDay();
+    const shiZhu = baZi.getTime();
+
     const riGan = riZhu.substring(0, 1);
     const riWuXing = baZi.getDayWuXing().substring(0, 1);
 
     let age = today.getFullYear() - yr;
-
     let currentLunarYear = todayLunar.getYear();
     let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
     let nextS = nextL.getSolar();
     let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
-
     if (bDate < today) {
       currentLunarYear++;
       nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
@@ -186,11 +189,12 @@ class Widget extends DmYY {
       solarDateStr: `${nextS.getYear()}-${String(nextS.getMonth()).padStart(2,'0')}-${String(nextS.getDay()).padStart(2,'0')}`,
       diff: Math.ceil((bDate - today) / 86400000),
       shengXiao: L.getYearShengXiao(),
-      sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sMonth, sDay)}`,
+      sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sDate.getMonth(), sDate.getDay())}`,
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
       fullDayGan: `${age}岁 · ${riGan}${riWuXing}命`,
-      bazi: `${nianZhu} ${yueZhu} ${riZhu}`
+      // 修改这里：如果有具体时辰，显示四柱；否则显示三柱
+      bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${riZhu} ${shiZhu}` : `${nianZhu} ${yueZhu} ${riZhu}`
     };
   }
 
