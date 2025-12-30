@@ -147,20 +147,32 @@ async function createWidget(data) {
   canvas.size = new Size(200, 200);
   canvas.opaque = false;
   canvas.setLineWidth(12);
-  canvas.setStrokeColor(new Color("#8165AC", 0.15));
+
+  // 【优化点】圆环轨道颜色适配白天/夜间
+  // 白天用淡紫色，夜间用深灰色或稍亮的紫色确保可见
+  const trackColor = Color.dynamic(new Color("#8165AC", 0.15), new Color("#FFFFFF", 0.12));
+  canvas.setStrokeColor(trackColor);
   canvas.strokeEllipse(new Rect(10, 10, 180, 180));
+
   const deg = (score / 100) * 360;
   for (let i = 0; i <= deg; i += 1.5) {
     let rad = (i - 90) * Math.PI / 180;
     let x = 100 + 90 * Math.cos(rad);
     let y = 100 + 90 * Math.sin(rad);
+    
+    // 进度条发光感
     canvas.setFillColor(new Color(accentColor.hex, 0.3));
     canvas.fillEllipse(new Rect(x-10, y-10, 20, 20));
+    
+    // 主色条
     canvas.setFillColor(accentColor);
     canvas.fillEllipse(new Rect(x-7, y-7, 14, 14));
-    canvas.setFillColor(new Color("#FFFFFF", 0.7));
+    
+    // 高亮白点
+    canvas.setFillColor(new Color("#FFFFFF", 0.8));
     canvas.fillEllipse(new Rect(x-3, y-3, 6, 6));
   }
+  
   rightStack.backgroundImage = canvas.getImage();
   let scoreText = rightStack.addText(`${score}`);
   scoreText.font = Font.boldSystemFont(32);
