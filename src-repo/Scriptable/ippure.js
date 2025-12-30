@@ -1,8 +1,8 @@
-// IPPure + IP-API 综合监测（布局对齐 + 逻辑修正版）
+// IPPure + IP-API 综合监测
 const geoUrl = "http://ip-api.com/json/?lang=zh-CN";
 const riskUrl = "https://my.ippure.com/v1/info";
 
-// 1. 转换引擎
+// 1. 简繁转换引擎
 const S_STR = typeof charPYStr === 'function' ? charPYStr() : '';
 const T_STR = typeof ftPYStr === 'function' ? ftPYStr() : '';
 const FT_DICT = {};
@@ -13,26 +13,27 @@ if (S_STR && T_STR && S_STR.length === T_STR.length) {
 }
 
 /**
- * 核心文本处理器
- * 1. 严格过滤非中文字符串
- * 2. 查表转换繁体
+ * 独立逻辑：
+ * 1. 包含中文 -> 繁转简
+ * 2. 纯英文 -> 直接忽略（返回空）
  */
-function smartText(str) {
+function processField(str) {
   if (!str) return "";
   const text = String(str);
-  // 检查是否包含至少一个中文字符
   const hasChinese = /[\u4e00-\u9fa5]/.test(text);
-  // 如果是纯英文/数字，直接返回原字符串 (忽略处理)
-  if (!hasChinese) return text;
+  
+  // 如果是纯英文，直接忽略返回空
+  if (!hasChinese) return "";
 
+  // 繁转简转换
   let result = "";
   for (const char of text) {
     result += (FT_DICT[char] || char);
   }
-  return result;
+  return result.trim();
 }
 
-// 2. 数据获取与深度去重
+// 2. 数据获取与逻辑解耦
 async function fetchAllData() {
   try {
     const geoReq = new Request(geoUrl);
@@ -47,26 +48,23 @@ async function fetchAllData() {
 
     if (!geo || geo.status !== "success") return null;
 
-    // 先统一处理文本（忽略英文，转换繁体）
-    const c = smartText(geo.country);
-    const r = smartText(geo.regionName);
-    const ct = smartText(geo.city);
+    // 第一步：翻译与过滤（英文直接变为空）
+    let c = processField(geo.country);
+    let r = processField(geo.regionName);
+    let ct = processField(geo.city);
 
-    // 逻辑去重：比较处理后的字符串
-    let loc = c;
-    // 如果 region 处理后不等于 country 且不等于空
-    if (r && r.toLowerCase() !== c.toLowerCase()) {
-      loc += ` · ${r}`;
-    }
-    // 如果 city 处理后不等于 country 也非 region
-    if (ct && ct.toLowerCase() !== c.toLowerCase() && ct.toLowerCase() !== (r ? r.toLowerCase() : "")) {
-      loc += ` · ${ct}`;
-    }
+    // 第二步：内容去重（相同则变为空）
+    if (r === c) r = "";
+    if (ct === c || ct === r) ct = "";
+
+    // 第三步：组装（过滤掉空的字段）
+    const locArray = [c, r, ct].filter(v => v !== "");
+    const finalLocation = locArray.join(" · ") || "未知位置";
 
     return {
       ip: geo.query,
-      location: loc,
-      isp: smartText(geo.isp),
+      location: finalLocation,
+      isp: processField(geo.isp) || geo.isp, // ISP 如果是英文通常保留，若你也想忽略可改为 processField(geo.isp)
       asn: geo.as ? geo.as.split(' ')[0] : "N/A",
       countryCode: geo.countryCode,
       fraudScore: risk ? (risk.fraudScore || 0) : 0,
@@ -82,7 +80,7 @@ if (!config.runsInWidget) await widget.presentMedium();
 Script.setWidget(widget);
 Script.complete();
 
-// 3. UI 渲染 (修正居中对齐)
+// 3. UI 渲染（彻底解决对齐问题）
 async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(16, 12, 16, 12);
@@ -92,9 +90,8 @@ async function createWidget(data) {
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
 
   if (!data) {
-    let msg = w.addText("⚠️ 网络连接异常");
+    let msg = w.addText("⚠️ 网络检测中...");
     msg.textColor = purpleNeon;
-    msg.centerAlignText();
     return w;
   }
 
@@ -103,7 +100,7 @@ async function createWidget(data) {
   const accentColor = score < 20 ? new Color("#4ade80") : (score < 60 ? new Color("#facc15") : new Color("#f87171"));
 
   let mainStack = w.addStack();
-  mainStack.centerAlignContent(); // 垂直居中
+  mainStack.centerAlignContent(); 
 
   // --- 左侧信息列 ---
   let leftStack = mainStack.addStack();
@@ -115,7 +112,6 @@ async function createWidget(data) {
     rowStack.centerAlignContent();
     let labelStack = rowStack.addStack();
     labelStack.size = new Size(38, 20);
-    labelStack.centerAlignContent();
     let boxStack = labelStack.addStack();
     boxStack.size = new Size(36, 17);
     boxStack.cornerRadius = 4;
@@ -151,28 +147,25 @@ async function createWidget(data) {
 
   mainStack.addSpacer();
 
-  // --- 右侧圆环列 (修正居中与上移) ---
+  // --- 右侧圆环列（极致对齐） ---
   let rightStack = mainStack.addStack();
   rightStack.layoutVertically();
-  rightStack.addSpacer(); // 增加顶部空间让圆环整体位置更灵活
+  rightStack.size = new Size(100, 0); // 约束宽度
+  rightStack.addSpacer();
 
-  // 使用内层 Stack 包裹圆环和文字，确保它们相对于彼此居中
-  let ringContainer = rightStack.addStack();
-  ringContainer.layoutVertically();
-  ringContainer.centerAlignContent(); // 关键：容器内元素水平居中
-
-  // 圆环
-  let ringStack = ringContainer.addStack();
-  ringStack.size = new Size(95, 95);
-  ringStack.centerAlignContent();
-
+  // 圆环行
+  let ringRow = rightStack.addStack();
+  ringRow.addSpacer(); // 左右 Spacer 强制中间对齐
+  let ring = ringRow.addStack();
+  ring.size = new Size(95, 95);
+  ring.centerAlignContent();
+  
   let canvas = new DrawContext();
   canvas.size = new Size(200, 200);
   canvas.opaque = false;
   canvas.setLineWidth(12);
   canvas.setStrokeColor(new Color("#8165AC", 0.15));
   canvas.strokeEllipse(new Rect(10, 10, 180, 180));
-
   const deg = (score / 100) * 360;
   for (let i = 0; i <= deg; i += 1.5) {
     let rad = (i - 90) * Math.PI / 180;
@@ -185,21 +178,23 @@ async function createWidget(data) {
     canvas.setFillColor(new Color("#FFFFFF", 0.7));
     canvas.fillEllipse(new Rect(x-3, y-3, 6, 6));
   }
-  
-  ringStack.backgroundImage = canvas.getImage();
-  let scoreText = ringStack.addText(`${score}`);
+  ring.backgroundImage = canvas.getImage();
+  let scoreText = ring.addText(`${score}`);
   scoreText.font = Font.boldSystemFont(32);
   scoreText.textColor = mainTextColor;
-  scoreText.centerAlignText();
+  ringRow.addSpacer();
 
-  // 底部标注文字
-  ringContainer.addSpacer(6);
-  let bottomLabel = ringContainer.addText("IPPure 风险值");
+  rightStack.addSpacer(6);
+
+  // 文字行
+  let textRow = rightStack.addStack();
+  textRow.addSpacer(); 
+  let bottomLabel = textRow.addText("IPPure 风险值");
   bottomLabel.font = Font.boldSystemFont(10);
   bottomLabel.textColor = new Color("#8165AC", 0.8);
-  bottomLabel.centerAlignText(); // 强制文字在容器内居中
+  textRow.addSpacer();
   
-  rightStack.addSpacer(); // 底部留白平衡
+  rightStack.addSpacer();
 
   return w;
 }
