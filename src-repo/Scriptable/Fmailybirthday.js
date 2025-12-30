@@ -74,7 +74,7 @@ class Widget extends DmYY {
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
 
-    const rawV = this.settings.visualConfig || { arcY: 133, startY: 160, fontSize: 8.5, spacing: 23 };
+    const rawV = this.settings.visualConfig || { arcY: 135, startY: 159, fontSize: 8.5, spacing: 23 };
     const v = {
       arcY: parseFloat(rawV.arcY) || 133,
       startY: parseFloat(rawV.startY) || 160,
