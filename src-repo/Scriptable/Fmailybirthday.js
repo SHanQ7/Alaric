@@ -75,7 +75,7 @@ class Widget extends DmYY {
     const { Lunar } = importModule("lunar.module");
     const v = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 11, spacing: 23.5 };
     w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1A1A1C"));
-    w.setPadding(12, 12, 12, 12); 
+    w.setPadding(12, 20, 12, 20); 
 
     const mainStack = w.addStack();
     const now = new Date();
@@ -83,6 +83,8 @@ class Widget extends DmYY {
     const todayLunar = Lunar.fromDate(now);
     const displayData = (this.settings.dataSource || []).slice(0, 4);
     
+    const scale = Device.screenScale();
+
     displayData.forEach((p, i) => {
       const info = this.calculateBday(p, today, todayLunar);
       const isBday = info.diff === 0;
@@ -108,24 +110,27 @@ class Widget extends DmYY {
       shadowStack.cornerRadius = 18;
 
       const container = shadowStack.addStack();
-      container.size = new Size(72, 145);
+      container.size = new Size(71, 145);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
       container.cornerRadius = 16;
-      
       const canvas = new DrawContext();
-      canvas.size = new Size(144, 290); 
+
+      canvas.size = new Size(71 * scale, 145 * scale); 
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
+      canvas.scaleCanvas(scale / 2, scale / 2); 
       const arcY = parseFloat(v.arcY), capStartY = parseFloat(v.startY), fSize = parseFloat(v.fontSize), fGap = parseFloat(v.spacing);
+
       canvas.setFont(Font.systemFont(37));
       canvas.setTextAlignedCenter();
-      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 23, 144, 45));
+      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 23, 142, 45));
 
-      this.drawHeavyArc(canvas, 72, arcY, 46, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
-      canvas.setFont(Font.heavySystemFont(28));
+      this.drawHeavyArc(canvas, 71, arcY, 46, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
+      
+      canvas.setFont(Font.boldSystemFont(28));
       canvas.setTextColor(accentColor);
-      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 18, 144, 40));
+      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 18, 142, 40));
 
       const labels = [info.solarDateStr, info.bazi, info.fullDayGan, info.naYin, info.sxAndZodiac];
       let currentY = capStartY;
@@ -133,13 +138,13 @@ class Widget extends DmYY {
         const isChongRow = (idx === 4 && isChong);
         canvas.setFillColor(isChongRow ? new Color("#FF4D4D") : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
         const path = new Path();
-        path.addRoundedRect(new Rect(10, currentY, 124, 19), 6, 6);
+        path.addRoundedRect(new Rect(9, currentY, 124, 19), 6, 6);
         canvas.addPath(path);
         canvas.fillPath();
 
         canvas.setFont(Font.boldSystemFont(fSize));
         canvas.setTextColor(isChongRow ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
-        canvas.drawTextInRect(text, new Rect(10, currentY + 3, 124, 19));
+        canvas.drawTextInRect(text, new Rect(9, currentY + 3, 124, 19));
         currentY += fGap; 
       });
 
@@ -154,25 +159,35 @@ class Widget extends DmYY {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
     let hour = 12;
-    if (p.hour && p.hour !== "无") {
-      hour = this.getHourNum(p.hour);
-    }
+    if (p.hour && p.hour !== "无") hour = this.getHourNum(p.hour);
 
+    // 1. 获取公历基准
     const tempL = Lunar.fromYmd(yr, mo, dy);
-    const sDate = tempL.getSolar(); 
+    const sDate = tempL.getSolar();
+    const sYear = sDate.getYear(), sMonth = sDate.getMonth(), sDay = sDate.getDay();
 
-    const L = Lunar.fromDate(new Date(sDate.getYear(), sDate.getMonth() - 1, sDate.getDay(), hour, 0, 0));
+    // 2. 创建库对象
+    const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, hour, 0, 0));
     const baZi = L.getEightChar();
+    const Gan = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+    const Zhi = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+    const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
+    const baseDate = new Date(1900, 0, 31);
+    const targetDate = new Date(sYear, sMonth - 1, sDay);
+    const offset = Math.floor((targetDate - baseDate) / (24 * 3600 * 1000));
     
-    const nianZhu = baZi.getYear();
-    const yueZhu = baZi.getMonth();
-    const riZhu = baZi.getDay();
-    const shiZhu = baZi.getTime();
-
+    const gIdx = (0 + offset) % 10;
+    const zIdx = (4 + offset) % 12;
+    const riZhu = Gan[gIdx < 0 ? gIdx + 10 : gIdx] + Zhi[zIdx < 0 ? zIdx + 12 : zIdx];
     const riGan = riZhu.substring(0, 1);
-    const riWuXing = baZi.getDayWuXing().substring(0, 1);
+    const riWuXing = WuXingMap[riGan];
 
+    // 3. 计算其他信息
+    let nianZhu = baZi.getYear();
+    let yueZhu = baZi.getMonth();
     let age = today.getFullYear() - yr;
+
+    // 倒计时逻辑
     let currentLunarYear = todayLunar.getYear();
     let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
     let nextS = nextL.getSolar();
@@ -189,12 +204,11 @@ class Widget extends DmYY {
       solarDateStr: `${nextS.getYear()}-${String(nextS.getMonth()).padStart(2,'0')}-${String(nextS.getDay()).padStart(2,'0')}`,
       diff: Math.ceil((bDate - today) / 86400000),
       shengXiao: L.getYearShengXiao(),
-      sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sDate.getMonth(), sDate.getDay())}`,
+      sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sMonth, sDay)}`,
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
       fullDayGan: `${age}岁 · ${riGan}${riWuXing}命`,
-      // 修改这里：如果有具体时辰，显示四柱；否则显示三柱
-      bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${riZhu} ${shiZhu}` : `${nianZhu} ${yueZhu} ${riZhu}`
+      bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${riZhu} ${baZi.getTime()}` : `${nianZhu} ${yueZhu} ${riZhu}`
     };
   }
 
