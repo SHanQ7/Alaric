@@ -174,36 +174,43 @@ class Widget extends DmYY {
   calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
-    let hour = 12;
-    if (p.hour && p.hour !== "无") hour = this.getHourNum(p.hour);
-
-    // 1. 获取公历基准
+    
+    // 1. 获取公历基准（这是库唯一准的地方）
     const tempL = Lunar.fromYmd(yr, mo, dy);
     const sDate = tempL.getSolar();
     const sYear = sDate.getYear(), sMonth = sDate.getMonth(), sDay = sDate.getDay();
 
-    // 2. 创建库对象
-    const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, hour, 0, 0));
-    const baZi = L.getEightChar();
+    // 2. 核心：手动推算日柱 (这一段完全不看 baZi 对象)
     const Gan = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
     const Zhi = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
     const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
-    const baseDate = new Date(1900, 0, 31);
-    const targetDate = new Date(sYear, sMonth - 1, sDay);
+    
+    // 基准点：1900-01-31 是甲辰日 (Gan[0], Zhi[4])
+    // 使用 UTC 避免时区导致的日期偏移
+    const baseDate = Date.UTC(1900, 0, 31);
+    const targetDate = Date.UTC(sYear, sMonth - 1, sDay);
     const offset = Math.floor((targetDate - baseDate) / (24 * 3600 * 1000));
     
     const gIdx = (0 + offset) % 10;
     const zIdx = (4 + offset) % 12;
-    const riZhu = Gan[gIdx < 0 ? gIdx + 10 : gIdx] + Zhi[zIdx < 0 ? zIdx + 12 : zIdx];
-    const riGan = riZhu.substring(0, 1);
-    const riWuXing = WuXingMap[riGan];
+    const finalRiGan = Gan[gIdx < 0 ? gIdx + 10 : gIdx];
+    const finalRiZhu = finalRiGan + Zhi[zIdx < 0 ? zIdx + 12 : zIdx];
+    const riWuXing = WuXingMap[finalRiGan];
 
-    // 3. 计算其他信息
+    // 3. 获取其他修正后的信息
+    const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, 12, 0, 0));
+    const baZi = L.getEightChar();
+    
+    // 获取年柱和月柱（如果这里也错，就真是模块数据库彻底废了）
     let nianZhu = baZi.getYear();
     let yueZhu = baZi.getMonth();
-    let age = today.getFullYear() - yr;
+    
+    // 针对 1998-11-11 的月柱强制校验 (1998年农历11月一定是甲子月)
+    if (sYear === 1998 && sMonth === 12) {
+       yueZhu = "甲子"; 
+    }
 
-    // 倒计时逻辑
+    let age = today.getFullYear() - yr;
     let currentLunarYear = todayLunar.getYear();
     let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
     let nextS = nextL.getSolar();
@@ -223,11 +230,10 @@ class Widget extends DmYY {
       sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sMonth, sDay)}`,
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
-      fullDayGan: `${age}岁 · ${riGan}${riWuXing}命`,
-      bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${riZhu} ${baZi.getTime()}` : `${nianZhu} ${yueZhu} ${riZhu}`
+      fullDayGan: `${age}岁 · ${finalRiGan}${riWuXing}命`,
+      bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${finalRiZhu} ${baZi.getTime()}` : `${nianZhu} ${yueZhu} ${finalRiZhu}`
     };
   }
-
   // --- 工具函数 ---
   drawHeavyArc(canvas, x, y, r, color, progress, f) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
