@@ -76,10 +76,10 @@ class Widget extends DmYY {
 
     const rawV = this.settings.visualConfig || { arcY: 133, startY: 160, fontSize: 8.5, spacing: 23 };
     const v = {
-      arcY: parseFloat(rawV.arcY) || 115,
-      startY: parseFloat(rawV.startY) || 163,
-      fontSize: parseFloat(rawV.fontSize) || 13,
-      spacing: parseFloat(rawV.spacing) || 23.5
+      arcY: parseFloat(rawV.arcY) || 133,
+      startY: parseFloat(rawV.startY) || 160,
+      fontSize: parseFloat(rawV.fontSize) || 8.5,
+      spacing: parseFloat(rawV.spacing) || 23
     };
 
     w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1A1A1C"));
@@ -168,14 +168,17 @@ class Widget extends DmYY {
     return w;
   };
 
-  // --- 命理逻辑 ---
+// --- 命理逻辑 ---
   calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
-    const L = Lunar.fromYmd(yr, mo, dy);
-    const S = L.getSolar();
-    const sy = S.getYear(), sm = S.getMonth(), sd = S.getDay();
 
+    // 1. 核心日期转换
+    const birthLunar = Lunar.fromYmd(yr, mo, dy);
+    const birthSolar = birthLunar.getSolar();
+    const sy = birthSolar.getYear(), sm = birthSolar.getMonth(), sd = birthSolar.getDay();
+
+    // 2. 日柱计算逻辑
     const a = Math.floor((14 - sm) / 12);
     const y = sy + 4800 - a;
     const m = sm + 12 * a - 3;
@@ -185,53 +188,49 @@ class Widget extends DmYY {
     const Zhi = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
     const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
 
-    const gIdx = (jd + 9) % 10; 
-    const zIdx = (jd + 3) % 12; 
-    const finalRiGan = Gan[gIdx];
-    const finalRiZhu = finalRiGan + Zhi[zIdx];
+    const finalRiGan = Gan[(jd + 9) % 10];
+    const finalRiZhu = finalRiGan + Zhi[(jd + 3) % 12];
     const riWuXing = WuXingMap[finalRiGan];
 
-    const baZi = L.getEightChar();
-    let nianZhu = baZi.getYear();
-    let yueZhu = baZi.getMonth();
-    let age = today.getFullYear() - yr;
-
-    let currentLunarYear = todayLunar.getYear();
-    let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
+    // 3. 计算倒计时
+    let currentYear = todayLunar.getYear();
+    let nextL = Lunar.fromYmd(currentYear, mo, dy);
     let nextS = nextL.getSolar();
     let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
+    
     if (bDate < today) {
-      currentLunarYear++;
-      nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
+      currentYear++;
+      nextL = Lunar.fromYmd(currentYear, mo, dy);
       nextS = nextL.getSolar();
       bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
     }
 
-    const formattedDate = `${sy}年${sm}月${sd}日`;
+    // 4. 获取八字信息
+    const baZi = birthLunar.getEightChar();
+    const age = today.getFullYear() - yr;
 
     return {
       age: age,
-      solarDateStr: formattedDate,
+      solarDateStr: `${sy}年${sm}月${sd}日`,
       diff: Math.ceil((bDate - today) / 86400000),
-      shengXiao: L.getYearShengXiao(),
-      sxAndZodiac: nianZhu.substring(1) + L.getYearShengXiao() + " · " + this.getZodiac(sm, sd),
+      shengXiao: birthLunar.getYearShengXiao(),
+      sxAndZodiac: baZi.getYear().substring(1) + birthLunar.getYearShengXiao() + " · " + this.getZodiac(sm, sd),
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
-      fullDayGan: age + "岁 · " + finalRiGan + riWuXing + "命",
-      bazi: p.hour && p.hour !== "无" ? nianZhu + " " + yueZhu + " " + finalRiZhu + " " + baZi.getTime() : nianZhu + " " + yueZhu + " " + finalRiZhu
+      fullDayGan: `${age}岁 · ${finalRiGan}${riWuXing}命`,
+      bazi: p.hour && p.hour !== "无" 
+            ? `${baZi.getYear()} ${baZi.getMonth()} ${finalRiZhu} ${baZi.getTime()}`
+            : `${baZi.getYear()} ${baZi.getMonth()} ${finalRiZhu}`
     };
   }
 
-  // --- 高清圆环工具 ---
   drawHeavyArc(canvas, x, y, r, color, progress) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
-    // 轨道
     for (let deg = 180; deg <= 360; deg += 2.5) {
       const rad = deg * Math.PI / 180;
       canvas.setFillColor(trackColor);
       canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 1, y + r * Math.sin(rad) - 1, 2, 2));
     }
-    // 进度条
     const endDeg = 180 + (180 * progress);
     canvas.setFillColor(color);
     for (let deg = 180; deg <= endDeg; deg += 1) {
