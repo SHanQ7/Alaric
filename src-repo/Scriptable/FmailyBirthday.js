@@ -129,7 +129,7 @@ class Widget extends DmYY {
       shadowStack.cornerRadius = 14;
 
       const container = shadowStack.addStack();
-      container.size = new Size(68, 140);
+      container.size = new Size(73, 140);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
       container.cornerRadius = 13;
 
@@ -147,7 +147,7 @@ class Widget extends DmYY {
       canvas.setTextAlignedCenter();
       canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 71, 30));
 
-      this.drawHeavyArc(canvas, 35.5, arcY, 23, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
+      this.drawHeavyArc(canvas, 35.5, arcY, 27, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
       
       canvas.setFont(Font.boldSystemFont(13));
       canvas.setTextColor(accentColor);
@@ -168,7 +168,6 @@ class Widget extends DmYY {
         canvas.fillPath();
 
         canvas.setFont(Font.boldSystemFont(fSize));
-        // 变红时字变白
         canvas.setTextColor(hasWarning ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
         canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 61, 10));
         currentY += fGap; 
