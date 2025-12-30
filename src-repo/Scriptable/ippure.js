@@ -1,4 +1,4 @@
-// IPPure + IP-API 综合监测
+// IPPure + IP-API 综合监测（布局对齐 + 逻辑修正版）
 const geoUrl = "http://ip-api.com/json/?lang=zh-CN";
 const riskUrl = "https://my.ippure.com/v1/info";
 
@@ -12,16 +12,27 @@ if (S_STR && T_STR && S_STR.length === T_STR.length) {
   }
 }
 
+/**
+ * 核心文本处理器
+ * 1. 严格过滤非中文字符串
+ * 2. 查表转换繁体
+ */
 function smartText(str) {
   if (!str) return "";
   const text = String(str);
-  if (!/[\u4e00-\u9fa5]/.test(text)) return text; 
+  // 检查是否包含至少一个中文字符
+  const hasChinese = /[\u4e00-\u9fa5]/.test(text);
+  // 如果是纯英文/数字，直接返回原字符串 (忽略处理)
+  if (!hasChinese) return text;
+
   let result = "";
-  for (const char of text) { result += (FT_DICT[char] || char); }
+  for (const char of text) {
+    result += (FT_DICT[char] || char);
+  }
   return result;
 }
 
-// 2. 数据获取
+// 2. 数据获取与深度去重
 async function fetchAllData() {
   try {
     const geoReq = new Request(geoUrl);
@@ -36,17 +47,25 @@ async function fetchAllData() {
 
     if (!geo || geo.status !== "success") return null;
 
-    const country = smartText(geo.country);
-    const region = smartText(geo.regionName);
-    const city = smartText(geo.city);
+    // 先统一处理文本（忽略英文，转换繁体）
+    const c = smartText(geo.country);
+    const r = smartText(geo.regionName);
+    const ct = smartText(geo.city);
 
-    let locationDetail = country;
-    if (region && region !== country) { locationDetail += ` · ${region}`; }
-    if (city && city !== country && city !== region) { locationDetail += ` · ${city}`; }
+    // 逻辑去重：比较处理后的字符串
+    let loc = c;
+    // 如果 region 处理后不等于 country 且不等于空
+    if (r && r.toLowerCase() !== c.toLowerCase()) {
+      loc += ` · ${r}`;
+    }
+    // 如果 city 处理后不等于 country 也非 region
+    if (ct && ct.toLowerCase() !== c.toLowerCase() && ct.toLowerCase() !== (r ? r.toLowerCase() : "")) {
+      loc += ` · ${ct}`;
+    }
 
     return {
       ip: geo.query,
-      location: locationDetail,
+      location: loc,
       isp: smartText(geo.isp),
       asn: geo.as ? geo.as.split(' ')[0] : "N/A",
       countryCode: geo.countryCode,
@@ -63,7 +82,7 @@ if (!config.runsInWidget) await widget.presentMedium();
 Script.setWidget(widget);
 Script.complete();
 
-// 3. UI 渲染 (圆环上移 + 底部文字)
+// 3. UI 渲染 (修正居中对齐)
 async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(16, 12, 16, 12);
@@ -73,7 +92,7 @@ async function createWidget(data) {
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
 
   if (!data) {
-    let msg = w.addText("⚠️ 网络检测中...");
+    let msg = w.addText("⚠️ 网络连接异常");
     msg.textColor = purpleNeon;
     msg.centerAlignText();
     return w;
@@ -84,7 +103,7 @@ async function createWidget(data) {
   const accentColor = score < 20 ? new Color("#4ade80") : (score < 60 ? new Color("#facc15") : new Color("#f87171"));
 
   let mainStack = w.addStack();
-  mainStack.centerAlignContent();
+  mainStack.centerAlignContent(); // 垂直居中
 
   // --- 左侧信息列 ---
   let leftStack = mainStack.addStack();
@@ -132,15 +151,18 @@ async function createWidget(data) {
 
   mainStack.addSpacer();
 
-  // --- 右侧圆环列 (上移并添加底部说明) ---
+  // --- 右侧圆环列 (修正居中与上移) ---
   let rightStack = mainStack.addStack();
   rightStack.layoutVertically();
-  
-  // 1. 顶部间距：让圆环位置提高
-  rightStack.addSpacer(0); 
+  rightStack.addSpacer(); // 增加顶部空间让圆环整体位置更灵活
 
-  // 2. 圆环容器
-  let ringStack = rightStack.addStack();
+  // 使用内层 Stack 包裹圆环和文字，确保它们相对于彼此居中
+  let ringContainer = rightStack.addStack();
+  ringContainer.layoutVertically();
+  ringContainer.centerAlignContent(); // 关键：容器内元素水平居中
+
+  // 圆环
+  let ringStack = ringContainer.addStack();
   ringStack.size = new Size(95, 95);
   ringStack.centerAlignContent();
 
@@ -170,15 +192,14 @@ async function createWidget(data) {
   scoreText.textColor = mainTextColor;
   scoreText.centerAlignText();
 
-  // 3. 底部标注文字
-  rightStack.addSpacer(4); // 圆环与文字的间距
-  let bottomLabel = rightStack.addText("IPPure 风险值");
+  // 底部标注文字
+  ringContainer.addSpacer(6);
+  let bottomLabel = ringContainer.addText("IPPure 风险值");
   bottomLabel.font = Font.boldSystemFont(10);
   bottomLabel.textColor = new Color("#8165AC", 0.8);
-  bottomLabel.centerAlignText();
+  bottomLabel.centerAlignText(); // 强制文字在容器内居中
   
-  // 4. 底部留白平衡
-  rightStack.addSpacer();
+  rightStack.addSpacer(); // 底部留白平衡
 
   return w;
 }
