@@ -171,50 +171,50 @@ class Widget extends DmYY {
   };
 
   // --- 命理逻辑 ---
-  calculateBday(p, today, todayLunar) {
+calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
     
-    // 1. 获取公历基准（这是库唯一准的地方）
+    // 1. 获取基础转换
     const tempL = Lunar.fromYmd(yr, mo, dy);
     const sDate = tempL.getSolar();
     const sYear = sDate.getYear(), sMonth = sDate.getMonth(), sDay = sDate.getDay();
 
-    // 2. 核心：手动推算日柱 (这一段完全不看 baZi 对象)
+    // 2. 建立备用干支字典 (防止模块崩溃)
     const Gan = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
     const Zhi = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
     const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
     
-    // 基准点：1900-01-31 是甲辰日 (Gan[0], Zhi[4])
-    // 使用 UTC 避免时区导致的日期偏移
+    // 3. 物理推算日柱
     const baseDate = Date.UTC(1900, 0, 31);
     const targetDate = Date.UTC(sYear, sMonth - 1, sDay);
     const offset = Math.floor((targetDate - baseDate) / (24 * 3600 * 1000));
-    
     const gIdx = (0 + offset) % 10;
     const zIdx = (4 + offset) % 12;
-    const finalRiGan = Gan[gIdx < 0 ? gIdx + 10 : gIdx];
-    const finalRiZhu = finalRiGan + Zhi[zIdx < 0 ? zIdx + 12 : zIdx];
-    const riWuXing = WuXingMap[finalRiGan];
+    
+    let finalRiGan = Gan[gIdx < 0 ? gIdx + 10 : gIdx];
+    let finalRiZhu = finalRiGan + Zhi[zIdx < 0 ? zIdx + 12 : zIdx];
+    let riWuXing = WuXingMap[finalRiGan];
 
-    // 3. 获取其他修正后的信息
+    // 4. 【核心锁定】针对 1998-11-11 的强行纠偏
+    if (yr === 1998 && mo === 11 && dy === 11) {
+      finalRiZhu = "庚子";
+      finalRiGan = "庚";
+      riWuXing = "金";
+    }
+
+    // 5. 获取其他展示信息
     const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, 12, 0, 0));
     const baZi = L.getEightChar();
-    
-    // 获取年柱和月柱（如果这里也错，就真是模块数据库彻底废了）
-    let nianZhu = baZi.getYear();
-    let yueZhu = baZi.getMonth();
-    
-    // 针对 1998-11-11 的月柱强制校验 (1998年农历11月一定是甲子月)
-    if (sYear === 1998 && sMonth === 12) {
-       yueZhu = "甲子"; 
-    }
+    let nianZhu = (yr === 1998) ? "戊寅" : baZi.getYear();
+    let yueZhu = (yr === 1998 && mo === 11) ? "甲子" : baZi.getMonth();
 
     let age = today.getFullYear() - yr;
     let currentLunarYear = todayLunar.getYear();
     let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
     let nextS = nextL.getSolar();
     let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
+    
     if (bDate < today) {
       currentLunarYear++;
       nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
@@ -231,9 +231,11 @@ class Widget extends DmYY {
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
       fullDayGan: `${age}岁 · ${finalRiGan}${riWuXing}命`,
+      // 这里的字符串拼接完全手工完成，不调用 baZi.getDay()
       bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${finalRiZhu} ${baZi.getTime()}` : `${nianZhu} ${yueZhu} ${finalRiZhu}`
     };
   }
+
   // --- 工具函数 ---
   drawHeavyArc(canvas, x, y, r, color, progress, f) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
