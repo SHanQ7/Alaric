@@ -3,7 +3,7 @@ if (typeof require === 'undefined') require = importModule;
 const { DmYY, Runing } = require('./DmYY');
 
 const VERSION = "1.0.0";
-const GITHUB_RAW_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/Fmailybirthday.js";
+const GITHUB_RAW_URL = "https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/Scriptable/FmailyBirthday.js";
 
 class Widget extends DmYY {
   constructor(arg) {
@@ -70,7 +70,7 @@ class Widget extends DmYY {
     return false;
   }
 
-  // --- 核心渲染函数---
+  // --- 核心渲染函数 ---
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
 
@@ -89,12 +89,25 @@ class Widget extends DmYY {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const todayLunar = Lunar.fromDate(now);
+
+    const dayChongShengXiao = todayLunar.getDayChongShengXiao(); // 地支冲生肖
+    const dayChongGan = todayLunar.getDayChongGan();             // 无情之克天干
+    const dayChongGanTie = todayLunar.getDayChongGanTie();       // 有情之克天干
+
     const displayData = (this.settings.dataSource || []).slice(0, 4);
 
     displayData.forEach((p, i) => {
       const info = this.calculateBday(p, today, todayLunar);
       const isBday = info.diff === 0;
-      const isChong = this.checkChong(info.shengXiao.slice(-1), todayLunar.getDayShengXiao());
+
+      let warningColor = null;
+      if (info.shengXiao === dayChongShengXiao) {
+        warningColor = new Color("#D32F2F");
+      } else if (info.riGan === dayChongGan) {
+        warningColor = new Color("#E64A19");
+      } else if (info.riGan === dayChongGanTie) {
+        warningColor = new Color("#FF8A80");
+      }
 
       const wxColors = {
         "金": Color.dynamic(new Color("#D4AF37"), new Color("#FFD700")),
@@ -130,26 +143,24 @@ class Widget extends DmYY {
       const fSize = Math.floor(v.fontSize - 1.5);
       const fGap = v.spacing / 2;
 
-      // 1. 绘制 Emoji
       canvas.setFont(Font.systemFont(22));
       canvas.setTextAlignedCenter();
       canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 71, 30));
 
-      // 2. 绘制圆环
       this.drawHeavyArc(canvas, 35.5, arcY, 23, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
       
-      // 3. 绘制倒计时数字
       canvas.setFont(Font.boldSystemFont(13));
       canvas.setTextColor(accentColor);
       canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 12, 71, 25));
 
-      // 4. 绘制信息列表
       const labels = [info.solarDateStr, info.bazi, info.fullDayGan, info.naYin, info.sxAndZodiac];
       let currentY = capStartY;
       
       labels.forEach((text, idx) => {
-        const isChongRow = (idx === 4 && isChong);
-        canvas.setFillColor(isChongRow ? new Color("#FF4D4D") : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
+        const isLastRow = (idx === 4);
+        const hasWarning = (isLastRow && warningColor !== null);
+
+        canvas.setFillColor(hasWarning ? warningColor : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
         
         const path = new Path();
         path.addRoundedRect(new Rect(5, Math.round(currentY), 61, 9), 3, 3);
@@ -157,7 +168,8 @@ class Widget extends DmYY {
         canvas.fillPath();
 
         canvas.setFont(Font.boldSystemFont(fSize));
-        canvas.setTextColor(isChongRow ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
+        // 变红时字变白
+        canvas.setTextColor(hasWarning ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
         canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 61, 10));
         currentY += fGap; 
       });
@@ -168,7 +180,7 @@ class Widget extends DmYY {
     return w;
   };
 
-// --- 命理逻辑 ---
+  // --- 命理逻辑 ---
   calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
@@ -211,6 +223,7 @@ class Widget extends DmYY {
       solarDateStr: displaySolarDate,
       diff: Math.ceil((bDate - today) / 86400000),
       shengXiao: birthLunar.getYearShengXiao(),
+      riGan: finalRiGan,
       sxAndZodiac: baZi.getYear().substring(1) + birthLunar.getYearShengXiao() + " · " + this.getZodiac(bSm, bSd),
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
@@ -221,6 +234,7 @@ class Widget extends DmYY {
     };
   }
 
+  // --- 辅助函数 ---
   drawHeavyArc(canvas, x, y, r, color, progress) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
     for (let deg = 180; deg <= 360; deg += 2.5) {
