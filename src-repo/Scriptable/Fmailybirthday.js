@@ -173,16 +173,27 @@ class Widget extends DmYY {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
 
-    // 1. 核心日期转换
     const birthLunar = Lunar.fromYmd(yr, mo, dy);
     const birthSolar = birthLunar.getSolar();
-    const sy = birthSolar.getYear(), sm = birthSolar.getMonth(), sd = birthSolar.getDay();
+    const bSy = birthSolar.getYear(), bSm = birthSolar.getMonth(), bSd = birthSolar.getDay();
 
-    // 2. 日柱计算逻辑
-    const a = Math.floor((14 - sm) / 12);
-    const y = sy + 4800 - a;
-    const m = sm + 12 * a - 3;
-    const jd = sd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+    let currentYear = todayLunar.getYear();
+    let nextL = Lunar.fromYmd(currentYear, mo, dy);
+    let nextS = nextL.getSolar();
+    let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
+
+    if (bDate < today) {
+      currentYear++;
+      nextL = Lunar.fromYmd(currentYear, mo, dy);
+      nextS = nextL.getSolar();
+      bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
+    }
+    const displaySolarDate = `${nextS.getYear()}年${nextS.getMonth()}月${nextS.getDay()}日`;
+
+    const a = Math.floor((14 - bSm) / 12);
+    const y = bSy + 4800 - a;
+    const m = bSm + 12 * a - 3;
+    const jd = bSd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
 
     const Gan = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
     const Zhi = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
@@ -192,29 +203,15 @@ class Widget extends DmYY {
     const finalRiZhu = finalRiGan + Zhi[(jd + 3) % 12];
     const riWuXing = WuXingMap[finalRiGan];
 
-    // 3. 计算倒计时
-    let currentYear = todayLunar.getYear();
-    let nextL = Lunar.fromYmd(currentYear, mo, dy);
-    let nextS = nextL.getSolar();
-    let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
-    
-    if (bDate < today) {
-      currentYear++;
-      nextL = Lunar.fromYmd(currentYear, mo, dy);
-      nextS = nextL.getSolar();
-      bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
-    }
-
-    // 4. 获取八字信息
     const baZi = birthLunar.getEightChar();
     const age = today.getFullYear() - yr;
 
     return {
       age: age,
-      solarDateStr: `${sy}年${sm}月${sd}日`,
+      solarDateStr: displaySolarDate,
       diff: Math.ceil((bDate - today) / 86400000),
       shengXiao: birthLunar.getYearShengXiao(),
-      sxAndZodiac: baZi.getYear().substring(1) + birthLunar.getYearShengXiao() + " · " + this.getZodiac(sm, sd),
+      sxAndZodiac: baZi.getYear().substring(1) + birthLunar.getYearShengXiao() + " · " + this.getZodiac(bSm, bSd),
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
       fullDayGan: `${age}岁 · ${finalRiGan}${riWuXing}命`,
