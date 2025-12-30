@@ -74,16 +74,16 @@ class Widget extends DmYY {
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
 
-    const rawV = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 13, spacing: 23.5 };
+    const rawV = this.settings.visualConfig || { arcY: 133, startY: 160, fontSize: 8.5, spacing: 23 };
     const v = {
-      arcY: parseFloat(rawV.arcY) || 130,
+      arcY: parseFloat(rawV.arcY) || 115,
       startY: parseFloat(rawV.startY) || 163,
       fontSize: parseFloat(rawV.fontSize) || 13,
       spacing: parseFloat(rawV.spacing) || 23.5
     };
 
     w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1A1A1C"));
-    w.setPadding(12, 10, 12, 10);
+    w.setPadding(10, 6, 10, 6);
 
     const mainStack = w.addStack();
     const now = new Date();
@@ -116,30 +116,30 @@ class Widget extends DmYY {
       shadowStack.cornerRadius = 14;
 
       const container = shadowStack.addStack();
-      container.size = new Size(71, 145);
+      container.size = new Size(68, 140);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
       container.cornerRadius = 13;
 
       const canvas = new DrawContext();
-      canvas.size = new Size(71, 145);
+      canvas.size = new Size(68, 140);
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
       const arcY = Math.round(v.arcY / 2);
       const capStartY = Math.round(v.startY / 2);
-      const fSize = Math.floor(v.fontSize - 3.5);
+      const fSize = Math.floor(v.fontSize - 1.5);
       const fGap = v.spacing / 2;
 
       // 1. 绘制 Emoji
-      canvas.setFont(Font.systemFont(28));
+      canvas.setFont(Font.systemFont(22));
       canvas.setTextAlignedCenter();
-      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 71, 35));
+      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 71, 30));
 
       // 2. 绘制圆环
       this.drawHeavyArc(canvas, 35.5, arcY, 23, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
       
       // 3. 绘制倒计时数字
-      canvas.setFont(Font.boldSystemFont(20));
+      canvas.setFont(Font.boldSystemFont(13));
       canvas.setTextColor(accentColor);
       canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 12, 71, 25));
 
