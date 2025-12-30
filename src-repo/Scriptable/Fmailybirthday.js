@@ -15,7 +15,7 @@ class Widget extends DmYY {
       this.registerAction('管理成员', async () => { await this.manageMembersMenu(); }, { name: 'person.2.fill', color: '#5BBFF6' });
       this.registerAction('视觉微调', async () => {
         return this.setAlertInput('UI坐标微调', '圆心Y,起点Y,字号,行距', {
-          arcY: '130', startY: '163', fontSize: '12', spacing: '23.5'
+          arcY: '130', startY: '163', fontSize: '13', spacing: '23.5'
         }, 'visualConfig');
       }, { name: 'paintbrush.fill', color: '#ff9500' });
       this.registerAction('检查更新', async () => { await this.checkUpdate(); }, { name: 'arrow.triangle.2.circlepath', color: '#34c759' });
@@ -23,13 +23,13 @@ class Widget extends DmYY {
     }
   }
 
+  // --- 更新检查逻辑 ---
   async checkUpdate() {
     const alert = new Alert();
     alert.title = "🔄 检查更新";
     alert.message = "正在从 GitHub 获取最新版本信息...";
     alert.addCancelAction("取消");
     alert.addAction("立即检查");
-    
     if (await alert.presentAlert() === 0) {
       try {
         const req = new Request(GITHUB_RAW_URL);
@@ -70,29 +70,26 @@ class Widget extends DmYY {
     return false;
   }
 
-// --- 渲染函数  ---
+  // --- 核心渲染函数---
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
 
-    const rawV = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 11, spacing: 23.5 };
+    const rawV = this.settings.visualConfig || { arcY: 130, startY: 163, fontSize: 13, spacing: 23.5 };
     const v = {
       arcY: parseFloat(rawV.arcY) || 130,
       startY: parseFloat(rawV.startY) || 163,
-      fontSize: parseFloat(rawV.fontSize) || 11,
+      fontSize: parseFloat(rawV.fontSize) || 13,
       spacing: parseFloat(rawV.spacing) || 23.5
     };
 
     w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1A1A1C"));
-    w.setPadding(12, 20, 12, 20); 
+    w.setPadding(12, 10, 12, 10);
 
     const mainStack = w.addStack();
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const todayLunar = Lunar.fromDate(now);
     const displayData = (this.settings.dataSource || []).slice(0, 4);
-    
-    const scale = Device.screenScale();
-    const f = scale / 2;
 
     displayData.forEach((p, i) => {
       const info = this.calculateBday(p, today, todayLunar);
@@ -109,112 +106,100 @@ class Widget extends DmYY {
       let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (wxColors[info.wuXing] || Color.orange()));
 
       const highlightStack = mainStack.addStack();
-      highlightStack.setPadding(2, 2, 0, 0); 
+      highlightStack.setPadding(1, 1, 0, 0); 
       highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#2C2C2E"));
-      highlightStack.cornerRadius = 18;
+      highlightStack.cornerRadius = 14;
 
       const shadowStack = highlightStack.addStack();
-      shadowStack.setPadding(0, 0, 3, 3); 
+      shadowStack.setPadding(0, 0, 2, 2); 
       shadowStack.backgroundColor = Color.dynamic(new Color("#D1D1D6"), new Color("#000000"));
-      shadowStack.cornerRadius = 18;
+      shadowStack.cornerRadius = 14;
 
       const container = shadowStack.addStack();
       container.size = new Size(71, 145);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
-      container.cornerRadius = 16;
+      container.cornerRadius = 13;
 
       const canvas = new DrawContext();
-      canvas.size = new Size(71 * scale, 145 * scale);
+      canvas.size = new Size(71, 145);
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
-      const arcY = v.arcY * f;
-      const capStartY = v.startY * f;
-      const fSize = v.fontSize * f;
-      const fGap = v.spacing * f;
+      const arcY = Math.round(v.arcY / 2);
+      const capStartY = Math.round(v.startY / 2);
+      const fSize = Math.floor(v.fontSize - 3.5);
+      const fGap = v.spacing / 2;
 
-      // 绘制 Emoji
-      canvas.setFont(Font.systemFont(37 * f));
+      // 1. 绘制 Emoji
+      canvas.setFont(Font.systemFont(28));
       canvas.setTextAlignedCenter();
-      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 23 * f, 142 * f, 45 * f));
+      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 71, 35));
 
-      // 绘制圆环
-      this.drawHeavyArc(canvas, 71 * f, arcY, 46 * f, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365), f);
+      // 2. 绘制圆环
+      this.drawHeavyArc(canvas, 35.5, arcY, 23, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
       
-      // 绘制倒计时数字
-      canvas.setFont(Font.boldSystemFont(28 * f));
+      // 3. 绘制倒计时数字
+      canvas.setFont(Font.boldSystemFont(20));
       canvas.setTextColor(accentColor);
-      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 18 * f, 142 * f, 40 * f));
+      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 12, 71, 25));
 
+      // 4. 绘制信息列表
       const labels = [info.solarDateStr, info.bazi, info.fullDayGan, info.naYin, info.sxAndZodiac];
       let currentY = capStartY;
       
       labels.forEach((text, idx) => {
         const isChongRow = (idx === 4 && isChong);
         canvas.setFillColor(isChongRow ? new Color("#FF4D4D") : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
+        
         const path = new Path();
-        // 矩形坐标和圆角适配倍率
-        path.addRoundedRect(new Rect(9 * f, currentY, 124 * f, 19 * f), 6 * f, 6 * f);
+        path.addRoundedRect(new Rect(5, Math.round(currentY), 61, 9), 3, 3);
         canvas.addPath(path);
         canvas.fillPath();
 
         canvas.setFont(Font.boldSystemFont(fSize));
         canvas.setTextColor(isChongRow ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
-        canvas.drawTextInRect(text, new Rect(9 * f, currentY + 3 * f, 124 * f, 19 * f));
+        canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 61, 10));
         currentY += fGap; 
       });
 
       container.addImage(canvas.getImage());
-      if (i < displayData.length - 1) mainStack.addSpacer(8);
+      if (i < displayData.length - 1) mainStack.addSpacer(6);
     });
     return w;
   };
 
   // --- 命理逻辑 ---
-calculateBday(p, today, todayLunar) {
+  calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
-    
-    // 1. 获取基础转换
-    const tempL = Lunar.fromYmd(yr, mo, dy);
-    const sDate = tempL.getSolar();
-    const sYear = sDate.getYear(), sMonth = sDate.getMonth(), sDay = sDate.getDay();
+    const L = Lunar.fromYmd(yr, mo, dy);
+    const S = L.getSolar();
+    const sy = S.getYear(), sm = S.getMonth(), sd = S.getDay();
 
-    // 2. 建立备用干支字典 (防止模块崩溃)
+    const a = Math.floor((14 - sm) / 12);
+    const y = sy + 4800 - a;
+    const m = sm + 12 * a - 3;
+    const jd = sd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+
     const Gan = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
     const Zhi = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
     const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
-    
-    // 3. 物理推算日柱
-    const baseDate = Date.UTC(1900, 0, 31);
-    const targetDate = Date.UTC(sYear, sMonth - 1, sDay);
-    const offset = Math.floor((targetDate - baseDate) / (24 * 3600 * 1000));
-    const gIdx = (0 + offset) % 10;
-    const zIdx = (4 + offset) % 12;
-    
-    let finalRiGan = Gan[gIdx < 0 ? gIdx + 10 : gIdx];
-    let finalRiZhu = finalRiGan + Zhi[zIdx < 0 ? zIdx + 12 : zIdx];
-    let riWuXing = WuXingMap[finalRiGan];
 
-    // 4. 【核心锁定】针对 1998-11-11 的强行纠偏
-    if (yr === 1998 && mo === 11 && dy === 11) {
-      finalRiZhu = "庚子";
-      finalRiGan = "庚";
-      riWuXing = "金";
-    }
+    const gIdx = (jd + 9) % 10; 
+    const zIdx = (jd + 3) % 12; 
+    const finalRiGan = Gan[gIdx];
+    const finalRiZhu = finalRiGan + Zhi[zIdx];
+    const riWuXing = WuXingMap[finalRiGan];
 
-    // 5. 获取其他展示信息
-    const L = Lunar.fromDate(new Date(sYear, sMonth - 1, sDay, 12, 0, 0));
     const baZi = L.getEightChar();
-    let nianZhu = (yr === 1998) ? "戊寅" : baZi.getYear();
-    let yueZhu = (yr === 1998 && mo === 11) ? "甲子" : baZi.getMonth();
-
+    let nianZhu = baZi.getYear();
+    let yueZhu = baZi.getMonth();
     let age = today.getFullYear() - yr;
+
     let currentLunarYear = todayLunar.getYear();
     let nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
     let nextS = nextL.getSolar();
     let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
-    
     if (bDate < today) {
       currentLunarYear++;
       nextL = Lunar.fromYmd(currentLunarYear, mo, dy);
@@ -222,33 +207,36 @@ calculateBday(p, today, todayLunar) {
       bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
     }
 
+    const formattedDate = `${sy}年${sm}月${sd}日`;
+
     return {
       age: age,
-      solarDateStr: `${nextS.getYear()}-${String(nextS.getMonth()).padStart(2,'0')}-${String(nextS.getDay()).padStart(2,'0')}`,
+      solarDateStr: formattedDate,
       diff: Math.ceil((bDate - today) / 86400000),
       shengXiao: L.getYearShengXiao(),
-      sxAndZodiac: `${nianZhu.substring(1)}${L.getYearShengXiao()} · ${this.getZodiac(sMonth, sDay)}`,
+      sxAndZodiac: nianZhu.substring(1) + L.getYearShengXiao() + " · " + this.getZodiac(sm, sd),
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
-      fullDayGan: `${age}岁 · ${finalRiGan}${riWuXing}命`,
-      // 这里的字符串拼接完全手工完成，不调用 baZi.getDay()
-      bazi: p.hour && p.hour !== "无" ? `${nianZhu} ${yueZhu} ${finalRiZhu} ${baZi.getTime()}` : `${nianZhu} ${yueZhu} ${finalRiZhu}`
+      fullDayGan: age + "岁 · " + finalRiGan + riWuXing + "命",
+      bazi: p.hour && p.hour !== "无" ? nianZhu + " " + yueZhu + " " + finalRiZhu + " " + baZi.getTime() : nianZhu + " " + yueZhu + " " + finalRiZhu
     };
   }
 
-  // --- 工具函数 ---
-  drawHeavyArc(canvas, x, y, r, color, progress, f) {
+  // --- 高清圆环工具 ---
+  drawHeavyArc(canvas, x, y, r, color, progress) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
+    // 轨道
     for (let deg = 180; deg <= 360; deg += 2.5) {
       const rad = deg * Math.PI / 180;
       canvas.setFillColor(trackColor);
-      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 2.5 * f, y + r * Math.sin(rad) - 2.5 * f, 5 * f, 5 * f));
+      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 1, y + r * Math.sin(rad) - 1, 2, 2));
     }
+    // 进度条
     const endDeg = 180 + (180 * progress);
     canvas.setFillColor(color);
     for (let deg = 180; deg <= endDeg; deg += 1) {
       const rad = deg * Math.PI / 180;
-      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 3.5 * f, y + r * Math.sin(rad) - 3.5 * f, 7 * f, 7 * f));
+      canvas.fillEllipse(new Rect(x + r * Math.cos(rad) - 1.5, y + r * Math.sin(rad) - 1.5, 3, 3));
     }
   }
 
@@ -268,6 +256,7 @@ calculateBday(p, today, todayLunar) {
     return chongMap[sx1] === sx2;
   }
 
+  // --- 管理界面逻辑 ---
   async manageMembersMenu() {
     const data = this.settings.dataSource || [];
     const a = new Alert();
