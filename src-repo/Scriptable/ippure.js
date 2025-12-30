@@ -2,7 +2,7 @@
 const geoUrl = "http://ip-api.com/json/?lang=zh-CN";
 const riskUrl = "https://my.ippure.com/v1/info";
 
-// 1. 简繁转换引擎
+// 1. 转换引擎
 const S_STR = typeof charPYStr === 'function' ? charPYStr() : '';
 const T_STR = typeof ftPYStr === 'function' ? ftPYStr() : '';
 const FT_DICT = {};
@@ -12,28 +12,19 @@ if (S_STR && T_STR && S_STR.length === T_STR.length) {
   }
 }
 
-/**
- * 独立逻辑：
- * 1. 包含中文 -> 繁转简
- * 2. 纯英文 -> 直接忽略（返回空）
- */
 function processField(str) {
   if (!str) return "";
   const text = String(str);
   const hasChinese = /[\u4e00-\u9fa5]/.test(text);
-  
-  // 如果是纯英文，直接忽略返回空
+  // 核心要求：英文直接忽略
   if (!hasChinese) return "";
-
-  // 繁转简转换
+  
   let result = "";
-  for (const char of text) {
-    result += (FT_DICT[char] || char);
-  }
+  for (const char of text) { result += (FT_DICT[char] || char); }
   return result.trim();
 }
 
-// 2. 数据获取与逻辑解耦
+// 2. 数据获取
 async function fetchAllData() {
   try {
     const geoReq = new Request(geoUrl);
@@ -48,23 +39,21 @@ async function fetchAllData() {
 
     if (!geo || geo.status !== "success") return null;
 
-    // 第一步：翻译与过滤（英文直接变为空）
+    // 解耦逻辑：先过滤/转换，再比对去重
     let c = processField(geo.country);
     let r = processField(geo.regionName);
     let ct = processField(geo.city);
 
-    // 第二步：内容去重（相同则变为空）
     if (r === c) r = "";
     if (ct === c || ct === r) ct = "";
 
-    // 第三步：组装（过滤掉空的字段）
     const locArray = [c, r, ct].filter(v => v !== "");
     const finalLocation = locArray.join(" · ") || "未知位置";
 
     return {
       ip: geo.query,
       location: finalLocation,
-      isp: processField(geo.isp) || geo.isp, // ISP 如果是英文通常保留，若你也想忽略可改为 processField(geo.isp)
+      isp: processField(geo.isp) || geo.isp,
       asn: geo.as ? geo.as.split(' ')[0] : "N/A",
       countryCode: geo.countryCode,
       fraudScore: risk ? (risk.fraudScore || 0) : 0,
@@ -80,17 +69,19 @@ if (!config.runsInWidget) await widget.presentMedium();
 Script.setWidget(widget);
 Script.complete();
 
-// 3. UI 渲染（彻底解决对齐问题）
+// 3. UI 渲染
 async function createWidget(data) {
   let w = new ListWidget();
   w.setPadding(16, 12, 16, 12);
 
   const purpleNeon = new Color("#8165AC");
+  
+  // --- 自适应颜色配置 ---
   w.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#000000"));
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
 
   if (!data) {
-    let msg = w.addText("⚠️ 网络检测中...");
+    let msg = w.addText("⚠️ 数据加载中...");
     msg.textColor = purpleNeon;
     return w;
   }
@@ -105,8 +96,7 @@ async function createWidget(data) {
   // --- 左侧信息列 ---
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
-  leftStack.addSpacer();
-
+  
   const addNeonInfo = (label, value) => {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
@@ -121,9 +111,11 @@ async function createWidget(data) {
     let lText = boxStack.addText(label);
     lText.font = Font.boldSystemFont(8.5);
     lText.textColor = purpleNeon;
+    
     rowStack.addSpacer(6);
+    
     let infoValueStack = rowStack.addStack();
-    infoValueStack.size = new Size(165, 19);
+    infoValueStack.size = new Size(150, 19); // 缩减宽度，防止挤压右侧
     infoValueStack.cornerRadius = 9;
     infoValueStack.borderWidth = 1.5;
     infoValueStack.borderColor = purpleNeon;
@@ -134,7 +126,7 @@ async function createWidget(data) {
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
     vText.minimumScaleFactor = 0.5;
-    leftStack.addSpacer(2.5);
+    leftStack.addSpacer(3);
   };
 
   addNeonInfo("位置", `${flag} ${data.location}`);
@@ -143,22 +135,18 @@ async function createWidget(data) {
   addNeonInfo("ASN", data.asn);
   addNeonInfo("属性", data.isResidential ? "住宅 IP" : "机房 IP");
   addNeonInfo("来源", data.isBroadcast ? "原生 IP" : "广播 IP");
-  leftStack.addSpacer();
 
-  mainStack.addSpacer();
+  mainStack.addSpacer(); // 关键：中间推挤
 
-  // --- 右侧圆环列（极致对齐） ---
+  // --- 右侧圆环列 (完全居中修正) ---
   let rightStack = mainStack.addStack();
   rightStack.layoutVertically();
-  rightStack.size = new Size(100, 0); // 约束宽度
-  rightStack.addSpacer();
+  rightStack.centerAlignContent(); // 强制子项水平居中对齐
 
-  // 圆环行
-  let ringRow = rightStack.addStack();
-  ringRow.addSpacer(); // 左右 Spacer 强制中间对齐
-  let ring = ringRow.addStack();
-  ring.size = new Size(95, 95);
-  ring.centerAlignContent();
+  // 圆环
+  let ringStack = rightStack.addStack();
+  ringStack.size = new Size(95, 95);
+  ringStack.centerAlignContent();
   
   let canvas = new DrawContext();
   canvas.size = new Size(200, 200);
@@ -178,24 +166,21 @@ async function createWidget(data) {
     canvas.setFillColor(new Color("#FFFFFF", 0.7));
     canvas.fillEllipse(new Rect(x-3, y-3, 6, 6));
   }
-  ring.backgroundImage = canvas.getImage();
-  let scoreText = ring.addText(`${score}`);
-  scoreText.font = Font.boldSystemFont(32);
+  ringStack.backgroundImage = canvas.getImage();
+  let scoreText = ringStack.addText(`${score}`);
+  scoreText.font = Font.boldSystemFont(30);
   scoreText.textColor = mainTextColor;
-  ringRow.addSpacer();
 
-  rightStack.addSpacer(6);
+  rightStack.addSpacer(4);
 
-  // 文字行
-  let textRow = rightStack.addStack();
-  textRow.addSpacer(); 
-  let bottomLabel = textRow.addText("IPPure 风险值");
+  // 文字标注
+  let labelRow = rightStack.addStack();
+  labelRow.addSpacer(); // 左右 Spacer 强制文字居中
+  let bottomLabel = labelRow.addText("IPPure 风险值");
   bottomLabel.font = Font.boldSystemFont(10);
   bottomLabel.textColor = new Color("#8165AC", 0.8);
-  textRow.addSpacer();
+  labelRow.addSpacer();
   
-  rightStack.addSpacer();
-
   return w;
 }
 
