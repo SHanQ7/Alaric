@@ -90,9 +90,15 @@ class Widget extends DmYY {
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const todayLunar = Lunar.fromDate(now);
 
-    const dayChongShengXiao = todayLunar.getDayChongShengXiao(); // 地支冲生肖
-    const dayChongGan = todayLunar.getDayChongGan();             // 无情之克天干
-    const dayChongGanTie = todayLunar.getDayChongGanTie();       // 有情之克天干
+    // 获取今日干支
+    const dayGan = todayLunar.getDayGan();
+    const dayZhi = todayLunar.getDayZhi();
+    const dayChongGan = todayLunar.getDayChongGan();
+
+    // 定义冲合映射表
+    const diZhiChongMap = {"子":"午","午":"子","丑":"未","未":"丑","寅":"申","申":"寅","卯":"酉","酉":"卯","辰":"戌","戌":"辰","巳":"亥","亥":"巳"};
+    const diZhiHeMap = {"子":"丑","丑":"子","寅":"亥","亥":"寅","卯":"戌","戌":"卯","辰":"酉","酉":"辰","巳":"申","申":"巳","午":"未","未":"午"};
+    const tianGanHeMap = {"甲":"己","己":"甲","乙":"庚","庚":"乙","丙":"辛","辛":"丙","丁":"壬","壬":"丁","戊":"癸","癸":"戊"};
 
     const displayData = (this.settings.dataSource || []).slice(0, 4);
 
@@ -100,13 +106,20 @@ class Widget extends DmYY {
       const info = this.calculateBday(p, today, todayLunar);
       const isBday = info.diff === 0;
 
-      let warningColor = null;
-      if (info.shengXiao === dayChongShengXiao) {
-        warningColor = new Color("#D32F2F");
+      // --- 基于日柱的红绿预警逻辑 ---
+      let statusColor = null;
+
+      // 1. 判定红色预警 (凶)
+      if (diZhiChongMap[info.riZhi] === dayZhi) {
+        statusColor = new Color("#D32F2F"); // 级别一：地支正冲 (日支冲) - 大红
       } else if (info.riGan === dayChongGan) {
-        warningColor = new Color("#E64A19");
-      } else if (info.riGan === dayChongGanTie) {
-        warningColor = new Color("#FF8A80");
+        statusColor = new Color("#E64A19"); // 级别二：天干硬克 - 深橘红
+      }
+      // 2. 判定绿色喜兆 (吉)
+      else if (diZhiHeMap[info.riZhi] === dayZhi) {
+        statusColor = new Color("#2E7D32"); // 级别三：地支六合 - 深绿
+      } else if (tianGanHeMap[info.riGan] === dayGan) {
+        statusColor = new Color("#4CAF50"); // 级别四：天干五合 - 翠绿
       }
 
       const wxColors = {
@@ -158,9 +171,9 @@ class Widget extends DmYY {
       
       labels.forEach((text, idx) => {
         const isLastRow = (idx === 4);
-        const hasWarning = (isLastRow && warningColor !== null);
+        const hasStatus = (isLastRow && statusColor !== null);
 
-        canvas.setFillColor(hasWarning ? warningColor : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
+        canvas.setFillColor(hasStatus ? statusColor : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
         
         const path = new Path();
         path.addRoundedRect(new Rect(5, Math.round(currentY), 61, 9), 3, 3);
@@ -168,7 +181,7 @@ class Widget extends DmYY {
         canvas.fillPath();
 
         canvas.setFont(Font.boldSystemFont(fSize));
-        canvas.setTextColor(hasWarning ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
+        canvas.setTextColor(hasStatus ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
         canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 61, 10));
         currentY += fGap; 
       });
@@ -211,7 +224,8 @@ class Widget extends DmYY {
     const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
 
     const finalRiGan = Gan[(jd + 9) % 10];
-    const finalRiZhu = finalRiGan + Zhi[(jd + 3) % 12];
+    const finalRiZhi = Zhi[(jd + 3) % 12]; // 新增：日支
+    const finalRiZhu = finalRiGan + finalRiZhi;
     const riWuXing = WuXingMap[finalRiGan];
 
     const baZi = birthLunar.getEightChar();
@@ -223,6 +237,7 @@ class Widget extends DmYY {
       diff: Math.ceil((bDate - today) / 86400000),
       shengXiao: birthLunar.getYearShengXiao(),
       riGan: finalRiGan,
+      riZhi: finalRiZhi, // 传出日支
       sxAndZodiac: baZi.getYear().substring(1) + birthLunar.getYearShengXiao() + " · " + this.getZodiac(bSm, bSd),
       naYin: baZi.getYearNaYin() + "命",
       wuXing: riWuXing,
