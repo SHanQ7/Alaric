@@ -23,7 +23,7 @@ class Widget extends DmYY {
     }
   }
 
-  // --- 更新检查逻辑 (保持原样) ---
+  // --- 更新检查逻辑 ---
   async checkUpdate() {
     const alert = new Alert();
     alert.title = "🔄 检查更新";
@@ -82,7 +82,6 @@ class Widget extends DmYY {
       spacing: parseFloat(rawV.spacing)
     };
 
-    // 静态命理表
     const diZhiChongMap = {"子":"午","午":"子","丑":"未","未":"丑","寅":"申","申":"寅","卯":"酉","酉":"卯","辰":"戌","戌":"辰","巳":"亥","亥":"巳"};
     const diZhiHeMap = {"子":"丑","丑":"子","寅":"亥","亥":"寅","卯":"戌","戌":"卯","辰":"酉","酉":"辰","巳":"申","申":"巳","午":"未","未":"午"};
     const tianGanHeMap = {"甲":"己","己":"甲","乙":"庚","庚":"乙","丙":"辛","辛":"丙","丁":"壬","壬":"丁","戊":"癸","癸":"戊"};
@@ -121,7 +120,6 @@ class Widget extends DmYY {
       const info = this.calculateBday(p, today, todayLunar);
       const isBday = info.diff === 0;
 
-      // --- 1. 确定标签预警颜色 ---
       let statusColor = null;
       if (diZhiChongMap[info.riZhi] === dayZhi) {
         statusColor = new Color("#D32F2F"); 
@@ -141,10 +139,8 @@ class Widget extends DmYY {
         statusColor = new Color("#4CAF50"); 
       }
 
-      // --- 2. 锁定圆弧 ---
       let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (wxColors[info.wuXing] || Color.orange()));
 
-      // --- 3. UI 构建 ---
       const highlightStack = mainStack.addStack();
       highlightStack.setPadding(1, 1, 0, 0); 
       highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#2C2C2E"));
