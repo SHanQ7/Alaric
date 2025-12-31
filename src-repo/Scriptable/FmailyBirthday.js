@@ -202,6 +202,7 @@ class Widget extends DmYY {
     return w;
   };
 
+  // --- 命理逻辑 ---
   calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
@@ -210,41 +211,38 @@ class Widget extends DmYY {
     const birthSolar = birthLunar.getSolar();
     const baZi = birthLunar.getEightChar();
     
-    const finalRiGan = baZi.getDayGan();
-    const finalRiZhi = baZi.getDayZhi();
-    const finalRiZhu = finalRiGan + finalRiZhi;
+    const birthDayGan = baZi.getDayGan();
+    const birthDayZhi = baZi.getDayZhi();
+    const birthDayZhu = birthDayGan + birthDayZhi;
 
     let currentYear = todayLunar.getYear();
     let nextL = Lunar.fromYmd(currentYear, mo, dy);
     let nextS = nextL.getSolar();
     let bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
-
     if (bDate < today) {
       currentYear++;
       nextL = Lunar.fromYmd(currentYear, mo, dy);
       nextS = nextL.getSolar();
       bDate = new Date(nextS.getYear(), nextS.getMonth() - 1, nextS.getDay());
     }
-    const displaySolarDate = `${nextS.getYear()}年${nextS.getMonth()}月${nextS.getDay()}日`;
 
     const WuXingMap = {"甲":"木","乙":"木","丙":"火","丁":"火","戊":"土","己":"土","庚":"金","辛":"金","壬":"水","癸":"水"};
-    const riWuXing = WuXingMap[finalRiGan];
+    const myWuXing = WuXingMap[birthDayGan];
     const age = today.getFullYear() - yr;
 
-    return {
+  return {
       age,
-      solarDateStr: displaySolarDate,
-      diff: Math.ceil((bDate - today) / 86400000),
-      shengXiao: birthLunar.getYearShengXiao(),
-      riGan: finalRiGan,
-      riZhi: finalRiZhi,
-      sxAndZodiac: baZi.getYear().substring(1) + birthLunar.getYearShengXiao() + " · " + this.getZodiac(birthSolar.getMonth(), birthSolar.getDay()),
-      naYin: baZi.getYearNaYin() + "命",
-      wuXing: riWuXing,
-      fullDayGan: `${age}岁 · ${finalRiGan}${riWuXing}命`,
+      solarDateStr: `${nextS.getYear()}年${nextS.getMonth()}月${nextS.getDay()}日`,
+      diff: Math.round((bDate.getTime() - today.getTime()) / 86400000),
+      riZhi: birthDayZhi,
+      riGan: birthDayGan,
       bazi: p.hour && p.hour !== "无" 
-            ? `${baZi.getYear()} ${baZi.getMonth()} ${finalRiZhu} ${baZi.getTime()}`
-            : `${baZi.getYear()} ${baZi.getMonth()} ${finalRiZhu}`
+            ? `${baZi.getYear()} ${baZi.getMonth()} ${birthDayZhu} ${baZi.getTime()}`
+            : `${baZi.getYear()} ${baZi.getMonth()} ${birthDayZhu}`,
+      fullDayGan: `${age}岁 · ${birthDayGan}${myWuXing}命`,
+      wuXing: myWuXing,
+      naYin: baZi.getYearNaYin() + "命",
+      sxAndZodiac: baZi.getYear() + birthLunar.getYearShengXiao() + " · " + this.getZodiac(birthSolar.getMonth(), birthSolar.getDay())
     };
   }
 
