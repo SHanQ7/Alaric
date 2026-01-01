@@ -152,12 +152,12 @@ class Widget extends DmYY {
       shadowStack.cornerRadius = 14;
 
       const container = shadowStack.addStack();
-      container.size = new Size(73, 140);
+      container.size = new Size(72, 140);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
       container.cornerRadius = 13;
 
       const canvas = new DrawContext();
-      canvas.size = new Size(68, 140);
+      canvas.size = new Size(72, 140);
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
@@ -168,9 +168,9 @@ class Widget extends DmYY {
 
       canvas.setFont(Font.systemFont(22));
       canvas.setTextAlignedCenter();
-      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 71, 30));
+      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 72, 30));
 
-      this.drawHeavyArc(canvas, 35.5, arcY, 27, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
+      this.drawHeavyArc(canvas, 36, arcY, 27, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
       
       canvas.setFont(Font.boldSystemFont(13));
       canvas.setTextColor(accentColor);
@@ -183,12 +183,12 @@ class Widget extends DmYY {
         const hasStatus = (idx === 4 && statusColor !== null);
         canvas.setFillColor(hasStatus ? statusColor : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
         const path = new Path();
-        path.addRoundedRect(new Rect(5, Math.round(currentY), 61, 9), 3, 3);
+        path.addRoundedRect(new Rect(5, Math.round(currentY), 62, 9), 3, 3);
         canvas.addPath(path);
         canvas.fillPath();
         canvas.setFont(Font.boldSystemFont(fSize));
         canvas.setTextColor(hasStatus ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
-        canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 61, 10));
+        canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 72, 10));
         currentY += fGap; 
       });
 
