@@ -18,90 +18,41 @@ class Widget extends DmYY {
           arcY: '133', startY: '160', fontSize: '8.5', spacing: '23'
         }, 'visualConfig');
       }, { name: 'paintbrush.fill', color: '#ff9500' });
+      
       this.registerAction('检查更新', async () => { await this.checkUpdate(); }, { name: 'arrow.triangle.2.circlepath', color: '#34c759' });
       this.registerAction('基础设置', this.setWidgetConfig);
     }
-  }
-
-  // --- 更新检查逻辑 ---
-  async checkUpdate() {
-    const alert = new Alert();
-    alert.title = "🔄 检查更新";
-    alert.message = "正在从 GitHub 获取最新版本信息...";
-    alert.addCancelAction("取消");
-    alert.addAction("立即检查");
-    if (await alert.presentAlert() === 0) {
-      try {
-        const req = new Request(GITHUB_RAW_URL);
-        const code = await req.loadString();
-        const remoteVersion = code.match(/const VERSION = "([\d\.]+)";/)[1];
-        if (this.compareVersion(remoteVersion, VERSION)) {
-          const up = new Alert();
-          up.title = "发现新版本 " + remoteVersion;
-          up.message = "是否立即下载并覆盖当前代码？";
-          up.addAction("开始更新");
-          up.addCancelAction("取消");
-          if (await up.presentAlert() === 0) {
-            FileManager.local().writeString(module.filename, code);
-            const success = new Alert();
-            success.title = "✅ 更新成功";
-            await success.present();
-          }
-        } else {
-          const ok = new Alert();
-          ok.title = "已是最新版本";
-          await ok.present();
-        }
-      } catch (e) {
-        const err = new Alert();
-        err.title = "❌ 更新失败";
-        await err.present();
-      }
-    }
-  }
-
-  compareVersion(v1, v2) {
-    const a = v1.split('.').map(Number);
-    const b = v2.split('.').map(Number);
-    for (let i = 0; i < a.length; i++) {
-      if (a[i] > (b[i] || 0)) return true;
-      if (a[i] < (b[i] || 0)) return false;
-    }
-    return false;
   }
 
   // --- 核心渲染函数 ---
   renderMedium = async (w) => {
     const { Lunar } = importModule("lunar.module");
 
+    // 1. 读取面板参数
     const rawV = this.settings.visualConfig || { arcY: 133, startY: 160, fontSize: 8.5, spacing: 23 };
     const v = {
-      arcY: parseFloat(rawV.arcY),
-      startY: parseFloat(rawV.startY),
-      fontSize: parseFloat(rawV.fontSize),
-      spacing: parseFloat(rawV.spacing)
+      arcY: parseFloat(rawV.arcY) || 133,
+      startY: parseFloat(rawV.startY) || 160,
+      fontSize: parseFloat(rawV.fontSize) || 8.5,
+      spacing: parseFloat(rawV.spacing) || 23,
+      w: 72,       // 容器总宽
+      labelW: 62   // 胶囊背景宽
     };
 
+    // 2. 居中对齐计算
+    const canvasW = v.w;
+    const centerX = canvasW / 2;
+    const labelX = (canvasW - v.labelW) / 2;
+
+    // 命理关系映射与颜色
+    const wxColors = { "金": new Color("#D4AF37"), "木": new Color("#228B22"), "水": new Color("#1E90FF"), "火": new Color("#FF4500"), "土": new Color("#CD853F") };
     const diZhiChongMap = {"子":"午","午":"子","丑":"未","未":"丑","寅":"申","申":"寅","卯":"酉","酉":"卯","辰":"戌","戌":"辰","巳":"亥","亥":"巳"};
     const diZhiHeMap = {"子":"丑","丑":"子","寅":"亥","亥":"寅","卯":"戌","戌":"卯","辰":"酉","酉":"辰","巳":"申","申":"巳","午":"未","未":"午"};
     const tianGanHeMap = {"甲":"己","己":"甲","乙":"庚","庚":"乙","丙":"辛","辛":"丙","丁":"壬","壬":"丁","戊":"癸","癸":"戊"};
-    const sanHeMap = {
-      "亥": ["卯", "未"], "子": ["辰", "申"], "丑": ["巳", "酉"],
-      "寅": ["午", "戌"], "卯": ["亥", "未"], "辰": ["子", "申"],
-      "巳": ["酉", "丑"], "午": ["寅", "戌"], "未": ["亥", "卯"],
-      "申": ["子", "辰"], "酉": ["巳", "丑"], "戌": ["寅", "午"]
-    };
-    const sanXingMap = { "寅": "巳", "巳": "申", "申": "寅", "子": "卯", "卯": "子" };
+    const sanHeMap = {"亥":["卯","未"],"子":["辰","申"],"丑":["巳","酉"],"寅":["午","戌"],"卯":["亥","未"],"辰":["子","申"],"巳":["酉","丑"],"午":["寅","戌"],"未":["亥","卯"],"申":["子","辰"],"酉":["巳","丑"],"戌":["寅","午"]};
+    const sanXingMap = {"寅":"巳","巳":"申","申":"寅","子":"卯","卯":"子"};
     const chouWeiXu = ["丑", "未", "戌"];
     const ziXingList = ["辰", "午", "酉", "亥"]; 
-
-    const wxColors = {
-      "金": Color.dynamic(new Color("#D4AF37"), new Color("#FFD700")),
-      "木": Color.dynamic(new Color("#228B22"), new Color("#32CD32")),
-      "水": Color.dynamic(new Color("#00008B"), new Color("#1E90FF")),
-      "火": Color.dynamic(new Color("#B22222"), new Color("#FF4500")),
-      "土": Color.dynamic(new Color("#8B4513"), new Color("#CD853F"))
-    };
 
     w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1A1A1C"));
     w.setPadding(10, 6, 10, 6);
@@ -121,26 +72,18 @@ class Widget extends DmYY {
       const isBday = info.diff === 0;
 
       let statusColor = null;
-      if (diZhiChongMap[info.riZhi] === dayZhi) {
-        statusColor = new Color("#D32F2F"); 
-      } else if (chouWeiXu.includes(dayZhi) && chouWeiXu.includes(info.riZhi) && dayZhi !== info.riZhi) {
-        statusColor = new Color("#EF6C00"); 
-      } else if (sanXingMap[info.riZhi] === dayZhi || sanXingMap[dayZhi] === info.riZhi) {
-        statusColor = new Color("#EF6C00"); 
-      } else if (info.riZhi === dayZhi && ziXingList.includes(dayZhi)) {
-        statusColor = new Color("#F57C00"); 
-      } else if (info.riGan === dayChongGan) {
-        statusColor = new Color("#E64A19"); 
-      } else if (diZhiHeMap[info.riZhi] === dayZhi) {
-        statusColor = new Color("#2E7D32"); 
-      } else if (sanHeMap[dayZhi] && sanHeMap[dayZhi].includes(info.riZhi)) {
-        statusColor = new Color("#81C784"); 
-      } else if (tianGanHeMap[info.riGan] === dayGan) {
-        statusColor = new Color("#4CAF50"); 
-      }
+      if (diZhiChongMap[info.riZhi] === dayZhi) statusColor = new Color("#D32F2F");
+      else if (chouWeiXu.includes(dayZhi) && chouWeiXu.includes(info.riZhi) && dayZhi !== info.riZhi) statusColor = new Color("#EF6C00");
+      else if (sanXingMap[info.riZhi] === dayZhi || sanXingMap[dayZhi] === info.riZhi) statusColor = new Color("#EF6C00");
+      else if (info.riZhi === dayZhi && ziXingList.includes(dayZhi)) statusColor = new Color("#F57C00");
+      else if (info.riGan === dayChongGan) statusColor = new Color("#E64A19");
+      else if (diZhiHeMap[info.riZhi] === dayZhi) statusColor = new Color("#2E7D32");
+      else if (sanHeMap[dayZhi] && sanHeMap[dayZhi].includes(info.riZhi)) statusColor = new Color("#81C784");
+      else if (tianGanHeMap[info.riGan] === dayGan) statusColor = new Color("#4CAF50");
 
       let accentColor = isBday ? Color.cyan() : (info.diff <= 7 ? new Color("#ff4d94") : (wxColors[info.wuXing] || Color.orange()));
 
+      // 容器构建
       const highlightStack = mainStack.addStack();
       highlightStack.setPadding(1, 1, 0, 0); 
       highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#2C2C2E"));
@@ -152,12 +95,12 @@ class Widget extends DmYY {
       shadowStack.cornerRadius = 14;
 
       const container = shadowStack.addStack();
-      container.size = new Size(72, 140);
+      container.size = new Size(canvasW, 140);
       container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#1C1C1E"));
       container.cornerRadius = 13;
 
       const canvas = new DrawContext();
-      canvas.size = new Size(72, 140);
+      canvas.size = new Size(canvasW, 140);
       canvas.opaque = false;
       canvas.respectScreenScale = true;
 
@@ -166,29 +109,40 @@ class Widget extends DmYY {
       const fSize = Math.floor(v.fontSize - 1.5);
       const fGap = v.spacing / 2;
 
-      canvas.setFont(Font.systemFont(22));
+      // --- 绘图 ---
       canvas.setTextAlignedCenter();
-      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, 72, 30));
 
-      this.drawHeavyArc(canvas, 36, arcY, 27, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
+      // 1. Emoji 居中
+      canvas.setFont(Font.systemFont(22));
+      canvas.drawTextInRect(p.emoji || "👤", new Rect(0, 10, canvasW, 30));
+
+      // 2. 圆弧居中
+      this.drawHeavyArc(canvas, centerX, arcY, 27, accentColor, isBday ? 1.0 : Math.max(0.01, 1 - info.diff / 365));
       
+      // 3. 倒计时居中
       canvas.setFont(Font.boldSystemFont(13));
       canvas.setTextColor(accentColor);
-      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 12, 71, 25));
+      canvas.drawTextInRect(isBday ? "🎉" : `${info.diff}`, new Rect(0, arcY - 12, canvasW, 25));
 
+      // 4. 胶囊信息标签
       const labels = [info.solarDateStr, info.bazi, info.fullDayGan, info.naYin, info.sxAndZodiac];
       let currentY = capStartY;
+      const capsuleH = 9;
       
       labels.forEach((text, idx) => {
         const hasStatus = (idx === 4 && statusColor !== null);
         canvas.setFillColor(hasStatus ? statusColor : Color.dynamic(new Color("#E2E2E7"), new Color("#252527")));
+        
+        // --- 绘制胶囊背景 ---
         const path = new Path();
-        path.addRoundedRect(new Rect(5, Math.round(currentY), 62, 9), 3, 3);
+        path.addRoundedRect(new Rect(labelX, Math.round(currentY), v.labelW, capsuleH), 3, 3);
         canvas.addPath(path);
         canvas.fillPath();
+
         canvas.setFont(Font.boldSystemFont(fSize));
         canvas.setTextColor(hasStatus ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
-        canvas.drawTextInRect(text, new Rect(5, Math.round(currentY) + 1, 72, 10));
+        canvas.drawTextInRect(text, new Rect(0, Math.round(currentY) + 1, canvasW, capsuleH));
+        
         currentY += fGap; 
       });
 
@@ -198,15 +152,13 @@ class Widget extends DmYY {
     return w;
   };
 
-  // --- 命理逻辑 ---
+  // --- 命理逻辑与辅助函数 ---
   calculateBday(p, today, todayLunar) {
     const { Lunar } = importModule("lunar.module");
     const yr = parseInt(p.year), mo = parseInt(p.month), dy = parseInt(p.day);
-
     const birthLunar = Lunar.fromYmd(yr, mo, dy);
     const birthSolar = birthLunar.getSolar();
     const baZi = birthLunar.getEightChar();
-    
     const birthDayGan = baZi.getDayGan();
     const birthDayZhi = baZi.getDayZhi();
     const birthDayZhu = birthDayGan + birthDayZhi;
@@ -226,15 +178,13 @@ class Widget extends DmYY {
     const myWuXing = WuXingMap[birthDayGan];
     const age = today.getFullYear() - yr;
 
-  return {
+    return {
       age,
       solarDateStr: `${nextS.getYear()}年${nextS.getMonth()}月${nextS.getDay()}日`,
       diff: Math.round((bDate.getTime() - today.getTime()) / 86400000),
       riZhi: birthDayZhi,
       riGan: birthDayGan,
-      bazi: p.hour && p.hour !== "无" 
-            ? `${baZi.getYear()} ${baZi.getMonth()} ${birthDayZhu} ${baZi.getTime()}`
-            : `${baZi.getYear()} ${baZi.getMonth()} ${birthDayZhu}`,
+      bazi: p.hour && p.hour !== "无" ? `${baZi.getYear()} ${baZi.getMonth()} ${birthDayZhu} ${baZi.getTime()}` : `${baZi.getYear()} ${baZi.getMonth()} ${birthDayZhu}`,
       fullDayGan: `${age}岁 · ${birthDayGan}${myWuXing}命`,
       wuXing: myWuXing,
       naYin: baZi.getYearNaYin() + "命",
@@ -242,7 +192,6 @@ class Widget extends DmYY {
     };
   }
 
-  // --- 绘图与辅助 ---
   drawHeavyArc(canvas, x, y, r, color, progress) {
     const trackColor = Color.dynamic(new Color("#D8D8DF"), new Color("#333333"));
     for (let deg = 180; deg <= 360; deg += 2.5) {
@@ -264,7 +213,6 @@ class Widget extends DmYY {
     return s.substr(m * 2 - (d < arr[m - 1] ? 2 : 0), 2) + "座";
   }
 
-  // --- 管理界面 ---
   async manageMembersMenu() {
     const data = this.settings.dataSource || [];
     const a = new Alert();
@@ -294,14 +242,7 @@ class Widget extends DmYY {
     a.addAction("保存");
     a.addCancelAction("取消");
     if (await a.presentAlert() === 0) {
-      const newP = { 
-        name: a.textFieldValue(0), 
-        year: parseInt(a.textFieldValue(1)), 
-        month: parseInt(a.textFieldValue(2)), 
-        day: parseInt(a.textFieldValue(3)), 
-        hour: a.textFieldValue(4), 
-        emoji: a.textFieldValue(5) 
-      };
+      const newP = { name: a.textFieldValue(0), year: parseInt(a.textFieldValue(1)), month: parseInt(a.textFieldValue(2)), day: parseInt(a.textFieldValue(3)), hour: a.textFieldValue(4), emoji: a.textFieldValue(5) };
       if (isNew) data.push(newP); else data[index] = newP;
       this.settings.dataSource = data;
       this.saveSettings();
