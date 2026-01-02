@@ -1,5 +1,4 @@
 // IPPure + IP-API 综合监测
-
 const geoUrl = "http://ip-api.com/json/?lang=zh-CN";
 const riskUrl = "https://my.ippure.com/v1/info";
 
@@ -113,7 +112,7 @@ async function createWidget(data) {
     rowStack.addSpacer(6);
     
     let infoValueStack = rowStack.addStack();
-    infoValueStack.size = new Size(165, 19); 
+    infoValueStack.size = new Size(155, 19);
     infoValueStack.cornerRadius = 9;
     infoValueStack.borderWidth = 1.5;
     infoValueStack.borderColor = purpleNeon;
@@ -135,7 +134,6 @@ async function createWidget(data) {
   addNeonInfo("来源", data.isBroadcast ? "原生 IP" : "广播 IP");
   
   leftStack.addSpacer();
-
   mainStack.addSpacer();
 
   // --- 右侧圆环列 ---
@@ -146,29 +144,27 @@ async function createWidget(data) {
   let canvas = new DrawContext();
   canvas.size = new Size(200, 200);
   canvas.opaque = false;
-  canvas.setLineWidth(12);
 
-  // 【优化点】圆环轨道颜色适配白天/夜间
-  // 白天用淡紫色，夜间用深灰色或稍亮的紫色确保可见
-  const trackColor = Color.dynamic(new Color("#8165AC", 0.15), new Color("#FFFFFF", 0.12));
+  // 轨道颜色
+  const trackColor = Color.dynamic(
+    new Color("#8165AC", 0.15), 
+    new Color("#3A3A3C", 1) 
+  );
+  
+  canvas.setLineWidth(14);
   canvas.setStrokeColor(trackColor);
   canvas.strokeEllipse(new Rect(10, 10, 180, 180));
 
+  canvas.setLineWidth(12);
   const deg = (score / 100) * 360;
   for (let i = 0; i <= deg; i += 1.5) {
     let rad = (i - 90) * Math.PI / 180;
     let x = 100 + 90 * Math.cos(rad);
     let y = 100 + 90 * Math.sin(rad);
-    
-    // 进度条发光感
     canvas.setFillColor(new Color(accentColor.hex, 0.3));
     canvas.fillEllipse(new Rect(x-10, y-10, 20, 20));
-    
-    // 主色条
     canvas.setFillColor(accentColor);
     canvas.fillEllipse(new Rect(x-7, y-7, 14, 14));
-    
-    // 高亮白点
     canvas.setFillColor(new Color("#FFFFFF", 0.8));
     canvas.fillEllipse(new Rect(x-3, y-3, 6, 6));
   }
@@ -181,6 +177,7 @@ async function createWidget(data) {
   return w;
 }
 
+// 辅助函数
 function getFlagEmoji(countryCode) {
   if (!countryCode) return "🌐";
   return countryCode.toUpperCase().replace(/./g, char => 
