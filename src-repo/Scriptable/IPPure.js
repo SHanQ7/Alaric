@@ -17,7 +17,6 @@ function processField(str) {
   const text = String(str);
   const hasChinese = /[\u4e00-\u9fa5]/.test(text);
   if (!hasChinese) return "";
-  
   let result = "";
   for (const char of text) { result += (FT_DICT[char] || char); }
   return result.trim();
@@ -30,24 +29,18 @@ async function fetchAllData() {
     geoReq.timeoutInterval = 10;
     const riskReq = new Request(riskUrl);
     riskReq.timeoutInterval = 10;
-
     const [geo, risk] = await Promise.all([
       geoReq.loadJSON().catch(() => null),
       riskReq.loadJSON().catch(() => null)
     ]);
-
     if (!geo || geo.status !== "success") return null;
-
     let c = processField(geo.country);
     let r = processField(geo.regionName);
     let ct = processField(geo.city);
-
     if (r === c) r = "";
     if (ct === c || ct === r) ct = "";
-
     const locArray = [c, r, ct].filter(v => v !== "");
     const finalLocation = locArray.join(" · ") || "未知位置";
-
     return {
       ip: geo.query,
       location: finalLocation,
@@ -73,7 +66,20 @@ async function createWidget(data) {
   w.setPadding(16, 12, 16, 12);
 
   const purpleNeon = new Color("#8165AC");
-  w.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#000000"));
+  
+  // --- A. 玻璃质感背景 ---
+  let bgGradient = new LinearGradient();
+  bgGradient.colors = Color.dynamic(
+    [new Color("#FFFFFF", 0.65), new Color("#F2F2F7", 0.45)], // 白天：清透白
+    [new Color("#1C1C1E", 0.85), new Color("#000000", 0.75)]  // 夜间：深邃灰
+  );
+  bgGradient.locations = [0, 1];
+  w.backgroundGradient = bgGradient;
+  
+  // 玻璃切面边框线
+  w.borderWidth = 0.5;
+  w.borderColor = Color.dynamic(new Color("#8E8E93", 0.2), new Color("#FFFFFF", 0.15));
+
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
 
   if (!data) {
@@ -89,10 +95,12 @@ async function createWidget(data) {
   let mainStack = w.addStack();
   mainStack.centerAlignContent(); 
 
-  // --- 左侧信息列 ---
+  // --- B. 左侧信息列 ---
   let leftStack = mainStack.addStack();
   leftStack.layoutVertically();
-  leftStack.addSpacer();
+  
+  // 顶部固定缓冲，确保垂直居中
+  leftStack.addSpacer(2);
 
   const addNeonInfo = (label, value) => {
     let rowStack = leftStack.addStack();
@@ -112,7 +120,7 @@ async function createWidget(data) {
     rowStack.addSpacer(6);
     
     let infoValueStack = rowStack.addStack();
-    infoValueStack.size = new Size(155, 19);
+    infoValueStack.size = new Size(155, 19); 
     infoValueStack.cornerRadius = 9;
     infoValueStack.borderWidth = 1.5;
     infoValueStack.borderColor = purpleNeon;
@@ -123,20 +131,23 @@ async function createWidget(data) {
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
     vText.minimumScaleFactor = 0.5;
-    leftStack.addSpacer(2.5);
+    
+    leftStack.addSpacer(3.5);
   };
 
-  addNeonInfo("IP位置", `${flag} ${data.location}`);
-  addNeonInfo("IP地址", data.ip);
+  addNeonInfo("位置", `${flag} ${data.location}`);
+  addNeonInfo("地址", data.ip);
   addNeonInfo("ISP", data.isp);
   addNeonInfo("ASN", data.asn);
-  addNeonInfo("IP属性", data.isResidential ? "住宅 IP" : "机房 IP");
-  addNeonInfo("IP来源", data.isBroadcast ? "原生 IP" : "广播 IP");
+  addNeonInfo("属性", data.isResidential ? "住宅 IP" : "机房 IP");
+  addNeonInfo("来源", data.isBroadcast ? "原生 IP" : "广播 IP");
   
-  leftStack.addSpacer();
+  // 底部固定缓冲
+  leftStack.addSpacer(2);
+
   mainStack.addSpacer();
 
-  // --- 右侧圆环列 ---
+  // --- C. 右侧圆环列  ---
   let rightStack = mainStack.addStack();
   rightStack.size = new Size(100, 100);
   rightStack.centerAlignContent();
@@ -145,10 +156,10 @@ async function createWidget(data) {
   canvas.size = new Size(200, 200);
   canvas.opaque = false;
 
-  // 轨道颜色
+  // 轨道
   const trackColor = Color.dynamic(
-    new Color("#E5E5EA", 0.35), 
-    new Color("#AEAEB2", 0.35) 
+    new Color("#E5E5EA", 1), 
+    new Color("#48484A", 1) 
   );
   
   canvas.setLineWidth(14);
