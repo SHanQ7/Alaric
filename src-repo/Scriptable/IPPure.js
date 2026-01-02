@@ -126,12 +126,12 @@ async function createWidget(data) {
     leftStack.addSpacer(2.5);
   };
 
-  addNeonInfo("位置", `${flag} ${data.location}`);
-  addNeonInfo("地址", data.ip);
+  addNeonInfo("IP位置", `${flag} ${data.location}`);
+  addNeonInfo("IP地址", data.ip);
   addNeonInfo("ISP", data.isp);
   addNeonInfo("ASN", data.asn);
-  addNeonInfo("属性", data.isResidential ? "住宅 IP" : "机房 IP");
-  addNeonInfo("来源", data.isBroadcast ? "原生 IP" : "广播 IP");
+  addNeonInfo("IP属性", data.isResidential ? "住宅 IP" : "机房 IP");
+  addNeonInfo("IP来源", data.isBroadcast ? "原生 IP" : "广播 IP");
   
   leftStack.addSpacer();
   mainStack.addSpacer();
@@ -147,8 +147,8 @@ async function createWidget(data) {
 
   // 轨道颜色
   const trackColor = Color.dynamic(
-    new Color("#8165AC", 0.15), 
-    new Color("#3A3A3C", 1) 
+    new Color("#E5E5EA", 0.35), 
+    new Color("#AEAEB2", 0.35) 
   );
   
   canvas.setLineWidth(14);
