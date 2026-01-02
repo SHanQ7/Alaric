@@ -67,12 +67,18 @@ async function createWidget(data) {
 
   const purpleNeon = new Color("#8165AC");
   
-  // --- A. 玻璃质感背景 ---
+  // --- A.玻璃质感背景修复版 ---
   let bgGradient = new LinearGradient();
-  bgGradient.colors = Color.dynamic(
-    [new Color("#FFFFFF", 0.65), new Color("#F2F2F7", 0.45)], // 白天：清透白
-    [new Color("#1C1C1E", 0.85), new Color("#000000", 0.75)]  // 夜间：深邃灰
-  );
+  
+  // 判断当前是否为深色模式，手动分配颜色数组
+  if (Device.isUsingDarkAppearance()) {
+    // 夜间：深邃灰到黑色
+    bgGradient.colors = [new Color("#1C1C1E", 0.85), new Color("#000000", 0.75)];
+  } else {
+    // 白天：清透白到系统浅灰
+    bgGradient.colors = [new Color("#FFFFFF", 0.65), new Color("#F2F2F7", 0.45)];
+  }
+  
   bgGradient.locations = [0, 1];
   w.backgroundGradient = bgGradient;
   
