@@ -71,7 +71,7 @@ async function createWidget(data) {
   let bgGradient = new LinearGradient();
 
   if (Device.isUsingDarkAppearance()) {
-    bgGradient.colors = [new Color("#1C1C1E", 0.4, new Color("#000000", 0.4)];
+    bgGradient.colors = [new Color("#1C1C1E", 0.4), new Color("#000000", 0.4)];
   } else {
     bgGradient.colors = [new Color("#FFFFFF", 0.5), new Color("#F2F2F7", 0.3)];
   }
