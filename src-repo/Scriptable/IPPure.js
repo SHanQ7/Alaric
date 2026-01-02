@@ -67,24 +67,21 @@ async function createWidget(data) {
 
   const purpleNeon = new Color("#8165AC");
   
-  // --- A.玻璃质感背景修复版 ---
+  // --- A. 玻璃质感 ---
   let bgGradient = new LinearGradient();
-  
-  // 判断当前是否为深色模式，手动分配颜色数组
+
   if (Device.isUsingDarkAppearance()) {
-    // 夜间：深邃灰到黑色
-    bgGradient.colors = [new Color("#1C1C1E", 0.85), new Color("#000000", 0.75)];
+    bgGradient.colors = [new Color("#1C1C1E", 0.4, new Color("#000000", 0.4)];
   } else {
-    // 白天：清透白到系统浅灰
-    bgGradient.colors = [new Color("#FFFFFF", 0.65), new Color("#F2F2F7", 0.45)];
+    bgGradient.colors = [new Color("#FFFFFF", 0.5), new Color("#F2F2F7", 0.3)];
   }
   
   bgGradient.locations = [0, 1];
   w.backgroundGradient = bgGradient;
   
   // 玻璃切面边框线
-  w.borderWidth = 0.5;
-  w.borderColor = Color.dynamic(new Color("#8E8E93", 0.2), new Color("#FFFFFF", 0.15));
+  w.borderWidth = 1;
+  w.borderColor = Color.dynamic(new Color("#8E8E93", 0.3), new Color("#FFFFFF", 0.4));
 
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
 
@@ -141,12 +138,12 @@ async function createWidget(data) {
     leftStack.addSpacer(3.5);
   };
 
-  addNeonInfo("位置", `${flag} ${data.location}`);
-  addNeonInfo("地址", data.ip);
+  addNeonInfo("IP位置", `${flag} ${data.location}`);
+  addNeonInfo("IP地址", data.ip);
   addNeonInfo("ISP", data.isp);
   addNeonInfo("ASN", data.asn);
-  addNeonInfo("属性", data.isResidential ? "住宅 IP" : "机房 IP");
-  addNeonInfo("来源", data.isBroadcast ? "原生 IP" : "广播 IP");
+  addNeonInfo("IP属性", data.isResidential ? "住宅 IP" : "机房 IP");
+  addNeonInfo("IP来源", data.isBroadcast ? "原生 IP" : "广播 IP");
   
   // 底部固定缓冲
   leftStack.addSpacer(2);
