@@ -49,7 +49,7 @@ async function fetchAllData() {
 // --- 2. 阶梯堆叠算法 ---
 function getStackedGradient(score) {
   const thresholds = [0, 15, 25, 40, 50, 70, 100];
-  const allColors = ["#A16DB3", "#955BA6", "#8A4A99", "#7F398C", "#712D80", "#5D1E73", "#4A148C"];
+  const allColors = ["#E1BEE7", "#CE93D8", "#BA68C8", "#AB47BC", "#9C27B0", "#8E24AA", "#D500F9"];
   let activeColors = [];
   let locations = [];
   for (let i = 0; i < thresholds.length; i++) {
