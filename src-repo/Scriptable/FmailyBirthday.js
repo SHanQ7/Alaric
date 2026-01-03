@@ -54,7 +54,7 @@ class Widget extends DmYY {
     const chouWeiXu = ["丑", "未", "戌"];
     const ziXingList = ["辰", "午", "酉", "亥"]; 
 
-    w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("38383B"));
+    w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#121214"));
     w.setPadding(10, 6, 10, 6);
     const mainStack = w.addStack();
     const now = new Date();
