@@ -55,84 +55,79 @@ function getStackedGradient(score) {
 // --- 3. UI 渲染逻辑 ---
 async function createWidget(data) {
   let w = new ListWidget();
-  w.setPadding(0, 0, 0, 0);
+  // 适当留白，确保在桌面上美观
+  w.setPadding(12, 12, 12, 12); 
+  
   const isDark = Device.isUsingDarkAppearance();
   const mainColor = isDark ? Color.white() : Color.black();
   const pillBg = isDark ? new Color("#3a3a3c", 0.6) : new Color("#e5e5ea", 0.9);
 
-  // 背景与边框
+  // --- 直接设置组件背景 ---
   let bgGradient = new LinearGradient();
-  bgGradient.colors = isDark ? [new Color("#1c1c1e"), new Color("#000000")] : [new Color("#f2f2f7"), new Color("#ffffff")];
+  bgGradient.colors = isDark 
+    ? [new Color("#1c1c1e"), new Color("#000000")] 
+    : [new Color("#f2f2f7"), new Color("#ffffff")];
   w.backgroundGradient = bgGradient;
 
-  let edgeStack = w.addStack();
-  edgeStack.size = new Size(155, 155);
-  edgeStack.setPadding(1, 1, 1, 1);
-  let edgeGrad = new LinearGradient();
-  edgeGrad.colors = [new Color("#ffffff", 0.4), new Color("#ffffff", 0)];
-  edgeStack.backgroundGradient = edgeGrad;
-
-  let mainStack = edgeStack.addStack();
-  mainStack.layoutVertically();
-  mainStack.setPadding(12, 10, 10, 10);
-  mainStack.backgroundColor = isDark ? new Color("#000000", 0.95) : new Color("#ffffff", 1);
-  mainStack.cornerRadius = 21;
-
-  if (!data) return w;
+  if (!data) {
+    w.addText("数据连接失败").textColor = mainColor;
+    return w;
+  }
 
   // --- 顶部：国旗 + 地理位置 ---
-  let header = mainStack.addStack();
+  let header = w.addStack();
   header.centerAlignContent();
   header.addText(getFlagEmoji(data.countryCode)).font = Font.systemFont(18);
-  header.addSpacer(4);
+  header.addSpacer(6);
   let locText = header.addText(data.location.toUpperCase());
-  locText.font = Font.heavySystemFont(12);
+  locText.font = Font.heavySystemFont(13);
   locText.textColor = mainColor;
   locText.lineLimit = 1;
 
-  mainStack.addSpacer(); // 标题与内容区的间距
+  w.addSpacer(); // 灵活间距，推挤内容
 
-  // --- 下方核心内容区 (水平排列：左风险条，右信息胶囊) ---
-  let contentArea = mainStack.addStack();
+  // --- 内容区：左侧整合长风险条 + 右侧四行信息 ---
+  let contentArea = w.addStack();
   contentArea.layoutHorizontally();
   contentArea.bottomAlignContent();
 
-  // 几何参数计算
-  const rowGap = 4;        // 行间距
-  const infoRowHeight = 22; // 每行信息的高度
-  const rowCount = 4;      // 总共四行
-  const totalContentHeight = (infoRowHeight * rowCount) + (rowGap * (rowCount - 1)); // 约 100px
-  const barWidth = 5;      // 风险条宽度
+  // 几何参数
+  const rowGap = 5;         // 右侧胶囊间距
+  const infoRowHeight = 24;  // 右侧胶囊高度
+  const rowCount = 4;
+  const totalBarHeight = (infoRowHeight * rowCount) + (rowGap * (rowCount - 1));
+  const barWidth = 6;
 
-  // 1. 左侧：合并后的单一风险进度条
+  // 1. 左侧：合并后的长进度条
   let riskContainer = contentArea.addStack();
-  riskContainer.size = new Size(barWidth, totalContentHeight);
-  riskContainer.cornerRadius = 2.5;
-  riskContainer.backgroundColor = pillBg; // 底色与右侧一致
+  riskContainer.size = new Size(barWidth, totalBarHeight);
+  riskContainer.cornerRadius = 3;
+  riskContainer.backgroundColor = pillBg; 
   riskContainer.layoutVertically();
-  riskContainer.addSpacer(); // 底部对齐
+  riskContainer.addSpacer(); // 使进度条底部对齐向上
 
   let progressBar = riskContainer.addStack();
-  progressBar.size = new Size(barWidth, totalContentHeight * (data.fraudScore / 100));
-  progressBar.cornerRadius = 2.5;
+  progressBar.size = new Size(barWidth, totalBarHeight * (data.fraudScore / 100));
+  progressBar.cornerRadius = 3;
   let g = new LinearGradient();
   let gd = getStackedGradient(data.fraudScore);
   g.colors = gd.colors;
   g.locations = gd.locations;
   progressBar.backgroundGradient = g;
 
-  contentArea.addSpacer(8); // 左右间距
+  contentArea.addSpacer(10); // 左右间距
 
-  // 2. 右侧：四行信息胶囊
+  // 2. 右侧：信息胶囊列
   let infoCol = contentArea.addStack();
   infoCol.layoutVertically();
-  const infoWidth = 105;
-
+  
   const addPill = (text, fontSize) => {
     let p = infoCol.addStack();
-    p.size = new Size(infoWidth, infoRowHeight);
+    // 移除固定宽度，使用弹性布局
     p.backgroundColor = pillBg;
-    p.cornerRadius = 5;
+    p.cornerRadius = 6;
+    p.setPadding(0, 8, 0, 8); // 内部文字间距
+    p.size = new Size(0, infoRowHeight); // 0表示自适应宽度
     p.centerAlignContent();
     let t = p.addText(text);
     t.font = Font.boldSystemFont(fontSize);
@@ -141,30 +136,30 @@ async function createWidget(data) {
   };
 
   // Row 1: IP
-  addPill(data.ip, 10);
+  addPill(data.ip, 11);
   infoCol.addSpacer(rowGap);
 
   // Row 2: ISP
-  addPill(data.isp.toUpperCase(), 8);
+  addPill(data.isp.toUpperCase(), 8.5);
   infoCol.addSpacer(rowGap);
 
   // Row 3: ASN
-  addPill(data.asn, 8);
+  addPill(data.asn, 8.5);
   infoCol.addSpacer(rowGap);
 
-  // Row 4: 并排双标签
+  // Row 4: 双标签
   let lastRow = infoCol.addStack();
   lastRow.layoutHorizontally();
-  const smallWidth = (infoWidth - rowGap) / 2;
   
   const addSmallTag = (text) => {
     let tag = lastRow.addStack();
-    tag.size = new Size(smallWidth, infoRowHeight);
+    tag.height = infoRowHeight;
     tag.backgroundColor = pillBg;
-    tag.cornerRadius = 5;
+    tag.cornerRadius = 6;
+    tag.setPadding(0, 6, 0, 6);
     tag.centerAlignContent();
     let st = tag.addText(text);
-    st.font = Font.boldSystemFont(8);
+    st.font = Font.boldSystemFont(8.5);
     st.textColor = mainColor;
   };
 
@@ -172,7 +167,6 @@ async function createWidget(data) {
   lastRow.addSpacer(rowGap);
   addSmallTag(data.isBroadcast ? "原生 IP" : "广播 IP");
 
-  mainStack.addSpacer(2);
   return w;
 }
 
