@@ -156,33 +156,30 @@ async function createWidget(data) {
   mainStack.addSpacer(5);
 
   // 第二行：ISP(上) + ASN(下)
-  let r2Col = r2.addStack();
-  r2Col.layoutVertically();
-  addRiskBar(r2);
-  r2.addSpacer(8);
   let r2 = mainStack.addStack();
   r2.topAlignContent();
-
+  addRiskBar(r2);
+  r2.addSpacer(8);
+  let r2Col = r2.addStack();
+  r2Col.layoutVertically();
   let b2Top = r2Col.addStack();
   b2Top.size = new Size(totalWidth, splitHeight);
   b2Top.backgroundColor = pillBg;
   b2Top.cornerRadius = 3;
   b2Top.centerAlignContent();
-  let t2Top = b2Top.addText(data.isp.toUpperCase());
+  let t2Top = b2Top.addText(data.asn);
   t2Top.font = Font.boldSystemFont(7.5);
   t2Top.textColor = mainColor;
-  t2Top.lineLimit = 1;
-
   r2Col.addSpacer(tagGap);
-
   let b2Bottom = r2Col.addStack();
   b2Bottom.size = new Size(totalWidth, splitHeight);
   b2Bottom.backgroundColor = pillBg;
   b2Bottom.cornerRadius = 3;
   b2Bottom.centerAlignContent();
-  let t2Bottom = b2Bottom.addText(data.asn);
+  let t2Bottom = b2Bottom.addText(data.isp.toUpperCase());
   t2Bottom.font = Font.boldSystemFont(7.5);
   t2Bottom.textColor = mainColor;
+  t2Bottom.lineLimit = 1;
 
   mainStack.addSpacer(5);
 
