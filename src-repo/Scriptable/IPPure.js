@@ -88,10 +88,10 @@ async function createWidget(data) {
   // Header
   let header = w.addStack();
   header.centerAlignContent();
-  header.addText(getFlagEmoji(data.countryCode)).font = Font.systemFont(18);
+  header.addText(getFlagEmoji(data.countryCode)).font = Font.systemFont(20);
   header.addSpacer(6);
   let locText = header.addText(data.location); 
-  locText.font = Font.heavySystemFont(12);
+  locText.font = Font.heavySystemFont(13);
   locText.textColor = mainColor;
   locText.lineLimit = 1;
   header.addSpacer();
@@ -129,7 +129,7 @@ async function createWidget(data) {
   // Info Pills
   let infoCol = contentArea.addStack();
   infoCol.layoutVertically();
-  const infoWidth = 116; 
+  const infoWidth = 117; 
 
   const addPill = (text, fontSize) => {
     let p = infoCol.addStack();
@@ -146,10 +146,11 @@ async function createWidget(data) {
 
   addPill(data.ip, 11);
   infoCol.addSpacer(rowGap);
-  addPill(data.isp.toUpperCase(), 8.5);
-  infoCol.addSpacer(rowGap);
   addPill(data.asn, 8.5);
   infoCol.addSpacer(rowGap);
+  addPill(data.isp.toUpperCase(), 8.5);
+  infoCol.addSpacer(rowGap);
+
 
   let lastRow = infoCol.addStack();
   lastRow.layoutHorizontally();
