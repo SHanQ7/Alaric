@@ -55,60 +55,56 @@ function getStackedGradient(score) {
 // --- 3. UI 渲染逻辑 ---
 async function createWidget(data) {
   let w = new ListWidget();
-  // 适当留白，确保在桌面上美观
-  w.setPadding(12, 12, 12, 12); 
+  w.setPadding(14, 12, 12, 12); 
   
   const isDark = Device.isUsingDarkAppearance();
   const mainColor = isDark ? Color.white() : Color.black();
   const pillBg = isDark ? new Color("#3a3a3c", 0.6) : new Color("#e5e5ea", 0.9);
 
-  // --- 直接设置组件背景 ---
+  // 背景
   let bgGradient = new LinearGradient();
   bgGradient.colors = isDark 
     ? [new Color("#1c1c1e"), new Color("#000000")] 
     : [new Color("#f2f2f7"), new Color("#ffffff")];
   w.backgroundGradient = bgGradient;
 
-  if (!data) {
-    w.addText("数据连接失败").textColor = mainColor;
-    return w;
-  }
+  if (!data) return w;
 
-  // --- 顶部：国旗 + 地理位置 ---
+  // --- 顶部：地理位置 ---
   let header = w.addStack();
   header.centerAlignContent();
   header.addText(getFlagEmoji(data.countryCode)).font = Font.systemFont(18);
   header.addSpacer(6);
   let locText = header.addText(data.location.toUpperCase());
-  locText.font = Font.heavySystemFont(13);
+  locText.font = Font.heavySystemFont(12);
   locText.textColor = mainColor;
   locText.lineLimit = 1;
 
-  w.addSpacer(); // 灵活间距，推挤内容
+  w.addSpacer(); // 灵活推挤内容
 
-  // --- 内容区：左侧整合长风险条 + 右侧四行信息 ---
+  // --- 内容区：左风险条 + 右四行胶囊 ---
   let contentArea = w.addStack();
   contentArea.layoutHorizontally();
   contentArea.bottomAlignContent();
 
-  // 几何参数
-  const rowGap = 5;         // 右侧胶囊间距
-  const infoRowHeight = 24;  // 右侧胶囊高度
+  // 精准几何参数
+  const rowGap = 4;          // 胶囊垂直间距
+  const infoRowHeight = 19;  // 每行胶囊高度
   const rowCount = 4;
+  const barWidth = 5;
   const totalBarHeight = (infoRowHeight * rowCount) + (rowGap * (rowCount - 1));
-  const barWidth = 6;
 
-  // 1. 左侧：合并后的长进度条
+  // 1. 左侧：合并长风险条
   let riskContainer = contentArea.addStack();
   riskContainer.size = new Size(barWidth, totalBarHeight);
-  riskContainer.cornerRadius = 3;
+  riskContainer.cornerRadius = 2.5;
   riskContainer.backgroundColor = pillBg; 
   riskContainer.layoutVertically();
-  riskContainer.addSpacer(); // 使进度条底部对齐向上
+  riskContainer.addSpacer();
 
   let progressBar = riskContainer.addStack();
   progressBar.size = new Size(barWidth, totalBarHeight * (data.fraudScore / 100));
-  progressBar.cornerRadius = 3;
+  progressBar.cornerRadius = 2.5;
   let g = new LinearGradient();
   let gd = getStackedGradient(data.fraudScore);
   g.colors = gd.colors;
@@ -117,17 +113,16 @@ async function createWidget(data) {
 
   contentArea.addSpacer(10); // 左右间距
 
-  // 2. 右侧：信息胶囊列
+  // 2. 右侧：信息列
   let infoCol = contentArea.addStack();
   infoCol.layoutVertically();
-  
+  const infoWidth = 106; // 固定宽度确保对齐
+
   const addPill = (text, fontSize) => {
     let p = infoCol.addStack();
-    // 移除固定宽度，使用弹性布局
+    p.size = new Size(infoWidth, infoRowHeight);
     p.backgroundColor = pillBg;
-    p.cornerRadius = 6;
-    p.setPadding(0, 8, 0, 8); // 内部文字间距
-    p.size = new Size(0, infoRowHeight); // 0表示自适应宽度
+    p.cornerRadius = 5;
     p.centerAlignContent();
     let t = p.addText(text);
     t.font = Font.boldSystemFont(fontSize);
@@ -136,36 +131,36 @@ async function createWidget(data) {
   };
 
   // Row 1: IP
-  addPill(data.ip, 11);
+  addPill(data.ip, 10);
   infoCol.addSpacer(rowGap);
 
   // Row 2: ISP
-  addPill(data.isp.toUpperCase(), 8.5);
+  addPill(data.isp.toUpperCase(), 7.5);
   infoCol.addSpacer(rowGap);
 
   // Row 3: ASN
-  addPill(data.asn, 8.5);
+  addPill(data.asn, 7.5);
   infoCol.addSpacer(rowGap);
 
-  // Row 4: 双标签
+  // Row 4: 标签并排
   let lastRow = infoCol.addStack();
   lastRow.layoutHorizontally();
+  const smallWidth = (infoWidth - rowGap) / 2;
   
-  const addSmallTag = (text) => {
+  const createTag = (text) => {
     let tag = lastRow.addStack();
-    tag.height = infoRowHeight;
+    tag.size = new Size(smallWidth, infoRowHeight);
     tag.backgroundColor = pillBg;
-    tag.cornerRadius = 6;
-    tag.setPadding(0, 6, 0, 6);
+    tag.cornerRadius = 5;
     tag.centerAlignContent();
     let st = tag.addText(text);
-    st.font = Font.boldSystemFont(8.5);
+    st.font = Font.boldSystemFont(7.5);
     st.textColor = mainColor;
   };
 
-  addSmallTag(data.isResidential ? "住宅 IP" : "机房 IP");
+  createTag(data.isResidential ? "住宅 IP" : "机房 IP");
   lastRow.addSpacer(rowGap);
-  addSmallTag(data.isBroadcast ? "原生 IP" : "广播 IP");
+  createTag(data.isBroadcast ? "原生 IP" : "广播 IP");
 
   return w;
 }
