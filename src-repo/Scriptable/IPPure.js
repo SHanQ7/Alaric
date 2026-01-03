@@ -60,16 +60,15 @@ if (!config.runsInWidget) await widget.presentMedium();
 Script.setWidget(widget);
 Script.complete();
 
-// --- 3. UI 渲染 (已优化布局版本) ---
+// --- 3. UI 渲染 ---
 async function createWidget(data) {
   let w = new ListWidget();
-  // 适当增加上下内边距 (上, 左, 下, 右)
-  w.setPadding(20, 16, 20, 16); 
+
+  w.setPadding(24, 16, 24, 16); 
 
   const purpleNeon = new Color("#8165AC");
   const mainTextColor = Color.dynamic(new Color("#1C1C1E"), new Color("#FFFFFF"));
 
-  // 背景保持不变...
   w.backgroundColor = Color.dynamic(new Color("#ffffff", 0.35), new Color("#1c1c1e", 0.75));
   let bgGradient = new LinearGradient();
   if (Device.isUsingDarkAppearance()) {
@@ -92,7 +91,6 @@ async function createWidget(data) {
   const flag = getFlagEmoji(data.countryCode);
   const accentColor = score < 20 ? new Color("#4ade80") : (score < 60 ? new Color("#facc15") : new Color("#f87171"));
 
-  // 主容器布局
   let mainStack = w.addStack();
   mainStack.layoutHorizontally();
   mainStack.centerAlignContent(); 
@@ -106,13 +104,13 @@ async function createWidget(data) {
   const addNeonInfo = (label, value) => {
     let rowStack = leftStack.addStack();
     rowStack.centerAlignContent();
-
+    
     let labelStack = rowStack.addStack();
-    labelStack.size = new Size(40, 20);
+    labelStack.size = new Size(40, 18);
     labelStack.centerAlignContent(); 
     
     let boxStack = labelStack.addStack();
-    boxStack.size = new Size(38, 17);
+    boxStack.size = new Size(38, 16);
     boxStack.cornerRadius = 4;
     boxStack.borderWidth = 1.2;
     boxStack.borderColor = purpleNeon;
@@ -125,20 +123,19 @@ async function createWidget(data) {
     rowStack.addSpacer(8);
     
     let infoValueStack = rowStack.addStack();
-    infoValueStack.size = new Size(140, 20); 
-    infoValueStack.cornerRadius = 10;
-    infoValueStack.borderWidth = 1.5;
+    infoValueStack.size = new Size(135, 18);
+    infoValueStack.cornerRadius = 9;
+    infoValueStack.borderWidth = 1.2;
     infoValueStack.borderColor = purpleNeon;
     infoValueStack.setPadding(0, 8, 0, 8);
     infoValueStack.centerAlignContent();
     
     let vText = infoValueStack.addText(value);
-    vText.font = Font.boldSystemFont(9.5);
+    vText.font = Font.boldSystemFont(9);
     vText.textColor = mainTextColor;
     vText.lineLimit = 1;
     vText.minimumScaleFactor = 0.5;
-    
-    leftStack.addSpacer(5);
+    leftStack.addSpacer(6); 
   };
 
   addNeonInfo("IP位置", `${flag} ${data.location}`);
@@ -148,12 +145,13 @@ async function createWidget(data) {
   addNeonInfo("IP属性", data.isResidential ? "住宅 IP" : "机房 IP");
   addNeonInfo("IP來源", data.isBroadcast ? "原生 IP" : "广播 IP");
 
-  leftStack.addSpacer();
+  leftStack.addSpacer(); 
+
   mainStack.addSpacer(); 
 
   // --- C. 右侧圆环列 ---
   let rightStack = mainStack.addStack();
-  rightStack.size = new Size(90, 90); 
+  rightStack.size = new Size(85, 85);
   rightStack.centerAlignContent();
   
   let canvas = new DrawContext();
@@ -180,7 +178,7 @@ async function createWidget(data) {
   
   rightStack.backgroundImage = canvas.getImage();
   let scoreText = rightStack.addText(`${score}`);
-  scoreText.font = Font.boldSystemFont(28);
+  scoreText.font = Font.boldSystemFont(26);
   scoreText.textColor = mainTextColor;
 
   return w;
