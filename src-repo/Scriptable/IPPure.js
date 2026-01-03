@@ -37,13 +37,13 @@ async function fetchAllData() {
 function getStackedGradient(score) {
   const thresholds = [0, 15, 25, 40, 50, 70, 100];
   const allColors = [
-    "#F3E5F5", // 0
-    "#E1BEE7", // 15
-    "#CE93D8", // 25
-    "#BA68C8", // 40
-    "#9C27B0", // 50
-    "#7B1FA2", // 70
-    "#4A148C"  // 100
+    "#A16DB3",
+    "#955BA6",
+    "#8A4A99",
+    "#7F398C",
+    "#712D80",
+    "#5D1E73",
+    "#4A148C"
   ];
 
   let activeColors = [];
@@ -73,7 +73,7 @@ async function createWidget(data) {
   w.setPadding(0, 0, 0, 0);
   const isDark = Device.isUsingDarkAppearance();
   const mainColor = isDark ? Color.white() : Color.black();
-  const pillBg = isDark ? new Color("#3a3a3c", 0.6) : new Color("#e5e5ea", 0.9);
+  const pillBg = isDark ? new Color("#3a3a3c", 0.7) : new Color("#E8E8ED", 0.7);
 
   // 背景
   let bgGradient = new LinearGradient();
@@ -93,7 +93,7 @@ async function createWidget(data) {
   // 主内容容器
   let mainStack = edgeStack.addStack();
   mainStack.layoutVertically();
-  mainStack.setPadding(12, 10, 12, 10);
+  mainStack.setPadding(12, 12, 12, 12);
   mainStack.backgroundColor = isDark ? new Color("#000000", 0.95) : new Color("#ffffff", 0.95);
   mainStack.cornerRadius = 21;
 
@@ -109,7 +109,7 @@ async function createWidget(data) {
   header.addText(getFlagEmoji(data.countryCode)).font = Font.systemFont(23);
   header.addSpacer(4);
   let locText = header.addText(data.location.toUpperCase());
-  locText.font = Font.heavySystemFont(12);
+  locText.font = Font.heavySystemFont(15);
   locText.textColor = mainColor;
   locText.lineLimit = 1;
 
@@ -119,14 +119,14 @@ async function createWidget(data) {
   const totalWidth = 118;
   const tagGap = 6;
   const rowHeight = 26;
-  const splitHeight = (rowHeight - tagGap) / 2; // 10px
+  const splitHeight = (rowHeight - tagGap) / 2;
 
   // 风险进度条组件
   const addRiskBar = (row) => {
     let p = row.addStack();
     p.size = new Size(5, rowHeight);
     p.cornerRadius = 2.5;
-    p.backgroundColor = isDark ? new Color("#696969", 0.1) : new Color("#696969", 0.05);
+    p.backgroundColor = pillBg;
     p.layoutVertically();
     p.addSpacer();
     let bar = p.addStack();
