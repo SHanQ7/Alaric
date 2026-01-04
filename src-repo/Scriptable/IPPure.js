@@ -178,6 +178,8 @@ async function createWidget(data) {
     p.backgroundColor = pillBg;
     p.cornerRadius = 6;
     p.centerAlignContent();
+    p.setPadding(0, 3, 0, 3);
+    
     let t = p.addText(text);
     t.font = Font.boldSystemFont(fontSize);
     t.textColor = mainColor;
@@ -185,11 +187,11 @@ async function createWidget(data) {
     t.minimumScaleFactor = 0.8;
   };
 
-  addPill(data.ip, 11);
+  addPill(data.ip, 10);
   infoCol.addSpacer(rowGap);
-  addPill(data.asn, 8.5);
+  addPill(data.asn, 10);
   infoCol.addSpacer(rowGap);
-  addPill(data.isp.toUpperCase(), 8.5);
+  addPill(data.isp.toUpperCase(), 10);
   infoCol.addSpacer(rowGap);
 
   let lastRow = infoCol.addStack();
