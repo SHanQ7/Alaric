@@ -22,34 +22,63 @@ function processField(str) {
 // --- 2. 数据获取 ---
 async function fetchAllData() {
   try {
+    // A. 获取基础地理信息
     const geoReq = new Request(geoUrl);
     geoReq.timeoutInterval = 10;
-    const riskReq = new Request(riskUrl);
-    riskReq.timeoutInterval = 10;
-
-    const [geo, risk] = await Promise.all([
-      geoReq.loadJSON().catch(() => null),
-      riskReq.loadJSON().catch(() => null)
-    ]);
-
+    const geo = await geoReq.loadJSON().catch(() => null);
     if (!geo || geo.status !== "success") return null;
 
+    const targetIP = geo.query;
+
+    // B. WebView 精准抓取 IPPure 数据
+    let wv = new WebView();
+    // 使用精准 URL 参数
+    await wv.loadURL(`https://ippure.com/?ip=${targetIP}`);
+    
+    // 等待 7 秒渲染
+    await new Promise(r => {
+      let t = new Timer();
+      t.timeInterval = 7000; 
+      t.schedule(r);
+    });
+
+    const risk = await wv.evaluateJavaScript(`
+      function scrape() {
+        const text = document.body.innerText;
+        const lines = text.split('\\n').map(l => l.trim());
+        function getVal(key) {
+          const idx = lines.findIndex(l => l.includes(key));
+          if (idx !== -1) {
+            for (let i = idx + 1; i < idx + 5; i++) {
+              if (lines[i] && lines[i].length > 1) return lines[i];
+            }
+          }
+          return "未知";
+        }
+        return {
+          score: parseInt(getVal("IPPure系数").match(/\\d+/)?.[0] || "0"),
+          type: getVal("IP属性"),
+          source: getVal("IP来源")
+        };
+      }
+      scrape();
+    `);
+
+    // C. 格式化地理位置
     let country = processField(regionMap[geo.country] || geo.country);
     let region = processField(regionMap[geo.regionName] || geo.regionName);
-
     let finalLocation = (country.includes(region) || region.includes(country) || country === region || !region) 
-                        ? country 
-                        : `${country} ${region}`;
+                        ? country : `${country} ${region}`;
 
     return {
-      ip: geo.query,
+      ip: targetIP,
       location: finalLocation.toUpperCase(),
       isp: processField(geo.isp) || geo.isp,
       asn: geo.as ? geo.as.split(' ')[0] : "AS----",
       countryCode: geo.countryCode,
-      fraudScore: risk ? (risk.fraudScore || 0) : 0,
-      isResidential: risk ? risk.isResidential : false,
-      isBroadcast: risk ? risk.isBroadcast : true
+      fraudScore: risk.score,
+      isResidential: risk.type.includes("住宅"),
+      isBroadcast: risk.source.includes("原生")
     };
   } catch (e) {
     console.log("数据加载失败: " + e);
