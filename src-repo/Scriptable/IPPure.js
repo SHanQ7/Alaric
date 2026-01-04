@@ -1,4 +1,4 @@
-// IPPure + IP-API 综合监测组件 - 最终优化版
+// IPPure + IP-API 综合监测组件
 const geoUrl = "http://ip-api.com/json/?lang=zh-CN";
 const riskUrl = "https://my.ippure.com/v1/info";
 
