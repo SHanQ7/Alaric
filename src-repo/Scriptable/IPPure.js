@@ -49,20 +49,27 @@ async function fetchAllData() {
 // --- 2. 阶梯堆叠算法 ---
 function getStackedGradient(score) {
   const thresholds = [0, 15, 25, 40, 50, 70, 100];
-  const allColors = ["#E1BEE7", "#CE93D8", "#BA68C8", "#AB47BC", "#9C27B0", "#8E24AA", "#D500F9"];
+  const allColors = ["#166534", "#22C55E", "#84CC16", "#EAB308", "#F97316", "#DC2626"];
   let activeColors = [];
   let locations = [];
+
   for (let i = 0; i < thresholds.length; i++) {
     if (score >= thresholds[i]) {
-      activeColors.push(new Color(allColors[i]));
+      let colorIdx = Math.min(i, allColors.length - 1);
+      activeColors.push(new Color(allColors[colorIdx]));
       locations.push(thresholds[i] / (score || 1)); 
     }
   }
-  if (score > 0 && !thresholds.includes(score)) {
-    activeColors.push(new Color(allColors[Math.min(activeColors.length - 1, allColors.length - 1)]));
+
+  if (score > 0 && locations[locations.length - 1] < 1) {
+    activeColors.push(activeColors[activeColors.length - 1]);
     locations.push(1.0);
   }
-  return { colors: activeColors.reverse(), locations: locations.map(l => 1 - l).reverse() };
+
+  return { 
+    colors: activeColors.reverse(), 
+    locations: locations.map(l => 1 - l).reverse() 
+  };
 }
 
 // --- 3. UI 渲染 ---
