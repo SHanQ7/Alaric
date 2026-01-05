@@ -55,7 +55,7 @@ class Widget extends DmYY {
     const ziXingList = ["辰", "午", "酉", "亥"]; 
 
     // 背景色
-    w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#0F0F11"));
+    w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#212121"));
     w.setPadding(10, 6, 10, 6);
     const mainStack = w.addStack();
     const now = new Date();
@@ -87,7 +87,7 @@ class Widget extends DmYY {
       // 容器构建
       const highlightStack = mainStack.addStack();
       highlightStack.setPadding(1, 1, 0, 0); 
-      highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#3A3A3C"));
+      highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#575759"));
       highlightStack.cornerRadius = 14;
 
       const shadowStack = highlightStack.addStack();
@@ -97,7 +97,7 @@ class Widget extends DmYY {
 
       const container = shadowStack.addStack();
       container.size = new Size(canvasW, 140);
-      container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#28282A"));
+      container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#212121"));
       container.cornerRadius = 13;
 
       const canvas = new DrawContext();
@@ -132,7 +132,7 @@ class Widget extends DmYY {
       
       labels.forEach((text, idx) => {
         const hasStatus = (idx === 4 && statusColor !== null);
-        canvas.setFillColor(hasStatus ? statusColor : Color.dynamic(new Color("#E2E2E7"), new Color("#2C2C2E")));
+        canvas.setFillColor(hasStatus ? statusColor : Color.dynamic(new Color("#E2E2E7"), new Color("#212121")));
         
         // --- 绘制胶囊背景 ---
         const path = new Path();
@@ -142,7 +142,7 @@ class Widget extends DmYY {
 
         canvas.setFont(Font.boldSystemFont(fSize));
         canvas.setTextColor(hasStatus ? Color.white() : Color.dynamic(new Color("#444448"), new Color("#AEAEB2")));
-        canvas.drawTextInRect(text, new Rect(0, Math.round(currentY) - 1.2 , canvasW, capsuleH + 2));
+        canvas.drawTextInRect(text, new Rect(0, Math.round(currentY) , canvasW, capsuleH));
         
         currentY += fGap; 
       });
