@@ -54,7 +54,7 @@ class Widget extends DmYY {
     const chouWeiXu = ["丑", "未", "戌"];
     const ziXingList = ["辰", "午", "酉", "亥"]; 
 
-    w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#121214"));
+    w.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#161618"));
     w.setPadding(10, 6, 10, 6);
     const mainStack = w.addStack();
     const now = new Date();
@@ -86,7 +86,7 @@ class Widget extends DmYY {
       // 容器构建
       const highlightStack = mainStack.addStack();
       highlightStack.setPadding(1, 1, 0, 0); 
-      highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#3A3A3C"));
+      highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#353538"));
       highlightStack.cornerRadius = 14;
 
       const shadowStack = highlightStack.addStack();
@@ -96,7 +96,7 @@ class Widget extends DmYY {
 
       const container = shadowStack.addStack();
       container.size = new Size(canvasW, 140);
-      container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#161618"));
+      container.backgroundColor = Color.dynamic(new Color("#EBEBEF"), new Color("#242426"));
       container.cornerRadius = 13;
 
       const canvas = new DrawContext();
