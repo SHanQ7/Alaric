@@ -22,7 +22,6 @@ function processField(str) {
 // --- 2. 数据获取 ---
 async function fetchAllData() {
   try {
-    // A. 获取基础地理信息
     const geoReq = new Request(geoUrl);
     geoReq.timeoutInterval = 10;
     const geo = await geoReq.loadJSON().catch(() => null);
@@ -30,12 +29,9 @@ async function fetchAllData() {
 
     const targetIP = geo.query;
 
-    // B. WebView 精准抓取 IPPure 数据
+    // WebView 抓取
     let wv = new WebView();
-    // 使用精准 URL 参数
     await wv.loadURL(`https://ippure.com/?ip=${targetIP}`);
-    
-    // 等待 7 秒渲染
     await new Promise(r => {
       let t = new Timer();
       t.timeInterval = 7000; 
@@ -64,7 +60,26 @@ async function fetchAllData() {
       scrape();
     `);
 
-    // C. 格式化地理位置
+    const score = risk.score;
+    const thresholds = [0, 15, 25, 40, 50, 70, 100];
+    const segmentH = 17;
+    let totalH = 0;
+
+    for (let i = 0; i < 6; i++) {
+      let low = thresholds[i];
+      let up = thresholds[i+1];
+      
+      if (score >= up) {
+        totalH += segmentH;
+      } else if (score > low) {
+        totalH += (score - low) / (up - low) * segmentH;
+        break;
+      } else {
+        break; 
+      }
+    }
+
+    // 格式化地理位置
     let country = processField(regionMap[geo.country] || geo.country);
     let region = processField(regionMap[geo.regionName] || geo.regionName);
     let finalLocation = (country.includes(region) || region.includes(country) || country === region || !region) 
@@ -76,7 +91,8 @@ async function fetchAllData() {
       isp: processField(geo.isp) || geo.isp,
       asn: geo.as ? geo.as.split(' ')[0] : "AS----",
       countryCode: geo.countryCode,
-      fraudScore: risk.score,
+      fraudScore: score,
+      barHeight: totalH,
       isResidential: risk.type.includes("住宅"),
       isBroadcast: risk.source.includes("原生")
     };
@@ -177,13 +193,13 @@ async function createWidget(data) {
   let riskContainer = contentArea.addStack();
   riskContainer.size = new Size(barWidth, totalBarHeight);
   riskContainer.cornerRadius = 3;
-  riskContainer.backgroundColor = isDark ? new Color("#121212", 0.7) : new Color("#d1d1d6", 0.5); 
+  riskContainer.backgroundColor = isDark ? new Color("#121212", 0.7) : new Color("#121212", 0.7); 
   riskContainer.layoutVertically();
   riskContainer.addSpacer();
 
   // 内部进度条
   let progressBar = riskContainer.addStack();
-  progressBar.size = new Size(barWidth, (totalBarHeight / 6) * filledSegmentsCount);
+  progressBar.size = new Size(barWidth, data.barHeight); 
   progressBar.cornerRadius = 3;
   progressBar.borderWidth = 0.5;
   progressBar.borderColor = new Color("#FFFFFF", 0.35);
@@ -213,7 +229,7 @@ async function createWidget(data) {
     t.font = Font.boldSystemFont(fontSize);
     t.textColor = mainColor;
     t.lineLimit = 1;
-    t.minimumScaleFactor = 0.8;
+    t.minimumScaleFactor = 0.5;
   };
 
   addPill(data.ip, 10);
@@ -236,9 +252,10 @@ async function createWidget(data) {
     st.font = Font.boldSystemFont(8.5);
     st.textColor = mainColor;
   };
-  createTag(data.isResidential ? "住宅 IP" : "机房 IP");
-  lastRow.addSpacer(rowGap);
+
   createTag(data.isBroadcast ? "原生 IP" : "广播 IP");
+  lastRow.addSpacer(rowGap);
+  createTag(data.isResidential ? "住宅 IP" : "机房 IP");
 
   w.addSpacer(); 
   return w;
