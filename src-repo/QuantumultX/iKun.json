@@ -1,0 +1,18 @@
+{
+ "name":"iKun",
+ "description":"Made by iKun",
+ "icons":[
+  {
+   "name":"CMCC.png",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/img-repo/png/CMCC.png"
+  },
+  {
+   "name":"CUCC.png",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/img-repo/png/CUCC.png"
+  },
+  {
+   "name":"CTCC.png",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/img-repo/png/CTCC.png"
+  }
+ ]
+}
