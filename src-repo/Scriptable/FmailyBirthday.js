@@ -87,7 +87,7 @@ class Widget extends DmYY {
       // 容器构建
       const highlightStack = mainStack.addStack();
       highlightStack.setPadding(1, 1, 0, 0); 
-      highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#575759"));
+      highlightStack.backgroundColor = Color.dynamic(new Color("#FFFFFF"), new Color("#404040"));
       highlightStack.cornerRadius = 14;
 
       const shadowStack = highlightStack.addStack();
