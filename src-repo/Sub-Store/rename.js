@@ -56,7 +56,7 @@ const countryList = [
   { enShort: "CX", enShort3: "CXR", zh: "圣诞岛", enFull: "Christmas Island", emoji: "🇨🇽" },
   { enShort: "CY", enShort3: "CYP", zh: "塞浦路斯", enFull: "Cyprus", emoji: "🇨🇾", alias: ["Nicosia"] },
   { enShort: "CZ", enShort3: "CZE", zh: "捷克", enFull: "Czechia", emoji: "🇨🇿", alias: ["Prague"] },
-  { enShort: "DE", enShort3: "DEU", zh: "德国", enFull: "Germany", emoji: "🇩🇪", alias: ["Berlin", “German", "Franfurt" ] },
+  { enShort: "DE", enShort3: "DEU", zh: "德国", enFull: "Germany", emoji: "🇩🇪", alias: ["Berlin", "German", "Franfurt" ] },
   { enShort: "DJ", enShort3: "DJI", zh: "吉布提", enFull: "Djibouti", emoji: "🇩🇯" },
   { enShort: "DK", enShort3: "DNK", zh: "丹麦", enFull: "Denmark", emoji: "🇩🇰", alias: ["Copenhagen"] },
   { enShort: "DM", enShort3: "DMA", zh: "多米尼加", enFull: "Dominica", emoji: "🇩🇲" },
