@@ -1,0 +1,69 @@
+- name: update_ip
+        run: |
+          TARGET_FILE=".github/workflows/addressesapi.txt"
+
+          SOURCES=(
+            "https://cf.090227.xyz/ip.164746.xyz|"
+            "https://raw.githubusercontent.com/ymyuuu/IPDB/refs/heads/main/BestCF/bestcfv4.txt|"
+            "https://cf.090227.xyz/CloudFlareYes|"
+            "https://cf.090227.xyz/cmcc|CMCC优化"
+            "https://cf.090227.xyz/ct|CT优化"
+            "https://cf.090227.xyz/cu|CUCC优化"
+            "https://raw.githubusercontent.com/hubbylei/subapi/main/addressesapi.txt|"
+          )
+
+          echo "开始处理 IP 数据..."
+          > all_ips_with_tags.txt
+
+          for item in "${SOURCES[@]}"; do
+            url=$(echo $item | cut -d'|' -f1)
+            tag=$(echo $item | cut -d'|' -f2)
+            echo "正在抓取: $url"
+            
+            ips=$(curl -sL "$url" | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}(:[0-9]+)?\b")
+            for ip in $ips; do
+              echo "$ip|$tag" >> all_ips_with_tags.txt
+            done
+          done
+
+          sort -t'|' -k1,1 -u all_ips_with_tags.txt | head -n 60 > unique_list.txt
+
+          echo "# 自动生成于 $(date)" > $TARGET_FILE
+
+          while IFS='|' read -r ip_port tag; do
+            ip=$(echo $ip_port | cut -d':' -f1)
+            echo "正在探测 $ip ..."
+            
+            trace_data=$(curl -s --connect-timeout 2 -H "Host: speed.cloudflare.com" http://$ip/cdn-cgi/trace)
+            colo=$(echo "$trace_data" | grep "colo=" | cut -d'=' -f2)
+            loc=$(echo "$trace_data" | grep "loc=" | cut -d'=' -f2)
+
+            if [ -n "$colo" ]; then
+              case $loc in
+                TW) flag="🇨🇳 台湾" ;;
+                DE) flag="🇩🇪 德国" ;;
+                FR) flag="🇫🇷 法国" ;;
+                GB) flag="🇬🇧 英国" ;;
+                HK) flag="🇭🇰 香港" ;;
+                JP) flag="🇯🇵 日本" ;;
+                SG) flag="🇸🇬 新加坡" ;;
+                US) flag="🇺🇸 美国" ;;
+                *) flag="🏳️ $loc" ;;
+              esac
+
+              remark="$flag $colo"
+              [ -n "$tag" ] && remark="$remark - $tag"
+
+              echo "${ip_port}#${remark}" >> $TARGET_FILE
+            else
+              echo "${ip_port}#探测超时" >> $TARGET_FILE
+            fi
+          done < unique_list.txt
+
+      - name: 提交结果到仓库
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .github/workflows/addressesapi.txt
+          git commit -m "自动更新 IP 列表到 workflows 目录: $(date)" || exit 0
+          git push
