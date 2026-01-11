@@ -16,7 +16,7 @@ jobs:
 
       - name: update_ip
         run: |
-          TARGET_FILE=".github/workflows/addressesapi.txt"
+          TARGET_FILE="addressesapi.txt"
           mkdir -p .github/workflows
 
           SOURCES=(
@@ -68,7 +68,7 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add .github/workflows/addressesapi.txt
+          git add addressesapi.txt
           
           # 关键改进：如果文件没有变化，不执行 commit，避免报错 exit 1
           if git diff --staged --quiet; then
