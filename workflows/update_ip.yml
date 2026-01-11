@@ -1,4 +1,19 @@
-- name: update_ip
+name: 自动更新IP列表
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */2 * * *' 
+
+jobs:
+  update_job:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: update_ip
         run: |
           TARGET_FILE=".github/workflows/addressesapi.txt"
 
@@ -65,5 +80,5 @@
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .github/workflows/addressesapi.txt
-          git commit -m "自动更新 IP 列表到 workflows 目录: $(date)" || exit 0
+          git commit -m "自动更新 IP 列表: $(date)" || exit 0
           git push
