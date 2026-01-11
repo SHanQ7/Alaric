@@ -1,7 +1,7 @@
 name: 自动更新IP列表
 
 on:
-  workflow_dispatch:      # 手动触发按钮
+  workflow_dispatch:      # 手动触发
   schedule:
     - cron: '0 */2 * * *' # 每2小时运行一次
 
@@ -9,7 +9,7 @@ jobs:
   update_job:
     runs-on: ubuntu-latest
     permissions:
-      contents: write     # 必须确保 Settings -> Actions -> General 开启了写权限
+      contents: write     # 核心：申请写权限
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -17,8 +17,6 @@ jobs:
       - name: update_ip
         run: |
           TARGET_FILE=".github/workflows/addressesapi.txt"
-          
-          # 确保目录存在
           mkdir -p .github/workflows
 
           SOURCES=(
@@ -31,47 +29,33 @@ jobs:
             "https://raw.githubusercontent.com/hubbylei/subapi/main/addressesapi.txt|"
           )
 
-          echo "开始处理 IP 数据..."
+          echo "开始抓取数据..."
           > all_ips_raw.txt
-
-          # 1. 抓取 IP
           for item in "${SOURCES[@]}"; do
             url=$(echo $item | cut -d'|' -f1)
             tag=$(echo $item | cut -d'|' -f2)
-            echo "正在抓取: $url"
             ips=$(curl -sL --connect-timeout 10 "$url" | grep -oE "\b([0-9]{1,3}\.){3}[0-9]{1,3}(:[0-9]+)?\b") || true
             for ip in $ips; do
               echo "$ip|$tag" >> all_ips_raw.txt
             done
           done
 
-          # 2. 去重并限制前 100 个
           sort -t'|' -k1,1 -u all_ips_raw.txt | head -n 100 > unique_list.txt
 
-          # 3. 开始探测并写入文件
-          echo "# 更新于 $(date)" > $TARGET_FILE
+          echo "# 更新时间: $(date)" > $TARGET_FILE
           while IFS='|' read -r ip_port tag; do
             ip=$(echo $ip_port | cut -d':' -f1)
-            # 使用更宽容的超时设置
             trace_data=$(curl -s --connect-timeout 3 --max-time 5 -H "Host: speed.cloudflare.com" http://$ip/cdn-cgi/trace || echo "timeout")
             
             if [[ "$trace_data" == *"colo="* ]]; then
               colo=$(echo "$trace_data" | grep "colo=" | cut -d'=' -f2)
               loc=$(echo "$trace_data" | grep "loc=" | cut -d'=' -f2)
-              
               case $loc in
-                TW) flag="🇨🇳 台湾" ;;
-                DE) flag="🇩🇪 德国" ;;
-                FR) flag="🇫🇷 法国" ;;
-                GB) flag="🇬🇧 英国" ;;
-                HK) flag="🇭🇰 香港" ;;
-                JP) flag="🇯🇵 日本" ;;
-                SG) flag="🇸🇬 新加坡" ;;
-                US) flag="🇺🇸 美国" ;;
-                KR) flag="🇰🇷 韩国" ;;
+                TW) flag="🇨🇳 台湾" ;; HK) flag="🇭🇰 香港" ;; SG) flag="🇸🇬 新加坡" ;;
+                JP) flag="🇯🇵 日本" ;; US) flag="🇺🇸 美国" ;; KR) flag="🇰🇷 韩国" ;;
+                DE) flag="🇩🇪 德国" ;; FR) flag="🇫🇷 法国" ;; GB) flag="🇬🇧 英国" ;;
                 *) flag="🏳️ $loc" ;;
               esac
-              
               remark="$flag $colo"
               [[ -n "$tag" ]] && remark="$remark - $tag"
               echo "${ip_port}#${remark}" >> $TARGET_FILE
@@ -86,9 +70,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add .github/workflows/addressesapi.txt
           
-          # 关键点：检查是否有变化，没变化就不 commit，避免 exit 1
+          # 关键改进：如果文件没有变化，不执行 commit，避免报错 exit 1
           if git diff --staged --quiet; then
-            echo "内容没有变化，跳过提交。"
+            echo "数据未发生变化，跳过提交。"
           else
             git commit -m "自动更新 IP 列表: $(date)"
             git push
