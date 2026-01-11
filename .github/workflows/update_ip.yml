@@ -1,15 +1,15 @@
 name: 自动更新IP列表
 
 on:
-  workflow_dispatch:      # 手动触发
+  workflow_dispatch:
   schedule:
-    - cron: '0 */2 * * *' # 每2小时运行一次
+    - cron: '0 */2 * * *' 
 
 jobs:
   update_job:
     runs-on: ubuntu-latest
     permissions:
-      contents: write     # 核心：申请写权限
+      contents: write
     steps:
       - name: 检出代码
         uses: actions/checkout@v4
@@ -17,7 +17,6 @@ jobs:
       - name: update_ip
         run: |
           TARGET_FILE="addressesapi.txt"
-          mkdir -p .github/workflows
 
           SOURCES=(
             "https://cf.090227.xyz/ip.164746.xyz|"
@@ -43,24 +42,31 @@ jobs:
           sort -t'|' -k1,1 -u all_ips_raw.txt | head -n 100 > unique_list.txt
 
           echo "# 更新时间: $(date)" > $TARGET_FILE
+          
+          echo "开始探测节点..."
           while IFS='|' read -r ip_port tag; do
             ip=$(echo $ip_port | cut -d':' -f1)
             trace_data=$(curl -s --connect-timeout 3 --max-time 5 -H "Host: speed.cloudflare.com" http://$ip/cdn-cgi/trace || echo "timeout")
             
             if [[ "$trace_data" == *"colo="* ]]; then
-              colo=$(echo "$trace_data" | grep "colo=" | cut -d'=' -f2)
+              colo_raw=$(echo "$trace_data" | grep "colo=" | cut -d'=' -f2)
+              colo=$(echo "$colo_raw" | tr '[:lower:]' '[:upper:]')
+              
               loc=$(echo "$trace_data" | grep "loc=" | cut -d'=' -f2)
               case $loc in
                 TW) flag="🇨🇳 台湾" ;; HK) flag="🇭🇰 香港" ;; SG) flag="🇸🇬 新加坡" ;;
                 JP) flag="🇯🇵 日本" ;; US) flag="🇺🇸 美国" ;; KR) flag="🇰🇷 韩国" ;;
                 DE) flag="🇩🇪 德国" ;; FR) flag="🇫🇷 法国" ;; GB) flag="🇬🇧 英国" ;;
+                CN) flag="🇨🇳 中国" ;;
                 *) flag="🏳️ $loc" ;;
               esac
+              
               remark="$flag $colo"
               [[ -n "$tag" ]] && remark="$remark - $tag"
+              
               echo "${ip_port}#${remark}" >> $TARGET_FILE
             else
-              echo "${ip_port}#探测失败" >> $TARGET_FILE
+              echo "跳过失效节点: $ip"
             fi
           done < unique_list.txt
 
@@ -68,9 +74,10 @@ jobs:
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
+          
+          # 【优化】添加根目录下的文件
           git add addressesapi.txt
           
-          # 关键改进：如果文件没有变化，不执行 commit，避免报错 exit 1
           if git diff --staged --quiet; then
             echo "数据未发生变化，跳过提交。"
           else
