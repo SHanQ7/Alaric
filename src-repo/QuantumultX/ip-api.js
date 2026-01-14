@@ -79,9 +79,9 @@ function country_ValidCheck(para) {
 function Area_check(para) {
   const areaMap = {
     // AE - 阿拉伯联合酋长国 - United Arab Emirates - 西亚 - West Asia
-    "Dubai": "迪拜酋长国",
-    "Fujairah": "富查伊拉酋长国",
-    "Imārat Umm al Qaywayn": "乌姆盖万酋长国",
+    "Dubai": "迪拜",
+    "Fujairah": "富查伊拉",
+    "Imārat Umm al Qaywayn": "乌姆盖万",
 
     // AL - 阿尔巴尼亚共和国 - Republic of Albania - 南欧 - Southern Europe
     "Tirana": "地拉那",
@@ -114,6 +114,7 @@ function Area_check(para) {
     // CA - 加拿大 - Canada - 北美 - Northern America
     "Ontario": "安大略省",
     "Quebec": "魁北克省",
+    "不列颠哥伦比亚省" : "哥伦比亚省",
 
     // CH - 瑞士联邦 - Swiss Confederation - 中欧 - Central Europe
     "Zurich": "苏黎世州",
@@ -440,6 +441,9 @@ function City_ValidCheck(para) {
     // IN - 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr": "钦奈市",
 
+    // IR - 伊朗 - 德黑兰省
+    "Tehran": "德黑兰",
+    
     // IT - 意大利 - 伦巴第大区
     "Milan": "米兰",
     "Milano": "米兰",
@@ -517,6 +521,9 @@ function City_ValidCheck(para) {
     // MN - 蒙古国 - 乌兰巴托市
     "Shara-Höbiin-Dugang": "乌兰巴托市",
 
+    // MX - 墨西哥 - 瓦哈卡州
+    "Bernal Díaz del Castillo": "贝尔纳尔·迪亚斯",
+
     // NG - 尼日利亚 - 拉各斯
     "拉哥斯": "拉各斯",
 
@@ -524,7 +531,7 @@ function City_ValidCheck(para) {
     "Seeb": "锡卜",
 
     // PH - 菲律宾 - 大马尼拉都会区
-    "Pasig": "帕赛市",
+    "Pasig": "帕西格市",
     "Taguig": "达义市",
 
     // PH - 菲律宾 - 北棉兰老
@@ -553,7 +560,7 @@ function City_ValidCheck(para) {
     "Dumbrăviţa": "敦布勒维察",
 
     // SA - 沙特阿拉伯 - 利雅得省
-    "Sha`ib al Malqah": "埃尔奥拉",
+    "Sha`ib al Malqah": "利雅得",
 
     // SE - 瑞典 - 斯德哥尔摩
     "Steninge": "斯特宁厄",
