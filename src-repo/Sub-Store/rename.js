@@ -227,7 +227,7 @@ const countryList = [
   { enShort: "UA", enShort3: "UKR", zh: "乌克兰", enFull: "Ukraine", emoji: "🇺🇦", alias: ["Kyiv"] },
   { enShort: "UM", enShort3: "UMI", zh: "美国本土外小岛屿", enFull: "United States Minor Outlying Islands", emoji: "🇺🇲" },
   { enShort: "UN", enShort3: "UNI", zh: "联合国", enFull: "United Nations", emoji: "🇺🇳" },
-  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸", alias: ["LAX", "SJC", "Chicago", "Los Angeles", "New York", "NewYork", "San Jose", "西雅图", "阿什本"] },
+  { enShort: "US", enShort3: "USA", zh: "美国", enFull: "United States", emoji: "🇺🇸", alias: ["LAX", "SJC", "Chicago", "Los Angeles", "New York", "NewYork", "San Jose", "西雅图", "阿什本", "US⚡TG@danfeng_chat"] },
   { enShort: "UY", enShort3: "URY", zh: "乌拉圭", enFull: "Uruguay", emoji: "🇺🇾" },
   { enShort: "UZ", enShort3: "UZB", zh: "乌兹别克斯坦", enFull: "Uzbekistan", emoji: "🇺🇿" },
   { enShort: "VA", enShort3: "VAT", zh: "梵蒂冈", enFull: "Holy See (Vatican City State)", emoji: "🇻🇦" },
