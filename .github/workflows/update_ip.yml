@@ -3,7 +3,7 @@ name: 自动优选 IP
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 21,00,8,13 * * *'
+    - cron: '0 21,00,7,13 * * *'
 
 jobs:
   update_ip:
@@ -36,13 +36,13 @@ jobs:
               *LAX*) echo "美国" ;;
               *NRT*) echo "日本" ;;
               *KIX*) echo "日本" ;;
-              *)     echo "优质" ;;
+              *)      echo "优质" ;;
             esac
           }
 
           # 获取接口数据
-          TOP20_DATA=$(curl -sL --connect-timeout 10 "$API_TOP20")
           SPEED_DATA=$(curl -sL --connect-timeout 10 "$API_SPEED")
+          TOP20_DATA=$(curl -sL --connect-timeout 10 "$API_TOP20")
           YES_DATA=$(curl -sL --connect-timeout 10 "$API_YES")
 
           # --- 1. ip.164746.xyz ---
@@ -50,41 +50,47 @@ jobs:
             [ -z "$line" ] && continue
             ip=$(echo $line | cut -d'#' -f1)
             full_speed=$(echo $line | cut -d'-' -f2)
-            speed_num=$(echo $full_speed | sed 's/MB\/s//g')
+            speed_num=$(echo $full_speed | grep -oE '[0-9.]+')
             if [ "$(echo "$speed_num >= 60" | bc -l)" -eq 1 ]; then
-              # 为了让三网排在最前面，备注加个 A- 前缀
               printf "A-三网优化-%s#%s\n" "$full_speed" "$ip" >> $TEMP_FILE
             fi
           done <<< "$SPEED_DATA"
 
           # --- 2. vps789.com ---
-          for type in "dx:电信优化-CTCC" "yd:移动优化-CMCC" "lt:联通优化-CUCC"; do
+          for type in "dx:电信优化-CTCC" "lt:联通优化-CUCC" "yd:移动优化-CMCC"; do
             key_p=$(echo $type | cut -d':' -f1)
             name_p=$(echo $type | cut -d':' -f2)
-            echo "$TOP20_DATA" | jq -c ".data.good | sort_by(.${key_p}Score) | .[0:5] | to_entries[]" | while read -r row; do
-              ip=$(echo "$row" | jq -r '.value.ip')
-              index=$(echo "$row" | jq -r '.key + 1')
-              printf "%s-%02d#%s\n" "$name_p" "$index" "$ip" >> $TEMP_FILE
-            done
+            if [ ! -z "$TOP20_DATA" ]; then
+              echo "$TOP20_DATA" | jq -c ".data.good | sort_by(.${key_p}Score) | .[0:5] | to_entries[]" | while read -r row; do
+                ip=$(echo "$row" | jq -r '.value.ip')
+                index=$(echo "$row" | jq -r '.key + 1')
+                printf "%s-%02d#%s\n" "$name_p" "$index" "$ip" >> $TEMP_FILE
+              done
+            fi
           done
 
           # --- 3. CloudFlareYes ---
+          ct_cnt=6; cu_cnt=6; cm_cnt=6 
           while read -r line; do
             [ -z "$line" ] && continue
             ip=$(echo $line | cut -d'#' -f1)
             raw_tag=$(echo $line | cut -d'#' -f2)
             loc_name=$(get_loc_name "$raw_tag")
+            
             if [[ "$raw_tag" == CT-* ]]; then
-              printf "电信优化-CTCC-06-%s#%s\n" "$loc_name" "$ip" >> $TEMP_FILE
-            elif [[ "$raw_tag" == CM-* ]]; then
-              printf "移动优化-CMCC-06-%s#%s\n" "$loc_name" "$ip" >> $TEMP_FILE
+              printf "电信优化-CTCC-%02d-%s#%s\n" "$ct_cnt" "$loc_name" "$ip" >> $TEMP_FILE
+              ((ct_cnt++))
             elif [[ "$raw_tag" == CU-* ]]; then
-              printf "联通优化-CUCC-06-%s#%s\n" "$loc_name" "$ip" >> $TEMP_FILE
+              printf "联通优化-CUCC-%02d-%s#%s\n" "$cu_cnt" "$loc_name" "$ip" >> $TEMP_FILE
+              ((cu_cnt++))
+            elif [[ "$raw_tag" == CM-* ]]; then
+              printf "移动优化-CMCC-%02d-%s#%s\n" "$cm_cnt" "$loc_name" "$ip" >> $TEMP_FILE
+              ((cm_cnt++))
             fi
           done <<< "$YES_DATA"
 
           echo "# 更新时间: $(date '+%Y-%m-%d %H:%M:%S')" > $TARGET_FILE
-          # 排序后将 A- 标记去掉，还原格式
+          # sort -u 去重排序，sed 去掉临时 A- 标记，awk 转换为 IP#备注 格式
           sort -u $TEMP_FILE | sed 's/^A-//' | awk -F'#' '{print $2 "#" $1}' >> $TARGET_FILE
 
       - name: 提交并推送
