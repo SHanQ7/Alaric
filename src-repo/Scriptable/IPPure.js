@@ -9,6 +9,19 @@ const T_CHARS = '錒皚藹礙愛噯嬡璦曖靄諳銨鵪骯襖奧媼驁鰲壩罷
 
 const regionMap = {"中華民國":"台湾","中华民国":"台湾","俄罗斯联邦":"俄罗斯","德意志联邦共和国":"德国","Libya":"利比亚","Dubai":"迪拜","Fujairah":"富查伊拉","Imārat Umm al Qaywayn":"乌姆盖万","Fès-Meknès":"非斯-梅克内斯","Tirana":"地拉那","Vienna":"维也纳","new south wales":"新南威尔士","New South Wales":"新南威尔士","Victoria":"维多利亚","Buenos Aires F.D.":"布宜诺斯艾利斯","Baku City":"巴库","Lankaran Rayon":"连科兰","布鲁塞尔首都大区":"布鲁塞尔","Sofia-Capital":"索非亚","Sao Paulo":"圣保罗","Ontario":"安大略","Quebec":"魁北克","Zurich":"苏黎世","圣地亚哥首都大区":"圣地亚哥","Bogota D.C.":"波哥大","Provincia de San José":"圣何塞","臺北市":"台北","臺灣省 or 台灣省":"台北","Taiwan":"台湾","Changhua":"彰化","Taichung City":"台中","Taoyuan":"桃园","Yunlin":"云林","Havana":"哈瓦那","Prague":"布拉格","石勒苏益格-荷尔斯泰因":"石荷州","Hesse":"黑森","Capital Region":"哥本哈根","Catalonia":"加泰罗尼亚","Madrid":"马德里","法兰西岛":"法兰西岛","奧弗涅-羅訥-阿爾卑斯大區":"奥罗阿大区","普罗旺斯-阿尔卑斯-蔚蓝海岸大区":"普阿蓝大区","Île-de-France":"法兰西岛","City of Zagreb":"萨格勒布","Wales":"威尔士","Sermersooq":"瑟默索克","Attica":"阿提卡","Greater Accra Region":"大阿克拉","Kowloon":"九龙","Wong Tai Sin":"黄大仙区","Sai Kung District":"西贡区","Sham Shui Po":"深水埗区","Tsuen Wan District":"荃湾区","Budapest":"布达佩斯","Jakarta":"雅加达","Tel Aviv":"特拉维夫","National Capital Territory of Delhi":"德里","Southern Peninsula":"雷克雅未克","Lombardy":"伦巴第","Lazio":"拉齐奥","Tokyo":"东京都","Osaka":"大阪府","Ōsaka":"大阪府","Mto Panga":"姆托潘加","Daegu":"大邱","Gangwon-do":"江原道","Jeollabuk-do":"全罗北道","Incheon":"仁川","North Chungcheong":"忠清北道","Phnom Penh":"金边","Almaty":"阿拉木图","Almaty Oblysy":"阿拉木图","Aqmola":"阿克莫拉","Astana":"阿斯塔纳","Zhambyl Oblysy":"江布尔","Diekirch":"迪基希","Luxembourg":"卢森堡","Rīga":"里加","Sha‘bīyat Banghāzī":"班加西","Chișinău Municipality":"基希讷乌","Grand Port District":"大港区","Kuala Lumpur":"吉隆坡","Ulaanbaatar":"乌兰巴托","Lagos":"拉各斯","North Holland":"北荷兰","Oslo County":"奥斯陆","Viken":"维肯郡","Bagmati Province":"巴格马蒂","Muscat":"马斯喀特","Metro Manila":"马尼拉","Northern Mindanao":"北棉兰老","Mazovia":"马佐夫舍","Belgrade":"贝尔格莱德","Moscow":"莫斯科","St.-Petersburg":"圣彼得堡","Tatarstan Republic":"鞑靼斯坦","București":"布加勒斯特","Mecca Region":"麦加","Honiara":"霍尼亚拉","Stockholm":"斯德哥尔摩","Stockholm County":"斯德哥尔摩","Central Singapore":"新加坡中区","North West":"新加坡西北","North East":"新加坡东北","South West":"新加坡西南","South East":"新加坡东南","Banaadir":"班纳迪尔","Zanzibar Urban/West":"桑给巴尔","Ang Thong":"红统府","Kyiv City":"基辅","加州":"加利福尼亚","麻薩諸塞州":"马萨诸塞","Arizona":"亚利桑那","Miranda":"米兰达","Hanoi":"河内","Hòa Bình Province":"和平省","Hải Dương Province":"海阳省","Ho Chi Minh City (HCMC)":"胡志明市","Hai Phong":"海防","Da Nang City":"岘港"};
 
+// --- 0. 核心转换逻辑 ---
+function getVisualPercent(score) {
+  const thresholds = [0, 15, 25, 40, 50, 70, 100];
+  const segmentWeight = 1 / 6;
+  for (let i = 0; i < 6; i++) {
+    let low = thresholds[i], up = thresholds[i+1];
+    if (score <= up) {
+      return (i * segmentWeight) + ((score - low) / (up - low)) * segmentWeight;
+    }
+  }
+  return 1;
+}
+
 // --- 1. 字典处理工具 ---
 function processField(str) {
   if (!str) return "";
@@ -23,46 +36,25 @@ function processField(str) {
 // --- 2. 数据获取 ---
 async function fetchAllData() {
   try {
-    // 获取地理位置 (IP-API)
     const geoReq = new Request(geoUrl);
     geoReq.timeoutInterval = 8;
     const geo = await geoReq.loadJSON().catch(() => null);
     if (!geo || geo.status !== "success") return null;
 
-    // 获取风险值与属性 (IPPure)
-    let score = 0;
-    let isRes = false;
-    let isBro = false;
-    
+    let score = 0, isRes = false, isBro = false;
     try {
       const riskReq = new Request(riskUrl);
       riskReq.timeoutInterval = 8;
       const res = await riskReq.loadJSON();
-      
       if (res) {
         score = res.fraudScore || 0;
         isRes = res.isResidential || false;
         isBro = res.isBroadcast || false;
       }
-    } catch(e) {
-      console.log("风险接口请求失败");
-    }
+    } catch(e) { console.log("风险接口请求失败"); }
 
-    const thresholds = [0, 15, 25, 40, 50, 70, 100];
-    const segmentH = 17;
-    let totalH = 0;
-
-    for (let i = 0; i < 6; i++) {
-      let low = thresholds[i], up = thresholds[i+1];
-      if (score >= up) { 
-        totalH += segmentH; 
-      } else if (score > low) { 
-        totalH += (score - low) / (up - low) * segmentH; 
-        break; 
-      } else { 
-        break; 
-      }
-    }
+    const totalBarHeight = 102;
+    const vPercent = getVisualPercent(score);
     
     let country = processField(regionMap[geo.country] || geo.country);
     let region = processField(regionMap[geo.regionName] || geo.regionName);
@@ -76,7 +68,8 @@ async function fetchAllData() {
       asn: geo.as ? geo.as.split(' ')[0] : "AS----",
       countryCode: geo.countryCode,
       fraudScore: score,
-      barHeight: totalH,
+      vPercent: vPercent,
+      barHeight: vPercent * totalBarHeight,
       isResidential: isRes,
       isBroadcast: isBro
     };
@@ -87,33 +80,25 @@ async function fetchAllData() {
 }
 
 // --- 3. 阶梯堆叠算法 ---
-function getStackedGradient(score) {
-  const thresholds = [0, 15, 25, 40, 50, 70, 100];
+function getStackedGradient(score, vPercent) {
   const allColors = ["#166534", "#22C55E", "#84CC16", "#EAB308", "#F97316", "#FF3B30"];
+  const segmentWeight = 1 / 6;
   
+  if (score <= 0) return { colors: [new Color("#166534", 0.2), new Color("#166534", 0.2)], locations: [0, 1] };
+
   let colors = [];
   let locations = [];
-  const segmentHeight = 1 / 6;
 
   for (let i = 0; i < 6; i++) {
-    let lower = thresholds[i];
-    let upper = thresholds[i+1];
-    let fillInSegment = 0;
-    if (score > lower) {
-      fillInSegment = Math.min((score - lower) / (upper - lower), 1);
-    }
-    
-    if (fillInSegment > 0) {
+    let segmentStartVP = i * segmentWeight;
+    if (vPercent > segmentStartVP) {
       let color = new Color(allColors[i]);
-      let startPos = i * segmentHeight;
-      let endPos = startPos + (fillInSegment * segmentHeight);
+      let start = segmentStartVP / vPercent;
+      let end = Math.min((i + 1) * segmentWeight, vPercent) / vPercent;
+      
       colors.push(color, color);
-      locations.push(startPos, endPos);
+      locations.push(start, end);
     }
-  }
-
-  if (colors.length === 0) {
-    return { colors: [new Color("#166534", 0.2), new Color("#166534", 0.2)], locations: [0, 1] };
   }
 
   return {
@@ -170,14 +155,6 @@ async function createWidget(data) {
   const barWidth = 6;        
   const totalBarHeight = 102;
 
-  const thresholds_logic = [0, 15, 25, 40, 50, 70, 100];
-  let filledSegmentsCount = 0;
-  for (let i = 0; i < 6; i++) {
-    if (data.fraudScore > thresholds_logic[i]) {
-      filledSegmentsCount += Math.min((data.fraudScore - thresholds_logic[i]) / (thresholds_logic[i+1] - thresholds_logic[i]), 1);
-    }
-  }
-
   // Risk Bar 外壳
   let riskContainer = contentArea.addStack();
   riskContainer.size = new Size(barWidth, totalBarHeight);
@@ -191,15 +168,15 @@ async function createWidget(data) {
   progressBar.size = new Size(barWidth, data.barHeight); 
   progressBar.cornerRadius = 3;
   progressBar.borderWidth = 0.5;
-  progressBar.borderColor = new Color("#FFFFFF", 0.35);
+  progressBar.borderColor = new Color("#FFFFFF", 0.6);
 
   let g = new LinearGradient();
-  let gd = getStackedGradient(data.fraudScore);
+  let gd = getStackedGradient(data.fraudScore, data.vPercent);
   g.colors = gd.colors;
   g.locations = gd.locations;
   progressBar.backgroundGradient = g;
 
-  contentArea.addSpacer(10); 
+  contentArea.addSpacer(10);
 
   // Info Pills
   let infoCol = contentArea.addStack();
