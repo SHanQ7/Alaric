@@ -1,9 +1,9 @@
-name: 自动同步优选 IP
+name: 自动优选 IP
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '5 * * * *'
+    - cron: '0 21,00,8,13 * * *'
 
 jobs:
   update_ip:
@@ -14,76 +14,78 @@ jobs:
       - name: 检出代码
         uses: actions/checkout@v4
 
-      - name: 安装 jq
-        run: sudo apt-get install -y jq
+      - name: 安装依赖
+        run: sudo apt-get install -y jq bc
 
       - name: 提取并聚合数据
         run: |
           TARGET_FILE="addressesapi.txt"
-          API_LINE="https://vps789.com/openApi/cfIpApi"
+          TEMP_FILE="temp_ips.txt"
+          API_SPEED="https://cf.090227.xyz/ip.164746.xyz"
           API_TOP20="https://vps789.com/openApi/cfIpTop20"
           API_YES="https://cf.090227.xyz/CloudFlareYes"
           
-          # 获取数据
-          LINE_DATA=$(curl -sL "$API_LINE")
-          TOP20_DATA=$(curl -sL "$API_TOP20")
-          YES_DATA=$(curl -sL "$API_YES")
+          > $TEMP_FILE
 
-          # 初始化文件
-          echo "# 更新时间: $(date '+%Y-%m-%d %H:%M:%S')" > $TARGET_FILE
-          echo "" >> $TARGET_FILE
-
-          # 定义位置转换函数
-          get_loc() {
+          get_loc_name() {
             case "$1" in
-              *HKG*) echo "🇭🇰 香港" ;;
-              *SJC*) echo "🇺🇸 美国" ;;
-              *SEA*) echo "🇺🇸 美国" ;;
-              *SIN*) echo "🇸🇬 新加坡" ;;
-              *LAX*) echo "🇺🇸 美国" ;;
-              *JP*)  echo "🇯🇵 日本" ;;
-              *)     echo "🏳️ 其它" ;;
+              *HKG*) echo "香港" ;;
+              *SJC*) echo "美国" ;;
+              *SEA*) echo "美国" ;;
+              *SIN*) echo "新加坡" ;;
+              *LAX*) echo "美国" ;;
+              *NRT*) echo "日本" ;;
+              *KIX*) echo "日本" ;;
+              *)     echo "优质" ;;
             esac
           }
 
-          # --- 1. 电信 (CTCC) ---
-          echo "$LINE_DATA" | jq -r '.data.CT | sort_by(.dxScore) | .[0:3] | to_entries[] | "\(.value.ip)#CTCC - 电信优化线路 - 0\(.key + 1)"' >> $TARGET_FILE
-          echo "$TOP20_DATA" | jq -r '.data.good | sort_by(.dxLatency) | .[0:2] | to_entries[] | "\(.value.ip)#CTCC - 电信优化线路 - 0\(.key + 4)"' >> $TARGET_FILE
-          # 从 CloudFlareYes 提取 CT 节点
-          count=6
-          while read -r line && [ $count -le 10 ]; do
-            ip=$(echo $line | cut -d'#' -f1)
-            raw_tag=$(echo $line | cut -d'#' -f2)
-            loc=$(get_loc "$raw_tag")
-            echo "$ip#$loc - CTCC电信优化线路 - 0$count" >> $TARGET_FILE
-            ((count++))
-          done <<< "$(echo "$YES_DATA" | grep "CT-")"
+          # 获取接口数据
+          TOP20_DATA=$(curl -sL --connect-timeout 10 "$API_TOP20")
+          SPEED_DATA=$(curl -sL --connect-timeout 10 "$API_SPEED")
+          YES_DATA=$(curl -sL --connect-timeout 10 "$API_YES")
 
-          # --- 2. 移动 (CMCC) ---
-          echo "$LINE_DATA" | jq -r '.data.CM | sort_by(.ydScore) | .[0:3] | to_entries[] | "\(.value.ip)#CMCC - 移动优化线路 - 0\(.key + 1)"' >> $TARGET_FILE
-          echo "$TOP20_DATA" | jq -r '.data.good | sort_by(.ydLatency) | .[0:2] | to_entries[] | "\(.value.ip)#CMCC - 移动优化线路 - 0\(.key + 4)"' >> $TARGET_FILE
-          # 从 CloudFlareYes 提取 CM 节点
-          count=6
-          while read -r line && [ $count -le 10 ]; do
+          # --- 1. ip.164746.xyz ---
+          while read -r line; do
+            [ -z "$line" ] && continue
             ip=$(echo $line | cut -d'#' -f1)
-            raw_tag=$(echo $line | cut -d'#' -f2)
-            loc=$(get_loc "$raw_tag")
-            echo "$ip#$loc - CMCC移动优化线路 - 0$count" >> $TARGET_FILE
-            ((count++))
-          done <<< "$(echo "$YES_DATA" | grep "CM-")"
+            full_speed=$(echo $line | cut -d'-' -f2)
+            speed_num=$(echo $full_speed | sed 's/MB\/s//g')
+            if [ "$(echo "$speed_num >= 60" | bc -l)" -eq 1 ]; then
+              # 为了让三网排在最前面，备注加个 A- 前缀
+              printf "A-三网优化-%s#%s\n" "$full_speed" "$ip" >> $TEMP_FILE
+            fi
+          done <<< "$SPEED_DATA"
 
-          # --- 3. 联通 (CUCC) ---
-          echo "$LINE_DATA" | jq -r '.data.CU | sort_by(.ltScore) | .[0:3] | to_entries[] | "\(.value.ip)#CUCC - 联通优化线路 - 0\(.key + 1)"' >> $TARGET_FILE
-          echo "$TOP20_DATA" | jq -r '.data.good | sort_by(.ltLatency) | .[0:2] | to_entries[] | "\(.value.ip)#CUCC - 联通优化线路 - 0\(.key + 4)"' >> $TARGET_FILE
-          # 从 CloudFlareYes 提取 CU 节点
-          count=6
-          while read -r line && [ $count -le 10 ]; do
+          # --- 2. vps789.com ---
+          for type in "dx:电信优化-CTCC" "yd:移动优化-CMCC" "lt:联通优化-CUCC"; do
+            key_p=$(echo $type | cut -d':' -f1)
+            name_p=$(echo $type | cut -d':' -f2)
+            echo "$TOP20_DATA" | jq -c ".data.good | sort_by(.${key_p}Score) | .[0:5] | to_entries[]" | while read -r row; do
+              ip=$(echo "$row" | jq -r '.value.ip')
+              index=$(echo "$row" | jq -r '.key + 1')
+              printf "%s-%02d#%s\n" "$name_p" "$index" "$ip" >> $TEMP_FILE
+            done
+          done
+
+          # --- 3. CloudFlareYes ---
+          while read -r line; do
+            [ -z "$line" ] && continue
             ip=$(echo $line | cut -d'#' -f1)
             raw_tag=$(echo $line | cut -d'#' -f2)
-            loc=$(get_loc "$raw_tag")
-            echo "$ip#$loc - CUCC联通优化线路 - 0$count" >> $TARGET_FILE
-            ((count++))
-          done <<< "$(echo "$YES_DATA" | grep "CU-")"
+            loc_name=$(get_loc_name "$raw_tag")
+            if [[ "$raw_tag" == CT-* ]]; then
+              printf "电信优化-CTCC-06-%s#%s\n" "$loc_name" "$ip" >> $TEMP_FILE
+            elif [[ "$raw_tag" == CM-* ]]; then
+              printf "移动优化-CMCC-06-%s#%s\n" "$loc_name" "$ip" >> $TEMP_FILE
+            elif [[ "$raw_tag" == CU-* ]]; then
+              printf "联通优化-CUCC-06-%s#%s\n" "$loc_name" "$ip" >> $TEMP_FILE
+            fi
+          done <<< "$YES_DATA"
+
+          echo "# 更新时间: $(date '+%Y-%m-%d %H:%M:%S')" > $TARGET_FILE
+          # 排序后将 A- 标记去掉，还原格式
+          sort -u $TEMP_FILE | sed 's/^A-//' | awk -F'#' '{print $2 "#" $1}' >> $TARGET_FILE
 
       - name: 提交并推送
         run: |
@@ -91,8 +93,8 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add addressesapi.txt
           if git diff --staged --quiet; then
-            echo "数据未变动，跳过提交。"
+            echo "无变动"
           else
-            git commit -m "自动更新优选IP: $(date '+%Y-%m-%d %H:%M')"
+            git commit -m "Scheduled Update: $(date '+%Y-%m-%d %H:%M')"
             git push
           fi
