@@ -1,4 +1,5 @@
 // IPPure + IP-API 综合监测组件
+
 const geoUrl = "http://ip-api.com/json/?lang=zh-CN";
 const riskUrl = "https://my.ippure.com/v1/info";
 
@@ -22,82 +23,65 @@ function processField(str) {
 // --- 2. 数据获取 ---
 async function fetchAllData() {
   try {
+    // 获取地理位置 (IP-API)
     const geoReq = new Request(geoUrl);
-    geoReq.timeoutInterval = 10;
+    geoReq.timeoutInterval = 8;
     const geo = await geoReq.loadJSON().catch(() => null);
     if (!geo || geo.status !== "success") return null;
 
-    const targetIP = geo.query;
-
-    // WebView 抓取
-    let wv = new WebView();
-    await wv.loadURL(`https://ippure.com/?ip=${targetIP}`);
-    await new Promise(r => {
-      let t = new Timer();
-      t.timeInterval = 7000; 
-      t.schedule(r);
-    });
-
-    const risk = await wv.evaluateJavaScript(`
-      function scrape() {
-        const text = document.body.innerText;
-        const lines = text.split('\\n').map(l => l.trim());
-        function getVal(key) {
-          const idx = lines.findIndex(l => l.includes(key));
-          if (idx !== -1) {
-            for (let i = idx + 1; i < idx + 5; i++) {
-              if (lines[i] && lines[i].length > 1) return lines[i];
-            }
-          }
-          return "未知";
-        }
-        return {
-          score: parseInt(getVal("IPPure系数").match(/\\d+/)?.[0] || "0"),
-          type: getVal("IP属性"),
-          source: getVal("IP来源")
-        };
+    // 获取风险值与属性 (IPPure)
+    let score = 0;
+    let isRes = false;
+    let isBro = false;
+    
+    try {
+      const riskReq = new Request(riskUrl);
+      riskReq.timeoutInterval = 8;
+      const res = await riskReq.loadJSON();
+      
+      if (res) {
+        score = res.fraudScore || 0;
+        isRes = res.isResidential || false;
+        isBro = res.isBroadcast || false;
       }
-      scrape();
-    `);
+    } catch(e) {
+      console.log("风险接口请求失败");
+    }
 
-    const score = risk.score;
     const thresholds = [0, 15, 25, 40, 50, 70, 100];
     const segmentH = 17;
     let totalH = 0;
 
     for (let i = 0; i < 6; i++) {
-      let low = thresholds[i];
-      let up = thresholds[i+1];
-      
-      if (score >= up) {
-        totalH += segmentH;
-      } else if (score > low) {
-        totalH += (score - low) / (up - low) * segmentH;
-        break;
-      } else {
+      let low = thresholds[i], up = thresholds[i+1];
+      if (score >= up) { 
+        totalH += segmentH; 
+      } else if (score > low) { 
+        totalH += (score - low) / (up - low) * segmentH; 
+        break; 
+      } else { 
         break; 
       }
     }
-
-    // 格式化地理位置
+    
     let country = processField(regionMap[geo.country] || geo.country);
     let region = processField(regionMap[geo.regionName] || geo.regionName);
-    let finalLocation = (country.includes(region) || region.includes(country) || country === region || !region) 
+    let finalLocation = (country.includes(region) || region.includes(country) || !region) 
                         ? country : `${country} ${region}`;
 
     return {
-      ip: targetIP,
+      ip: geo.query,
       location: finalLocation.toUpperCase(),
       isp: processField(geo.isp) || geo.isp,
       asn: geo.as ? geo.as.split(' ')[0] : "AS----",
       countryCode: geo.countryCode,
       fraudScore: score,
       barHeight: totalH,
-      isResidential: risk.type.includes("住宅"),
-      isBroadcast: risk.source.includes("原生")
+      isResidential: isRes,
+      isBroadcast: isBro
     };
   } catch (e) {
-    console.log("数据加载失败: " + e);
+    console.log("主程序获取失败: " + e);
     return null;
   }
 }
@@ -141,6 +125,11 @@ function getStackedGradient(score) {
 // --- 4. UI 渲染 ---
 async function createWidget(data) {
   let w = new ListWidget();
+
+  if (data && data.ip) {
+    w.url = "https://www.ippure.com/ip-address-lookup/" + data.ip;
+  }
+
   const padding = 12;
   w.setPadding(padding, padding, padding, padding); 
   
@@ -253,7 +242,7 @@ async function createWidget(data) {
     st.textColor = mainColor;
   };
 
-  createTag(data.isBroadcast ? "原生 IP" : "广播 IP");
+  createTag(data.isBroadcast ? "广播 IP" : "原生 IP");
   lastRow.addSpacer(rowGap);
   createTag(data.isResidential ? "住宅 IP" : "机房 IP");
 
