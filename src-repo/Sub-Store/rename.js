@@ -271,8 +271,8 @@ const defaultOthers = [
   { key: '标准', value: 'Std' },
   { key: '实验', value: 'Exp' },
   { key: '商宽', value: 'Biz' },
+  { key: '住宅', value: 'ISP' },
   { key: '家宽', value: 'ISP' },
-  { key: 'ISP', value: 'ISP' }
 ];
 
 // 动态构建国家映射 Map（多键映射）
