@@ -235,7 +235,7 @@ const countryList = [
   { enShort: "VE", enShort3: "VEN", zh: "委内瑞拉", enFull: "Venezuela, Bolivarian Republic of", emoji: "🇻🇪" },
   { enShort: "VG", enShort3: "VGB", zh: "英属维尔京群岛", enFull: "Virgin Islands, British", emoji: "🇻🇬" },
   { enShort: "VI", enShort3: "VIR", zh: "美属维尔京群岛", enFull: "Virgin Islands, U.S.", emoji: "🇻🇮" },
-  { enShort: "VN", enShort3: "VNM", zh: "越南", enFull: "Viet Nam", emoji: "🇻🇳", alisa:["VN⚡TG@danfeng_chat"] },
+  { enShort: "VN", enShort3: "VNM", zh: "越南", enFull: "Viet Nam", emoji: "🇻🇳", alias:["VN⚡TG@danfeng_chat"] },
   { enShort: "VU", enShort3: "VUT", zh: "瓦努阿图", enFull: "Vanuatu", emoji: "🇻🇺" },
   { enShort: "WF", enShort3: "WLF", zh: "瓦利斯和富图纳", enFull: "Wallis and Futuna", emoji: "🇼🇫" },
   { enShort: "WS", enShort3: "WSM", zh: "萨摩亚", enFull: "Samoa", emoji: "🇼🇸" },
