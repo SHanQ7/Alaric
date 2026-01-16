@@ -159,7 +159,7 @@ async function createWidget(data) {
   let riskContainer = contentArea.addStack();
   riskContainer.size = new Size(barWidth, totalBarHeight);
   riskContainer.cornerRadius = 3;
-  riskContainer.backgroundColor = isDark ? new Color("#121212", 0.7) : new Color("#121212", 0.7); 
+  riskContainer.backgroundColor = pillBg;
   riskContainer.layoutVertically();
   riskContainer.addSpacer();
 
