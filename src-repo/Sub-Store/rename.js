@@ -42,7 +42,7 @@ const countryList = [
   { enShort: "CD", enShort3: "COD", zh: "刚果民主共和国", enFull: "Congo, The Democratic Republic of the", emoji: "🇨🇩" },
   { enShort: "CF", enShort3: "CAF", zh: "中非共和国", enFull: "Central African Republic", emoji: "🇨🇫" },
   { enShort: "CG", enShort3: "COG", zh: "刚果共和国", enFull: "Congo", emoji: "🇨🇬" },
-  { enShort: "CH", enShort3: "CHE", zh: "瑞士", enFull: "Switzerland", emoji: "🇨🇭", alias: ["Zurich"] },
+  { enShort: "CH", enShort3: "CHE", zh: "瑞士", enFull: "Switzerland", emoji: "🇨🇭", alias: ["ZRH⚡TG@danfeng_chat", "Zurich"] },
   { enShort: "CI", enShort3: "CIV", zh: "科特迪瓦", enFull: "Côte d'Ivoire", emoji: "🇨🇮" },
   { enShort: "CK", enShort3: "COK", zh: "库克群岛", enFull: "Cook Islands", emoji: "🇨🇰" },
   { enShort: "CL", enShort3: "CHL", zh: "智利", enFull: "Chile", emoji: "🇨🇱", alias: ["智力"] },
