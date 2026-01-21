@@ -8,7 +8,7 @@ const countryList = [
   { enShort: "AL", enShort3: "ALB", zh: "阿尔巴尼亚", enFull: "Albania", emoji: "🇦🇱" },
   { enShort: "AM", enShort3: "ARM", zh: "亚美尼亚", enFull: "Armenia", emoji: "🇦🇲" },
   { enShort: "AO", enShort3: "AGO", zh: "安哥拉", enFull: "Angola", emoji: "🇦🇴" },
-  { enShort: "AR", enShort3: "ARG", zh: "阿根廷", enFull: "Argentina", emoji: "🇦🇷" },
+  { enShort: "AR", enShort3: "ARG", zh: "阿根廷", enFull: "Argentina", emoji: "🇦🇷", alias:["EZE⚡TG@danfeng_chat"] },
   { enShort: "AS", enShort3: "ASM", zh: "美属萨摩亚", enFull: "American Samoa", emoji: "🇦🇸" },
   { enShort: "AT", enShort3: "AUT", zh: "奥地利", enFull: "Austria", emoji: "🇦🇹", alias: ["Vienna"] },
   { enShort: "AQ", enShort3: "ATA", zh: "南极洲", enFull: "Antarctica", emoji: "🇦🇶" },
