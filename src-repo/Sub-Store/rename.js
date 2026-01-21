@@ -211,7 +211,7 @@ const countryList = [
   { enShort: "TD", enShort3: "TCD", zh: "乍得", enFull: "Chad", emoji: "🇹🇩" },
   { enShort: "TF", enShort3: "ATF", zh: "法属南部领地", enFull: "French Southern Territories", emoji: "🇹🇫" },
   { enShort: "TG", enShort3: "TGO", zh: "多哥", enFull: "Togo", emoji: "🇹🇬" },
-  { enShort: "TH", enShort3: "THA", zh: "泰国", enFull: "Thailand", emoji: "🇹🇭" },
+  { enShort: "TH", enShort3: "THA", zh: "泰国", enFull: "Thailand", emoji: "🇹🇭", alias: ["TH⚡TG@danfeng_chat"] }
   { enShort: "TJ", enShort3: "TJK", zh: "塔吉克斯坦", enFull: "Tajikistan", emoji: "🇹🇯" },
   { enShort: "TK", enShort3: "TKL", zh: "托克劳", enFull: "Tokelau", emoji: "🇹🇰" },
   { enShort: "TL", enShort3: "TLS", zh: "东帝汶", enFull: "Timor-Leste", emoji: "🇹🇱" },
