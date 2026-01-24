@@ -52,12 +52,12 @@ jobs:
             full_speed=$(echo $line | cut -d'-' -f2)
             speed_num=$(echo $full_speed | grep -oE '[0-9.]+')
             if [ "$(echo "$speed_num >= 60" | bc -l)" -eq 1 ]; then
-              printf "A-三网优化-%s#%s\n" "$full_speed" "$ip" >> $TEMP_FILE
+              printf "A-三网优选-%s#%s\n" "$full_speed" "$ip" >> $TEMP_FILE
             fi
           done <<< "$SPEED_DATA"
 
           # --- 2. vps789.com ---
-          for type in "dx:电信优化-CTCC" "lt:联通优化-CUCC" "yd:移动优化-CMCC"; do
+          for type in "dx:电信优选-CTCC" "lt:联通优选-CUCC" "yd:移动优选-CMCC"; do
             key_p=$(echo $type | cut -d':' -f1)
             name_p=$(echo $type | cut -d':' -f2)
             if [ ! -z "$TOP20_DATA" ]; then
@@ -78,13 +78,13 @@ jobs:
             loc_name=$(get_loc_name "$raw_tag")
             
             if [[ "$raw_tag" == CT-* ]]; then
-              printf "电信优化-CTCC-%02d-%s#%s\n" "$ct_cnt" "$loc_name" "$ip" >> $TEMP_FILE
+              printf "电信优选-CTCC-%02d-%s#%s\n" "$ct_cnt" "$loc_name" "$ip" >> $TEMP_FILE
               ((ct_cnt++))
             elif [[ "$raw_tag" == CU-* ]]; then
-              printf "联通优化-CUCC-%02d-%s#%s\n" "$cu_cnt" "$loc_name" "$ip" >> $TEMP_FILE
+              printf "联通优选-CUCC-%02d-%s#%s\n" "$cu_cnt" "$loc_name" "$ip" >> $TEMP_FILE
               ((cu_cnt++))
             elif [[ "$raw_tag" == CM-* ]]; then
-              printf "移动优化-CMCC-%02d-%s#%s\n" "$cm_cnt" "$loc_name" "$ip" >> $TEMP_FILE
+              printf "移动优选-CMCC-%02d-%s#%s\n" "$cm_cnt" "$loc_name" "$ip" >> $TEMP_FILE
               ((cm_cnt++))
             fi
           done <<< "$YES_DATA"
