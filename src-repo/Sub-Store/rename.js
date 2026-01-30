@@ -21,7 +21,7 @@ const countryList = [
   { enShort: "BD", enShort3: "BGD", zh: "孟加拉国", enFull: "Bangladesh", emoji: "🇧🇩" },
   { enShort: "BE", enShort3: "BEL", zh: "比利时", enFull: "Belgium", emoji: "🇧🇪", alias: ["Brussels"] },
   { enShort: "BF", enShort3: "BFA", zh: "布基纳法索", enFull: "Burkina Faso", emoji: "🇧🇫" },
-  { enShort: "BG", enShort3: "BGR", zh: "保加利亚", enFull: "Bulgaria", emoji: "🇧🇬", alias: ["Sofia"] },
+  { enShort: "BG", enShort3: "BGR", zh: "保加利亚", enFull: "Bulgaria", emoji: "🇧🇬", alias: ["SOF⚡TG@danfeng_chat", "Sofia"] },
   { enShort: "BH", enShort3: "BHR", zh: "巴林", enFull: "Bahrain", emoji: "🇧🇭" },
   { enShort: "BI", enShort3: "BDI", zh: "布隆迪", enFull: "Burundi", emoji: "🇧🇮" },
   { enShort: "BJ", enShort3: "BEN", zh: "贝宁", enFull: "Benin", emoji: "🇧🇯" },
