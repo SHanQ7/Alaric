@@ -279,6 +279,13 @@ function Area_check(para) {
     "St.-Petersburg": "圣彼得堡",
     "Tatarstan Republic": "鞑靼斯坦共和国",
 
+    // SG - 新加坡共和国 - Republic of Singapore
+    "Central Singapore" : "中区",
+    "North West" : "西北区",
+    "North East" : "东北区",
+    "South West" : "西南区",
+    "South East" : "东南区",
+    
     // SB - 所罗门群岛 - Solomon Islands - 大洋洲 - Oceania
     "Honiara": "霍尼亚拉",
 
@@ -614,6 +621,9 @@ function City_ValidCheck(para) {
     // US - 美国 - 伊利诺伊州
     "Elk Grove Village": "埃尔克格罗夫村",
 
+    // 美国 - 夏威夷州
+    "Kahului" : "卡胡卢伊",
+    
     // VE - 委内瑞拉 - 米兰达州
     "Miranda": "加拉加斯市",
 
