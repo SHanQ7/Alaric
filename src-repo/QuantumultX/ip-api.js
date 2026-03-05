@@ -114,7 +114,7 @@ function Area_check(para) {
     // CA - 加拿大 - Canada - 北美 - Northern America
     "Ontario": "安大略省",
     "Quebec": "魁北克省",
-    "不列颠哥伦比亚省" : "哥伦比亚省",
+    "不列颠哥伦比亚省": "哥伦比亚省",
 
     // CH - 瑞士联邦 - Swiss Confederation - 中欧 - Central Europe
     "Zurich": "苏黎世州",
@@ -335,7 +335,7 @@ function Area_check(para) {
     "Hanoi": "河内市",
     "Ho Chi Minh City (HCMC)": "胡志明市",
     "Hòa Bình Province": "和平省",
-    "Hải Dương Province": "海阳省"
+    "Hải Dương Province": "海阳省",
   };
 
   return areaMap[para ? para.trim() : ""] || para || region0;
@@ -348,9 +348,6 @@ function City_ValidCheck(para) {
 
     // AE - 阿联酋 - 乌姆盖万
     "Muhadhdhib": "穆哈德布地区",
-
-    // MA - 摩洛哥 - 非斯-梅克内斯大区
-    "Fes": "非斯",
 
     // AM - 亚美尼亚 - 埃里温
     "Yerevan": "埃里温",
@@ -535,9 +532,8 @@ function City_ValidCheck(para) {
     // LV - 拉脱维亚 - 里加
     "Riga": "里加",
 
-    // MX - 墨西哥 - 克雷塔罗州
-    "Bernal": "埃泽基尔蒙特斯市",
-    "Querétaro": "克雷塔罗",
+    // MA - 摩洛哥 - 非斯-梅克内斯大区
+    "Fes": "非斯",
 
     // MD - 摩尔多瓦 - 基希讷乌市政区
     "Sîngera": "辛热拉",
@@ -545,6 +541,10 @@ function City_ValidCheck(para) {
     // MN - 蒙古国 - 乌兰巴托市
     "Shara-Höbiin-Dugang": "乌兰巴托市",
 
+    // MX - 墨西哥 - 克雷塔罗州
+    "Bernal": "埃泽基尔蒙特斯市",
+    "Querétaro": "克雷塔罗",
+    
     // MX - 墨西哥 - 瓦哈卡州
     "Bernal Díaz del Castillo": "贝尔纳尔·迪亚斯",
 
@@ -639,7 +639,7 @@ function City_ValidCheck(para) {
     "Elk Grove Village": "埃尔克格罗夫村",
 
     // US - 美国 - 夏威夷州
-    "Kahului" : "卡胡卢伊",
+    "Kahului": "卡胡卢伊",
     
     // VE - 委内瑞拉 - 米兰达州
     "Miranda": "加拉加斯市",
