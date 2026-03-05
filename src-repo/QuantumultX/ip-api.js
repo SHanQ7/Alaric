@@ -223,6 +223,9 @@ function Area_check(para) {
     "Diekirch": "迪基希区",
     "Luxembourg": "卢森堡市",
 
+    // LV - 拉脱维亚共和国 - The Republic of Latvia - 北欧 - Northern Europe
+    "Rīga": "里加市",
+    
     // LY - 利比亚国 - State of Libya - 北非 - North Africa
     "Sha‘bīyat Banghāzī": "班加西省",
     "Tripoli": "的黎波里",
@@ -279,6 +282,9 @@ function Area_check(para) {
     "St.-Petersburg": "圣彼得堡",
     "Tatarstan Republic": "鞑靼斯坦共和国",
 
+    // SE - 瑞典王国 - Kingdom of Sweden - 北欧 - Northern Europe
+    "Stockholm County": "斯德哥尔摩省",
+    
     // SG - 新加坡共和国 - Republic of Singapore
     "Central Singapore" : "中区",
     "North West" : "西北区",
@@ -394,6 +400,9 @@ function City_ValidCheck(para) {
     "Frankfurt am Main": "法兰克福",
     "Frankfurt Am Main": "法兰克福",
 
+    // DO - 多米尼加共和国 - 阿苏阿省
+    "La Golondrina": "阿苏阿市"
+    
     // ES - 西班牙 - 马德里自治区
     "Madrid": "马德里",
 
@@ -427,7 +436,7 @@ function City_ValidCheck(para) {
     "Yuanlin": "员林镇",
 
     // HU - 匈牙利 - 佩斯州
-    "Szigetszentmiklós": "锡盖特圣米克洛什",
+    "Szigetszentmiklós": "锡盖特圣米克洛什市",
 
     // ID - 印度尼西亚 - 东爪哇省
     "Gubengairlangga": "泗水市",
@@ -435,6 +444,9 @@ function City_ValidCheck(para) {
     // IL - 以色列 - 中央区
     "Rosh Ha‘Ayin": "罗什艾因",
 
+    // IL - 以色列 - 特拉维夫区
+    "Or Yehuda": "奥尔耶胡达市",
+    
     // IN - 印度 - 恰蒂斯加尔邦
     "BILASPUR": "比拉斯布尔",
 
@@ -476,7 +488,7 @@ function City_ValidCheck(para) {
     "Ōkubo-naka": "熊取町",
 
     // KE - 肯尼亚 - 蒙巴萨郡
-    "Mto Panga": "姆托潘加",
+    "Mto Panga": "蒙巴萨市",
 
     // KR - 韩国 - 首尔
     "Dongjak-gu": "铜雀区",
@@ -491,6 +503,7 @@ function City_ValidCheck(para) {
     "Bucheon-si": "富川市",
     "Gimpo-si": "金浦市",
     "Seongnam-si": "城南市",
+    "Siheung-si": "始兴市",
 
     // KR - 韩国 - 大邱广域市
     "Yuseong-gu": "儒城区",
@@ -507,6 +520,9 @@ function City_ValidCheck(para) {
     "Aqtöbe": "阿克托别",
     "Talghar": "塔尔加尔",
 
+    // KZ - 哈萨克斯坦 - 阿克莫拉州
+    "Kokshetau": "科克舍套市",
+
     // LU - 卢森堡 - 迪基希
     "Schieren": "希伦",
 
@@ -520,6 +536,7 @@ function City_ValidCheck(para) {
     "Riga": "里加",
 
     // MX - 墨西哥 - 克雷塔罗州
+    "Bernal": "埃泽基尔蒙特斯市",
     "Querétaro": "克雷塔罗",
 
     // MD - 摩尔多瓦 - 基希讷乌市政区
@@ -569,15 +586,15 @@ function City_ValidCheck(para) {
     // SA - 沙特阿拉伯 - 利雅得省
     "Sha`ib al Malqah": "利雅得",
 
-    // SE - 瑞典 - 斯德哥尔摩
-    "Steninge": "斯特宁厄",
+    // SE - 瑞典 - 斯德哥尔摩省
+    "Steninge": "希格图纳市",
 
     // TR - 土耳其 - 科尼亚省
     "Karatay": "科尼亚市",
 
     // TR - 土耳其 - 伊斯坦布尔
     "Esenyurt": "埃森尤特区",
-    "Kocasinan": "科卡西南",
+    "Kocasinan": "巴切利耶夫莱尔区",
 
     // TZ - 坦桑尼亚 - 桑给巴尔
     "Mtoni": "桑给巴尔市",
@@ -621,7 +638,7 @@ function City_ValidCheck(para) {
     // US - 美国 - 伊利诺伊州
     "Elk Grove Village": "埃尔克格罗夫村",
 
-    // 美国 - 夏威夷州
+    // US - 美国 - 夏威夷州
     "Kahului" : "卡胡卢伊",
     
     // VE - 委内瑞拉 - 米兰达州
@@ -635,6 +652,9 @@ function City_ValidCheck(para) {
 
     // VN - 越南 - 海阳省
     "Hải Dương": "海阳市",
+
+    // VN - 越南 - 岘港市
+    "Liên Chiểu": "莲沼郡",
 
     // ZW - 津巴布韦 - 奇通圭扎
     "Chitungwiza": "奇通圭扎",
