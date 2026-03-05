@@ -641,6 +641,7 @@ function City_ValidCheck(para) {
 
     // US - 美国 - 夏威夷州
     "Kahului": "卡胡卢伊",
+    "'Ewa Beach": "火奴鲁鲁县",
     
     // VE - 委内瑞拉 - 米兰达州
     "Miranda": "加拉加斯市",
