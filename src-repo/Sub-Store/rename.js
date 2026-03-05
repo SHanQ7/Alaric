@@ -99,7 +99,7 @@ const countryList = [
   { enShort: "HT", enShort3: "HTI", zh: "海地", enFull: "Haiti", emoji: "🇭🇹" },
   { enShort: "HU", enShort3: "HUN", zh: "匈牙利", enFull: "Hungary", emoji: "🇭🇺", alias: ["Budapest"] },
   { enShort: "ID", enShort3: "IDN", zh: "印度尼西亚", enFull: "Indonesia", emoji: "🇮🇩" },
-  { enShort: "IE", enShort3: "IRL", zh: "爱尔兰", enFull: "Ireland", emoji: "🇮🇪", alias: ["Dublin"] },
+  { enShort: "IE", enShort3: "IRL", zh: "爱尔兰", enFull: "Ireland", emoji: "🇮🇪", alias: ["Dublin", "DUB⚡TG@danfeng_chat"] },
   { enShort: "IL", enShort3: "ISR", zh: "以色列", enFull: "Israel", emoji: "🇮🇱", alias:["TLV⚡TG@danfeng_chat",] },
   { enShort: "IM", enShort3: "IMN", zh: "马恩岛", enFull: "Isle of Man", emoji: "🇮🇲" },
   { enShort: "IN", enShort3: "IND", zh: "印度", enFull: "India", emoji: "🇮🇳", alias: ["Mumbai"] },
@@ -111,7 +111,7 @@ const countryList = [
   { enShort: "JE", enShort3: "JEY", zh: "泽西岛", enFull: "Jersey", emoji: "🇯🇪" },
   { enShort: "JM", enShort3: "JAM", zh: "牙买加", enFull: "Jamaica", emoji: "🇯🇲" },
   { enShort: "JO", enShort3: "JOR", zh: "约旦", enFull: "Jordan", emoji: "🇯🇴" },
-  { enShort: "JP", enShort3: "JPN", zh: "日本", enFull: "Japan", emoji: "🇯🇵", alias: ["Tokyo", "Osaka", "Kyoto", "Nagoya", "Sapporo", "Fukuoka", "NRT",] },
+  { enShort: "JP", enShort3: "JPN", zh: "日本", enFull: "Japan", emoji: "🇯🇵", alias: ["Tokyo", "Osaka", "Kyoto", "Nagoya", "Sapporo", "Fukuoka", "NRT"] },
   { enShort: "KE", enShort3: "KEN", zh: "肯尼亚", enFull: "Kenya", emoji: "🇰🇪" },
   { enShort: "KG", enShort3: "KGZ", zh: "吉尔吉斯斯坦", enFull: "Kyrgyzstan", emoji: "🇰🇬" },
   { enShort: "KH", enShort3: "KHM", zh: "柬埔寨", enFull: "Cambodia", emoji: "🇰🇭" },
@@ -247,7 +247,6 @@ const countryList = [
 
 // 来源识别映射（用于构建机场前缀）
 const sourceMap = [
-
 ];
 
 const ispMap = [
