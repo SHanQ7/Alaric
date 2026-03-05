@@ -401,7 +401,7 @@ function City_ValidCheck(para) {
     "Frankfurt Am Main": "法兰克福",
 
     // DO - 多米尼加共和国 - 阿苏阿省
-    "La Golondrina": "阿苏阿市"
+    "La Golondrina": "阿苏阿市",
     
     // ES - 西班牙 - 马德里自治区
     "Madrid": "马德里",
