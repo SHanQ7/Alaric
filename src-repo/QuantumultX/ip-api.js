@@ -437,6 +437,7 @@ function City_ValidCheck(para) {
 
     // ID - 印度尼西亚 - 东爪哇省
     "Gubengairlangga": "泗水市",
+    "Lamongan": "拉蒙岸县",
 
     // IL - 以色列 - 中央区
     "Rosh Ha‘Ayin": "罗什艾因",
