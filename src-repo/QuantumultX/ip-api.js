@@ -227,6 +227,7 @@ function Area_check(para) {
     "Rīga": "里加市",
     
     // LY - 利比亚国 - State of Libya - 北非 - North Africa
+    "Darnah": "德尔纳省",
     "Sha‘bīyat Banghāzī": "班加西省",
     "Tripoli": "的黎波里",
 
@@ -535,6 +536,9 @@ function City_ValidCheck(para) {
     // LV - 拉脱维亚 - 里加
     "Riga": "里加",
 
+    // LY - 利比亚 - 德尔纳省
+    "Darnah": "德尔纳市",
+    
     // MA - 摩洛哥 - 非斯-梅克内斯大区
     "Fes": "非斯",
 
