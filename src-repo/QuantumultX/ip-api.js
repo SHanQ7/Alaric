@@ -215,6 +215,7 @@ function Area_check(para) {
     // KZ - 哈萨克斯坦共和国 - Republic of Kazakhstan - 中亚 - Central Asia
     "Almaty": "阿拉木图州",
     "Almaty Oblysy": "阿拉木图州",
+    "Almaty Region": "阿拉木图州",
     "Aqmola": "阿克莫拉州",
     "Astana": "阿斯塔纳市",
     "Zhambyl Oblysy": "江布尔州",
@@ -357,6 +358,9 @@ function City_ValidCheck(para) {
     // AR - 阿根廷 - 科尔多瓦省
     "Cruz del Eje": "克鲁斯德尔埃赫",
 
+    // AT - 奥地利 - 布尔根兰州
+    "Bruckneudorf": "滨湖新锡德尔县",
+    
     // AT - 奥地利 - 维也纳州
     "Vienna": "维也纳",
 
