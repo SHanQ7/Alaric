@@ -65,11 +65,7 @@ $done({
 // 国家映射表
 function country_ValidCheck(para) {
    const countryMap = {
-     "中華民國" : "台湾",
-     "中华民国" : "台湾",
-     "俄罗斯联邦" : "俄罗斯",
-     "德意志联邦共和国" : "德国",
-     "Libya" : "利比亚",
+     "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国", "象牙海岸":"科特迪瓦", "Libya":"利比亚"
  };
 
  return countryMap[para ? para.trim() : ""] || para || country0;
@@ -119,6 +115,9 @@ function Area_check(para) {
     // CH - 瑞士联邦 - Swiss Confederation - 中欧 - Central Europe
     "Zurich": "苏黎世州",
 
+    // CI - 科特迪瓦 - Ivory Coast - 西非 - West Africa
+    "Abidjan Autonomous District": "阿比让自治区",
+    
     // CL - 智利共和国 - Republic of Chile - 南美洲 - South America
     "圣地亚哥首都大区": "圣地亚哥大区",
 
@@ -238,6 +237,9 @@ function Area_check(para) {
     // MD - 摩尔多瓦共和国 - Republic of Moldova - 东欧 - Eastern Europe
     "Chișinău Municipality": "基希讷乌",
 
+    // MK - 北马其顿 - North Macedonia - 南欧/巴尔干半岛 - Southern Europe/Balkans
+    "Grad Skopje": "斯科普里市",
+    
     // MN - 蒙古国 - Mongolia - 东亚 - East Asia
     "Ulaanbaatar": "乌兰巴托市",
 
@@ -549,6 +551,9 @@ function City_ValidCheck(para) {
     // MD - 摩尔多瓦 - 基希讷乌市政区
     "Sîngera": "辛热拉",
 
+    // MK - 北马其顿 - 斯科普里市
+    "Usje": "基塞拉沃达区",
+
     // MN - 蒙古国 - 乌兰巴托市
     "Shara-Höbiin-Dugang": "乌兰巴托市",
 
@@ -564,6 +569,7 @@ function City_ValidCheck(para) {
 
     // MX - 墨西哥 - 韦拉克鲁斯州
     "Huatusco": "瓦图斯科",
+    "Fortín de las Flores": "福廷市",
 
     // NG - 尼日利亚 - 拉各斯
     "拉哥斯": "拉各斯",
