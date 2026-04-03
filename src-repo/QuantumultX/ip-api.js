@@ -108,15 +108,15 @@ function Area_check(para) {
     "Sao Paulo": "圣保罗州",
 
     // CA - 加拿大 - Canada - 北美 - Northern America
+    "不列颠哥伦比亚省": "哥伦比亚省",
     "Ontario": "安大略省",
     "Quebec": "魁北克省",
-    "不列颠哥伦比亚省": "哥伦比亚省",
 
     // CH - 瑞士联邦 - Swiss Confederation - 中欧 - Central Europe
     "Zurich": "苏黎世州",
 
     // CI - 科特迪瓦 - Ivory Coast - 西非 - West Africa
-    "Abidjan Autonomous District": "阿比让自治区",
+    "Abidjan Autonomous District": "阿比让区",
     
     // CL - 智利共和国 - Republic of Chile - 南美洲 - South America
     "圣地亚哥首都大区": "圣地亚哥大区",
@@ -141,10 +141,10 @@ function Area_check(para) {
     "Prague": "布拉格市",
 
     // DE - 德意志联邦共和国 - Federal Republic of Germany - 中欧 - Central Europe
+    "石勒苏益格-荷尔斯泰因": "石荷州",
     "Bavaria": "巴伐利亚州",
     "Berlin": "柏林",
     "Hesse": "黑森州",
-    "石勒苏益格-荷尔斯泰因": "石荷州",
 
     // DK - 丹麦王国 - Kingdom of Denmark - 北欧 - Northern Europe
     "Capital Region": "哥本哈根大区",
@@ -154,11 +154,11 @@ function Area_check(para) {
     "Madrid": "马德里自治区",
 
     // FR - 法兰西共和国 - French Republic - 西欧 - Western Europe
-    "Auvergne-Rhône-Alpes": "奥罗阿大区",
-    "Île-de-France": "法兰西岛大区",
     "奧弗涅-羅訥-阿爾卑斯大區": "奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区": "普阿蓝大区",
     "法兰西岛": "法兰西岛大区",
+    "Auvergne-Rhône-Alpes": "奥罗阿大区",
+    "Île-de-France": "法兰西岛大区",
 
     // GB - 大不列颠及北爱尔兰联合王国 - United Kingdom - 西欧 - Western Europe
     "London": "伦敦",
@@ -306,13 +306,13 @@ function Area_check(para) {
     "Ang Thong": "红统府",
 
     // TW - 台湾 - Taiwan - 东亚 - East Asia
+    "臺灣省 or 台湾省": "台北市",
     "Changhua": "彰化县",
     "Taichung City": "台中市",
     "Taipei": "台北市",
     "Taiwan": "台湾",
     "Taoyuan": "桃园市",
     "Yunlin": "云林县",
-    "臺灣省 or 台湾省": "台北市",
 
     // TZ - 坦桑尼亚联合共和国 - Republic of Tanzania - 东非 - East Africa
     "Zanzibar Urban/West": "桑给巴尔市",
@@ -321,11 +321,11 @@ function Area_check(para) {
     "Kyiv City": "基辅州",
 
     // US - 美利坚合众国 - United States of America - 北美 - Northern America
+    "加州": "加利福尼亚州",
     "Arizona": "亚利桑那州",
     "California": "加利福尼亚州",
     "New York": "纽约州",
     "Texas": "德克萨斯州",
-    "加州": "加利福尼亚州",
 
     // UZ - 乌兹别克斯坦共和国 - Republic of Uzbekistan - 中亚 - Central Asia
     "Tashkent": "塔什干市",
