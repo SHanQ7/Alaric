@@ -311,6 +311,9 @@ function Area_check(para) {
     // TH - 泰王国 - Kingdom of Thailand - 东南亚 - Southeast Asia
     "Ang Thong":"红统府",
 
+    // TJ - 塔吉克斯坦 - Tajikistan - 中亚 - Central Asia
+    "Dushanbe":"杜尚别直辖市",
+
     // TW - 台湾 - Taiwan - 东亚 - East Asia
     "臺灣省 or 台湾省":"台北市",
     "Changhua":"彰化县",
@@ -495,6 +498,7 @@ function City_ValidCheck(para) {
     "Chiyoda":"千代田区",
     "Chiyoda City":"千代田区",
     "Ebara":"品川区",
+    "Minamishinagawa":"品川区",
     "Shibuya":"涩谷区",
 
     // JP - 日本 - 埼玉县
@@ -522,6 +526,9 @@ function City_ValidCheck(para) {
     "Seongnam-si":"城南市",
     "Siheung-si":"始兴市",
 
+    // KR - 韩国 - 仁川广域市
+    "Bupyeong-gu":"富平区",
+    
     // KR - 韩国 - 大邱广域市
     "Yuseong-gu":"儒城区",
 
