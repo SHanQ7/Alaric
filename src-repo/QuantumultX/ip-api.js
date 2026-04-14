@@ -65,7 +65,7 @@ $done({
 // 国家映射表
 function country_ValidCheck(para) {
    const countryMap = {
-     "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国", "象牙海岸":"科特迪瓦", "Libya":"利比亚"
+     "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国", "象牙海岸":"科特迪瓦", "South Korea":"韩国", "Libya":"利比亚"
  };
 
  return countryMap[para ? para.trim() : ""] || para || country0;
