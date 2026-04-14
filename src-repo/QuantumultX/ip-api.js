@@ -39,7 +39,9 @@ const lat = obj['lat'];
 const lon = obj['lon'];
 const timezone = obj['timezone'];
 
-let displayCity = (city !== country && city !== region) ? city : '';
+let displayRegion = ( region !== country && region !== city) ? region : '';
+
+#let displayCity = (city !== country && city !== region) ? city : '';
 
 let title = (flags.get(obj['countryCode']) || "") + ' ' + country + ' ' + region;
 let subtitle = (displayCity ? displayCity + ' · ' : '') + ip + ' · ' + isp;
