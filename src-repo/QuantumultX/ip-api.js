@@ -206,7 +206,7 @@ function Area_check(para) {
     "Tokyo":"东京都",
 
     // KG - 吉尔吉斯斯坦 - Kyrgyzstan - 中亚 - Central Asia
-    "Gorod Bishkek":"比什凯克直辖市",
+    "Gorod Bishkek":"比什凯克",
 
     // KH - 柬埔寨王国 - Kingdom of Cambodia - 东南亚 - Southeast Asia
     "Phnom Penh":"金边市",
