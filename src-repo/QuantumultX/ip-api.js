@@ -33,11 +33,10 @@ const lon = obj['lon'];
 const timezone = obj['timezone'];
 
 const isCitySameAsCountry = (city === country);
-
 const isRegionDuplicate = (region === city || city.includes(region));
 
 let finalCity = isCitySameAsCountry ? '' : city;
-let displayRegion = (isCitySameAsCountry || isRegionDuplicate) ? '' : region;
+let displayRegion = isRegionDuplicate ? '' : region;
 
 let title = (flags.get(obj['countryCode']) || "") + ' ' + country + (displayRegion ? ' ' + displayRegion : '');
 let subtitle = (finalCity ? finalCity + ' · ' : '') + ip + ' · ' + isp;
@@ -105,7 +104,7 @@ function Region_check(para) {
     "布鲁塞尔首都大区":"布鲁塞尔",
 
     // BG - 保加利亚共和国 - Republic of Bulgaria - 东欧 - Eastern Europe
-    "Sofia-Capital":"索非亚市",
+    "Sofia-Capital":"索非亚",
 
     // BR - 巴西联邦共和国 - Federative Republic of Brazil - 南美洲 - South America
     "Sao Paulo":"圣保罗州",
