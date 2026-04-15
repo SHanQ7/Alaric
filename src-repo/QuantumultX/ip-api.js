@@ -23,10 +23,10 @@ const rawRegionName = (obj['regionName'] || "").trim();
 const rawCity = (obj['city'] || "").trim();
 const rawIsp = (obj['isp'] || "").trim();
 
-const country = t2s(country_ValidCheck(rawCountry));
+const country = t2s(Country_check(rawCountry));
 const region = t2s(Region_check(rawRegionName));
-const city = t2s(City_ValidCheck(rawCity));
-const isp = t2s(ISP_ValidCheck(rawIsp));
+const city = t2s(City_check(rawCity));
+const isp = t2s(ISP_check(rawIsp));
 const ip = obj['query'];
 const lat = obj['lat'];
 const lon = obj['lon'];
@@ -56,7 +56,7 @@ $done({
 });
 
 // 国家映射表
-function country_ValidCheck(para) {
+function Country_check(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国", "象牙海岸":"科特迪瓦", "South Korea":"韩国", "Libya":"利比亚"
  };
@@ -350,7 +350,7 @@ function Region_check(para) {
   return areaMap[para ? para.trim() : ""] || para;
 };
 
-function City_ValidCheck(para) {
+function City_check(para) {
   const cityMap = {
     // AE - 阿联酋 - 阿布扎比
     "Masdar City":"马斯达尔城",
@@ -706,6 +706,6 @@ function City_ValidCheck(para) {
 };
 
 // ISP映射表
-function ISP_ValidCheck(para) {
+function ISP_check(para) {
   return para || ips0;
 };
