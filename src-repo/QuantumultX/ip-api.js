@@ -44,13 +44,7 @@ let description =
   '🌐 IP地址 / IP:\n' + ip + '\n\n' +
   '🏢 运营商 / ISP:\n' + isp + '\n' +
   '--------------------------------------';
-
-$done({
-  title: t2s(title),
-  subtitle: t2s(subtitle),
-  ip: ip,
-  description: t2s(description)
-});
+$done({title, subtitle, ip, description});
 
 // 国家映射表
 function country_ValidCheck(para) {
