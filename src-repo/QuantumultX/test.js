@@ -75,6 +75,9 @@ function Area_check(para) {
     // AL - 阿尔巴尼亚共和国 - Republic of Albania - 南欧 - Southern Europe
     "Tirana":"地拉那",
 
+    // AM - 亚美尼亚 - Armenia - 高加索/西亚 - Caucasus/West Asia
+    "葉里溫":"埃里温",
+    
     // AR - 阿根廷共和国 - Argentine Republic - 南美洲 - South America
     "Buenos Aires F.D.":"布宜诺斯艾利斯",
 
@@ -98,7 +101,7 @@ function Area_check(para) {
     "布鲁塞尔首都大区":"布鲁塞尔",
 
     // BG - 保加利亚共和国 - Republic of Bulgaria - 东欧 - Eastern Europe
-    "Sofia-Capital":"索非亚市",
+    "Sofia-Capital":"索非亚",
 
     // BR - 巴西联邦共和国 - Federative Republic of Brazil - 南美洲 - South America
     "Sao Paulo":"圣保罗州",
