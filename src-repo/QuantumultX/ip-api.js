@@ -24,7 +24,7 @@ const rawCity = (obj['city'] || "").trim();
 const rawIsp = (obj['isp'] || "").trim();
 
 const country = t2s(country_ValidCheck(rawCountry));
-const region = t2s(Area_check(rawRegionName));
+const region = t2s(Region_check(rawRegionName));
 const city = t2s(City_ValidCheck(rawCity));
 const isp = t2s(ISP_ValidCheck(rawIsp));
 const ip = obj['query'];
