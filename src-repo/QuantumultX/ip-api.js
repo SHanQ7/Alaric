@@ -76,7 +76,7 @@ function Region_check(para) {
     "Imārat Umm al Qaywayn":"乌姆盖万",
 
     // AL - 阿尔巴尼亚共和国 - Republic of Albania - 南欧 - Southern Europe
-    "Tirana":"地拉那",
+    "Tirana":"地拉那州",
 
     // AM - 亚美尼亚 - Armenia - 高加索/西亚 - Caucasus/West Asia
     "葉里溫":"埃里温",
@@ -104,7 +104,7 @@ function Region_check(para) {
     "布鲁塞尔首都大区":"布鲁塞尔",
 
     // BG - 保加利亚共和国 - Republic of Bulgaria - 东欧 - Eastern Europe
-    "Sofia-Capital":"索非亚",
+    "Sofia-Capital":"索非亚市",
 
     // BR - 巴西联邦共和国 - Federative Republic of Brazil - 南美洲 - South America
     "Sao Paulo":"圣保罗州",
@@ -392,10 +392,11 @@ function City_check(para) {
     "Rāipur":"赖布尔",
 
     // BG - 保加利亚 - 索非亚直辖市
-    "Sofia": "索非亚市",
+    "索菲亞":"索非亚市",
+    "Sofia":"索非亚市",
     
     // BR - 巴西 - 圣保罗州
-    "José Bonifácio":"若泽博尼法西奥市",
+    "José Bonifácio":"若泽-博尼法西奥市",
     "Osasco":"奥萨斯库",
     "São Paulo":"圣保罗",
     "Sao Paulo":"圣保罗",
