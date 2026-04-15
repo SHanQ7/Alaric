@@ -32,18 +32,23 @@ const lat = obj['lat'];
 const lon = obj['lon'];
 const timezone = obj['timezone'];
 
-let displayRegion = (region !== city && !city.includes(region)) ? region : '';
+const isCitySameAsCountry = (city === country);
+
+const isRegionDuplicate = (region === city || city.includes(region));
+
+let finalCity = isCitySameAsCountry ? '' : city;
+let displayRegion = (isCitySameAsCountry || isRegionDuplicate) ? '' : region;
 
 let title = (flags.get(obj['countryCode']) || "") + ' ' + country + (displayRegion ? ' ' + displayRegion : '');
-let subtitle = (city ? city + ' · ' : '') + ip + ' · ' + isp;
+let subtitle = (finalCity ? finalCity + ' · ' : '') + ip + ' · ' + isp;
 
 let description =
   '--------------------------------------\n' +
-  '🌍 国家 / Country:\n' + obj['countryCode'] + ' ' + country + '\n\n' +
-  '📍 地区 / Region:\n' + obj['region'] + ' ' + region + '\n\n' +
-  '🏙️ 城市 / City:\n' + obj['city'] + '\n\n' +
+  '🌍 国家 / Country:\n' + obj['country'] + ' (' + country + ')\n\n' +
+  '📍 地区 / Region:\n' + obj['regionName'] + ' (' + region + ')\n\n' +
+  '🏙️ 城市 / City:\n' + obj['city'] + ' (' + city + ')\n\n' +
   '🌐 IP地址 / IP:\n' + ip + '\n\n' +
-  '🏢 运营商 / ISP:\n' + isp + '\n\n' +
+  '🏢 运营商 / ISP:\n' + obj['isp'] + ' (' + isp + ')\n\n' +
   '📌 经纬度 / Lat & Lon:\n' + lat + ' / ' + lon + '\n\n' +
   '🕒 时区 / Timezone:\n' + timezone + '\n' +
   '--------------------------------------';
@@ -52,7 +57,7 @@ $done({
   title: t2s(title),
   subtitle: t2s(subtitle),
   ip: ip,
-  description: t2s(description)
+  description: description
 });
 
 // 国家映射表
