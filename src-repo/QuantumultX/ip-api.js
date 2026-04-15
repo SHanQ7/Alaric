@@ -347,7 +347,7 @@ function Region_check(para) {
     "Tây Ninh Province":"西宁省",
   };
 
-  return areaMap[para ? para.trim() : ""] || para;
+  return regionMap[para ? para.trim() : ""] || para;
 };
 
 function City_check(para) {
