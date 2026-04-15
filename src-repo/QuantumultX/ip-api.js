@@ -35,7 +35,7 @@ let title = (flags.get(obj['countryCode']) || "") + ' ' + country + (displayRegi
 let subtitle = (city ? city + ' · ' : '') + ip + ' · ' + isp;
 
 let description = '国家：' + obj['countryCode'] + ' ' + obj['country'] + '\n'
-  + '地区：' + obj['region'] + ' ' + city_check(obj['regionName']) + '\n'
+  + '地区：' + obj['region'] + ' ' + obj['regionName'] + '\n'
   + 'IP：' + obj['query'] + '\n'
   + '服务商：' + obj['isp'] + '\n'
   + '经纬度：' + obj['lat'] + ' / ' + obj['lon'] + '\n'
