@@ -27,25 +27,22 @@ const country = t2s(country_ValidCheck(rawCountry));
 const region = t2s(Area_check(rawRegionName));
 const city = t2s(City_ValidCheck(rawCity));
 const isp = t2s(ISP_ValidCheck(rawIsp));
-const ip = obj['query'];
-const lat = obj['lat'];
-const lon = obj['lon'];
-const timezone = obj['timezone'];
 
-let displayRegion = (region !== city && !city.includes(region)) ? region : '';
+const ip = obj['query'];
+
+let displayRegion = (region !== city && !city.includes(region) && !region.includes(city)) ? region : '';
 
 let title = (flags.get(obj['countryCode']) || "") + ' ' + country + (displayRegion ? ' ' + displayRegion : '');
+
 let subtitle = (city ? city + ' · ' : '') + ip + ' · ' + isp;
 
 let description =
   '--------------------------------------\n' +
-  '🌍 国家 / Country:\n' + obj['countryCode'] + ' ' + country + '\n\n' +
-  '📍 地区 / Region:\n' + obj['region'] + ' ' + region + '\n\n' +
-  '🏙️ 城市 / City:\n' + obj['city'] + '\n\n' +
+  '🌍 国家 / Country:\n' + (obj['countryCode'] || "") + ' ' + country + '\n\n' +
+  '📍 地区 / Region:\n' + (obj['region'] || "") + ' ' + region + '\n\n' +
+  '🏙️ 城市 / City:\n' + (obj['city'] || "") + ' ' + city + '\n\n' +
   '🌐 IP地址 / IP:\n' + ip + '\n\n' +
-  '🏢 运营商 / ISP:\n' + isp + '\n\n' +
-  '📌 经纬度 / Lat & Lon:\n' + lat + ' / ' + lon + '\n\n' +
-  '🕒 时区 / Timezone:\n' + timezone + '\n' +
+  '🏢 运营商 / ISP:\n' + isp + '\n' +
   '--------------------------------------';
 
 $done({
@@ -60,7 +57,6 @@ function country_ValidCheck(para) {
    const countryMap = {
      "中華民國":"台湾", "中华民国":"台湾", "俄罗斯联邦":"俄罗斯", "德意志联邦共和国":"德国", "象牙海岸":"科特迪瓦", "South Korea":"韩国", "Libya":"利比亚"
  };
-
  return countryMap[para ? para.trim() : ""] || para || country0;
 };
 
