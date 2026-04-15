@@ -497,7 +497,6 @@ function City_check(para) {
     "Lido di Ostia":"奥斯蒂亚海滨",
 
     // JP - 日本 - 东京都
-    "東京都":"涩谷区",
     "Chiyoda":"千代田区",
     "Chiyoda City":"千代田区",
     "Ebara":"品川区",
@@ -687,6 +686,9 @@ function City_check(para) {
     // US - 美国 - 夏威夷州
     "Kahului":"卡胡卢伊",
     "'Ewa Beach":"火奴鲁鲁县",
+    
+    // UZ - 乌兹别克斯坦
+    "塔什干":"塔什干市",
     
     // VE - 委内瑞拉 - 米兰达州
     "Miranda":"加拉加斯市",
