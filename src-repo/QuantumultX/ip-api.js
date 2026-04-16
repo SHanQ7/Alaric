@@ -155,6 +155,9 @@ function Region_check(para) {
     "Catalonia":"加泰罗尼亚自治区",
     "Madrid":"马德里自治区",
 
+    // EG - 埃及 - Egypt - 北非/中东 - North Africa/Middle East
+    "Dakahlia":"达卡利亚省",
+
     // FR - 法兰西共和国 - French Republic - 西欧 - Western Europe
     "奧弗涅-羅訥-阿爾卑斯大區":"奥罗阿大区",
     "普罗旺斯-阿尔卑斯-蔚蓝海岸大区":"普阿蓝大区",
@@ -309,9 +312,10 @@ function Region_check(para) {
 
     // TH - 泰王国 - Kingdom of Thailand - 东南亚 - Southeast Asia
     "Ang Thong":"红统府",
+    "Samut Sakhon":"龙仔厝府",
 
     // TJ - 塔吉克斯坦 - Tajikistan - 中亚 - Central Asia
-    "Dushanbe":"杜尚别直辖市",
+    "Dushanbe":"杜尚别",
 
     // TW - 台湾 - Taiwan - 东亚 - East Asia
     "臺灣省 or 台湾省":"台北市",
@@ -374,6 +378,9 @@ function City_check(para) {
     // AT - 奥地利 - 维也纳州
     "Vienna":"维也纳",
 
+    // AT - 奥地利 - 下奥地利州
+    "Bruck an der Leitha":"莱塔河畔布鲁克",
+      
     // AU - 澳大利亚 - 维多利亚州
     "Melton":"梅尔顿",
 
@@ -424,7 +431,10 @@ function City_check(para) {
 
     // DO - 多米尼加共和国 - 阿苏阿省
     "La Golondrina":"阿苏阿市",
-    
+
+    // EG - 埃及 - 达卡利亚省
+    "Al Mansurah":"曼苏拉市",
+      
     // ES - 西班牙 - 马德里自治区
     "Madrid":"马德里",
 
@@ -483,6 +493,9 @@ function City_check(para) {
     // IN - 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr":"钦奈市",
 
+    // IQ - 伊拉克 - 埃尔比勒省
+    "Erbil":"埃尔比勒市",
+    
     // IR - 伊朗 - 德黑兰省
     "Tehran":"德黑兰",
     
@@ -513,6 +526,9 @@ function City_check(para) {
     // KE - 肯尼亚 - 蒙巴萨郡
     "Mto Panga":"蒙巴萨市",
 
+    // KH - 柬埔寨 - 金边
+    "金边":"金边市",
+
     // KR - 韩国 - 首尔
     "Dongjak-gu":"铜雀区",
     "Gasan-dong":"加山洞",
@@ -527,6 +543,7 @@ function City_check(para) {
     "Gimpo-si":"金浦市",
     "Seongnam-si":"城南市",
     "Siheung-si":"始兴市",
+    "Yongin-si":"龙仁市",
 
     // KR - 韩国 - 仁川广域市
     "Bupyeong-gu":"富平区",
@@ -559,7 +576,8 @@ function City_check(para) {
     "Vilnius":"维尔纽斯",
 
     // LV - 拉脱维亚 - 里加
-    "Riga":"里加",
+    "里加":"里加市",
+    "Riga":"里加市",
 
     // LY - 利比亚 - 德尔纳省
     "Darnah":"德尔纳市",
@@ -647,6 +665,9 @@ function City_check(para) {
     // TH - 泰国 - 红统府
     "Ang Thong":"红统府",
 
+    // TH - 泰国 - 龙仔厝府
+    "Samut Sakhon":"龙仔厝市",
+    
     // UA - 乌克兰 - 基洛沃格勒州
     "Pomichna":"波莫什纳亚",
 
