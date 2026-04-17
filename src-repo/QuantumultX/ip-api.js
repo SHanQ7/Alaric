@@ -550,6 +550,7 @@ function City_check(para) {
     
     // KR - 韩国 - 大邱广域市
     "Yuseong-gu":"儒城区",
+    "Nam-gu":"南区",
 
     // KR - 韩国 - 全罗北道
     "Gunsan":"群山市",
