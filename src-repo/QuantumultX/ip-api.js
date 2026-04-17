@@ -459,6 +459,9 @@ function City_check(para) {
     "Tsing Yi":"青衣",
 
     // TW - 中国台湾 - 彰化县
+    "高雄":"高雄市",
+
+    // TW - 中国台湾 - 彰化县
     "Changhua":"彰化县",
 
     // TW - 中国台湾 - 桃园市
