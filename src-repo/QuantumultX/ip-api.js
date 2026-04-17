@@ -194,7 +194,7 @@ function Region_check(para) {
     "National Capital Territory of Delhi":"德里",
 
     // IS - 冰岛共和国 - Republic of Iceland - 北欧 - Northern Europe
-    "Southern Peninsula":"雷克雅内斯半岛",
+    "Southern Peninsula":"南半岛区",
 
     // IT - 意大利共和国 - Italian Republic - 南欧 - Southern Europe
     "Lazio":"拉齐奥大区",
