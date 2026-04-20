@@ -444,6 +444,9 @@ function City_check(para) {
     "Hounslow":"伦敦",
     "Slough":"斯劳",
 
+    // GD - 格林纳达 - 圣乔治区
+    "Saint George's": "圣乔治",
+
     // GR - 希腊 - 阿提卡大区
     "Porto Rafti":"波尔图拉夫提镇",
 
