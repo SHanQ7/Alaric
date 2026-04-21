@@ -2,6 +2,18 @@
  "name":"iKun",
  "description":"Made by iKun",
  "icons":[
+   {
+   "name":"bahamut.png",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/bahamut.png"
+  },
+  {
+   "name":"douyu.png",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/douyu.png"
+  },
+  {
+   "name":"himalaya.png",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/himalaya.png"
+  },
   {
    "name":"CBN.png",
    "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/cbn.png"
