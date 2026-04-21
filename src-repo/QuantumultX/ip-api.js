@@ -219,6 +219,9 @@ function Region_check(para) {
     "North Chungcheong":"忠清北道",
     "Seoul":"首尔特别市",
 
+    // KW - 科威特 - Kuwait - 中东/西亚 - Middle East/West Asia
+    "Hawalli":"哈瓦利省",
+    
     // KZ - 哈萨克斯坦共和国 - Republic of Kazakhstan - 中亚 - Central Asia
     "Almaty":"阿拉木图州",
     "Almaty Oblysy":"阿拉木图州",
@@ -438,6 +441,9 @@ function City_check(para) {
     // ES - 西班牙 - 马德里自治区
     "Madrid":"马德里",
 
+    // FR - 法国 - 奥弗涅-罗讷-阿尔卑斯大区
+    "Meyzieu":"梅济约市",
+
     // GB - 英国 - 英格兰
     "倫敦金融城":"伦敦",
     "Harlesden":"哈利斯登",
@@ -566,6 +572,9 @@ function City_check(para) {
     "Cheongju-si":"清州市",
     "Yeongdong-gun":"永同郡",
 
+    // KW - 科威特 - 哈瓦利省
+    "Salwá":"萨尔瓦区",
+
     // KZ - 哈萨克斯坦 - 阿拉木图
     "Aqtöbe":"阿克托别",
     "Talghar":"塔尔加尔",
@@ -617,6 +626,9 @@ function City_check(para) {
 
     // NG - 尼日利亚 - 拉各斯
     "拉哥斯":"拉各斯",
+
+    // NZ - 新西兰 - 奥克兰大区
+    "Manukau":"马努考",
 
     // OM - 阿曼 - 马斯喀特省
     "Seeb":"锡卜",
