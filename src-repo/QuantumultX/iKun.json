@@ -131,14 +131,6 @@
    "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/bahamut.png"
   },
   {
-   "name":"douyu",
-   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/douyu.png"
-  },
-  {
-   "name":"himalaya",
-   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/himalaya.png"
-  },
-  {
    "name":"CBN",
    "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/cbn.png"
   },
@@ -147,12 +139,28 @@
    "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/cmcc.png"
   },
   {
+   "name":"CTCC",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/ctcc.png"
+  },
+  {
    "name":"CUCC",
    "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/cucc.png"
   },
   {
-   "name":"CTCC",
-   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/ctcc.png"
+   "name":"dmm",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/dmm.png"
+  },
+  {
+   "name":"douyu",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/douyu.png"
+  },
+  {
+   "name":"himalaya",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/himalaya.png"
+  },
+  {
+   "name":"twitch",
+   "url":"https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/picture-repo/png/twitch.png"
   },
   {
    "name": "Auto_Speed",
