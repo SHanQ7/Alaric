@@ -1,3 +1,4 @@
+[rewrite_local]
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab\? url reject-dict
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element\? url reject-dict
 ^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
@@ -41,4 +42,5 @@
 # 7. 订单列表：删除按钮上方的增长提示气泡
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/order_list_v4 url jsonjq-response-body ".orders |= map(.order_buttons |= map(del(.order_growth_tip)))"
 
+[mitm]
 hostname = api.pinduoduo.com
