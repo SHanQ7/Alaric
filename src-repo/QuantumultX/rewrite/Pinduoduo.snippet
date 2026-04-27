@@ -1,25 +1,52 @@
-[rewrite_local]
-^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_express_group\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/search_hotquery\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/zaire_biz\/chat\/resource\/get_list_data\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/new_chat_group\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/brand-olay\/goods_detail\/bybt_guide\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/engels\/reviews\/require\/append\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/my_order_group\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/likes\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/phantom\/gbdbpdv\/extra\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/manufacturer\/cross\/shortcut\/list\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/dunkirk\/liveactivity\/push\/create\/url\/report\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/growth\/nagato\/app\/index\/gather\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/engels\/wait\/receive\/review\? url reject-dict
-^https:\/\/api\.pinduoduo\.com\/api\/buffon\/nasus\/recommend\? url reject-dict
+#!name = 拼多多净化页面布局
+#!author = ZenmoFeiShi 可莉
+#!update = 2026-02-28
 
-^http:\/\/((([0-9]{1,3}\.){3}[0-9]{1,3})|(\[[0-9a-fA-F:]+\]))\/d(\d)? url script-response-body https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo.js
+# 屏蔽首页全局活动/大促配置弹窗
+^https:\/\/api\.pinduoduo\.com\/api\/aquarius\/hungary\/global\/homepage\? url reject-dict
+# 屏蔽首页备选推荐商品加载
+^https:\/\/api\.pinduoduo\.com\/api\/alexa\/goods\/back_up\? url reject-dict
+# 屏蔽后台算法推荐信息流
+^https:\/\/api\.pinduoduo\.com\/api\/buffon\/nasus\/recommend\? url reject-dict
+# 屏蔽首页增长策略数据采集
+^https:\/\/api\.pinduoduo\.com\/api\/growth\/nagato\/app\/index\/gather\? url reject-dict
+
+# 屏蔽搜索框下的热搜词和推荐词
+^https:\/\/api\.pinduoduo\.com\/search_hotquery\? url reject-dict
+# 屏蔽详情页百亿补贴导购浮窗
+^https:\/\/api\.pinduoduo\.com\/api\/brand-olay\/goods_detail\/bybt_guide\? url reject-dict
+# 屏蔽厂家直供等快捷入口列表
+^https:\/\/api\.pinduoduo\.com\/api\/manufacturer\/cross\/shortcut\/list\? url reject-dict
+
+# 屏蔽聊天列表中的营销资源加载
+^https:\/\/api\.pinduoduo\.com\/api\/zaire_biz\/chat\/resource\/get_list_data\? url reject-dict
+# 屏蔽聊天界面的营销群组推荐
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/new_chat_group\? url reject-dict
+
+# 屏蔽个人中心任务墙、勋章等组件
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/personal\? url reject-dict
+# 屏蔽我的订单分组中的推广信息
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/my_order_group\? url reject-dict
+# 屏蔽物流详情页的“顺带推荐”商品
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_express_group\? url reject-dict
+# 屏蔽收藏夹中的猜你喜欢
+^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/likes\? url reject-dict
+
+# 屏蔽待收货页面中的待评价订单提醒
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab\? url reject-dict
+# 屏蔽订单列表顶部的营销分类标签
+^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/query_order_list_tabs_element\? url reject-dict
+# 屏蔽订单详情中的评价引导
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/wait\/receive\/review\? url reject-dict
+# 屏蔽强制追评逻辑
+^https:\/\/api\.pinduoduo\.com\/api\/engels\/reviews\/require\/append\? url reject-dict
+
+# 屏蔽后台用于追踪用户路径的“幻影”埋点数据上报
+^https:\/\/api\.pinduoduo\.com\/api\/phantom\/gbdbpdv\/extra\? url reject-dict
+# 屏蔽灵动岛、实时活动及系统推送的点击率汇报
+^https:\/\/api\.pinduoduo\.com\/api\/dunkirk\/liveactivity\/push\/create\/url\/report\? url reject-dict
+
+^http:\/\/((([0-9]{1,3}\.){3}[0-9]{1,3})|(\[[0-9a-fA-F:]+\]))\/d(\d)? url script-request-header https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo.js
 
 # 1. 首页：删除横幅/图标/热搜，并精简底部标签页
 ^https:\/\/api\.pinduoduo\.com\/api\/alexa\/homepage\/hub url jsonjq-response-body "del(.result.dy_module.irregular_banner_dy, .result.icon_set, .result.search_bar_hot_query) | .result.bottom_tabs? |= map(select(.link | IN(\"index.html\", \"chat_list.html\", \"personal.html\"))) | .result.buffer_bottom_tabs? |= map(select(.link | IN(\"index.html\", \"chat_list.html\", \"personal.html\"))) | .result.all_top_opts |= map(del(.selected_image, .image, .height, .width))"
@@ -42,5 +69,5 @@
 # 7. 订单列表：删除按钮上方的增长提示气泡
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/order_list_v4 url jsonjq-response-body ".orders |= map(.order_buttons |= map(del(.order_growth_tip)))"
 
-[mitm]
+
 hostname = api.pinduoduo.com
