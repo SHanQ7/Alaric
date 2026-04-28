@@ -24,6 +24,10 @@ ip-cidr, 117.185.244.145/32, reject
 ip-cidr, 183.194.214.14/32, reject
 
 # [rewrite]
+^http:\/\/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/d(\d)? url script-analyze-echo pdd_ip_reject.js
+
+^http:\/\/\[[0-9a-fA-F:]+\]\/d(\d)?\? url script-analyze-echo pdd_ip_reject.js
+
 # 拦截拼多多视频广告插件/素材
 ^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\/ url reject
 
