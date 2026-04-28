@@ -66,8 +66,8 @@ ip-cidr, 183.194.214.14/32, reject
 # 6. 订单详情 - 删除商品列表
 ^https:\/\/api\.pinduoduo\.com\/api\/caterham\/v3\/query\/order_detail_group\? url jsonjq-response-body 'del(.data.goods_list)'
 
-# 7. 订单页面 - 删除营销横幅
-^https:\/\/api\.pinduoduo\.com\/order\/ url jsonjq-response-bodyy 'del(.marketing_banner_vo, .shipping.banner_above_recommend)'
+# 7. 订单页面 - 删除营销横幅 (已修正 bodyy 的拼写)
+^https:\/\/api\.pinduoduo\.com\/order\/ url jsonjq-response-body 'del(.marketing_banner_vo, .shipping.banner_above_recommend)'
 
 # 8. 订单列表 - 删除按钮提示
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/order_list_v4\? url jsonjq-response-body '.orders |= map(.order_buttons |= map(del(.order_growth_tip)))'
