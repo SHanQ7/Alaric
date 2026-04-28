@@ -24,9 +24,11 @@ ip-cidr, 117.185.244.145/32, reject
 ip-cidr, 183.194.214.14/32, reject
 
 # [rewrite]
-^http:\/\/((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/d(\d)? url script-analyze-echo https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo_Filter.js
+# 拦截 PDD 的 IPv4 直连下载 (匹配类似 http://1.2.3.4/d1)
+^http:\/\/(\d{1,3}\.){3}\d{1,3}\/d(\d)? url script-request-header https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo_Filter.js
 
-^http:\/\/\[[0-9a-fA-F:]+\]\/d(\d)?\? url script-analyze-echo https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo_Filter.js
+# 拦截 PDD 的 IPv6 直连下载 (匹配类似 http://[2001:...]/d1?)
+^http:\/\/\[[0-9a-fA-F:]+\]\/d(\d)?\? url script-request-header https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo_Filter.js
 
 # 拦截拼多多视频广告插件/素材
 ^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\/ url reject
