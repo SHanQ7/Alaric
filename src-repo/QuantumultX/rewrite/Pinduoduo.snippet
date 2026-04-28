@@ -2,6 +2,40 @@
 #!author = ZenmoFeiShi 可莉
 #!update = 2026-02-28
 
+# [filter]
+host, apm.pinduoduo.com, reject
+host, apm-a.pinduoduo.com, reject
+host, cd-1.pddpic.com, reject
+host, cdl-1.pddpic.com, reject
+host, cdl-p2.pddpic.com, reject
+host, meta.pinduoduo.com, reject
+host, sdk.1rtb.net, reject
+host, ta.pinduoduo.com, reject
+host, th-a.pinduoduo.com, reject
+host, th-b.pinduoduo.com, reject
+host, titan.pinduoduo.com, reject
+host, xg.pinduoduo.com, reject
+ip-cidr, 121.5.84.85/32, reject
+ip-cidr, 183.194.214.21/32, reject
+ip-cidr, 49.235.102.190/32, reject
+ip-cidr, 81.69.116.33/32, reject
+ip-cidr, 183.194.214.20/32, reject
+ip-cidr, 117.185.244.145/32, reject
+ip-cidr, 183.194.214.14/32, reject
+
+# [rewrite]
+# 拦截拼多多视频广告插件/素材
+^https:\/\/video-dsp\.pddpic\.com\/market-dsp-video\/ url reject
+
+# 广告追踪回调拦截
+^https:\/\/t-dsp\.pinduoduo\.com\/dspcb\/i\/mrk_ url reject
+
+# 拦截拼多多营销素材/弹窗图片
+^https:\/\/images\.pinduoduo\.com\/mrk\/ url reject
+
+# 营销 API
+^https:\/\/images\.pinduoduo\.com\/marketing_api\/ url reject
+
 # 移除待收货页面中的“待评价订单”提醒，减少评价诱导
 ^https:\/\/api\.pinduoduo\.com\/api\/aristotle\/unrated_order_for_unreceived_tab\? url reject-dict
 
@@ -66,5 +100,5 @@
 ^https:\/\/api\.pinduoduo\.com\/(search|order\/)\? url script-response-body https://raw.githubusercontent.com/SHanQ7/Alaric/refs/heads/main/src-repo/QuantumultX/script/Pinduoduo.js
 
 
-
-hostname = api.pinduoduo.com
+# [mitm] 
+hostname = api.pinduoduo.com, t-dsp.pinduoduo.com, video-dsp.pddpic.com, images.pinduoduo.com
