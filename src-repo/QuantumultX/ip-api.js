@@ -696,6 +696,9 @@ function City_check(para) {
 
     // UA - 乌克兰 - 沃伦州
     "Lutsk":"卢茨克区",
+    
+    // UA - 乌克兰 - 赫梅利尼茨基州
+    "Khmelnytskyi":"赫梅利尼茨基市",
 
     // US - 美国 - 加利福尼亚州
     "San Jose":"圣荷西",
