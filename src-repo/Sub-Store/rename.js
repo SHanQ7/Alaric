@@ -576,11 +576,17 @@ function operator(proxies) {
     // === 构建最终名称 ===
     const composed = [flag, cname];
     if (tags.length) composed.push(...tags);
-    composed.push(countStr);
-    if (sourcePrefix || rateStr) composed.push(sourcePrefix + rateStr);
+    if (countStr) composed.push(`- ${countStr}`);
+    if (sourcePrefix || rateStr) {
+        const ratePart = sourcePrefix + rateStr;
+        if (!countStr) {
+            composed.push(`- ${ratePart}`);
+        } else {
+            composed.push(ratePart);
+        }
+    }
     if (airport) composed.push(`- ${airport}`);
     if (speedStr) composed.push(speedStr);
-
     res.name = composed.filter(Boolean).join(' ');
   });
 
