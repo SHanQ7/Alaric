@@ -8,9 +8,8 @@
 
 | 名称 | 功能简介 | 链接 |
 | :--- | :--- | :--- |
-| **RG-AdGuard** | Microsoft Store 离线安装包提取 | [前往站点](https://store.rg-adguard.net/) |
-| **示例工具** | 这里写一句话描述 | [前往站点](https://example.com) |
-
+| **RG-AdGuard** | Microsoft Store 离线安装包提取器 | [访问站点](https://store.rg-adguard.net/) |
+| **Massgrave** | Windows/Office 激活方案与部署工具 | [访问站点](https://massgrave.dev/) |
 ---
 
 ## 📚 分类资源
