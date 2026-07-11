@@ -1,1 +1,31 @@
-🚀 Awesome Collections这是一个精选的优质资源合集，旨在收集高效工具、实用脚本及各类高质量开源项目。🛠 工具与服务 (Tools)项目名称描述链接RG-AdGuard在线获取 Microsoft Store 应用离线安装包访问链接Example Tool这里添加工具的简短功能描述点击访问
+# 🚀 资源收藏夹
+
+> 精选高效工具与优质资源合集。
+
+---
+
+## 🛠 常用工具
+
+| 名称 | 功能简介 | 链接 |
+| :--- | :--- | :--- |
+| **RG-AdGuard** | Microsoft Store 离线安装包提取 | [前往站点](https://store.rg-adguard.net/) |
+| **示例工具** | 这里写一句话描述 | [前往站点](https://example.com) |
+
+---
+
+## 📚 分类资源
+
+### 💻 开发环境
+* [项目名称](https://github.com/link) - 简要介绍。
+* [项目名称](https://github.com/link) - 简要介绍。
+
+### 🎨 设计资源
+* [项目名称](https://github.com/link) - 简要介绍。
+
+---
+
+## 🤝 贡献指南
+欢迎提交 [Issue](https://github.com/你的用户名/你的仓库名/issues) 来推荐好用的工具！
+
+---
+*Last updated: 2026-07-11*
