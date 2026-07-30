@@ -279,6 +279,9 @@ function Region_check(para) {
     // OM - 阿曼苏丹国 - Sultanate of Oman - 西亚 - West Asia
     "Muscat":"马斯喀特省",
 
+    // PG - 巴布亚新几内亚 - Papua New Guinea - 大洋洲 - Oceania
+    "National Capital": "首都区",
+
     // PH - 菲律宾共和国 - Republic of the Philippines - 东南亚 - Southeast Asia
     "Metro Manila":"大马尼拉都会区",
     "Northern Mindanao":"北棉兰老大区",
@@ -738,6 +741,7 @@ function City_check(para) {
 
     // VN - 越南 - 胡志明市
     "Quận Phú Nhuận":"富润郡",
+    "Thủ Đức": "守德市",
 
     // VN - 越南 - 河内市
     "Trâu Quỳ":"嘉林县",
