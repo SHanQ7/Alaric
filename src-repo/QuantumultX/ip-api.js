@@ -207,6 +207,7 @@ function Region_check(para) {
 
     // KG - 吉尔吉斯斯坦 - Kyrgyzstan - 中亚 - Central Asia
     "Gorod Bishkek":"比什凯克",
+    "Bishkek": "比什凯克市",
 
     // KH - 柬埔寨王国 - Kingdom of Cambodia - 东南亚 - Southeast Asia
     "Phnom Penh":"金边市",
@@ -488,6 +489,9 @@ function City_check(para) {
     // ID - 印度尼西亚 - 东爪哇省
     "Gubengairlangga":"泗水市",
     "Lamongan":"拉蒙岸县",
+
+    // ID - 印度尼西亚 - 雅加达
+    "North Jakarta": "北雅加达",
 
     // IL - 以色列 - 中央区
     "Rosh Ha‘Ayin":"罗什艾因",
