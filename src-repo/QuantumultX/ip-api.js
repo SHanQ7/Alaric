@@ -740,6 +740,7 @@ function City_check(para) {
     "Miranda":"加拉加斯市",
 
     // VN - 越南 - 胡志明市
+    "Quận Ba": "第三郡",
     "Quận Phú Nhuận":"富润郡",
     "Thủ Đức": "守德市",
 
