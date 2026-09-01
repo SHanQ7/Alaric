@@ -132,6 +132,7 @@ function Region_check(para) {
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
     "薹灣省 or 台灣省":"台湾",
+    "台湾省 or 台湾省":"台湾",
     "Kowloon":"九龙城区",
     "Sai Kung District":"西贡区",
     "Sham Shui Po":"深水埗区",
