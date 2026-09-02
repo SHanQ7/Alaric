@@ -131,7 +131,8 @@ function Region_check(para) {
     "圣地亚哥首都大区":"圣地亚哥大区",
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
-    "臺灣省 or 台灣省":"台湾",
+    "臺灣省 or 台灣省":"台北市",
+    "臺北市":"台北市城区",
     "Changhua":"彰化县",
     "Kowloon":"九龙城区",
     "Sai Kung District":"西贡区",
