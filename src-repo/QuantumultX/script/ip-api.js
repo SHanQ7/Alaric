@@ -131,13 +131,18 @@ function Region_check(para) {
     "圣地亚哥首都大区":"圣地亚哥大区",
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
-    "薹灣省 or 台灣省":"台湾",
-    "台湾省 or 台湾省":"台湾",
+    "臺灣省 or 台灣省":"台湾",
+    "Changhua":"彰化县",
     "Kowloon":"九龙城区",
     "Sai Kung District":"西贡区",
     "Sham Shui Po":"深水埗区",
+    "Taichung City":"台中市",
+    "Taipei":"台北市",
+    "Taiwan":"台湾",
+    "Taoyuan":"桃园市",
     "Tsuen Wan District":"荃湾区",
     "Wong Tai Sin":"黄大仙区",
+    "Yunlin":"云林县",
 
     // CO - 哥伦比亚共和国 - Republic of Colombia - 南美洲 - South America
     "Bogota D.C.":"波哥大首都区",
@@ -337,15 +342,6 @@ function Region_check(para) {
     // TJ - 塔吉克斯坦 - Tajikistan - 中亚 - Central Asia
     "Dushanbe":"杜尚别",
 
-    // TW - 台湾 - Taiwan - 东亚 - East Asia
-    "臺灣省 or 台湾省":"台北市",
-    "Changhua":"彰化县",
-    "Taichung City":"台中市",
-    "Taipei":"台北市",
-    "Taiwan":"台湾",
-    "Taoyuan":"桃园市",
-    "Yunlin":"云林县",
-
     // TZ - 坦桑尼亚联合共和国 - Republic of Tanzania - 东非 - East Africa
     "Zanzibar Urban/West":"桑给巴尔市",
 
@@ -435,7 +431,7 @@ function City_check(para) {
     // CL - 智利 - 圣地亚哥大区
     "Lampa":"兰帕",
 
-    // CN - 台湾 - 基隆
+    // CN - 中国台湾
     "高雄":"高雄市",
     "Changhua":"彰化县",
     "Keelung": "基隆市",
