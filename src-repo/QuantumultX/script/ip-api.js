@@ -62,8 +62,8 @@ $done({
 // 国家映射表
 function Country_check(para) {
    const countryMap = {
-     "中華民國":"台湾",
-     "中华民国":"台湾",
+     "中華民國":"中国",
+     "中华民国":"中国",
      "俄罗斯联邦":"俄罗斯",
      "德意志联邦共和国":"德国",
      "象牙海岸":"科特迪瓦",
@@ -131,8 +131,7 @@ function Region_check(para) {
     "圣地亚哥首都大区":"圣地亚哥大区",
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
-    "臺灣省 or 台灣省":"台北市",
-    "臺北市":"台北市城区",
+    "臺灣省 or 台灣省":"台湾省",
     "Changhua":"彰化县",
     "Kowloon":"九龙城区",
     "Sai Kung District":"西贡区",
