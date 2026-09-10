@@ -76,7 +76,7 @@ const countryList = [
   { enShort: "FO", enShort3: "FRO", zh: "法罗群岛", enFull: "Faroe Islands", emoji: "🇫🇴" },
   { enShort: "FR", enShort3: "FRA", zh: "法国", enFull: "France", emoji: "🇫🇷", alias: ["france", "Paris", "LYS⚡TG@danfeng_chat"] },
   { enShort: "GA", enShort3: "GAB", zh: "加蓬", enFull: "Gabon", emoji: "🇬🇦" },
-  { enShort: "GB", enShort3: "GBR", zh: "英国", enFull: "United Kingdom", emoji: "🇬🇧", alias: ["UK", "British", "London", "LHR", "GB⚡TG@danfeng_chat", "GB🐲™️【请勿测速】"] },
+  { enShort: "GB", enShort3: "GBR", zh: "英国", enFull: "United Kingdom", emoji: "🇬🇧", alias: ["GB-","UK", "British", "London", "LHR", "GB⚡TG@danfeng_chat", "GB🐲™️【请勿测速】"] },
   { enShort: "GD", enShort3: "GRD", zh: "格林纳达", enFull: "Grenada", emoji: "🇬🇩" },
   { enShort: "GE", enShort3: "GEO", zh: "格鲁吉亚", enFull: "Georgia", emoji: "🇬🇪", alias: ["Tbilisi"] },
   { enShort: "GF", enShort3: "GUF", zh: "法属圭亚那", enFull: "French Guiana", emoji: "🇬🇫" },
