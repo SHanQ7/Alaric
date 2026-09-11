@@ -441,6 +441,9 @@ function City_check(para) {
     "Taoyuan":"桃园区",
     "Yuanlin":"员林镇",
 
+    // CN - 中国香港
+    "Mid Levels": "半山区",
+
     // CZ - 捷克 - 南波希米亚州
     "České Budějovice":"捷克布杰约维采",
 
@@ -472,6 +475,7 @@ function City_check(para) {
     "Harlesden":"哈利斯登",
     "Hounslow":"伦敦",
     "Kingsclere": "金斯克莱尔",
+    "Seaham": "西汉姆",
     "Slough":"斯劳",
 
     // GD - 格林纳达 - 圣乔治区
@@ -544,6 +548,7 @@ function City_check(para) {
     "Chiyoda City":"千代田区",
     "Ebara":"品川区",
     "Minamishinagawa":"品川区",
+    "Nishisugamo": "西巢鸭",
     "Shibuya":"涩谷区",
 
     // JP - 日本 - 埼玉县
@@ -571,8 +576,10 @@ function City_check(para) {
     "Yongsan-dong":"龙山区",
 
     // KR - 韩国 - 京畿道
+    "Anyang-si": "安养市",
     "Bucheon-si":"富川市",
     "Gimpo-si":"金浦市",
+    "Goyang-si": "高阳市",
     "Seongnam-si":"城南市",
     "Siheung-si":"始兴市",
     "Yongin-si":"龙仁市",
