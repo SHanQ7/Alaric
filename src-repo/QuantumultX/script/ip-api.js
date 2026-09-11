@@ -131,6 +131,7 @@ function Region_check(para) {
     "圣地亚哥首都大区":"圣地亚哥大区",
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
+    // 台湾省
     "臺灣省 or 台灣省":"台湾省",
     "Changhua":"彰化县",
     "Kowloon":"九龙城区",
@@ -143,6 +144,8 @@ function Region_check(para) {
     "Tsuen Wan District":"荃湾区",
     "Wong Tai Sin":"黄大仙区",
     "Yunlin":"云林县",
+    // 香港省
+    "Southern District": "南区",
 
     // CO - 哥伦比亚共和国 - Republic of Colombia - 南美洲 - South America
     "Bogota D.C.":"波哥大首都区",
