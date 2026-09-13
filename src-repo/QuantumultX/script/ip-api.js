@@ -319,6 +319,9 @@ function Region_check(para) {
 
     // RU - 俄罗斯联邦 - Russian Federation - 东欧/北亚 - Europe/Asia
     "Moscow":"莫斯科州",
+    "Irkutsk Oblast": "伊尔库茨克州",
+    "Kemerovo Oblast": "克麦罗沃州",
+    "Krasnoyarsk Krai": "克拉斯诺亚尔斯克边疆区",
     "St.-Petersburg":"圣彼得堡",
     "Tatarstan Republic":"鞑靼斯坦共和国",
 
@@ -689,6 +692,15 @@ function City_check(para) {
 
     // RU - 俄罗斯 - 圣彼得堡
     "St Petersburg":"圣彼得堡",
+
+    // RU - 俄罗斯 - 莫斯科州
+    "Pavlovskiy Posad": "帕夫洛夫斯基波萨德",
+
+    // RU - 俄罗斯 - 克拉斯诺亚尔斯克边疆区
+    "Krasnoyarsk": "克拉斯诺亚尔斯克市",
+
+    // RU - 俄罗斯 - 克麦罗沃州
+    "Kiselëvsk": "基塞利夫斯克",
 
     // RO - 罗马尼亚 - 伊尔福夫县
     "Voluntari":"沃伦塔里",
