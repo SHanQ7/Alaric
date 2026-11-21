@@ -141,18 +141,18 @@ function Region_check(para) {
     "臺灣省 or 台灣省": "台湾省",
     "台北市": "台湾省",
     "Changhua": "台湾省",
-    "Kowloon": "台湾省",
-    "Sai Kung District": "台湾省",
-    "Sham Shui Po": "台湾省",
     "Taichung City": "台湾省",
     "Taipei": "台湾省",
     "Taiwan": "台湾省",
     "Taoyuan": "台湾省",
-    "Tsuen Wan District": "台湾省",
-    "Wong Tai Sin": "台湾省",
     "Yunlin": "台湾省",
     // 香港
+    "Kowloon":"九龙城区",
+    "Sai Kung District":"西贡区",
+    "Sham Shui Po":"深水埗区",
     "Southern District": "南区",
+    "Tsuen Wan District":"荃湾区",
+    "Wong Tai Sin":"黄大仙区",
 
     // CO - 哥伦比亚共和国 - Republic of Colombia - 南美洲 - South America
     "Bogota D.C.":"波哥大首都区",
