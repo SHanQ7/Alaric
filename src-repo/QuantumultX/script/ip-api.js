@@ -62,13 +62,13 @@ $done({
 // 国家映射表
 function Country_check(para) {
    const countryMap = {
-     "中華民國":"中国",
-     "中华民国":"中国",
-     "台湾":"中国",
+     "中華民國": "中国",
+     "中华民国": "中国",
+     "台湾": "中国",
      
-     "俄罗斯联邦":"俄罗斯",
+     "俄罗斯联邦": "俄罗斯",
      
-     "德意志联邦共和国":"德国",
+     "德意志联邦共和国": "德国",
      
      "象牙海岸":"科特迪瓦",
      
@@ -100,10 +100,10 @@ function Region_check(para) {
     "Vienna":"维也纳",
 
     // AU - 澳大利亚联邦 - Commonwealth of Australia - 大洋洲 - Oceania
-    "New South Wales":"新南威尔士州",
-    "new south wales":"新南威尔士州",
-    "Queensland":"昆士兰州",
-    "Victoria":"维多利亚州",
+    "New South Wales": "新南威尔士州",
+    "new south wales": "新南威尔士州",
+    "Queensland": "昆士兰州",
+    "Victoria": "维多利亚州",
 
     // AZ - 阿塞拜疆共和国 - Republic of Azerbaijan - 西亚 - West Asia
     "Baku City":"巴库市",
@@ -138,19 +138,19 @@ function Region_check(para) {
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
     // 台湾
-    "臺灣省 or 台灣省":"台湾省",
+    "臺灣省 or 台灣省": "台湾省",
     "台北市": "台湾省",
-    "Changhua":"台湾省",
-    "Kowloon":"台湾省",
-    "Sai Kung District":"台湾省",
-    "Sham Shui Po":"台湾省",
-    "Taichung City":"台湾省",
-    "Taipei":"台湾省",
-    "Taiwan":"台湾省",
-    "Taoyuan":"台湾省",
-    "Tsuen Wan District":"台湾省",
-    "Wong Tai Sin":"台湾省",
-    "Yunlin":"台湾省",
+    "Changhua": "台湾省",
+    "Kowloon": "台湾省",
+    "Sai Kung District": "台湾省",
+    "Sham Shui Po": "台湾省",
+    "Taichung City": "台湾省",
+    "Taipei": "台湾省",
+    "Taiwan": "台湾省",
+    "Taoyuan": "台湾省",
+    "Tsuen Wan District": "台湾省",
+    "Wong Tai Sin": "台湾省",
+    "Yunlin": "台湾省",
     // 香港
     "Southern District": "南区",
 
@@ -516,7 +516,7 @@ function City_check(para) {
     // ID - 印度尼西亚 - 雅加达
     "East Jakarta": "东雅加达市",
     "North Jakarta": "北雅加达市",
-    "Central Jakarta": "中雅加达行政市"
+    "Central Jakarta": "中雅加达行政市",
 
     // IL - 以色列 - 中央区
     "Rosh Ha‘Ayin":"罗什艾因",
