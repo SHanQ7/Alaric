@@ -64,10 +64,16 @@ function Country_check(para) {
    const countryMap = {
      "中華民國":"中国",
      "中华民国":"中国",
+     "台湾":"中国",
+     
      "俄罗斯联邦":"俄罗斯",
+     
      "德意志联邦共和国":"德国",
+     
      "象牙海岸":"科特迪瓦",
+     
      "Libya":"利比亚",
+     
      "South Korea":"韩国"
  };
  return countryMap[para ? para.trim() : ""] || para;
@@ -131,20 +137,21 @@ function Region_check(para) {
     "圣地亚哥首都大区":"圣地亚哥大区",
 
     // CN - 中华人民共和国 - China - 东亚 - East Asia
-    // 台湾省
+    // 台湾
     "臺灣省 or 台灣省":"台湾省",
-    "Changhua":"彰化县",
-    "Kowloon":"九龙城区",
-    "Sai Kung District":"西贡区",
-    "Sham Shui Po":"深水埗区",
-    "Taichung City":"台中市",
-    "Taipei":"台北市",
-    "Taiwan":"台湾",
-    "Taoyuan":"桃园市",
-    "Tsuen Wan District":"荃湾区",
-    "Wong Tai Sin":"黄大仙区",
-    "Yunlin":"云林县",
-    // 香港省
+    "台北市": "台湾省",
+    "Changhua":"台湾省",
+    "Kowloon":"台湾省",
+    "Sai Kung District":"台湾省",
+    "Sham Shui Po":"台湾省",
+    "Taichung City":"台湾省",
+    "Taipei":"台湾省",
+    "Taiwan":"台湾省",
+    "Taoyuan":"台湾省",
+    "Tsuen Wan District":"台湾省",
+    "Wong Tai Sin":"台湾省",
+    "Yunlin":"台湾省",
+    // 香港
     "Southern District": "南区",
 
     // CO - 哥伦比亚共和国 - Republic of Colombia - 南美洲 - South America
@@ -310,6 +317,7 @@ function Region_check(para) {
 
     // QA - 卡塔尔 - Qatar - 中东 - Middle East
     "Baladīyat ad Dawḩah": "多哈自治市",
+    "Baladiyat ad Dawhah": "多哈自治市",
 
     // RO - 罗马尼亚 - Romania - 东欧 - Eastern Europe
     "București":"布加勒斯特",
@@ -508,6 +516,7 @@ function City_check(para) {
     // ID - 印度尼西亚 - 雅加达
     "East Jakarta": "东雅加达市",
     "North Jakarta": "北雅加达市",
+    "Central Jakarta": "中雅加达行政市"
 
     // IL - 以色列 - 中央区
     "Rosh Ha‘Ayin":"罗什艾因",
@@ -670,6 +679,9 @@ function City_check(para) {
     // PG - 巴布亚新几内亚 - 赫拉省
     "Koroba":"科罗巴",
 
+    // PG - 巴布亚新几内亚 - 马当省
+    "Madang": "马当",
+      
     // PH - 菲律宾 - 大马尼拉都会区
     "Pasig":"帕西格市",
     "Taguig":"达义市",
@@ -682,6 +694,9 @@ function City_check(para) {
 
     // PT - 葡萄牙 - 塞图巴尔区
     "Montijo":"蒙蒂茹",
+
+    // PT - 葡萄牙 - 里斯本区 - 奥埃拉什市镇 (Oeiras) - 克鲁什克布拉达-达丰杜
+    "Cruz Quebrada-Dafundo": "奥埃拉什市镇",
 
     // NO - 挪威 - 阿克什胡斯郡
     "Jessheim":"杰斯海姆",
@@ -792,6 +807,9 @@ function City_check(para) {
 
     // VN - 越南 - 岘港市
     "Liên Chiểu":"莲沼郡",
+
+    // ZA - 南非 - 西开普省 - 开普敦市 - 米切尔斯普莱恩
+    "Mitchells Plain": "开普敦市",
 
     // ZW - 津巴布韦 - 奇通圭扎
     "Chitungwiza":"奇通圭扎",
