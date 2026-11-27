@@ -291,7 +291,7 @@ function City_check(para) {
     "高雄":"高雄市", "Changhua":"彰化县", "Keelung": "基隆市", "Taoyuan":"桃园区", "Yuanlin":"员林镇",
 
     // CN - 中国香港
-    "Mid Levels": "半山区",
+    "Mid Levels":"半山区",
 
     // CZ - 捷克 - 南波希米亚州
     "České Budějovice":"捷克布杰约维采",
@@ -312,7 +312,7 @@ function City_check(para) {
     "Al Mansurah":"曼苏拉市",
       
     // ES - 西班牙 - 马德里自治区
-    "查马丁區":"马德里市", "Madrid":"马德里市",
+    "查马丁区":"马德里市", "Madrid":"马德里市",
 
     // FR - 法国 - 奥弗涅-罗讷-阿尔卑斯大区
     "Meyzieu":"梅济约市",
@@ -591,7 +591,7 @@ function City_check(para) {
     "Mitchells Plain":"开普敦市",
 
     // ZW - 津巴布韦 - 奇通圭扎
-    "Chitungwiza":"奇通圭扎",
+    "Chitungwiza":"奇通圭扎"
   };
   return cityMap[para ? para.trim() : ""] || para || city0;
 };
