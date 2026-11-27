@@ -47,8 +47,7 @@ let description =
   'ISP: ' + obj['isp'] + '\n\n' +
   'Latitude: ' + obj['lat'] + '\n' +
   'Longitude: ' + obj['lon'] + '\n' +
-  'Timezone: ' + obj['timezone'] + '\n' +
- ;
+  'Timezone: ' + obj['timezone'];
 
 $done({
   title: title,
