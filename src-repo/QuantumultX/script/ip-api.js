@@ -11,7 +11,7 @@ function t2s(str) {
   return str.replace(regex, (char) => map[char] || char);
 }
 
-const invalidCityBlacklist = new Set(["", "香港"]);
+const invalidCityBlacklist = new Set(["", "东京都", "香港", "新加坡"]);
 
 const country0 = "MUC";
 const region0 = "韦恩大厦";
@@ -40,21 +40,14 @@ let title = (flags.get(obj['countryCode']) || "") + ' ' + country + (region ? ' 
 let subtitle = (city ? city + ' · ' : '') + ip + ' · ' + isp;
 
 let description =
-  '--------------------------------------\n' +
-  '【位置信息】\n' +
-  '📍 国家: ' + obj['country'] + '\n' +
-  '📍 地区: ' + obj['regionName'] + '\n' +
-  '📍 城市: ' + obj['city'] + '\n\n' +
-  '━━━━━━━━━━━━━━━━━━━━━━\n' +
-  '【网络信息】\n' +
-  '🌐 IP Address: ' + obj['query'] + '\n' +
-  '🌐 ISP: ' + obj['isp'] + '\n\n' +
-  '━━━━━━━━━━━━━━━━━━━━━━\n' +
-  '【定位信息】\n' +
-  '📌 Latitude: ' + obj['lat'] + '\n' +
-  '📌 Longitude: ' + obj['lon'] + '\n' +
-  '🕒 Timezone: ' + obj['timezone'] + '\n' +
-  '--------------------------------------';
+  'Country: ' + obj['country'] + '\n' +
+  'Region: ' + obj['regionName'] + '\n' +
+  'City: ' + obj['city'] + '\n\n' +
+  'IP: ' + obj['query'] + '\n' +
+  'ISP: ' + obj['isp'] + '\n\n' +
+  'Latitude: ' + obj['lat'] + '\n' +
+  'Longitude: ' + obj['lon'] + '\n' +
+  'Timezone: ' + obj['timezone'] + '\n' +
 
 $done({
   title: title,
@@ -117,9 +110,9 @@ function Region_check(para) {
     "圣地亚哥首都大区":"圣地亚哥大区",
     // CN - 中华人民共和国 - China - 东亚 - East Asia
     // 台湾 
-    "臺灣省 or 台灣省": "台湾省",  "台北市": "台湾省", "Changhua": "台湾省", "Taichung City": "台湾省", "Taipei": "台湾省", "Taiwan": "台湾省", "Taoyuan": "台湾省", "Yunlin": "台湾省",
+    "台湾省 or 台湾省": "台湾省",  "台北市": "台湾省", "Changhua": "台湾省", "Taichung City": "台湾省", "Taipei": "台湾省", "Taiwan": "台湾省", "Taoyuan": "台湾省", "Yunlin": "台湾省",
     // 香港
-    "Kowloon":"香港特别行政区", "Sai Kung District":"香港特别行政区", "Sham Shui Po":"香港特别行政区", "Southern District": "香港特别行政区", "Tsuen Wan District":"香港特别行政区", "Wong Tai Sin":"香港特别行政区",
+    "葵青区":"香港特别行政区", "湾仔区":"香港特别行政区", "中西区":"香港特别行政区", "Kowloon":"香港特别行政区", "Sai Kung District":"香港特别行政区", "Sham Shui Po":"香港特别行政区", "Southern District": "香港特别行政区", "Tsuen Wan District":"香港特别行政区", "Wong Tai Sin":"香港特别行政区",
     // CO - 哥伦比亚共和国 - Republic of Colombia - 南美洲 - South America
     "Bogota D.C.":"波哥大首都区",
     // CR - 哥斯达黎加共和国 - Republic of Costa Rica - 中美洲 - Central America
@@ -274,26 +267,19 @@ function City_check(para) {
     "Lankaran":"连科兰",
 
     // BA - 波黑 - 波斯尼亚和黑塞哥维那联邦
-    "塞拉耶佛":"萨拉热窝市",
-    "Sarajevo":"萨拉热窝市",
+    "塞拉耶佛":"萨拉热窝市", "Sarajevo":"萨拉热窝市",
 
     // BD - 孟加拉 - 达卡专区
-    "Bhātāra":"巴塔拉",
-    "Maijdi":"诺阿卡利县",
+    "Bhātāra":"巴塔拉", "Maijdi":"诺阿卡利县",
 
     // BD - 孟加拉 - 吉大港专区
     "Rāipur":"赖布尔",
 
     // BG - 保加利亚 - 索非亚直辖市
-    "索菲亞":"索非亚市",
-    "Sofia":"索非亚市",
+    "索菲亚":"索非亚市", "Sofia":"索非亚市",
 
     // BR - 巴西 - 圣保罗州
-    "José Bonifácio":"若泽-博尼法西奥市",
-    "Osasco":"奥萨斯库",
-    "São Paulo":"圣保罗",
-    "Sao Paulo":"圣保罗",
-    "Vinhedo":"维涅杜",
+    "José Bonifácio":"若泽-博尼法西奥市", "Osasco":"奥萨斯库", "São Paulo":"圣保罗", "Sao Paulo":"圣保罗", "Vinhedo":"维涅杜",
 
     // CA - 加拿大 - 安大略
     "Ottawa":"渥太华",
@@ -301,15 +287,11 @@ function City_check(para) {
     // CL - 智利 - 圣地亚哥大区
     "Lampa":"兰帕",
 
-    // CN - 中国台湾
-    "高雄":"高雄市",
-    "Changhua":"彰化县",
-    "Keelung": "基隆市",
-    "Taoyuan":"桃园区",
-    "Yuanlin":"员林镇",
+    // CN - 中国台湾 
+    "高雄":"高雄市", "Changhua":"彰化县", "Keelung": "基隆市", "Taoyuan":"桃园区", "Yuanlin":"员林镇",
 
     // CN - 中国香港
-    "Mid Levels": "半山区", "Hong Kong": "油尖旺区",
+    "Mid Levels": "半山区",
 
     // CZ - 捷克 - 南波希米亚州
     "České Budějovice":"捷克布杰约维采",
@@ -348,7 +330,7 @@ function City_check(para) {
     "Guatemala City":"危地马拉城",
 
     // HK - 中国香港
-    "Cheung Sha Wan":"深水埗区", "Sheung Wan":"中西区", "The Latitude":"黄大仙区", "Tseung Kwan O":"西贡区", "Tsuen Wan":"荃湾区", "Tsing Yi":"葵青区",
+    "葵涌":"葵青区", "湾仔":"湾仔区", "中环":"中西区", "Cheung Sha Wan":"深水埗区", "Sheung Wan":"中西区", "The Latitude":"黄大仙区", "Tseung Kwan O":"西贡区", "Tsuen Wan":"荃湾区", "Tsing Yi":"葵青区",
 
     // HU - 匈牙利 - 佩斯州
     "Szigetszentmiklós":"锡盖特圣米克洛什市",
@@ -356,7 +338,6 @@ function City_check(para) {
     // ID - 印度尼西亚 - 东爪哇省
     "Gubengairlangga":"泗水市", "Lamongan":"拉蒙岸县",
     
-
     // ID - 印度尼西亚 - 万丹省（西爪哇省）
     "Kampungutan": "南丹格朗市",
 
@@ -394,7 +375,7 @@ function City_check(para) {
     "Lido di Ostia":"奥斯蒂亚海滨",
 
     // JP - 日本 - 东京都
-    "東京都":"东京", "Chiyoda":"千代田区", "Chiyoda City":"千代田区", "Ebara":"品川区", "Minamishinagawa":"品川区", "Nishisugamo": "西巢鸭", "Shibuya":"涩谷区",
+    "Chiyoda":"千代田区", "Chiyoda City":"千代田区", "Ebara":"品川区", "Minamishinagawa":"品川区", "Nishisugamo": "西巢鸭", "Shibuya":"涩谷区",
 
     // JP - 日本 - 埼玉县
     "Negishi":"根岸",
