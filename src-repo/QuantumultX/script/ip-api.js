@@ -48,6 +48,7 @@ let description =
   'Latitude: ' + obj['lat'] + '\n' +
   'Longitude: ' + obj['lon'] + '\n' +
   'Timezone: ' + obj['timezone'] + '\n' +
+ ;
 
 $done({
   title: title,
