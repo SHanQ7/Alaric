@@ -209,6 +209,7 @@ function Region_check(para) {
     "Budapest":"布达佩斯",
 
     // ID - 印度尼西亚共和国 - Republic of Indonesia - 东南亚 - Southeast Asia
+    "西爪哇省": "万丹省",
     "Jakarta":"雅加达",
 
     // IL - 以色列国 - State of Israel - 西亚 - West Asia
@@ -513,6 +514,9 @@ function City_check(para) {
     "Gubengairlangga":"泗水市",
     "Lamongan":"拉蒙岸县",
 
+    // ID - 印度尼西亚 - 万丹省（西爪哇省）
+    "Kampungutan": "南丹格朗市",
+
     // ID - 印度尼西亚 - 雅加达
     "East Jakarta": "东雅加达市",
     "North Jakarta": "北雅加达市",
@@ -740,10 +744,10 @@ function City_check(para) {
     "Mtoni":"桑给巴尔市",
 
     // TH - 泰国 - 红统府
-    "Ang Thong":"红统府",
+    "Ang Thong":"红统府治县",
 
     // TH - 泰国 - 龙仔厝府
-    "Samut Sakhon":"龙仔厝市",
+    "Samut Sakhon":"龙仔厝府治县",
     
     // UA - 乌克兰 - 基洛沃格勒州
     "Pomichna":"波莫什纳亚",
