@@ -523,6 +523,7 @@ function City_check(para) {
     "Central Jakarta": "中雅加达行政市",
 
     // IL - 以色列 - 中央区
+    "内坦亚":"沙龙分区",
     "Rosh Ha‘Ayin":"罗什艾因",
 
     // IL - 以色列 - 特拉维夫区
