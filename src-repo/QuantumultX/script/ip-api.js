@@ -537,8 +537,8 @@ function City_check(para) {
     "Badaganhatti":"巴达甘哈提",
 
     // IN - 印度 - 马哈拉施特拉邦
-    "Mumbai":"孟买",
-    "Santa Cruz":"圣克鲁斯",
+    "Mumbai":"孟买市",
+    "Santa Cruz":"孟买市",
 
     // IN - 印度 - 泰米尔纳德邦
     "Tiruvānmiyūr":"钦奈市",
